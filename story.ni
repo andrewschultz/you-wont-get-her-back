@@ -253,6 +253,7 @@ to reset-the-board:
 	move white pawn to c6;
 	move black king to a1;
 	move the player to b6;
+	now my-move-log is {};
 
 volume going
 
@@ -261,7 +262,7 @@ check going (this is the friendly piece obstruction rule):
 	if the room gone to is rook-guarded, say "But the enemy rook would see you there." instead;
 	if the room gone to is king-guarded, say "Ugh, no. Don't want to get too close to the enemy king." instead;
 
-check going (this is the rook catches pawn rule):
+check going (this is the rook catches pawn rule): [the logic here is: you move to the a-file, it's a draw. You move to the c-file too soon, it's a draw. There are side test cases, of course. ]
 	if room gone to is nowhere, continue the action;
 	let y-to be yval of room gone to;
 	let x-to be xval of room gone to;
@@ -276,8 +277,33 @@ check going (this is the rook catches pawn rule):
 			say "The rook zips down to d1. So unfair! You have feet and legs and everything, and you're nowhere near that fast! But you see what's up. [if y-to is 4]That rook's going to c1, and you can't even guard the pawn behind you[else]You'll be able to guard your pawn, and thankfully the enemy king's too far away, but it's a stalemate all the same[end if].";
 
 after going when pawn is not off-stage:
-	move rook to d-file-room;
+	if room gone to is c3 and room gone from is b4:
+		move-and-log d1;
+	else if room gone to is b3 and room gone from is c2:
+		move-and-log d4;
+	else:
+		move-and-log d-file-room;
 	continue the action;
+
+black-move is a truth state that varies.
+
+my-move-log is a list of numbers variable.
+
+to move-and-log (rm - a room):
+	add board-state to my-move-log;
+	now black-move is true;
+	move black rook to rm;
+	add board-state to my-move-log;
+	now black-move is false;
+
+to decide which number is board-state:
+	let temp be 0;
+	if black-move is true, now temp is 10000;
+	increase temp by 1000 * xval of location of player;
+	increase temp by 100 * yval of location of player;
+	increase temp by 10 * xval of location of rook;
+	increase temp by 1 * yval of location of rook;
+	decide on temp;
 
 to decide which room is d-file-room:
 	if location of player is c2, decide on d4;
@@ -303,26 +329,9 @@ check going nowhere:
 
 volume game progress
 
+move-log is a list of numbers variable.
+
 chapter tracking repeated moves
-
-right-moves is a number that varies. right-moves is 0.
-
-repeated-moves is a number that varies. right-moves is 0.
-
-after going north:
-	increment repeated-moves;
-	continue the action;
-
-after going south:
-	if repeated-moves is 2:
-		say "Threefold repetition!";
-		reset-the-board;
-		the rule succeeds;
-	else if repeated-moves is 1:
-		say "'Big deal, we're back where we were before!'";
-		continue the action;
-	now repeated-moves is 0;
-	continue the action;
 
 chapter move 1
 
