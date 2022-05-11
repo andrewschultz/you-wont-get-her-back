@@ -196,6 +196,8 @@ understand the command "pawn" as something new.
 understand "pawn" as pawning.
 understand "p" as pawning.
 
+check pawning when rook-check: say "You have to move. The opposing rook has you in check." instead;
+
 carry out pawning:
 	if location of pawn is c6:
 		say "You order the pawn forward. The enemy rook checks you on c7.";
@@ -204,7 +206,19 @@ carry out pawning:
 		try looking;
 		add 12646 to my-move-log;
 		continue the action;
-		say "Triumph! The pawn makes it to the eighth rank. But ... but ...";
+	say "Triumph! The pawn makes it to the eighth rank. There is a swirl of light before [the piece-to-queen] pops up.";
+	move piece-to-queen to c8;
+	if piece-to-queen is white queen:
+		say "The black rook sneaks to c4! You have nothing better to do than have your queen take the rook, which triggers stalemate.";
+		reset-the-board;
+		the rule succeeds;
+	if piece-to-queen is white bishop or piece-to-queen is white knight:
+		say "The black rook snickers as it slides over to c4. Your friend [the piece-to-queen] will be captured next move, and a very unpleasant but inevitable lost rook endgame awaits.";
+		reset-the-board;
+		the rule succeeds;
+	now white pawn is off-stage;
+	say "The black rook looks a bit confused as you call for a rook, not your queen. He shuffles over to a4!";
+	now win-next is true;
 	the rule succeeds;
 
 volume dramatis personae
@@ -231,6 +245,10 @@ definition: a room (called rm) is rook-guarded:
 	if rook-see of east and rm, yes;
 	if rook-see of west and rm, yes;
 	no.
+
+to decide whether rook-check:
+	if location of player is rook-guarded, yes;
+	no;
 
 to decide whether rook-see of (di - a direction) and (rm - a room):
 	let rm2 be the room di of location of rook;
@@ -259,12 +277,18 @@ to reset-the-board:
 volume going
 
 the friendly piece obstruction rule is listed first in the check going rules.
-the rook catches pawn rule is listed after the friendly piece obstruction rule in the check going rules.
+the final step fail rule is listed after the friendly piece obstruction rule in the check going rules.
+the rook catches pawn rule is listed after the final step fail rule in the check going rules.
 
 check going (this is the friendly piece obstruction rule):
 	if the room gone to is friend-occupied, say "But [the random friendly person in room noun of location of player] is already there." instead;
 	if the room gone to is rook-guarded, say "But the enemy rook would see you there." instead;
 	if the room gone to is king-guarded, say "Ugh, no. Don't want to get too close to the enemy king." instead;
+
+check going when win-next is true (this is the final step fail rule):
+	if room gone to is not b3:
+		say "The black rook and king breathe a sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw.";
+		reset-the-board instead;
 
 check going (this is the rook catches pawn rule): [the logic here is: you move to the a-file, it's a draw. You move to the c-file too soon, it's a draw. There are side test cases, of course. ]
 	if room gone to is nowhere, continue the action;
