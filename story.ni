@@ -160,13 +160,14 @@ to say border:
 
 to say grid-printout:
 	say "[fixed letter spacing]";
-	say "[border][line break]";
 	repeat with Y running from 1 to 8:
+		say "[border][line break]";
 		say "|";
 		repeat with X running from 1 to 8:
 			say "[occupant of X and (9 - Y)]";
 			say "|";
-		say "[line break][border][line break]";
+		say "[line break]";
+	say "[border]";
 	say "[variable letter spacing]";
 
 to say occupant of (x - a number) and (y - a number):
@@ -209,7 +210,6 @@ definition: a room (called rm) is rook-guarded:
 	no.
 
 to decide whether rook-see of (di - a direction) and (rm - a room):
-	say "Checking [location of rook] [di].";
 	let rm2 be the room di of location of rook;
 	while rm2 is not nothing:
 		if rm is rm2, yes;
