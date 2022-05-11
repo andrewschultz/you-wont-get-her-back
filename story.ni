@@ -202,6 +202,7 @@ carry out pawning:
 		move black rook to d6;
 		move pawn to c7;
 		try looking;
+		add 12646 to my-move-log;
 		continue the action;
 		say "Triumph! The pawn makes it to the eighth rank. But ... but ...";
 	the rule succeeds;
@@ -252,10 +253,13 @@ to reset-the-board:
 	move black rook to d5;
 	move white pawn to c6;
 	move black king to a1;
-	move the player to b6;
 	now my-move-log is {};
+	if black-move is false, move the player to b6;
 
 volume going
+
+the friendly piece obstruction rule is listed first in the check going rules.
+the rook catches pawn rule is listed after the friendly piece obstruction rule in the check going rules.
 
 check going (this is the friendly piece obstruction rule):
 	if the room gone to is friend-occupied, say "But [the random friendly person in room noun of location of player] is already there." instead;
@@ -275,8 +279,9 @@ check going (this is the rook catches pawn rule): [the logic here is: you move t
 	if x-to is 3:
 		if y-to > 3:
 			say "The rook zips down to d1. So unfair! You have feet and legs and everything, and you're nowhere near that fast! But you see what's up. [if y-to is 4]That rook's going to c1, and you can't even guard the pawn behind you[else]You'll be able to guard your pawn, and thankfully the enemy king's too far away, but it's a stalemate all the same[end if].";
+	if threefold-repetition of board-state, the rule fails;
 
-after going when pawn is not off-stage:
+after going when pawn is not off-stage (this is the transcribe moves rule):
 	if room gone to is c3 and room gone from is b4:
 		move-and-log d1;
 	else if room gone to is b3 and room gone from is c2:
@@ -290,17 +295,32 @@ black-move is a truth state that varies.
 my-move-log is a list of numbers variable.
 
 to move-and-log (rm - a room):
-	add board-state to my-move-log;
+	say "The rook slides around to [rm].";
 	now black-move is true;
 	move black rook to rm;
-	add board-state to my-move-log;
+	if threefold-repetition of board-state, continue the action;
 	now black-move is false;
+
+to decide whether threefold-repetition of (N - a number):
+	let temp be 0;
+	repeat with EN running through my-move-log:
+		if EN is N, increment temp;
+		if temp is 2:
+			say "'REPETITION OF MOVES!' the enemy rook calls out. They're right. It's odd--the whole affair seemed a draw, anyway, so why were they so eager to claim one? I guess they are eager to get back to oppressing pawns, or something.";
+			reset-the-board;
+			yes;
+	add N to my-move-log;
+	no;
 
 to decide which number is board-state:
 	let temp be 0;
-	if black-move is true, now temp is 10000;
-	increase temp by 1000 * xval of location of player;
-	increase temp by 100 * yval of location of player;
+	if black-move is true:
+		now temp is 10000;
+		increase temp by 1000 * xval of location of player;
+		increase temp by 100 * yval of location of player;
+	else:
+		increase temp by 1000 * xval of go-room;
+		increase temp by 100 * yval of go-room;
 	increase temp by 10 * xval of location of rook;
 	increase temp by 1 * yval of location of rook;
 	decide on temp;
@@ -312,13 +332,14 @@ to decide which room is d-file-room:
 	if xval of r1 is 4, decide on r1;
 	decide on the room east of r1;
 
-the friendly piece obstruction rule is listed first in the check going rules.
-
 check going inside: say "You can only move in the eight basic directions." instead;
 check exiting (this is the force exit to outside rule): say "You can only move in the eight basic directions." instead;
 check going outside: say "You can only move in the eight basic directions." instead;
 
 the force exit to outside rule is listed instead of the convert exit into go out rule in the check exiting rulebook.
+
+to decide which room is go-room:
+	decide on the room noun of location of player;
 
 check going nowhere:
 	if noun is north, say "There's no ninth rank, so you'd fall off the north edge of the board! What a sad end that would be." instead;
