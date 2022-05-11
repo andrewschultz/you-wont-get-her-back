@@ -162,6 +162,28 @@ definition: a room (called rm) is friend-occupied:
 	if number of friendly people in rm > 0, yes;
 	no;
 
+definition: a room (called rm) is rook-guarded:
+	if rook-see of north and rm, yes;
+	if rook-see of south and rm, yes;
+	if rook-see of east and rm, yes;
+	if rook-see of west and rm, yes;
+	no.
+
+to decide whether rook-see of (di - a direction) and (rm - a room):
+	say "Checking [location of rook] [di].";
+	let rm2 be the room di of location of rook;
+	while rm2 is not nothing:
+		if rm is rm2, yes;
+		if number of people in rm2 > 0 and player is not in rm2, no;
+		now rm2 is the room di of rm2;
+	no;
+
+definition: a room (called rm) is king-guarded:
+	let ek be location of black king;
+	repeat with D running through directions:
+		if the room D of location of king is rm, yes;
+	no;
+
 volume reset the board
 
 to reset-the-board:
@@ -175,6 +197,8 @@ volume going
 
 check going (this is the friendly piece obstruction rule):
 	if the room gone to is friend-occupied, say "But [the random friendly person in room noun of location of player] is already there." instead;
+	if the room gone to is rook-guarded, say "But the enemy rook would see you there." instead;
+	if the room gone to is king-guarded, say "Ugh, no. Don't want to get too close to the enemy king." instead;
 
 the friendly piece obstruction rule is listed first in the check going rules.
 
