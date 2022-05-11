@@ -184,6 +184,28 @@ definition: a person (called p) is active:
 	if p is off-stage, no;
 	yes;
 
+volume commands
+
+chapter pawning
+
+pawning is an action out of world.
+
+understand the command "p" as something new.
+understand the command "pawn" as something new.
+
+understand "pawn" as pawning.
+understand "p" as pawning.
+
+carry out pawning:
+	if location of pawn is c6:
+		say "You order the pawn forward. The enemy rook checks you on c7.";
+		move black rook to d6;
+		move pawn to c7;
+		try looking;
+		continue the action;
+		say "Triumph! The pawn makes it to the eighth rank. But ... but ...";
+	the rule succeeds;
+
 volume dramatis personae
 
 a person has text called shorthand.
