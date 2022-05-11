@@ -1,8 +1,26 @@
 "You Don't Want Her Back" by Andrew Schultz
 
+volume metadata
+
+the story headline is "The end of a long, brutal war".
+
+the story description is "An implementation of a classic chess puzzle".
+
+the release number is 1.
+
+release along with a website.
+
+include Old School Verb Total Carnage by Andrew Schultz.
+
+[include Trivial Niceties by Andrew Schultz.]
+
+volume properties
+
 a room has a number called xval. a room has a number called yval.
 
 a person can be friendly or enemy. a person is usually friendly.
+
+volume board layout
 
 a1 is a room.
 
