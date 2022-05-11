@@ -261,6 +261,31 @@ check going (this is the friendly piece obstruction rule):
 	if the room gone to is rook-guarded, say "But the enemy rook would see you there." instead;
 	if the room gone to is king-guarded, say "Ugh, no. Don't want to get too close to the enemy king." instead;
 
+check going (this is the rook catches pawn rule):
+	if room gone to is nowhere, continue the action;
+	let y-to be yval of room gone to;
+	let x-to be xval of room gone to;
+	if y-to is 7:
+		say "The rook chuckles as it backpedals to d7. Your pawn is pinned against you. Even if you go to the eighth rank, the rook will take it the next move.";
+		reset-the-board instead;
+	if x-to is 1:
+		say "The rook chuckles as it swoops behind the pawn to [the room west of location of rook]. [if location of player is a6]At least you'll be able to guard the pawn and smack the rook down! Or, if the rook checks you on the b-file, you can move to the a-file and move back to the b-file, for a repetition of moves[else]And you're too far away to even guard it! You will lose the war now[end if].";
+		reset-the-board instead;
+	if x-to is 3:
+		if y-to > 3:
+			say "The rook zips down to d1. So unfair! You have feet and legs and everything, and you're nowhere near that fast! But you see what's up. [if y-to is 4]That rook's going to c1, and you can't even guard the pawn behind you[else]You'll be able to guard your pawn, and thankfully the enemy king's too far away, but it's a stalemate all the same[end if].";
+
+after going when pawn is not off-stage:
+	move rook to d-file-room;
+	continue the action;
+
+to decide which room is d-file-room:
+	if location of player is c2, decide on d4;
+	if location of player is c3, decide on d1;
+	let r1 be the room east of location of player;
+	if xval of r1 is 4, decide on r1;
+	decide on the room east of r1;
+
 the friendly piece obstruction rule is listed first in the check going rules.
 
 check going inside: say "You can only move in the eight basic directions." instead;
