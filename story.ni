@@ -1,5 +1,9 @@
 "You Don't Want Her Back" by Andrew Schultz
 
+a room has a number called xval. a room has a number called yval.
+
+a person can be friendly or enemy. a person is usually friendly.
+
 a1 is a room.
 
 a2 is a room. a2 is north of a1.
@@ -128,3 +132,13 @@ h7 is a room. h7 is east of g7. h7 is north of h6. h7 is northeast of g6. h7 is 
 
 h8 is a room. h8 is east of g8. h8 is north of h7. h8 is northeast of g7.
 
+the black rook is an enemy person in d5. the white pawn is a friendly person in c6. the black king is an enemy person in a1.
+
+the player is in b6. the player is friendly.
+
+definition: a room (called rm) is friend-occupied:
+	if number of friendly people in rm > 0, yes;
+	no;
+
+check going:
+	if the room noun of location of player is friend-occupied, say "But [the random friendly person in room noun of location of player] is already there." instead;
