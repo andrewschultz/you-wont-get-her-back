@@ -233,6 +233,9 @@ carry out pawning:
 	the rule succeeds;
 
 to promote-check (pi - a person):
+	if pawn is off-stage:
+		say "You already decided what to promote the pawn to.";
+		continue the action;
 	if pawn is on c7 and not rook-check:
 		now piece-to-queen is pi;
 		try pawning;
@@ -346,6 +349,9 @@ to reset-the-board:
 	move white pawn to c6;
 	move black king to a1;
 	now kb3-next is false;
+	now white queen is off-stage;
+	now white bishop is off-stage;
+	now white knight is off-stage;
 	now take-rook-next is false;
 	now check-king-next is false;
 	now my-move-log is {};
