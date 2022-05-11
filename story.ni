@@ -186,6 +186,8 @@ definition: a person (called p) is active:
 
 volume commands
 
+piece-to-queen is a thing that varies. piece-to-queen is usually the white queen.
+
 chapter pawning
 
 pawning is an action out of world.
@@ -219,6 +221,60 @@ carry out pawning:
 	now white pawn is off-stage;
 	say "The black rook looks a bit confused as you call for a rook, not your queen. He shuffles over to a4!";
 	now win-next is true;
+	move black rook to a4;
+	try looking;
+	the rule succeeds;
+
+to promote-check (pi - a person):
+	if pawn is on c7 and not rook-check:
+		now piece-to-queen is pi;
+		try pawning;
+		the rule succeeds;
+	say "You [if piece-to-queen is pi]already plan to promote [the pi][else]decide to promote to [the pi], not [the piece-to-queen].";
+	now piece-to-queen is pi;
+
+chapter rooking
+
+rooking is an action out of world.
+
+understand the command "rook" as something new.
+understand the command "r" as something new.
+
+understand "rook" as rooking.
+understand "r" as rooking.
+
+carry out rooking:
+	promote-check white rook;
+	the rule succeeds;
+
+chapter bishoping
+
+bishoping is an action out of world.
+
+understand the command "bishop" as something new.
+understand the command "b" as something new.
+
+understand "bishop" as bishoping.
+understand "b" as bishoping.
+
+carry out bishoping:
+	promote-check white bishop;
+	the rule succeeds;
+
+chapter knighting
+
+knighting is an action out of world.
+
+understand the command "knight" as something new.
+understand the command "n" as something new.
+understand the command "k" as something new.
+
+understand "knight" as knighting.
+understand "k" as knighting.
+understand "n" as knighting.
+
+carry out knighting:
+	promote-check white knight;
 	the rule succeeds;
 
 volume dramatis personae
@@ -232,6 +288,14 @@ the white pawn is a friendly person in c6. shorthand of white pawn is "p".
 the black king is an enemy person in a1. shorthand of black king is "k".
 
 the player is in b6. the player is friendly. shorthand of player is "K".
+
+the white queen is a friendly person. shorthand of white queen is "Q".
+
+the white rook is a friendly person. shorthand of white rook is "R".
+
+the white bishop is a friendly person. shorthand of white bishop is "B".
+
+the white knight is a friendly person. shorthand of white knight is "N".
 
 volume definition(s)
 
@@ -276,6 +340,8 @@ to reset-the-board:
 
 volume going
 
+win-next is a truth state that varies.
+
 the friendly piece obstruction rule is listed first in the check going rules.
 the final step fail rule is listed after the friendly piece obstruction rule in the check going rules.
 the rook catches pawn rule is listed after the final step fail rule in the check going rules.
@@ -289,6 +355,7 @@ check going when win-next is true (this is the final step fail rule):
 	if room gone to is not b3:
 		say "The black rook and king breathe a sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw.";
 		reset-the-board instead;
+	say "Flesh the win out later.";
 
 check going (this is the rook catches pawn rule): [the logic here is: you move to the a-file, it's a draw. You move to the c-file too soon, it's a draw. There are side test cases, of course. ]
 	if room gone to is nowhere, continue the action;
