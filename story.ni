@@ -300,3 +300,43 @@ check going nowhere:
 	if noun is east, say "There's no ninth column, so you'd fall off the east edge of the board! What a sad end that would be." instead;
 	if noun is west, say "There's no zeroth column, so you'd fall off the east edge of the board! What a sad end that would be." instead;
 	say "You just aren't able to move that way." instead;
+
+volume game progress
+
+chapter tracking repeated moves
+
+right-moves is a number that varies. right-moves is 0.
+
+repeated-moves is a number that varies. right-moves is 0.
+
+after going north:
+	increment repeated-moves;
+	continue the action;
+
+after going south:
+	if repeated-moves is 2:
+		say "Threefold repetition!";
+		reset-the-board;
+		the rule succeeds;
+	else if repeated-moves is 1:
+		say "'Big deal, we're back where we were before!'";
+		continue the action;
+	now repeated-moves is 0;
+	continue the action;
+
+chapter move 1
+
+chapter move 2
+
+chapter move 3
+
+chapter move 4
+
+chapter move 5
+
+chapter move 6
+
+chapter move 7
+
+chapter move 8
+
