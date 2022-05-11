@@ -150,13 +150,43 @@ h7 is a room. h7 is east of g7. h7 is north of h6. h7 is northeast of g6. h7 is 
 
 h8 is a room. h8 is east of g8. h8 is north of h7. h8 is northeast of g7.
 
+volume dramatis personae
+
 the black rook is an enemy person in d5. the white pawn is a friendly person in c6. the black king is an enemy person in a1.
 
 the player is in b6. the player is friendly.
+
+volume definition(s)
 
 definition: a room (called rm) is friend-occupied:
 	if number of friendly people in rm > 0, yes;
 	no;
 
-check going:
-	if the room noun of location of player is friend-occupied, say "But [the random friendly person in room noun of location of player] is already there." instead;
+volume reset the board
+
+to reset-the-board:
+	say "So, no, that doesn't quite work. Let's try again.";
+	move black rook to d5;
+	move white pawn to c6;
+	move black king to a1;
+	move the player to b6;
+
+volume going
+
+check going (this is the friendly piece obstruction rule):
+	if the room gone to is friend-occupied, say "But [the random friendly person in room noun of location of player] is already there." instead;
+
+the friendly piece obstruction rule is listed first in the check going rules.
+
+check going inside: say "You can only move in the eight basic directions." instead;
+check exiting (this is the force exit to outside rule): say "You can only move in the eight basic directions." instead;
+check going outside: say "You can only move in the eight basic directions." instead;
+
+the force exit to outside rule is listed instead of the convert exit into go out rule in the check exiting rulebook.
+
+check going nowhere:
+	if noun is north, say "There's no ninth rank, so you'd fall off the north edge of the board! What a sad end that would be." instead;
+	if noun is south, say "There's no zeroth rank, so you'd fall off the south edge of the board! What a sad end that would be." instead;
+	if noun is east, say "There's no ninth column, so you'd fall off the east edge of the board! What a sad end that would be." instead;
+	if noun is west, say "There's no zeroth column, so you'd fall off the east edge of the board! What a sad end that would be." instead;
+	say "You just aren't able to move that way." instead;
