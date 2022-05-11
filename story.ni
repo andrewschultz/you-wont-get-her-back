@@ -150,11 +150,50 @@ h7 is a room. xval of h7 is 8. yval of h7 is 7. h7 is east of g7. h7 is north of
 
 h8 is a room. xval of h8 is 8. yval of h8 is 8. h8 is east of g8. h8 is north of h7. h8 is northeast of g7.
 
+volume room description
+
+screen-reader is a truth state that varies.
+
+the description of a room is usually "[if screen-reader is true][list of not off-stage people].[else][grid-printout][end if]";
+to say border:
+	say "+-+-+-+-+-+-+-+-+";
+
+to say grid-printout:
+	say "[fixed letter spacing]";
+	say "[border][line break]";
+	repeat with Y running from 1 to 8:
+		say "|";
+		repeat with X running from 1 to 8:
+			say "[occupant of X and (9 - Y)]";
+			say "|";
+		say "[line break][border][line break]";
+	say "[variable letter spacing]";
+
+to say occupant of (x - a number) and (y - a number):
+	repeat with rm running through rooms:
+		if xval of rm is x and yval of rm is y:
+			if number of people in rm is 0:
+				say " ";
+				continue the action;
+			say "[shorthand of random person in rm]";
+			continue the action;
+	say "?"
+
+definition: a person (called p) is active:
+	if p is off-stage, no;
+	yes;
+
 volume dramatis personae
 
-the black rook is an enemy person in d5. the white pawn is a friendly person in c6. the black king is an enemy person in a1.
+a person has text called shorthand.
 
-the player is in b6. the player is friendly.
+the black rook is an enemy person in d5. shorthand of black rook is "r".
+
+the white pawn is a friendly person in c6. shorthand of white pawn is "p".
+
+the black king is an enemy person in a1. shorthand of black king is "k".
+
+the player is in b6. the player is friendly. shorthand of player is "K".
 
 volume definition(s)
 
