@@ -14,6 +14,13 @@ include Old School Verb Total Carnage by Andrew Schultz.
 
 [include Trivial Niceties by Andrew Schultz.]
 
+volume game state variables
+
+rook-sacs-self is a truth state that varies.
+kb3-next is a truth state that varies.
+take-rook-next is a truth state that varies.
+check-king-next is a truth state that varies.
+
 volume properties
 
 a room has a number called xval. a room has a number called yval.
@@ -220,7 +227,7 @@ carry out pawning:
 		the rule succeeds;
 	now white pawn is off-stage;
 	say "The black rook looks a bit confused as you call for a rook, not your queen. He shuffles over to a4!";
-	now win-next is true;
+	now kb3-next is true;
 	move black rook to a4;
 	try looking;
 	the rule succeeds;
@@ -330,32 +337,63 @@ definition: a room (called rm) is king-guarded:
 
 volume reset the board
 
+when play begins:
+	if a random chance of 1 in 2 succeeds, now rook-sacs-self is true;
+
 to reset-the-board:
 	say "So, no, that doesn't quite work. Let's try again.";
 	move black rook to d5;
 	move white pawn to c6;
 	move black king to a1;
+	now kb3-next is false;
+	now take-rook-next is false;
+	now check-king-next is false;
 	now my-move-log is {};
 	if black-move is false, move the player to b6;
 
 volume going
 
-win-next is a truth state that varies.
-
 the friendly piece obstruction rule is listed first in the check going rules.
 the final step fail rule is listed after the friendly piece obstruction rule in the check going rules.
 the rook catches pawn rule is listed after the final step fail rule in the check going rules.
+
+definition: a room (called s) is suicidal:
+	if s is b4 or s is a3, yes;
+	no;
+
+definition: a room (called s) is skinsaving:
+	if s is a2 or s is a5 or s is a6 or s is a7, yes;
+	if s is d4 or s is d5 or s is d6 or s is d7 or s is d8, yes;
+	no;
 
 check going (this is the friendly piece obstruction rule):
 	if the room gone to is friend-occupied, say "But [the random friendly person in room noun of location of player] is already there." instead;
 	if the room gone to is rook-guarded, say "But the enemy rook would see you there." instead;
 	if the room gone to is king-guarded, say "Ugh, no. Don't want to get too close to the enemy king." instead;
 
-check going when win-next is true (this is the final step fail rule):
+check going when kb3-next is true (this is the final step fail rule):
 	if room gone to is not b3:
 		say "The black rook and king breathe a sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw.";
 		reset-the-board instead;
+	if rook-sacs-self is true:
+		let rss be random suicidal room;
+		now kb3-next is false;
+		now take-rook-next is true;
+		say "There's a big argument. The black king insists the black rook give himself up for you. 'You will sacrifice yourself for your king and country, and you will sacrifice yourself for your king and country right NOW, do you hear?'[paragraph break]There's a big argument, which you sit back and enjoy, until you worry it might tip off the 50-move rule. Then you realize the 50-move rule doesn't progress without, you know, a legal move. So that's all good. The rook flings itself to [rss].";
+		move black rook to rss;
+	else:
+		let rss be random skinsaving room;
+		say "The rook flees to save its own skin!";
+		now kb3-next is false;
+		now check-king-next is true;
 	say "Flesh the win out later.";
+
+check going when take-rook-next is true:
+	if room gone to is not location of black rook:
+		say "'Geez. What a coward. Didn't even want to capture me.' The rook proceeds to [if location of black rook is a3]patrol the third rank[else]patrol the first rank, checking you if you try for a sneaky checkmate on b3[end if], and after fifty moves, the war is officially declared a draw.";
+		reset-the-board instead;
+	say "BAM! Take that, rook! [if location of rook is a3]The rest is straightforward. Your enemy moves to b1, you move to b3, and they move to a1, and your rook delivers the kill on c1.[else]The rest is a bit tricky, since your king was decoyed to b4. But you've planned ahead: the enemy king to a2? Rook to c2. Enemy king to b1? King to b3. The rook on the c-file cuts your enemy off[end if]. Victory!";
+	end the story finally;
 
 check going (this is the rook catches pawn rule): [the logic here is: you move to the a-file, it's a draw. You move to the c-file too soon, it's a draw. There are side test cases, of course. ]
 	if room gone to is nowhere, continue the action;
