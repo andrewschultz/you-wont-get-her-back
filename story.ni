@@ -14,12 +14,16 @@ include Old School Verb Total Carnage by Andrew Schultz.
 
 [include Trivial Niceties by Andrew Schultz.]
 
-volume game state variables
+include You Dont Want Her Back Tests by Andrew Schultz.
+
+volume game state variables and procedural rules
 
 rook-sacs-self is a truth state that varies.
 kb3-next is a truth state that varies.
 take-rook-next is a truth state that varies.
 check-king-next is a truth state that varies.
+
+ procedural rule: ignore the print final score rule.
 
 volume properties
 
@@ -278,12 +282,10 @@ chapter knighting
 knighting is an action out of world.
 
 understand the command "knight" as something new.
-understand the command "n" as something new.
 understand the command "k" as something new.
 
 understand "knight" as knighting.
 understand "k" as knighting.
-understand "n" as knighting.
 
 carry out knighting:
 	promote-check white knight;
@@ -387,13 +389,12 @@ check going when kb3-next is true (this is the final step fail rule):
 		now kb3-next is false;
 		now check-king-next is true;
 		move rook to rsr;
-	say "Flesh the win out later.";
 
 check going when take-rook-next is true:
 	if room gone to is not location of black rook:
 		say "'Geez. What a coward. Didn't even want to capture me.' The rook proceeds to [if location of black rook is a3]patrol the third rank[else]patrol the first rank, checking you if you try for a sneaky checkmate on b3[end if], and after fifty moves, the war is officially declared a draw.";
 		reset-the-board instead;
-	say "BAM! Take that, rook! [if location of rook is a3]The rest is straightforward. Your enemy moves to b1, you move to b3, and they move to a1, and your rook delivers the kill on c1.[else]The rest is a bit tricky, since your king was decoyed to b4. But you've planned ahead: the enemy king to a2? Rook to c2. Enemy king to b1? King to b3. The rook on the c-file cuts your enemy off[end if]. Victory!";
+	say "BAM! Take that, rook! [if location of rook is a3]The rest is straightforward. Your enemy moves to b1, you move to b3, and they move to a1, and your rook delivers the kill on c1[else]The rest is a bit tricky, since your king was decoyed to b4. But you've planned ahead: the enemy king to a2? Rook to c2. Enemy king to b1? King to b3. The rook on the c-file cuts your enemy off[end if]. Victory!";
 	end the story finally;
 
 check going (this is the rook catches pawn rule): [the logic here is: you move to the a-file, it's a draw. You move to the c-file too soon, it's a draw. There are side test cases, of course. ]
