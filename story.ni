@@ -16,6 +16,10 @@ include Trivial Niceties by Andrew Schultz.
 
 include You Dont Want Her Back Tests by Andrew Schultz.
 
+include Conditional Undo by Jesse McGrew.
+
+include Undo Output Control by Erik Temple.
+
 volume game state variables and procedural rules
 
 rook-sacs-self is a truth state that varies.
@@ -32,6 +36,12 @@ option-persist-warn is a truth state that varies.
 chapter rules
 
 procedural rule: ignore the print final score rule.
+
+chapter tester stuff that needs to be listed globally
+
+undo-allow is a truth state that varies.
+
+undo-explain-shown is a truth state that varies.
 
 volume properties
 
@@ -612,6 +622,19 @@ carry out squaregoing:
 		try going x;
 		the rule succeeds;
 	say "I'm at a loss.";
+
+volume meta verbs
+
+rule for deciding whether to allow undo:
+	if undo-allow is true:
+		say "Undo allowed for testing.";
+		allow undo;
+	say "You have a vision of some young children screaming 'No takebacks!' and 'You touched it, you moved it!' It ends in tears. Wow! What was that about?";
+	if undo-explain-shown is false:
+		say "[line break]";
+		ital-say "undoing is disabled, but since the whole game shouldn't take more than fourteen moves, you should be able to recreaete what you did. I hope this balances forcing you to a bit of challenging calculation with not getting too frustrated.";
+		now undo-explain-shown is true;
+	deny undo;
 
 volume game progress
 

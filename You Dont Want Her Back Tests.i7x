@@ -65,6 +65,35 @@ carry out afing:
 	now noun is skinsaving;
 	the rule succeeds;
 
+chapter uying
+
+uying is an action out of world.
+
+understand the command "uy" as something new.
+understand the command "yu" as something new.
+
+understand "uy" as uying.
+understand "yu" as uying.
+
+carry out uying:
+	say "Undo-allow is [if undo-allow is true]already[else]now[end if] on.";
+	now undo-allow is true;
+	the rule succeeds;
+
+chapter uning
+
+uning is an action out of world.
+
+understand the command "un" as something new.
+understand the command "nu" as something new.
+
+understand "un" as uning.
+understand "nu" as uning.
+
+carry out uning:
+	say "Undo-allow is [if undo-allow is false]already[else]now[end if] off.";
+	now undo-allow is false;
+	the rule succeeds;
 
 volume quick tests
 
