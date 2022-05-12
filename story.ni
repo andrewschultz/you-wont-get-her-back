@@ -397,7 +397,10 @@ to reset-the-board:
 	now take-rook-next is false;
 	now check-king-next is false;
 	now my-move-log is {};
-	if black-move is false, move the player to b6;
+	if black-move is false:
+		move the player to b6;
+	else:
+		move player to b6, without printing a room description;
 
 volume going
 
@@ -456,7 +459,10 @@ after going when pawn is not off-stage (this is the transcribe moves rule):
 	if room gone to is c3 and room gone from is b4:
 		move-and-log d1;
 	else if room gone to is b3 and room gone from is c2:
-		move-and-log d4;
+		if location of rook is d4:
+			move-and-log d3;
+		else:
+			move-and-log d4;
 	else:
 		move-and-log d-file-room;
 	continue the action;
@@ -472,10 +478,21 @@ to decide which direction is pref-dir of (fromrm - a room) and (torm - a room):
 	if xval of torm is xval of fromrm:
 		if yval of torm > yval of fromrm, decide on north;
 		decide on south;
-	decide on northeast;
+	decide on up;
+
+to say note-rook-check of (rm - a room):
+	let look-dir be pref-dir of rm and location of player;
+	if look-dir is up, continue the action;
+	let rm2 be the room look-dir of rm;
+	while rm2 is not nowhere:
+		if location of player is rm2:
+			say ", putting you in check";
+			continue the action;
+		if number of people in rm2 > 0, continue the action;
+		now rm2 is the room look-dir of rm2;
 
 to move-and-log (rm - a room):
-	say "The rook slides [pref-dir of location of black rook and rm] to [rm][if rm is rook-guarded] to check you[end if].";
+	say "The rook slides [pref-dir of location of black rook and rm] to [rm][note-rook-check of rm].";
 	now black-move is true;
 	move black rook to rm;
 	if threefold-repetition of board-state, continue the action;
