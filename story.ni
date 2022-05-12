@@ -291,25 +291,48 @@ carry out knighting:
 	promote-check white knight;
 	the rule succeeds;
 
+chapter requesting the score
+
+check requesting the score:
+	if white pawn is not off-stage:
+		say "By official rules, you're trailing by five points to one, but boy, that pawn of yours has potential to become a nine-point queen!";
+	else if white queen is not off-stage:
+		say "By official rules, your queen is nine points and your opponent's rook is five, but you've got a small problem, here.";
+	else if white rook is not off-stage:
+		say "Materially, you're equal, but you've got the initiative. Go, you!";
+	else:
+		say "You're down five points to three. You should never see this, but you are.";
+	the rule succeeds;
+
 volume dramatis personae
 
 a person has text called shorthand.
 
+a person has a number called pointvalue.
+
 the black rook is an enemy person in d5. shorthand of black rook is "r".
 
-the white pawn is a friendly person in c6. shorthand of white pawn is "p".
+the white pawn is a friendly person in c6. shorthand of white pawn is "p". pointvalue of white pawn is 1.
 
 the black king is an enemy person in a1. shorthand of black king is "k".
 
 the player is in b6. the player is friendly. shorthand of player is "K".
 
-the white queen is a friendly person. shorthand of white queen is "Q".
+the white queen is a friendly person. shorthand of white queen is "Q". pointvalue of white queen is 9.
 
-the white rook is a friendly person. shorthand of white rook is "R".
+the white rook is a friendly person. shorthand of white rook is "R". pointvalue of white rook is 5.
 
-the white bishop is a friendly person. shorthand of white bishop is "B".
+the white bishop is a friendly person. shorthand of white bishop is "B". pointvalue of white bishop is 3.
 
-the white knight is a friendly person. shorthand of white knight is "N".
+the white knight is a friendly person. shorthand of white knight is "N". pointvalue of white knight is 3.
+
+to decide which number is your-points:
+	let temp be 0;
+	repeat with PER running through friendly not off-stage people:
+		increase temp by pointvalue of PER;
+	decide on temp.
+
+when play begins: now right hand status line is "[your-points] - 5".
 
 volume definition(s)
 
