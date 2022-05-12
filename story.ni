@@ -562,6 +562,57 @@ carry out waiting:
 	say "Since it's your turn to move, why not use all the time you want? Keep the opponent nervous.";
 	the rule succeeds;
 
+volume parsing
+
+hinted-person is a person that varies.
+
+after reading a command:
+	if the player's command matches the regular expression "^<a-z><a-z><1-8>":
+		if character number 1 in the player's command is "k":
+			now hinted-person is the player;
+			change the text of the player's command to "[character number 2 in the player's command][character number 3 in the player's command]";
+		else if character number 1 in the player's command is "q":
+			now hinted-person is the white queen;
+			change the text of the player's command to "[character number 2 in the player's command][character number 3 in the player's command]";
+		else if character number 1 in the player's command is "p":
+			now hinted-person is the white pawn;
+			change the text of the player's command to "[character number 2 in the player's command][character number 3 in the player's command]";
+		else if character number 1 in the player's command is "n":
+			now hinted-person is the white knight;
+			change the text of the player's command to "[character number 2 in the player's command][character number 3 in the player's command]";
+		else if character number 1 in the player's command is "r":
+			now hinted-person is the white rook;
+			change the text of the player's command to "[character number 2 in the player's command][character number 3 in the player's command]";
+		else if character number 1 in the player's command is "b":
+			now hinted-person is the white bishop;
+			change the text of the player's command to "[character number 2 in the player's command][character number 3 in the player's command]";
+		else:
+			say "Invalid piece specified.";
+			reject the player's command;
+		if hinted-person is off-stage:
+			say "You can't get [the hinted-person] to move. They're not on the board.";
+			reject the player's command;
+
+squaregoing is an action applying to one visible thing.
+
+understand "[any room]" as squaregoing.
+
+carry out squaregoing:
+	if hinted-person is white rook:
+		unless xval of noun is xval of location of white rook or yval of noun is yval of location of white rook:
+			say "The white rook can't move there.";
+			the rule succeeds;
+		if noun is c1:
+			say "YOU WIN!";
+			end the story finally;
+			the rule succeeds;
+		say "Boy! You let them off the hook.";
+	if hinted-person is the player and the noun is adjacent to the location of the player:
+		let x be the best route from location of player to noun;
+		try going x;
+		the rule succeeds;
+	say "I'm at a loss.";
+
 volume game progress
 
 move-log is a list of numbers variable.
