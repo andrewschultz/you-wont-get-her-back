@@ -4,14 +4,32 @@
 
 ** game: /home/andrew/prt/debug-you-dont-want-her-back.z8
 ** interpreter: /home/andrew/prt/dfrotz -m -w5000
+** checkclass: /home/andrew/prt/checkyou.py
 
-* _repetitions
+* repetitions
 
 >p
+You order the pawn forward. The enemy rook checks you on d6.
 >s
+The rook slides south to d5 to check you.
 >n
+The rook slides north to d6 to check you.
 >s
+The rook slides south to d5 to check you.
 >n
->s
-The rook slides around to d6.
+!The rook slides north to d6 to check you.
+
 "REPETITION OF MOVES!" the enemy rook calls out. They're right. It's odd--the whole affair seemed a draw, anyway, so why were they so eager to claim one? I guess they are eager to get back to oppressing pawns, or something.
+Well, let's try again.
+
+>ne
+The rook slides over to c5, keeping an eye on the pawn, which can now never be promoted without being taken. Of course, the enemy king has no shot of corraling the pawn so the rook doesn't die in the process, even though you'll need to get back out of your pawn's way, but still, your hopes of winning are dashed.
+
+>n
+The rook slides over to c5, keeping an eye on the pawn, which can now never be promoted without being taken. Of course, the enemy king has no shot of corraling the pawn so the rook doesn't die in the process, but still, your hopes of winning are dashed.
+
+>nw
+The rook slides over to c5, keeping an eye on the pawn, which can now never be promoted without being taken. Of course, the enemy king has no shot of corraling the pawn so the rook doesn't die in the process, even though you'll need to make a move to guard your pawn, but still, your hopes of winning are dashed.
+
+>w
+The rook slides over to c5, keeping an eye on the pawn, which can now never be promoted without being taken. Of course, the enemy king has no shot of corraling the pawn so the rook doesn't die in the process, even though you'll need to make a move to guard your pawn, but still, your hopes of winning are dashed.

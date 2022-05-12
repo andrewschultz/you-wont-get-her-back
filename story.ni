@@ -221,11 +221,11 @@ check pawning when rook-check: say "You have to move. The opposing rook has you 
 
 carry out pawning:
 	if location of pawn is c6:
-		say "You order the pawn forward. The enemy rook checks you on c7.";
+		say "You order the pawn forward. The enemy rook checks you on d6.";
 		move black rook to d6;
 		move pawn to c7;
 		try looking;
-		add 12646 to my-move-log;
+		add 2645 to my-move-log;
 		continue the action;
 	say "Triumph! The pawn makes it to the eighth rank. There is a swirl of light before [the piece-to-promote] pops up.";
 	move piece-to-promote to c8;
@@ -381,7 +381,7 @@ when play begins:
 	if a random chance of 1 in 2 succeeds, now rook-sacs-self is true;
 
 to reset-the-board:
-	say "So, no, that doesn't quite work. Let's try again.";
+	say "[line break]Well, let's try again.";
 	move black rook to d5;
 	move white pawn to c6;
 	move black king to a1;
@@ -432,6 +432,9 @@ check going when take-rook-next is true:
 
 check going (this is the rook catches pawn rule): [the logic here is: you move to the a-file, it's a draw. You move to the c-file too soon, it's a draw. There are side test cases, of course. ]
 	if room gone to is nowhere, continue the action;
+	if location of white pawn is c6:
+		say "The rook slides over to c5, keeping an eye on the pawn, which can now never be promoted without being taken. Of course, the enemy king has no shot of corraling the pawn so the rook doesn't die in the process[if xval of room gone to is 1], even though you'll need to make a move to guard your pawn[else if xval of room gone to is 3], even though you'll need to get back out of your pawn's way[end if], but still, your hopes of winning are dashed.";
+		reset-the-board instead;
 	let y-to be yval of room gone to;
 	let x-to be xval of room gone to;
 	if y-to is 7:
@@ -458,7 +461,7 @@ black-move is a truth state that varies.
 
 my-move-log is a list of numbers variable.
 
-to decide which direction is pref-dir of (torm - a room) and (fromrm - a room):
+to decide which direction is pref-dir of (fromrm - a room) and (torm - a room):
 	if yval of torm is yval of fromrm:
 		if xval of torm > xval of fromrm, decide on east;
 		decide on west;
