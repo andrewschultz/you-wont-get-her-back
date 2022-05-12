@@ -12,7 +12,7 @@ release along with a website.
 
 include Old School Verb Total Carnage by Andrew Schultz.
 
-[include Trivial Niceties by Andrew Schultz.]
+include Trivial Niceties by Andrew Schultz.
 
 include You Dont Want Her Back Tests by Andrew Schultz.
 
@@ -23,7 +23,13 @@ kb3-next is a truth state that varies.
 take-rook-next is a truth state that varies.
 check-king-next is a truth state that varies.
 
- procedural rule: ignore the print final score rule.
+chapter options
+
+option-persist-warn is a truth state that varies.
+
+chapter rules
+
+procedural rule: ignore the print final score rule.
 
 volume properties
 
@@ -199,7 +205,7 @@ definition: a person (called p) is active:
 
 volume commands
 
-piece-to-queen is a thing that varies. piece-to-queen is usually the white queen.
+piece-to-promote is a thing that varies. piece-to-promote is usually the white queen.
 
 chapter pawning
 
@@ -221,14 +227,14 @@ carry out pawning:
 		try looking;
 		add 12646 to my-move-log;
 		continue the action;
-	say "Triumph! The pawn makes it to the eighth rank. There is a swirl of light before [the piece-to-queen] pops up.";
-	move piece-to-queen to c8;
-	if piece-to-queen is white queen:
+	say "Triumph! The pawn makes it to the eighth rank. There is a swirl of light before [the piece-to-promote] pops up.";
+	move piece-to-promote to c8;
+	if piece-to-promote is white queen:
 		say "The black rook sneaks to c4! You have nothing better to do than have your queen take the rook, which triggers stalemate.";
 		reset-the-board;
 		the rule succeeds;
-	if piece-to-queen is white bishop or piece-to-queen is white knight:
-		say "The black rook snickers as it slides over to c4. Your friend [the piece-to-queen] will be captured next move, and a very unpleasant but inevitable lost rook endgame awaits.";
+	if piece-to-promote is white bishop or piece-to-promote is white knight:
+		say "The black rook snickers as it slides over to c4. Your friend [the piece-to-promote] will be captured next move, and a very unpleasant but inevitable lost rook endgame awaits.";
 		reset-the-board;
 		the rule succeeds;
 	now white pawn is off-stage;
@@ -243,11 +249,15 @@ to promote-check (pi - a person):
 		say "You already decided what to promote the pawn to.";
 		continue the action;
 	if pawn is on c7 and not rook-check:
-		now piece-to-queen is pi;
+		now piece-to-promote is pi;
 		try pawning;
 		the rule succeeds;
-	say "You [if piece-to-queen is pi]already plan to promote [the pi][else]decide to promote to [the pi], not [the piece-to-queen].";
-	now piece-to-queen is pi;
+	say "You [if piece-to-promote is pi]already plan to promote [the pi][else]decide to promote to [the pi], not [the piece-to-promote][end if], if your pawn ever makes it.";
+	if option-persist-warn is false:
+		say "[line break]";
+		ital-say "this option will not be reset if you fail and need to try again.";
+		now option-persist-warn is true;
+	now piece-to-promote is pi;
 
 chapter rooking
 
@@ -448,8 +458,17 @@ black-move is a truth state that varies.
 
 my-move-log is a list of numbers variable.
 
+to decide which direction is pref-dir of (torm - a room) and (fromrm - a room):
+	if yval of torm is yval of fromrm:
+		if xval of torm > xval of fromrm, decide on east;
+		decide on west;
+	if xval of torm is xval of fromrm:
+		if yval of torm > yval of fromrm, decide on north;
+		decide on south;
+	decide on northeast;
+
 to move-and-log (rm - a room):
-	say "The rook slides around to [rm].";
+	say "The rook slides [pref-dir of location of black rook and rm] to [rm][if rm is rook-guarded] to check you[end if].";
 	now black-move is true;
 	move black rook to rm;
 	if threefold-repetition of board-state, continue the action;
