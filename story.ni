@@ -22,6 +22,8 @@ rook-sacs-self is a truth state that varies.
 kb3-next is a truth state that varies.
 take-rook-next is a truth state that varies.
 check-king-next is a truth state that varies.
+repeat-yourmove-whine is a truth state that varies.
+repeat-theirmove-whine is a truth state that varies.
 
 chapter options
 
@@ -390,6 +392,8 @@ to reset-the-board:
 	now white rook is off-stage;
 	now white bishop is off-stage;
 	now white knight is off-stage;
+	now repeat-yourmove-whine is false;
+	now repeat-theirmove-whine is false;
 	now take-rook-next is false;
 	now check-king-next is false;
 	now my-move-log is {};
@@ -480,11 +484,18 @@ to move-and-log (rm - a room):
 to decide whether threefold-repetition of (N - a number):
 	let temp be 0;
 	repeat with EN running through my-move-log:
-		if EN is N, increment temp;
-		if temp is 2:
-			say "'REPETITION OF MOVES!' the enemy rook calls out. They're right. It's odd--the whole affair seemed a draw, anyway, so why were they so eager to claim one? I guess they are eager to get back to oppressing pawns, or something.";
-			reset-the-board;
-			yes;
+		if EN is N:
+			increment temp;
+			if temp is 2:
+				say "'REPETITION OF MOVES!' the enemy rook calls out. They're right. It's odd--the whole affair seemed a draw, anyway, so why were they so eager to claim one? I guess they are eager to get back to oppressing pawns, or something.";
+				reset-the-board;
+				yes;
+			else if temp is 1:
+				if black-move is false and repeat-yourmove-whine is false:
+					say "'Back here again? Once more and we can call this dumb war off. No winners, no losers. Them's the rules.'";
+					now repeat-yourmove-whine is true;
+				if black-move is true and repeat-theirmove-whine is false:
+					say "'Okay, I'll go back. Once more and we can call this dumb war off. No winners, no losers. Them's the rules.'";
 	add N to my-move-log;
 	no;
 
