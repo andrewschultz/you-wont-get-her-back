@@ -1,0 +1,17 @@
+## reg-you-failures.txt
+
+## failures for Saaverda problem game
+
+** game: /home/andrew/prt/debug-you-dont-want-her-back.z8
+** interpreter: /home/andrew/prt/dfrotz -m -w5000
+
+* _repetitions
+
+>p
+>s
+>n
+>s
+>n
+>s
+The rook slides around to d6.
+"REPETITION OF MOVES!" the enemy rook calls out. They're right. It's odd--the whole affair seemed a draw, anyway, so why were they so eager to claim one? I guess they are eager to get back to oppressing pawns, or something.
