@@ -489,7 +489,8 @@ check going when take-rook-next is true:
 		reset-the-board instead;
 	say "BAM! Take that, rook! [if location of rook is a3]The rest is straightforward. Your enemy moves to b1, you move to b3, and they move to a1, and your rook delivers the kill on c1[else]The rest is a bit tricky, since your king was decoyed to b4. But you've planned ahead: the enemy king to a2? Rook to c2. Enemy king to b1? King to b3. The rook on the c-file cuts your enemy off[end if]. Victory!";
 	check-drag-out;
-	end the story finally;
+	now rook-spite-check is whether or not rook-spite-check is false;
+	reset-the-board instead;
 
 check going (this is the rook catches pawn rule): [the logic here is: you move to the a-file, it's a draw. You move to the c-file too soon, it's a draw. There are side test cases, of course. ]
 	if room gone to is nowhere, continue the action;
@@ -731,12 +732,11 @@ carry out squaregoing:
 			the rule succeeds;
 		if noun is c1:
 			say "YOU WIN!";
-			check-drag-out;
-			end the story finally;
+			now rook-spite-check is whether or not rook-spite-check is false;
+			reset-the-board instead;
 			the rule succeeds;
 		say "Boy! You let them off the hook.";
-		reset-the-board;
-		the rule succeeds;
+		reset-the-board instead;
 	if hinted-person is black king and the room north of location of white pawn is the noun:
 		if noun is adjacent to location of player:
 			say "(moving the pawn, as is conventional with chess notation when no piece is given)[line break]";
