@@ -11,58 +11,48 @@ when play begins:
 		if rm is skinsaving, now rm is backup-skinsaving;
 		if rm is suicidal, now rm is backup-suicidal;
 
-chapter suing
+chapter rcing
 
-suing is an action out of world.
+rcing is an action applying to one visible thing.
 
-understand the command "su" as something new.
+understand the command "rc" as something new.
+understand the command "rc [any room]" as something new.
 
-understand "su" as suing.
+understand "rc" as rcing.
+understand "rc [any room]" as rcing.
 
-carry out suing:
+rule for supplying a missing noun when rcing:
+	say "Rook check once it's trapped is [if rook-sacs-self is true]already[else]now[end if] activated.";
 	now rook-sacs-self is true;
-	say "Now the rook tries to get sacrificed and not survive.";
-	the rule succeeds;
+	reject the player's command;
 
-chapter saing
-
-saing is an action out of world.
-
-understand the command "sa" as something new.
-
-understand "sa" as saing.
-
-carry out saing:
-	now rook-sacs-self is false;
-	say "Now the rook tries to survive and not get sacrificed.";
-	the rule succeeds;
-
-chapter ufing
-
-ufing is an action applying to one visible thing.
-
-understand the command "uf" as something new.
-
-understand "uf [room]" as ufing.
-
-carry out ufing:
-	unless noun is backup-suicidal, say "Not a valid square." instead;
+carry out rcing:
+	if noun is not backup-suicidal, say "[noun] is not a room the rook can flee to. Choose from [list of backup-suicidal rooms]." instead;
 	now all backup-suicidal rooms are normal;
 	now noun is suicidal;
+	now rook-sacs-self is true;
 	the rule succeeds;
 
-chapter afing
+chapter rfing
 
-afing is an action applying to one visible thing.
+rfing is an action applying to one visible thing.
 
-understand the command "af" as something new.
+understand the command "rf" as something new.
+understand the command "rf [any room]" as something new.
 
-understand "af [room]" as afing.
+understand "rf" as rfing.
+understand "rf [any room]" as rfing.
 
-carry out afing:
-	unless noun is backup-skinsaving, say "Not a valid square." instead;
+rule for supplying a missing noun when rfing:
+	say "Rook fleeing once it's trapped is [if rook-sacs-self is false]already[else]now[end if] activated.";
+	now rook-sacs-self is false;
+	reject the player's command;
+
+carry out rfing:
+	if noun is not backup-skinsaving, say "[noun] is not a room the rook can flee to. Choose from [list of backup-skinsaving rooms]." instead;
 	now all backup-skinsaving rooms are normal;
 	now noun is skinsaving;
+	now rook-sacs-self is false;
 	the rule succeeds;
 
 chapter uying
