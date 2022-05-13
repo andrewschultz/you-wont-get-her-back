@@ -623,9 +623,7 @@ rule for printing a parser error when the latest parser error is the i beg your 
 	try waiting;
 	the rule succeeds;
 
-carry out waiting:
-	say "Since it's your turn to move, why not use all the time you want? Keep the opponent nervous.";
-	the rule succeeds;
+check waiting: say "Hey, yeah. It's your turn to move, so why not use all the time you want? Keep the opponent nervous." instead;
 
 volume parsing
 
@@ -766,14 +764,15 @@ to decide whether anything-unachieved:
 	no;
 
 to achieve (t - text):
+	if debug-state is true, say "DEBUG: checking for [t] achievement.";
 	repeat through table of unachievements:
-		if achieved entry is true, next;
 		if achievement entry is not t, next;
+		if achieved entry is true, continue the action;;
 		let X be indexed text;
 		now X is "[b][achievement entry in upper case][r]";
 		say "Congratulations! You just got the [X] achievement!";
 		now achieved entry is true;
-		if anything-unachieved:
+		unless anything-unachieved:
 			end the story finally saying "You found everything!";
 		continue the action;
 	say "Uh oh. You were supposed to get the [t] achievement, but it wasn't in the table. This is a bug.";
