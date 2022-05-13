@@ -337,6 +337,24 @@ check requesting the score:
 		say "Materially, you're equal, but you've got the initiative. Go, you!";
 	else:
 		say "You're down five points to three. You should never see this, but you are.";
+	say "[line break]Okay, so there's no scoring here, but there are accomplishments of a sort. To find them, say [b]T[r] or [b]THINK[r].";
+	the rule succeeds;
+
+chapter thinking
+
+understand the command "t" as something new.
+understand "t" as thinking.
+
+the block thinking rule is not listed in any rulebook.
+
+check thinking:
+	if achieve-score is 0, say "You haven't achieved any accomplishments, but don't worry. You'll get one soon. [this-game] tracks both wins and losses." instead;
+	say "Here are the accomplishments so far from your various playthroughs. Note that they are listed roughly in the time it takes to find them, which will hopefully be a clue if you want to plow through everything.";
+	repeat through table of unachievements:
+		if achieved entry is true:
+			say "[achievement entry in upper case]: [details entry][line break]";
+		else:
+			say "--[line break]";
 	the rule succeeds;
 
 volume dramatis personae
@@ -728,6 +746,12 @@ achievement	achieved	details
 "cowardly rook"	false	"winning with the enemy rook fleeing"
 "sacrificial rook"	false	"winning with the enemy rook sacrificing itself hopelessly"
 "dragging it out"	false	"taking the maximum turns to win, considering repetition"
+
+to decide which number is achieve-score:
+	let temp be 0;
+	repeat through table of unachievements:
+		if achieved entry is true, increment temp;
+	decide on temp;
 
 to decide whether anything-unachieved:
 	repeat through table of unachievements:
