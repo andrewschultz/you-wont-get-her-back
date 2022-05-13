@@ -245,6 +245,7 @@ carry out pawning:
 		move pawn to c7;
 		try looking;
 		add 2645 to my-move-log;
+		add 12646 to my-move-log;
 		continue the action;
 	say "Triumph! The pawn makes it to the eighth rank. There is a swirl of light before [the piece-to-promote] pops up.";
 	move piece-to-promote to c8;
@@ -257,7 +258,7 @@ carry out pawning:
 		reset-the-board;
 		the rule succeeds;
 	now white pawn is off-stage;
-	say "The black rook looks a bit confused as you call for a rook, not your queen. He shuffles over to a4!";
+	say "The black rook scoffs as you call for a rook, not your queen. 'Sheesh. If you wanted a draw, you could've repeated moves.' He shuffles over to a4.";
 	now kb3-next is true;
 	move black rook to a4;
 	try looking;
@@ -452,6 +453,7 @@ check going when take-rook-next is true:
 		say "'Geez. What a coward. Didn't even want to capture me.' The rook proceeds to [if location of black rook is a3]patrol the third rank[else]patrol the first rank, checking you if you try for a sneaky checkmate on b3[end if], and after fifty moves, the war is officially declared a draw.";
 		reset-the-board instead;
 	say "BAM! Take that, rook! [if location of rook is a3]The rest is straightforward. Your enemy moves to b1, you move to b3, and they move to a1, and your rook delivers the kill on c1[else]The rest is a bit tricky, since your king was decoyed to b4. But you've planned ahead: the enemy king to a2? Rook to c2. Enemy king to b1? King to b3. The rook on the c-file cuts your enemy off[end if]. Victory!";
+	say "[my-move-log] [number of entries in my-move-log].";
 	end the story finally;
 
 check going (this is the rook catches pawn rule): [the logic here is: you move to the a-file, it's a draw. You move to the c-file too soon, it's a draw. There are side test cases, of course. ]
@@ -521,7 +523,11 @@ to decide whether threefold-repetition of (N - a number):
 		if EN is N:
 			increment temp;
 			if temp is 2:
+				if location of black rook is d4 and white rook is not off-stage:
+					say "'REPETITION OF MOVES' booms the enemy rook, but no ... you've been on b3 and they've been on d4 a lot recently, true, but your pawn becoming a rook changes everything. They look embarrassed and give a 'well, I had to try SOMETHING' look.";
+					no;
 				say "'REPETITION OF MOVES!' the enemy rook calls out. They're right. It's odd--the whole affair seemed a draw, anyway, so why were they so eager to claim one? I guess they are eager to get back to oppressing pawns, or something.";
+				achieve "threefold";
 				reset-the-board;
 				yes;
 			else if temp is 1:
@@ -624,9 +630,12 @@ carry out squaregoing:
 			the rule succeeds;
 		if noun is c1:
 			say "YOU WIN!";
+			say "[my-move-log] [number of entries in my-move-log].";
 			end the story finally;
 			the rule succeeds;
 		say "Boy! You let them off the hook.";
+		reset-the-board;
+		the rule succeeds;
 	if hinted-person is black king and the room north of location of white pawn is the noun:
 		if noun is adjacent to location of player:
 			say "(moving the pawn, as is conventional with chess notation when no piece is given)[line break]";
@@ -657,3 +666,25 @@ rule for deciding whether to allow undo:
 		allow undo;
 	deny undo;
 
+volume unachievements
+
+table of unachievements
+achievement	achieved	details
+"threefold"	false	"repeating a position three times"
+"bad guardian"	false	"letting the rook take your pawn"
+"skewered to death"	false	"letting the rook check you on a1 and take the pawn without being captured"
+"skewered to a draw"	false	"letting the rook check you on a1 and sacrifice itself for the pawn"
+"cowardly rook"	false	"winning with the enemy rook fleeing"
+"sacrificial rook"	false	"winning with the enemy rook sacrificing itself hopelessly"
+"dragging it out"	false	"taking the maximum turns to win, considering repetition"
+
+to achieve (t - text):
+	repeat through table of unachievements:
+		if achieved entry is true, next;
+		if achievement entry is not t, next;
+		let X be indexed text;
+		now X is "[b][achievement entry in upper case][r]";
+		say "Congratulations! You just got the [X] achievement!";
+		now achieved entry is true;
+		continue the action;
+	say "Uh oh. You were supposed to get the [t] achievement, but it wasn't in the table. This is a bug.";
