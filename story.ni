@@ -24,7 +24,7 @@ volume game state variables and procedural rules
 
 move-log is a list of numbers variable.
 
-rook-sacs-self is a truth state that varies.
+rook-spite-check is a truth state that varies.
 
 kb3-next is a truth state that varies.
 
@@ -54,7 +54,7 @@ volume properties
 
 a room has a number called xval. a room has a number called yval.
 
-a room can be skinsaving, suicidal or normal. a room is usually normal.
+a room can be flee-at-end, check-at-end or normal. a room is usually normal.
 
 a person can be friendly or enemy. a person is usually friendly.
 
@@ -62,19 +62,19 @@ volume board layout
 
 a1 is a room. xval of a1 is 1. yval of a1 is 1.
 
-a2 is a skinsaving room. xval of a2 is 1. yval of a2 is 2. a2 is north of a1.
+a2 is a flee-at-end room. xval of a2 is 1. yval of a2 is 2. a2 is north of a1.
 
-a3 is a suicidal room. xval of a3 is 1. yval of a3 is 3. a3 is north of a2.
+a3 is a check-at-end room. xval of a3 is 1. yval of a3 is 3. a3 is north of a2.
 
 a4 is a room. xval of a4 is 1. yval of a4 is 4. a4 is north of a3.
 
-a5 is a skinsaving room. xval of a5 is 1. yval of a5 is 5. a5 is north of a4.
+a5 is a flee-at-end room. xval of a5 is 1. yval of a5 is 5. a5 is north of a4.
 
-a6 is a skinsaving room. xval of a6 is 1. yval of a6 is 6. a6 is north of a5.
+a6 is a flee-at-end room. xval of a6 is 1. yval of a6 is 6. a6 is north of a5.
 
-a7 is a skinsaving room. xval of a7 is 1. yval of a7 is 7. a7 is north of a6.
+a7 is a flee-at-end room. xval of a7 is 1. yval of a7 is 7. a7 is north of a6.
 
-a8 is a skinsaving room. xval of a8 is 1. yval of a8 is 8. a8 is north of a7.
+a8 is a flee-at-end room. xval of a8 is 1. yval of a8 is 8. a8 is north of a7.
 
 b1 is a room. xval of b1 is 2. yval of b1 is 1. b1 is east of a1. b1 is southeast of a2.
 
@@ -82,7 +82,7 @@ b2 is a room. xval of b2 is 2. yval of b2 is 2. b2 is east of a2. b2 is north of
 
 b3 is a room. xval of b3 is 2. yval of b3 is 3. b3 is east of a3. b3 is north of b2. b3 is northeast of a2. b3 is southeast of a4.
 
-b4 is a suicidal room. xval of b4 is 2. yval of b4 is 4. b4 is east of a4. b4 is north of b3. b4 is northeast of a3. b4 is southeast of a5.
+b4 is a check-at-end room. xval of b4 is 2. yval of b4 is 4. b4 is east of a4. b4 is north of b3. b4 is northeast of a3. b4 is southeast of a5.
 
 b5 is a room. xval of b5 is 2. yval of b5 is 5. b5 is east of a5. b5 is north of b4. b5 is northeast of a4. b5 is southeast of a6.
 
@@ -114,7 +114,7 @@ d2 is a room. xval of d2 is 4. yval of d2 is 2. d2 is east of c2. d2 is north of
 
 d3 is a room. xval of d3 is 4. yval of d3 is 3. d3 is east of c3. d3 is north of d2. d3 is northeast of c2. d3 is southeast of c4.
 
-d4 is a skinsaving room. xval of d4 is 4. yval of d4 is 4. d4 is east of c4. d4 is north of d3. d4 is northeast of c3. d4 is southeast of c5.
+d4 is a flee-at-end room. xval of d4 is 4. yval of d4 is 4. d4 is east of c4. d4 is north of d3. d4 is northeast of c3. d4 is southeast of c5.
 
 d5 is a room. xval of d5 is 4. yval of d5 is 5. d5 is east of c5. d5 is north of d4. d5 is northeast of c4. d5 is southeast of c6.
 
@@ -130,7 +130,7 @@ e2 is a room. xval of e2 is 5. yval of e2 is 2. e2 is east of d2. e2 is north of
 
 e3 is a room. xval of e3 is 5. yval of e3 is 3. e3 is east of d3. e3 is north of e2. e3 is northeast of d2. e3 is southeast of d4.
 
-e4 is a skinsaving room. xval of e4 is 5. yval of e4 is 4. e4 is east of d4. e4 is north of e3. e4 is northeast of d3. e4 is southeast of d5.
+e4 is a flee-at-end room. xval of e4 is 5. yval of e4 is 4. e4 is east of d4. e4 is north of e3. e4 is northeast of d3. e4 is southeast of d5.
 
 e5 is a room. xval of e5 is 5. yval of e5 is 5. e5 is east of d5. e5 is north of e4. e5 is northeast of d4. e5 is southeast of d6.
 
@@ -146,7 +146,7 @@ f2 is a room. xval of f2 is 6. yval of f2 is 2. f2 is east of e2. f2 is north of
 
 f3 is a room. xval of f3 is 6. yval of f3 is 3. f3 is east of e3. f3 is north of f2. f3 is northeast of e2. f3 is southeast of e4.
 
-f4 is a skinsaving room. xval of f4 is 6. yval of f4 is 4. f4 is east of e4. f4 is north of f3. f4 is northeast of e3. f4 is southeast of e5.
+f4 is a flee-at-end room. xval of f4 is 6. yval of f4 is 4. f4 is east of e4. f4 is north of f3. f4 is northeast of e3. f4 is southeast of e5.
 
 f5 is a room. xval of f5 is 6. yval of f5 is 5. f5 is east of e5. f5 is north of f4. f5 is northeast of e4. f5 is southeast of e6.
 
@@ -162,7 +162,7 @@ g2 is a room. xval of g2 is 7. yval of g2 is 2. g2 is east of f2. g2 is north of
 
 g3 is a room. xval of g3 is 7. yval of g3 is 3. g3 is east of f3. g3 is north of g2. g3 is northeast of f2. g3 is southeast of f4.
 
-g4 is a skinsaving room. xval of g4 is 7. yval of g4 is 4. g4 is east of f4. g4 is north of g3. g4 is northeast of f3. g4 is southeast of f5.
+g4 is a flee-at-end room. xval of g4 is 7. yval of g4 is 4. g4 is east of f4. g4 is north of g3. g4 is northeast of f3. g4 is southeast of f5.
 
 g5 is a room. xval of g5 is 7. yval of g5 is 5. g5 is east of f5. g5 is north of g4. g5 is northeast of f4. g5 is southeast of f6.
 
@@ -178,7 +178,7 @@ h2 is a room. xval of h2 is 8. yval of h2 is 2. h2 is east of g2. h2 is north of
 
 h3 is a room. xval of h3 is 8. yval of h3 is 3. h3 is east of g3. h3 is north of h2. h3 is northeast of g2. h3 is southeast of g4.
 
-h4 is a skinsaving room. xval of h4 is 8. yval of h4 is 4. h4 is east of g4. h4 is north of h3. h4 is northeast of g3. h4 is southeast of g5.
+h4 is a flee-at-end room. xval of h4 is 8. yval of h4 is 4. h4 is east of g4. h4 is north of h3. h4 is northeast of g3. h4 is southeast of g5.
 
 h5 is a room. xval of h5 is 8. yval of h5 is 5. h5 is east of g5. h5 is north of h4. h5 is northeast of g4. h5 is southeast of g6.
 
@@ -433,7 +433,7 @@ definition: a room (called rm) is king-guarded:
 volume reset the board
 
 when play begins:
-	if a random chance of 1 in 2 succeeds, now rook-sacs-self is true;
+	if a random chance of 1 in 2 succeeds, now rook-spite-check is true;
 
 to reset-the-board:
 	say "[line break]Well, let's try again.";
@@ -470,14 +470,14 @@ check going when kb3-next is true (this is the final step fail rule):
 	if room gone to is not b3:
 		say "The black rook and king breathe a sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw.";
 		reset-the-board instead;
-	if rook-sacs-self is true:
-		let rsr be random suicidal room;
+	if rook-spite-check is true:
+		let rsr be random check-at-end room;
 		now kb3-next is false;
 		now take-rook-next is true;
 		say "There's a big argument. The black king insists the black rook give himself up for you. 'You will sacrifice yourself for your king and country, and you will sacrifice yourself for your king and country right NOW, do you hear?'[paragraph break]There's a big argument, which you sit back and enjoy, until you worry it might tip off the 50-move rule. Then you realize the 50-move rule doesn't progress without, you know, a legal move. So that's all good. The rook flings itself to [rsr].";
 		move black rook to rsr;
 	else:
-		let rsr be random skinsaving room;
+		let rsr be random flee-at-end room;
 		say "The black rook flees to [rsr] to save its own skin!";
 		now kb3-next is false;
 		now check-king-next is true;
