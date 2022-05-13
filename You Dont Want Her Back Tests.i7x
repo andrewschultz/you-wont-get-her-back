@@ -97,7 +97,8 @@ carry out uning:
 
 volume quick tests
 
-test rep with "p/s/n/s/n"
+test rep1 with "p/s/n/s/s/s/n/se/s/n/s".
+test rep2 with "p/s/n/s/s/s/n/s/se/n/s".
 
 You Dont Want Her Back Tests ends here.
 

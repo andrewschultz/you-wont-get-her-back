@@ -34,7 +34,7 @@ check-king-next is a truth state that varies.
 
 repeat-yourmove-whine is a truth state that varies.
 
-repeat-theirmove-whine is a truth state that varies.
+repeat-whines is a number that varies.
 
 chapter options
 
@@ -416,7 +416,7 @@ to reset-the-board:
 	now white bishop is off-stage;
 	now white knight is off-stage;
 	now repeat-yourmove-whine is false;
-	now repeat-theirmove-whine is false;
+	now repeat-whines is 0;
 	now take-rook-next is false;
 	now check-king-next is false;
 	now my-move-log is {};
@@ -537,12 +537,24 @@ to decide whether threefold-repetition of (N - a number):
 				yes;
 			else if temp is 1:
 				if black-move is false and repeat-yourmove-whine is false:
-					say "'Back here again? Once more and we can call this dumb war off. No winners, no losers. Them's the rules.'";
 					now repeat-yourmove-whine is true;
-				if black-move is true and repeat-theirmove-whine is false:
-					say "'Okay, I'll go back. Once more and we can call this dumb war off. No winners, no losers. Them's the rules.'";
+					choose row repeat-whines in table of repeat whines;
+					say "'Back and forth, eh? One more time here and we can call this dumb war off. No winners, no losers. Them's the rules.'";
+					now repeat-yourmove-whine is true;
+				if black-move is true:
+					increment repeat-whines;
+					choose row repeat-whines in table of repeat whines;
+					say "[rook-whine entry][line break]";
 	add N to my-move-log;
 	no;
+
+table of repeat whines
+rook-whine
+"'We've been here just before. Well, not exactly here. But reaching the same dang position.'"
+"'Out of ideas, eh? That's okay. I would be, too, in your position. It's tough to admit you're not going to win.'"
+"'What are you trying to prove? Honestly. Okay, okay. I suppose keeping your subjects in a constant state of worry from war has its perks. But we know how it ends.'"
+"'We're just putting on a show for our subjects, right? Right. Well, this game's been long enough, why not make it a bit longer?'"
+"'This little dance was actually fun. Not gonna lie! But I think we both know what's inevitable here.'"
 
 to decide which number is board-state:
 	let temp be 0;
