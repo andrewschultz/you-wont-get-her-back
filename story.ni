@@ -254,10 +254,15 @@ carry out pawning:
 		continue the action;
 	say "Triumph! The pawn makes it to the eighth rank. There is a swirl of light before [the piece-to-promote] pops up.";
 	move piece-to-promote to c8;
+	if location of black rook is d1:
+		say "But, alas, the black rook is ready to slide in to c1 and skewer you. Once you move out of check, [the piece-to-promote] will fall. Then the king and rook will defeat you.";
+		reset-the-board;
+		achieve "skewered to death";
+		reset-the-board instead;
+		the rule succeeds;
 	if piece-to-promote is white queen:
 		say "The black rook sneaks to c4! You have nothing better to do than have your queen take the rook, which triggers stalemate.";
-		reset-the-board;
-		the rule succeeds;
+		reset-the-board instead;
 	if piece-to-promote is white bishop or piece-to-promote is white knight:
 		say "The black rook snickers as it slides over to c4. Your friend [the piece-to-promote] will be captured next move, and a very unpleasant but inevitable lost rook endgame awaits.";
 		reset-the-board;
@@ -490,18 +495,32 @@ check going (this is the rook catches pawn rule): [the logic here is: you move t
 	if room gone to is nowhere, continue the action;
 	if location of white pawn is c6:
 		say "The rook slides over to c5, keeping an eye on the pawn, which can now never be promoted without being taken. Of course, the enemy king has no shot of corraling the pawn so the rook doesn't die in the process[if xval of room gone to is 1], even though you'll need to make a move to guard your pawn[else if xval of room gone to is 3], even though you'll need to get back out of your pawn's way[end if], but still, your hopes of winning are dashed.";
+		achieve "traded pawn";
+		reset-the-board instead;
+	if room gone to is c1:
+		if location of black rook is not d4, say "Oh no! There's a bug here. The black rook should be at d4. Sorry--I'm resetting.";
+		reset-the-board instead;
+		say "The black rook slides over to c4, forking you and your pawn on [location of white pawn]. The rook and king endgame ahead will be painful.";
+		achieve "forked to death";
 		reset-the-board instead;
 	let y-to be yval of room gone to;
 	let x-to be xval of room gone to;
 	if y-to is 7:
 		say "The rook chuckles as it backpedals to d7. Your pawn is pinned against you. Even if you go to the eighth rank, the rook will take it the next move.";
+		achieve "pinned pawn";
 		reset-the-board instead;
 	if x-to is 1:
 		say "The rook chuckles as it swoops behind the pawn to [the room west of location of rook]. [if location of player is a6]At least you'll be able to guard the pawn and smack the rook down! Or, if the rook checks you on the b-file, you can move to the a-file and move back to the b-file, for a repetition of moves[else]And you're too far away to even guard it! You will lose the war now[end if].";
+		if location of player is a6:
+			achieve "traded pawn";
+		else:
+			achieve "captured pawn";
 		reset-the-board instead;
 	if x-to is 3:
 		if y-to > 3:
-			say "The rook zips down to d1. So unfair! You have feet and legs and everything, and you're nowhere near that fast! But you see what's up. [if y-to is 4]That rook's going to c1, and you can't even guard the pawn behind you[else]You'll be able to guard your pawn, and thankfully the enemy king's too far away, but it's a stalemate all the same[end if].";
+			say "The rook zips down to d1. So unfair! You have feet and legs and everything, and you're nowhere near that fast! But you see what's up. [if y-to is 4]That rook's going to c1, and you can barely stumble back to guard the pawn behind/ahead of you[else]You'll be able to guard your pawn easily[end if]. Thankfully, the enemy king's too far away to gang up on your pawn, but it's a stalemate all the same.";
+			achieve "skewered to a draw";
+			reset-the-board instead;
 	if threefold-repetition of board-state, the rule fails;
 
 after going when pawn is not off-stage (this is the transcribe moves rule):
@@ -745,12 +764,15 @@ volume unachievements
 table of unachievements
 achievement	achieved	details
 "threefold"	false	"repeating a position three times"
-"bad guardian"	false	"letting the rook take your pawn"
+"pinned pawn"	false	"letting the rook pin your pawn"
+"captured pawn"	false	"letting the rook take your pawn for free"
+"traded pawn"	false	"letting the rook sacrifice itself for your pawn"
+"skewered to a draw"	false	"letting the rook check you on c1 to sacrifice itself for the pawn"
 "skewered to death"	false	"letting the rook check you on a1 and take the pawn without being captured"
-"skewered to a draw"	false	"letting the rook check you on a1 and sacrifice itself for the pawn"
 "cowardly rook"	false	"winning with the enemy rook fleeing"
 "sacrificial rook"	false	"winning with the enemy rook sacrificing itself hopelessly"
-"dragging it out"	false	"taking the maximum turns to win, considering repetition"
+"dragging it out"	false	"taking a few turns to win, considering repetition"
+"dragging it out all the way"	false	"taking the maximum turns to win, considering repetition"
 
 to decide which number is achieve-score:
 	let temp be 0;
@@ -767,7 +789,7 @@ to achieve (t - text):
 	if debug-state is true, say "DEBUG: checking for [t] achievement.";
 	repeat through table of unachievements:
 		if achievement entry is not t, next;
-		if achieved entry is true, continue the action;;
+		if achieved entry is true, continue the action;
 		let X be indexed text;
 		now X is "[b][achievement entry in upper case][r]";
 		say "Congratulations! You just got the [X] achievement!";
