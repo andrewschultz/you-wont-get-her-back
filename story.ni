@@ -753,6 +753,8 @@ carry out squaregoing:
 
 volume meta verbs
 
+chapter undo
+
 rule for deciding whether to allow undo:
 	if undo-allow is true:
 		say "Undo allowed for testing.";
@@ -766,6 +768,27 @@ rule for deciding whether to allow undo:
 		say "You decide to relive your final moment of victory. Or find new stuff to do. Whichever.";
 		allow undo;
 	deny undo;
+
+chapter verbsing
+
+verbsing is an action out of world.
+
+understand the command "verbs" as something new.
+understand the command "verb" as something new.
+understand the command "v" as something new.
+
+understand "verbs" as verbsing.
+understand "verb" as verbsing.
+understand "v" as verbsing.
+
+carry out verbsing:
+	say "You can move your king with the eight compass directions. You can also specify the square you want the king to move to.";
+	say "[line break]Of course, you will have to do more than move your king. If you wish to move a pawn, you can say c7. (Pawns take priority over kings.) To promote the pawn, c8. To underpromote it, c8=b or c8b will do so.";
+	say "[line break]To move a promoted piece, qa8 will do so for the queen. Note that N is used to refer to a knight, as K is taken by the king.";
+	say "[line break]You can also say [b]B[r] to set the default piece to promote to, say, a bishop. In this case, K is referred to as the knight, since you can't have two kings on the board.";
+	say "[line break]All command parsing is case-insensitive, though standard chess notation capitalizes the piece name. This is just so you have one less thing to worry about.";
+	say "[line break]Finally, there is no [b]UNDO[r] or takebacks, because we want to mirror an actual chess scenario here. But don't worry. A successful run shouldn't take too long, so you should be able to retrace your steps easily enough.";
+	the rule succeeds;
 
 volume unachievements
 

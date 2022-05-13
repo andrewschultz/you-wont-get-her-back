@@ -11,6 +11,14 @@ when play begins:
 		if rm is flee-at-end, now rm is backup-flee-at-end;
 		if rm is check-at-end, now rm is backup-check-at-end;
 
+chapter post-verbsing
+
+report verbsing:
+	say "Information for testing verbs that should not pop up in debug mode:[paragraph break]";
+	say "UY/UN toggle undo-allow on and off.";
+	say "RC (room) = rook check at a room. Alone, it just offers a random room from [list of backup-check-at-end rooms].";
+	say "RF (room) = rook flee at a room. Alone, it just offers a random room from [list of backup-flee-at-end rooms].";
+
 chapter rcing
 
 rcing is an action applying to one visible thing.
