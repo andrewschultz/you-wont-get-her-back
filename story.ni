@@ -463,7 +463,7 @@ the rook catches pawn rule is listed after the final step fail rule in the check
 
 check going (this is the friendly piece obstruction rule):
 	if the room gone to is friend-occupied, say "But [the random friendly person in room noun of location of player] is already there." instead;
-	if the room gone to is rook-guarded, say "But the enemy rook would see you there." instead;
+	if the room gone to is rook-guarded, say "But the enemy rook would [if room gone from is rook-guarded]still [end if]see you there." instead;
 	if the room gone to is king-guarded, say "Ugh, no. Don't want to get too close to the enemy king." instead;
 
 check going when kb3-next is true (this is the final step fail rule):
@@ -494,7 +494,7 @@ check going when take-rook-next is true:
 check going (this is the rook catches pawn rule): [the logic here is: you move to the a-file, it's a draw. You move to the c-file too soon, it's a draw. There are side test cases, of course. ]
 	if room gone to is nowhere, continue the action;
 	if location of white pawn is c6:
-		say "The rook slides over to c5, keeping an eye on the pawn, which can now never be promoted without being taken. Of course, the enemy king has no shot of corraling the pawn so the rook doesn't die in the process[if xval of room gone to is 1], even though you'll need to make a move to guard your pawn[else if xval of room gone to is 3], even though you'll need to get back out of your pawn's way[end if], but still, your hopes of winning are dashed.";
+		say "The rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Of course, the enemy king has no shot of corralling the pawn so the rook doesn't die in the process[if xval of room gone to is 1], even though you'll need to make a move to guard your pawn[else if xval of room gone to is 3], even though you'll need to get back out of your pawn's way[end if]. Your hopes of winning are dashed!";
 		achieve "traded pawn";
 		reset-the-board instead;
 	if room gone to is c1:
