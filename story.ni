@@ -711,10 +711,18 @@ understand "[any room]" as squaregoing.
 
 to check-drag-out:
 	if number of entries in my-move-log >= 23:
-		achieve "dragging it out";
+		achieve "dragging it out all the way";
+		repeat through table of unachievements:
+			if achievement entry is "dragging it out":
+				if achieved entry is false:
+					ital-say "I gave you the 'dragging it out' achievement, too, which was if you repeated any moves. But you found the maximum first, so nice job!";
+					now achieved entry is true;
+				break;
 	if number of entries in my-move-log > 23:
 		ital-say "somehow, you managed to make more moves than I calculated possible. If you're willing to email this log (or a transcript) to me, I'd appreciate it!";
 		say "[my-move-log]";
+	if repeat-whines > 0 or repeat-yourmove-whine is true:
+		achieve "dragging it out";
 
 carry out squaregoing:
 	if hinted-person is white rook:
