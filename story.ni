@@ -193,8 +193,10 @@ volume room description
 screen-reader is a truth state that varies.
 
 the description of a room is usually "[if screen-reader is true][list of not off-stage people].[else][grid-printout][end if]";
-to say border:
-	say "+-+-+-+-+-+-+-+-+";
+
+to say border: say "+-+-+-+-+-+-+-+-+";
+
+to invert-text: (- style reverse; -)
 
 to say grid-printout:
 	say "[fixed letter spacing]";
@@ -202,7 +204,10 @@ to say grid-printout:
 		say "[border][line break]";
 		say "|";
 		repeat with X running from 1 to 8:
+			if the remainder after dividing (X + Y) by 2 is 1:
+				invert-text;
 			say "[occupant of X and (9 - Y)]";
+			say "[roman type]";
 			say "|";
 		say "[line break]";
 	say "[border]";
