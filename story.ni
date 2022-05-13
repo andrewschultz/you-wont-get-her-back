@@ -22,11 +22,18 @@ include Undo Output Control by Erik Temple.
 
 volume game state variables and procedural rules
 
+move-log is a list of numbers variable.
+
 rook-sacs-self is a truth state that varies.
+
 kb3-next is a truth state that varies.
+
 take-rook-next is a truth state that varies.
+
 check-king-next is a truth state that varies.
+
 repeat-yourmove-whine is a truth state that varies.
+
 repeat-theirmove-whine is a truth state that varies.
 
 chapter options
@@ -649,26 +656,4 @@ rule for deciding whether to allow undo:
 		say "You decide to relive your final moment of victory. Or find new stuff to do. Whichever.";
 		allow undo;
 	deny undo;
-
-volume game progress
-
-move-log is a list of numbers variable.
-
-chapter tracking repeated moves
-
-chapter move 1
-
-chapter move 2
-
-chapter move 3
-
-chapter move 4
-
-chapter move 5
-
-chapter move 6
-
-chapter move 7
-
-chapter move 8
 
