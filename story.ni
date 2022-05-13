@@ -589,10 +589,37 @@ volume parsing
 
 hinted-person is a person that varies.
 
+equals-warn is a truth state that varies.
+
 after reading a command:
 	now hinted-person is black king;
 	let X be the player's command in lower case;
 	change the text of the player's command to "[X]";
+	if the player's command matches the regular expression "8=?<a-z>$":
+		if the player's command matches the text "=":
+			if equals-warn is false:
+				now equals-warn is true;
+				ital-say "when promoting and specifying a piece, you don't need to put in an equals sign.";
+			let X be the player's command;
+			replace the text "=" in X with "";
+			change the text of the player's command to "[X]";
+			say "(eq) [the player's command].";
+		let nc be the number of characters in the player's command;
+		if character number nc in the player's command is "q":
+			note-promote-change-q white queen;
+		else if character number nc in the player's command is "r":
+			note-promote-change-q white rook;
+		else if character number nc in the player's command is "b":
+			note-promote-change-q white bishop;
+		else if character number nc in the player's command is "n" or character number nc in the player's command is "k":
+			note-promote-change-q white knight;
+		else:
+			say "You can only promote to Q, B, R, or N (K is used here since N can be confused with north).";
+			reject the player's command;
+		let X be the player's command;
+		replace the regular expression ".$" in X with "";
+		change the text of the player's command to "[X]";
+		say "eq new: [the player's command].";
 	if the player's command matches the regular expression "^<a-z><a-z><1-8>$":
 		if character number 1 in the player's command is "k":
 			now hinted-person is the player;
