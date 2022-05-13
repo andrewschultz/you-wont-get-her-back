@@ -277,12 +277,19 @@ to promote-check (pi - a person):
 		now piece-to-promote is pi;
 		try pawning;
 		the rule succeeds;
-	say "You [if piece-to-promote is pi]already plan to promote [the pi][else]decide to promote to [the pi], not [the piece-to-promote][end if], if your pawn ever makes it.";
+	note-promote-change pi;
 	if option-persist-warn is false:
 		say "[line break]";
 		ital-say "this option will persist if the puzzle is restarted.";
 		now option-persist-warn is true;
+
+to note-promote-change (pi - a person):
+	say "You [if piece-to-promote is pi]already plan to promote [the pi][else]decide to promote to [the pi], not [the piece-to-promote][end if], if your pawn ever makes it.";
 	now piece-to-promote is pi;
+
+to note-promote-change-q (pi - a person):
+	if pi is piece-to-promote, continue the action;
+	note-promote-change pi;
 
 chapter rooking
 
