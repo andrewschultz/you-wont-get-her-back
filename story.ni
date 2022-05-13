@@ -267,7 +267,7 @@ to promote-check (pi - a person):
 	say "You [if piece-to-promote is pi]already plan to promote [the pi][else]decide to promote to [the pi], not [the piece-to-promote][end if], if your pawn ever makes it.";
 	if option-persist-warn is false:
 		say "[line break]";
-		ital-say "this option will not be reset if you fail and need to try again.";
+		ital-say "this option will persist if the puzzle is restarted.";
 		now option-persist-warn is true;
 	now piece-to-promote is pi;
 
@@ -577,7 +577,10 @@ volume parsing
 hinted-person is a person that varies.
 
 after reading a command:
-	if the player's command matches the regular expression "^<a-z><a-z><1-8>":
+	now hinted-person is black king;
+	let X be the player's command in lower case;
+	change the text of the player's command to "[X]";
+	if the player's command matches the regular expression "^<a-z><a-z><1-8>$":
 		if character number 1 in the player's command is "k":
 			now hinted-person is the player;
 			change the text of the player's command to "[character number 2 in the player's command][character number 3 in the player's command]";
@@ -617,11 +620,19 @@ carry out squaregoing:
 			end the story finally;
 			the rule succeeds;
 		say "Boy! You let them off the hook.";
+	if hinted-person is black king and the room north of location of white pawn is the noun:
+		if noun is adjacent to location of player:
+			say "(moving the pawn, as is conventional with chess notation when no piece is given)[line break]";
+		try pawning instead;
+	if hinted-person is white pawn and the room north of location of white pawn is the noun:
+		say "(the p at the command's start is implicit, so you don't need it)[line break]";
+		try pawning instead;
 	if hinted-person is the player and the noun is adjacent to the location of the player:
 		let x be the best route from location of player to noun;
 		try going x;
 		the rule succeeds;
-	say "I'm at a loss.";
+	d "Couldn't find any way to move [hinted-person] to [noun].";
+	say "You don't seem to be able to move anything to [noun].";
 
 volume meta verbs
 
@@ -634,6 +645,9 @@ rule for deciding whether to allow undo:
 		say "[line break]";
 		ital-say "undoing is disabled, but since the whole game shouldn't take more than fourteen moves, you should be able to recreaete what you did. I hope this balances forcing you to a bit of challenging calculation with not getting too frustrated.";
 		now undo-explain-shown is true;
+	if game-over:
+		say "You decide to relive your final moment of victory. Or find new stuff to do. Whichever.";
+		allow undo;
 	deny undo;
 
 volume game progress
