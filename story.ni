@@ -495,7 +495,7 @@ check going when take-rook-next is true:
 check going (this is the rook catches pawn rule): [the logic here is: you move to the a-file, it's a draw. You move to the c-file too soon, it's a draw. There are side test cases, of course. ]
 	if room gone to is nowhere, continue the action;
 	if location of white pawn is c6:
-		say "The rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Of course, the enemy king has no shot of corralling the pawn so the rook doesn't die in the process[if xval of room gone to is 1], even though you'll need to make a move to guard your pawn[else if xval of room gone to is 3], even though you'll need to get back out of your pawn's way[end if]. Your hopes of winning are dashed!";
+		say "The black rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Of course, the enemy king has no shot of corralling the pawn so the rook doesn't die in the process[if xval of room gone to is 1], even though you'll need to make a move to guard your pawn[else if xval of room gone to is 3], even though you'll need to get back out of your pawn's way[end if]. Your hopes of winning are dashed!";
 		achieve "traded pawn";
 		reset-the-board instead;
 	if room gone to is c1:
@@ -511,18 +511,26 @@ check going (this is the rook catches pawn rule): [the logic here is: you move t
 		achieve "pinned pawn";
 		reset-the-board instead;
 	if x-to is 1:
-		say "The rook chuckles as it swoops behind the pawn to [the room west of location of rook]. [if location of player is a6]At least you'll be able to guard the pawn and smack the rook down! Or, if the rook checks you on the b-file, you can move to the a-file and move back to the b-file, for a repetition of moves[else]And you're too far away to even guard it! You will lose the war now[end if].";
-		if location of player is a6:
+		if debug-state is true, say "DEBUG: you to [room gone to], rook from [location of black rook].";
+		say "The rook chuckles as it swoops behind the pawn to [the room west of location of rook]. [if pawn-guardable of room gone to]At least you'll be able to guard the pawn and smack the rook down! Or, if the rook checks you on the b-file, you can move to the a-file and move back to the b-file, for a repetition of moves[else]And you're too far away to even guard it! You will lose the war now[end if].";
+		if pawn-guardable of room gone to:
 			achieve "traded pawn";
 		else:
 			achieve "captured pawn";
 		reset-the-board instead;
-	if x-to is 3:
+	if x-to is 3 or x-to is 1:
 		if y-to > 3:
 			say "The rook zips down to d1. So unfair! You have feet and legs and everything, and you're nowhere near that fast! But you see what's up. [if y-to is 4]That rook's going to c1, and you can barely stumble back to guard the pawn behind/ahead of you[else]You'll be able to guard your pawn easily[end if]. Thankfully, the enemy king's too far away to gang up on your pawn, but it's a stalemate all the same.";
 			achieve "skewered to a draw";
 			reset-the-board instead;
 	if threefold-repetition of board-state, the rule fails;
+
+to decide whether pawn-guardable of (rm - a room):
+	let yp be yval of rm;
+	if yp > 5, yes;
+	if yp < 5, no;
+	if yval of location of black rook is 6, no;
+	yes;
 
 after going when pawn is not off-stage (this is the transcribe moves rule):
 	if room gone to is c3 and room gone from is b4:
@@ -561,7 +569,7 @@ to say note-rook-check of (rm - a room):
 		now rm2 is the room look-dir of rm2;
 
 to move-and-log (rm - a room):
-	say "The rook slides [pref-dir of location of black rook and rm] to [rm][note-rook-check of rm].";
+	say "The black rook slides [pref-dir of location of black rook and rm] to [rm][note-rook-check of rm].";
 	now black-move is true;
 	move black rook to rm;
 	if threefold-repetition of board-state, continue the action;
@@ -589,13 +597,13 @@ to decide whether threefold-repetition of (N - a number):
 				if black-move is true:
 					increment repeat-whines;
 					choose row repeat-whines in table of repeat whines;
-					say "[rook-whine entry][line break]";
+					say "[line break][rook-whine entry][line break]";
 	add N to my-move-log;
 	no;
 
 table of repeat whines
 rook-whine
-"'We've been here just before. Well, not exactly here. But reaching the same dang position.'"
+"[if repeat-yourmove-whine is false]'We've been here before, haven't we? Just approached things from a different angle. Once more, and we can call this long, useless, worn-out war a draw. But we'll all make it out alive.'[else]'Well, if you repeat, I can repeat, too. Not much else to do, right?'[end if]"
 "'Out of ideas, eh? That's okay. I would be, too, in your position. It's tough to admit you're not going to win.'"
 "'What are you trying to prove? Honestly. Okay, okay. I suppose keeping your subjects in a constant state of worry from war has its perks. But we know how it ends.'"
 "'We're just putting on a show for our subjects, right? Right. Well, this game's been long enough, why not make it a bit longer?'"
@@ -800,6 +808,7 @@ achievement	achieved	details
 "traded pawn"	false	"letting the rook sacrifice itself for your pawn"
 "skewered to a draw"	false	"letting the rook check you on c1 to sacrifice itself for the pawn"
 "skewered to death"	false	"letting the rook check you on a1 and take the pawn without being captured"
+"stalemate, mate"	false	"getting the Queen back but walking into stalemate"
 "cowardly rook"	false	"winning with the enemy rook fleeing"
 "sacrificial rook"	false	"winning with the enemy rook sacrificing itself hopelessly"
 "dragging it out"	false	"taking a few turns to win, considering repetition"

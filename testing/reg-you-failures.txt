@@ -3,8 +3,7 @@
 ## failures for Saaverda problem game
 
 ** game: /home/andrew/prt/debug-you-dont-want-her-back.z8
-** interpreter: /home/andrew/prt/dfrotz -m -w5000
-** checkclass: /home/andrew/prt/checkyou.py
+** interpreter: /home/andrew/prt/dfrotz -m -w5000 -h25
 
 * main_stuff
 
@@ -16,42 +15,43 @@
 You order the pawn forward. The enemy rook checks you on d6.
 
 >s
-The rook slides south to d5, putting you in check.
+The black rook slides south to d5, putting you in check.
 
 >n
 "Back and forth, eh? One more time here and we can call this dumb war off. No winners, no losers. Them's the rules."
-The rook slides north to d6, putting you in check.
-"We've been here just before. Well, not exactly here. But reaching the same dang position."
+The black rook slides north to d6, putting you in check.
+"Well, if you repeat, I can repeat, too. Not much else to do, right?"
 
 >s
-The rook slides south to d5, putting you in check.
+The black rook slides south to d5, putting you in check.
 "Out of ideas, eh? That's okay. I would be, too, in your position. It's tough to admit you're not going to win."
 
 >n
-!The rook slides north to d6, putting you in check.
+!The black rook slides north to d6, putting you in check.
 "REPETITION OF MOVES!" the enemy rook calls out. They're right. It's odd--the whole affair seemed a draw, anyway, so why were they so eager to claim one? I guess they are eager to get back to oppressing pawns, or something.
 DEBUG: checking for threefold achievement.
 Congratulations! You just got the THREEFOLD achievement!
 
 # move 0 right, move 1 wrong
+>note-0
 
 >ne
-The rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Of course, the enemy king has no shot of corralling the pawn so the rook doesn't die in the process, even though you'll need to get back out of your pawn's way. Your hopes of winning are dashed!
+The black rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Of course, the enemy king has no shot of corralling the pawn so the rook doesn't die in the process, even though you'll need to get back out of your pawn's way. Your hopes of winning are dashed!
 DEBUG: checking for traded pawn achievement.
 Congratulations! You just got the TRADED PAWN achievement!
 
 >n
-The rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Of course, the enemy king has no shot of corralling the pawn so the rook doesn't die in the process. Your hopes of winning are dashed!
+The black rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Of course, the enemy king has no shot of corralling the pawn so the rook doesn't die in the process. Your hopes of winning are dashed!
 DEBUG: checking for traded pawn achievement.
 !Congratulations!
 
 >nw
-The rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Of course, the enemy king has no shot of corralling the pawn so the rook doesn't die in the process, even though you'll need to make a move to guard your pawn. Your hopes of winning are dashed!
+The black rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Of course, the enemy king has no shot of corralling the pawn so the rook doesn't die in the process, even though you'll need to make a move to guard your pawn. Your hopes of winning are dashed!
 DEBUG: checking for traded pawn achievement.
 !Congratulations!
 
 >w
-The rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Of course, the enemy king has no shot of corralling the pawn so the rook doesn't die in the process, even though you'll need to make a move to guard your pawn. Your hopes of winning are dashed!
+The black rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Of course, the enemy king has no shot of corralling the pawn so the rook doesn't die in the process, even though you'll need to make a move to guard your pawn. Your hopes of winning are dashed!
 DEBUG: checking for traded pawn achievement.
 !Congratulations!
 
@@ -68,22 +68,25 @@ But the enemy rook would see you there.
 But the white pawn is already there.
 
 >nw
-The rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Of course, the enemy king has no shot of corralling the pawn so the rook doesn't die in the process, even though you'll need to make a move to guard your pawn. Your hopes of winning are dashed!
+The black rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Of course, the enemy king has no shot of corralling the pawn so the rook doesn't die in the process, even though you'll need to make a move to guard your pawn. Your hopes of winning are dashed!
 DEBUG: checking for traded pawn achievement.
 !Congratulations!
 
 >n
-The rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Of course, the enemy king has no shot of corralling the pawn so the rook doesn't die in the process. Your hopes of winning are dashed!
+The black rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Of course, the enemy king has no shot of corralling the pawn so the rook doesn't die in the process. Your hopes of winning are dashed!
 DEBUG: checking for traded pawn achievement.
 !Congratulations!
 
 >ne
-The rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Of course, the enemy king has no shot of corralling the pawn so the rook doesn't die in the process, even though you'll need to get back out of your pawn's way. Your hopes of winning are dashed!
+The black rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Of course, the enemy king has no shot of corralling the pawn so the rook doesn't die in the process, even though you'll need to get back out of your pawn's way. Your hopes of winning are dashed!
 DEBUG: checking for traded pawn achievement.
 !Congratulations!
 
 # move 1 right, move 2 wrong
+>note-1
+
 >p
+b6
 
 >e
 But the enemy rook would still see you there.
@@ -127,4 +130,91 @@ Well, let's try again.
 But the white pawn is already there.
 
 # move 2 right, move 3 wrong
+>note-2
+
 >s
+b5
+
+>e
+But the enemy rook would still see you there.
+
+>w
+But the enemy rook would still see you there.
+
+>n
+"Back and forth, eh? One more time here and we can call this dumb war off. No winners, no losers. Them's the rules."
+The black rook slides north to d6, putting you in check.
+"Well, if you repeat, I can repeat, too. Not much else to do, right?"
+
+>undo
+
+>ne
+The rook zips down to d1. So unfair! You have feet and legs and everything, and you're nowhere near that fast! But you see what's up. You'll be able to guard your pawn easily. Thankfully, the enemy king's too far away to gang up on your pawn, but it's a stalemate all the same.
+DEBUG: checking for skewered to a draw achievement.
+Congratulations! You just got the SKEWERED TO A DRAW achievement!
+
+>undo
+
+>nw
+The rook chuckles as it swoops behind the pawn to c5. At least you'll be able to guard the pawn and smack the rook down! Or, if the rook checks you on the b-file, you can move to the a-file and move back to the b-file, for a repetition of moves.
+DEBUG: checking for traded pawn achievement.
+!Congratulations
+
+>undo
+
+>se
+The rook zips down to d1. So unfair! You have feet and legs and everything, and you're nowhere near that fast! But you see what's up. That rook's going to c1, and you can barely stumble back to guard the pawn behind/ahead of you. Thankfully, the enemy king's too far away to gang up on your pawn, but it's a stalemate all the same.
+DEBUG: checking for skewered to a draw achievement.
+Congratulations! You just got the SKEWERED TO A DRAW achievement!
+
+>undo
+
+>sw
+The rook chuckles as it swoops behind the pawn to c5. And you're too far away to even guard it! You will lose the war now.
+DEBUG: checking for captured pawn achievement.
+Congratulations! You just got the CAPTURED PAWN achievement!
+
+>undo
+
+# move 3 right, move 4 wrong
+>note-3
+
+>s
+b4
+
+>n
+The black rook slides north to d5, putting you in check.
+"We've been here before, haven't we? Just approached things from a different angle. Once more, and we can call this long, useless, worn-out war a draw. But we'll all make it out alive."
+>undo
+
+>ne
+The rook zips down to d1. So unfair! You have feet and legs and everything, and you're nowhere near that fast! But you see what's up. You'll be able to guard your pawn easily. Thankfully, the enemy king's too far away to gang up on your pawn, but it's a stalemate all the same.
+DEBUG: checking for skewered to a draw achievement.
+Congratulations! You just got the SKEWERED TO A DRAW achievement!
+
+>undo
+
+>nw
+The rook chuckles as it swoops behind the pawn to c4. At least you'll be able to guard the pawn and smack the rook down! Or, if the rook checks you on the b-file, you can move to the a-file and move back to the b-file, for a repetition of moves.
+DEBUG: checking for traded pawn achievement.
+!Congratulations!
+
+>undo
+
+>sw
+The rook chuckles as it swoops behind the pawn to c4. And you're too far away to even guard it! You will lose the war now.
+DEBUG: checking for captured pawn achievement.
+Congratulations! You just got the CAPTURED PAWN achievement!
+
+>undo
+
+>e
+But the enemy rook would still see you there.
+
+>w
+But the enemy rook would still see you there.
+
+# move 4a right, move 5a wrong
+# note we need to test 4b (SE) later
+>s
+
