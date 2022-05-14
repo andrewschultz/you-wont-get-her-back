@@ -368,3 +368,94 @@ The black rook snickers as it slides over to c4. Your friend the white knight wi
 
 >c8r
 
+>w
+Ugh, no. Don't want to get too close to the enemy king.
+
+>sw
+Ugh, no. Don't want to get too close to the enemy king.
+
+>n
+The black rook and king breathe a sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw.
+
+>undo
+
+>ne
+The black rook and king breathe a sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw.
+
+>undo
+
+>e
+The black rook and king breathe a sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw.
+
+>undo
+
+>se
+The black rook and king breathe a sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw.
+
+>undo
+
+>s
+The black rook and king breathe a sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw.
+
+>undo
+
+>rc1
+WRONG
+>undo
+
+>rc2
+WRONG
+>undo
+
+>rc3
+WRONG
+>undo
+
+>rc4
+WRONG
+>undo
+
+>rc5
+WRONG
+>undo
+
+>rc6
+WRONG
+>undo
+
+>rc7
+WRONG
+>undo
+
+>rc8
+WRONG
+>undo
+
+>ra8
+WRONG
+>undo
+
+>rb8
+WRONG
+>undo
+
+>rd8
+WRONG
+>undo
+
+>re8
+WRONG
+>undo
+
+>rf8
+WRONG
+>undo
+
+>rg8
+WRONG
+>undo
+
+>rh8
+WRONG
+>undo
+

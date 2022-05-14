@@ -467,10 +467,12 @@ check going (this is the friendly piece obstruction rule):
 	if the room gone to is rook-guarded, say "But the enemy rook would [if room gone from is rook-guarded]still [end if]see you there." instead;
 	if the room gone to is king-guarded, say "Ugh, no. Don't want to get too close to the enemy king." instead;
 
+this is the you-missed-kb3 rule:
+	say "The black rook and king breathe a sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw.";
+	reset-the-board instead;
+
 check going when kb3-next is true (this is the final step fail rule):
-	if room gone to is not b3:
-		say "The black rook and king breathe a sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw.";
-		reset-the-board instead;
+	if room gone to is not b3, abide by the you-missed-kb3 rule;
 	if rook-spite-check is true:
 		let rsr be random check-at-end room;
 		now kb3-next is false;
@@ -745,17 +747,21 @@ to check-drag-out:
 		achieve "dragging it out";
 
 carry out squaregoing:
+	if noun is location of hinted-person, say "You can't pass. In fact, it won't ever do you any good. There's no zugzwang anywhere around." instead;
 	if hinted-person is white rook:
 		unless xval of noun is xval of location of white rook or yval of noun is yval of location of white rook:
 			say "The white rook can't move there.";
 			the rule succeeds;
+		if noun is location of black rook:
+			say "You captured the black rook! Congratulations. This is relatively rare, since the squares are picked at random. Or maybe not, now that I defined how you can pick stuff off.";
+			achieve "rook capture";
+			reset-the-board instead;
 		if noun is c1:
 			say "YOU WIN!";
 			now rook-spite-check is whether or not rook-spite-check is false;
 			reset-the-board instead;
 			the rule succeeds;
-		say "Boy! You let them off the hook.";
-		reset-the-board instead;
+		abide by the you-missed-kb3 rule;
 	if hinted-person is black king and the room north of location of white pawn is the noun:
 		if noun is adjacent to location of player:
 			say "(moving the pawn, as is conventional with chess notation when no piece is given)[line break]";
