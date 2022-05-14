@@ -214,7 +214,157 @@ But the enemy rook would still see you there.
 >w
 But the enemy rook would still see you there.
 
-# move 4a right, move 5a wrong
-# note we need to test 4b (SE) later
+>note-4a
+
+# move 4a right, move 5a wrong. 4a is moving to b3 instead of c3.
 >s
+
+>w
+But the enemy rook would still see you there.
+
+>undo
+
+>e
+But the enemy rook would still see you there.
+
+>undo
+
+>sw
+Ugh, no. Don't want to get too close to the enemy king.
+
+>undo
+
+>s
+Ugh, no. Don't want to get too close to the enemy king.
+
+>undo
+
+>se
+The black rook slides north to d4.
+
+>undo
+
+>nw
+The rook chuckles as it swoops behind the pawn to c3. And you're too far away to even guard it! You will lose the war now.
+DEBUG: checking for captured pawn achievement.
+Congratulations! You just got the CAPTURED PAWN achievement!
+
+>undo
+
+>n
+The black rook slides north to d4, putting you in check.
+
+"We've been here before, haven't we? Just approached things from a different angle. Once more, and we can call this long, useless, worn-out war a draw. But we'll all make it out alive."
+
+>undo
+
+>ne
+The rook zips down to d1. So unfair! You have feet and legs and everything, and you're nowhere near that fast! But you see what's up. That rook's going to c1, and you can barely stumble back to guard the pawn behind/ahead of you. Thankfully, the enemy king's too far away to gang up on your pawn, but it's a stalemate all the same.
+DEBUG: checking for skewered to a draw achievement.
+Congratulations! You just got the SKEWERED TO A DRAW achievement!
+
+>undo
+>undo
+
+>note-4b
+# move 4b right, move 5b wrong. 4b is moving to c3 instead of b3.
+
+>se
+
+>ne
+But the enemy rook would see you there.
+
+>e
+But the enemy rook would see you there.
+
+>se
+But the enemy rook would see you there.
+
+>sw
+Ugh, no. Don't want to get too close to the enemy king.
+
+>w
+Oh no! That prevents the rook skewering your advanced pawn, but after it slides to c1, the pawn is undefendable.
+DEBUG: checking for captured pawn achievement.
+Congratulations! You just got the CAPTURED PAWN achievement!
+
+>undo
+
+>nw
+Oh no! That prevents the rook skewering your advanced pawn, but after it slides to c1, the pawn is undefendable.
+DEBUG: checking for captured pawn achievement.
+Congratulations! You just got the CAPTURED PAWN achievement!
+
+>undo
+
+>n
+Ouch! You're running back to guard your pawn, but the black rook checks you at c1, and there's just no way you can defend it.
+DEBUG: checking for skewered to death achievement.
+Congratulations! You just got the SKEWERED TO DEATH achievement!
+
+>undo
+
+>s
+The black rook slides north to d4.
+
+>note-5
+
+# move 5 right, move 6 wrong
+>c8
+Triumph! The pawn makes it to the eighth rank. There is a swirl of light before the white queen pops up.
+The black rook sneaks to c4! You have nothing better to do than have your queen take the rook, which triggers stalemate.
+DEBUG: checking for stalemate, mate achievement.
+Congratulations! You just got the STALEMATE, MATE achievement!
+
+>undo
+
+>w
+Ugh, no. Don't want to get too close to the enemy king.
+
+>sw
+Ugh, no. Don't want to get too close to the enemy king.
+
+>e
+But the enemy rook would see you there.
+
+>ne
+But the enemy rook would see you there.
+
+>se
+But the enemy rook would see you there.
+
+>s
+The black rook slides over to c4, forking you and your pawn on c7. The rook and king endgame ahead will be painful.
+DEBUG: checking for forked to death achievement.
+Congratulations! You just got the FORKED TO DEATH achievement!
+
+>undo
+
+>nw
+The black rook slides south to d3, putting you in check.
+!Back and forth
+
+>undo
+
+>n
+The black rook slides south to d1.
+"Back and forth, eh? One more time here and we can call this dumb war off. No winners, no losers. Them's the rules."
+
+>undo
+
+>c8b
+!You decide to promote to the white bishop, not the white queen, if your pawn ever makes it.
+Triumph! The pawn makes it to the eighth rank. There is a swirl of light before the white bishop pops up.
+The black rook snickers as it slides over to c4. Your friend the white bishop will be captured next move, and a very unpleasant but inevitably lost rook endgame awaits.
+
+>undo
+
+>c8n
+!You decide to promote to the white knight, not the white queen, if your pawn ever makes it.
+Triumph! The pawn makes it to the eighth rank. There is a swirl of light before the white knight pops up.
+The black rook snickers as it slides over to c4. Your friend the white knight will be captured next move, and a very unpleasant but inevitably lost rook endgame awaits.
+
+# move 6 right, move 7 wrong
+
+>c8r
 

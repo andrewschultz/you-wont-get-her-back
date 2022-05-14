@@ -262,9 +262,10 @@ carry out pawning:
 		the rule succeeds;
 	if piece-to-promote is white queen:
 		say "The black rook sneaks to c4! You have nothing better to do than have your queen take the rook, which triggers stalemate.";
+		achieve "stalemate, mate";
 		reset-the-board instead;
 	if piece-to-promote is white bishop or piece-to-promote is white knight:
-		say "The black rook snickers as it slides over to c4. Your friend [the piece-to-promote] will be captured next move, and a very unpleasant but inevitable lost rook endgame awaits.";
+		say "The black rook snickers as it slides over to c4. Your friend [the piece-to-promote] will be captured next move, and a very unpleasant but inevitably lost rook endgame awaits.";
 		reset-the-board;
 		the rule succeeds;
 	now white pawn is off-stage;
@@ -290,11 +291,11 @@ to promote-check (pi - a person):
 
 to note-promote-change (pi - a person):
 	say "You [if piece-to-promote is pi]already plan to promote [the pi][else]decide to promote to [the pi], not [the piece-to-promote][end if], if your pawn ever makes it.";
-	now piece-to-promote is pi;
+	note-promote-change-q pi;
 
 to note-promote-change-q (pi - a person):
 	if pi is piece-to-promote, continue the action;
-	note-promote-change pi;
+	now piece-to-promote is pi;
 
 chapter rooking
 
@@ -494,13 +495,19 @@ check going when take-rook-next is true:
 
 check going (this is the rook catches pawn rule): [the logic here is: you move to the a-file, it's a draw. You move to the c-file too soon, it's a draw. There are side test cases, of course. ]
 	if room gone to is nowhere, continue the action;
+	if debug-state is true, say "DEBUG: [room gone from] to [room gone to], with rook at [location of black rook].";
 	if location of white pawn is c6:
 		say "The black rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Of course, the enemy king has no shot of corralling the pawn so the rook doesn't die in the process[if xval of room gone to is 1], even though you'll need to make a move to guard your pawn[else if xval of room gone to is 3], even though you'll need to get back out of your pawn's way[end if]. Your hopes of winning are dashed!";
 		achieve "traded pawn";
 		reset-the-board instead;
-	if room gone to is c1:
-		if location of black rook is not d4, say "Oh no! There's a bug here. The black rook should be at d4. Sorry--I'm resetting.";
+	if xval of room gone to is 2 and location of player is c3 and location of black rook is d1:
+		say "Oh no! That prevents the rook skewering your advanced pawn, but after it slides to c1, the pawn is undefendable.";
+		achieve "captured pawn";
 		reset-the-board instead;
+	if room gone to is c1:
+		if location of black rook is not d4:
+			say "Oh no! There's a bug here. The black rook should be at d4. Sorry--I'm resetting.";
+			reset-the-board instead;
 		say "The black rook slides over to c4, forking you and your pawn on [location of white pawn]. The rook and king endgame ahead will be painful.";
 		achieve "forked to death";
 		reset-the-board instead;
@@ -519,6 +526,10 @@ check going (this is the rook catches pawn rule): [the logic here is: you move t
 			achieve "captured pawn";
 		reset-the-board instead;
 	if x-to is 3 or x-to is 1:
+		if location of black rook is d1 and (room gone to is c3 or room gone to is c4):
+			say "Ouch! You're running back to guard your pawn, but the black rook checks you at c1, and there's just no way you can defend it.";
+			achieve "skewered to death";
+			reset-the-board instead;
 		if y-to > 3:
 			say "The rook zips down to d1. So unfair! You have feet and legs and everything, and you're nowhere near that fast! But you see what's up. [if y-to is 4]That rook's going to c1, and you can barely stumble back to guard the pawn behind/ahead of you[else]You'll be able to guard your pawn easily[end if]. Thankfully, the enemy king's too far away to gang up on your pawn, but it's a stalemate all the same.";
 			achieve "skewered to a draw";
@@ -777,6 +788,10 @@ rule for deciding whether to allow undo:
 		allow undo;
 	deny undo;
 
+report undoing an action when debug-state is true:
+	try looking;
+	the rule succeeds;
+
 chapter verbsing
 
 verbsing is an action out of world.
@@ -809,6 +824,7 @@ achievement	achieved	details
 "skewered to a draw"	false	"letting the rook check you on c1 to sacrifice itself for the pawn"
 "skewered to death"	false	"letting the rook check you on a1 and take the pawn without being captured"
 "stalemate, mate"	false	"getting the Queen back but walking into stalemate"
+"forked to death"	false	"managing to get forked, along with your pawn, by the enemy rook"
 "cowardly rook"	false	"winning with the enemy rook fleeing"
 "sacrificial rook"	false	"winning with the enemy rook sacrificing itself hopelessly"
 "dragging it out"	false	"taking a few turns to win, considering repetition"
