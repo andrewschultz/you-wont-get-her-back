@@ -24,8 +24,6 @@ volume game state variables and procedural rules
 
 move-log is a list of numbers variable.
 
-kb3-next is a truth state that varies.
-
 take-rook-next is a truth state that varies.
 
 check-king-next is a truth state that varies.
@@ -39,6 +37,12 @@ ever-won is a truth state that varies.
 alt-b3 is a truth state that varies.
 
 alt-c3 is a truth state that varies.
+
+chapter game states
+
+game-state is a kind of value. game-states are the-beginning, need-kb3 and rook-doomed.
+
+current-game-state is a game-state that varies.
 
 chapter square states
 
@@ -320,7 +324,7 @@ carry out pawning:
 		the rule succeeds;
 	now white pawn is off-stage;
 	say "The black rook scoffs as you call for a rook, not your queen. 'Sheesh. If you wanted a draw, you could've repeated moves.' He shuffles over to a4.";
-	now kb3-next is true;
+	now current-game-state is need-kb3;
 	move black rook to a4;
 	try looking;
 	the rule succeeds;
@@ -505,7 +509,7 @@ to reset-the-board:
 	move black rook to d5;
 	move white pawn to c6;
 	move black king to a1;
-	now kb3-next is false;
+	now current-game-state is the-beginning;
 	now white queen is off-stage;
 	now white rook is off-stage;
 	now white bishop is off-stage;
@@ -541,21 +545,23 @@ this is the black-rook-takes-rook rule:
 			say "You can't even take the enemy rook back! What a sad way to lose.";
 			achieve "all for naught";
 		reset-the-board;
-this is the you-missed-kb3 rule:
-	say "The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.";
-	achieve "staler than stalemate, mate";
-	reset-the-board instead;
+		the rule succeeds;
 
-check going when kb3-next is true (this is the final semi-random rook move rule):
-	if room gone to is not b3, abide by the you-missed-kb3 rule;
+this is the dreary-draw rule:
+	say "The black rook and king breathe a collective sigh of relief as the black king edges [if location of player is b3]across to b1[else]up to a2[end if]. The black rook can just shuffle on the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.";
+	achieve "staler than stalemate, mate";
+	reset-the-board;
+	the rule succeeds;
+
+check going when current-game-state is need-kb3 (this is the final semi-random rook move rule):
+	if room gone to is not b3, abide by the dreary-draw rule;
+	now current-game-state is rook-doomed;
 	if rookstate of rook-flee-room is spite-checking:
-		now kb3-next is false;
 		now take-rook-next is true;
 		say "There's a big argument. The black king insists the black rook give himself up for you. 'You will sacrifice yourself for your king and country, and you will sacrifice yourself for your king and country right NOW, do you hear?'[paragraph break]There's a big argument, which you sit back and enjoy, until you worry it might tip off the 50-move rule. Then you realize the 50-move rule doesn't progress without, you know, a legal move. So that's all good. The rook flings itself to [rook-flee-room].";
 		move black rook to rook-flee-room;
 	else:
 		say "The black rook flees to [rook-flee-room] to save its own skin!";
-		now kb3-next is false;
 		now check-king-next is true;
 		move rook to rook-flee-room;
 
@@ -874,9 +880,10 @@ carry out squaregoing:
 			reset-the-board instead;
 		if noun is c1:
 			say "YOU WIN!";
-			reset-the-board instead;
+			choose-flee-room;
+			reset-the-board;
 			the rule succeeds;
-		abide by the you-missed-kb3 rule;
+		abide by the dreary-draw rule;
 	if hinted-person is black king and the room north of location of white pawn is the noun:
 		if noun is adjacent to location of player:
 			say "(moving the pawn, as is conventional with chess notation when no piece is given)[line break]";
