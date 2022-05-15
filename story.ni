@@ -24,8 +24,6 @@ volume game state variables and procedural rules
 
 move-log is a list of numbers variable.
 
-rook-spite-check is a truth state that varies.
-
 kb3-next is a truth state that varies.
 
 take-rook-next is a truth state that varies.
@@ -35,6 +33,39 @@ check-king-next is a truth state that varies.
 repeat-yourmove-whine is a truth state that varies.
 
 repeat-whines is a number that varies.
+
+ever-won is a truth state that varies.
+
+chapter square states
+
+fleestate is a kind of value. the fleestates are unreachable, a-guarding, a-allowing, spite-checking, sucker-sacrificing, useless-sacrificing.
+
+fsl is a list of fleestates variable.
+
+current-fleestate is a fleestate that varies.
+
+fleestate-index is a number that varies;
+
+rook-flee-room is a room that varies.
+
+when play begins (this is the sort fleestates randomly rule):
+	now fsl is the list of all fleestates;
+	remove unreachable from fsl;
+	sort fsl in random order;
+	choose-flee-room;
+
+to choose-flee-room:
+	increment fleestate-index;
+	if fleestate-index > number of fleestates, now fleestate-index is 1;
+	now current-fleestate is entry fleestate-index of fsl;
+	now rook-flee-room is a random fleeable room;
+	d "New flee room is [rook-flee-room] with state [current-fleestate].";
+
+definition: a room (called rm) is fleeable:
+	if rookstate of rm is current-fleestate, yes;
+	no;
+
+a room has a fleestate called rookstate. the rookstate of a room is usually unreachable.
 
 chapter options
 
@@ -54,27 +85,25 @@ volume properties
 
 a room has a number called xval. a room has a number called yval.
 
-a room can be flee-at-end, check-at-end or normal. a room is usually normal.
-
 a person can be friendly or enemy. a person is usually friendly.
 
 volume board layout
 
 a1 is a room. xval of a1 is 1. yval of a1 is 1.
 
-a2 is a flee-at-end room. xval of a2 is 1. yval of a2 is 2. a2 is north of a1.
+a2 is a room. xval of a2 is 1. yval of a2 is 2. a2 is north of a1.
 
-a3 is a check-at-end room. xval of a3 is 1. yval of a3 is 3. a3 is north of a2.
+a3 is a room. xval of a3 is 1. yval of a3 is 3. a3 is north of a2.
 
 a4 is a room. xval of a4 is 1. yval of a4 is 4. a4 is north of a3.
 
-a5 is a flee-at-end room. xval of a5 is 1. yval of a5 is 5. a5 is north of a4.
+a5 is a room. xval of a5 is 1. yval of a5 is 5. a5 is north of a4.
 
-a6 is a flee-at-end room. xval of a6 is 1. yval of a6 is 6. a6 is north of a5.
+a6 is a room. xval of a6 is 1. yval of a6 is 6. a6 is north of a5.
 
-a7 is a flee-at-end room. xval of a7 is 1. yval of a7 is 7. a7 is north of a6.
+a7 is a room. xval of a7 is 1. yval of a7 is 7. a7 is north of a6.
 
-a8 is a flee-at-end room. xval of a8 is 1. yval of a8 is 8. a8 is north of a7.
+a8 is a room. xval of a8 is 1. yval of a8 is 8. a8 is north of a7.
 
 b1 is a room. xval of b1 is 2. yval of b1 is 1. b1 is east of a1. b1 is southeast of a2.
 
@@ -82,7 +111,7 @@ b2 is a room. xval of b2 is 2. yval of b2 is 2. b2 is east of a2. b2 is north of
 
 b3 is a room. xval of b3 is 2. yval of b3 is 3. b3 is east of a3. b3 is north of b2. b3 is northeast of a2. b3 is southeast of a4.
 
-b4 is a check-at-end room. xval of b4 is 2. yval of b4 is 4. b4 is east of a4. b4 is north of b3. b4 is northeast of a3. b4 is southeast of a5.
+b4 is a room. xval of b4 is 2. yval of b4 is 4. b4 is east of a4. b4 is north of b3. b4 is northeast of a3. b4 is southeast of a5.
 
 b5 is a room. xval of b5 is 2. yval of b5 is 5. b5 is east of a5. b5 is north of b4. b5 is northeast of a4. b5 is southeast of a6.
 
@@ -114,7 +143,7 @@ d2 is a room. xval of d2 is 4. yval of d2 is 2. d2 is east of c2. d2 is north of
 
 d3 is a room. xval of d3 is 4. yval of d3 is 3. d3 is east of c3. d3 is north of d2. d3 is northeast of c2. d3 is southeast of c4.
 
-d4 is a flee-at-end room. xval of d4 is 4. yval of d4 is 4. d4 is east of c4. d4 is north of d3. d4 is northeast of c3. d4 is southeast of c5.
+d4 is a room. xval of d4 is 4. yval of d4 is 4. d4 is east of c4. d4 is north of d3. d4 is northeast of c3. d4 is southeast of c5.
 
 d5 is a room. xval of d5 is 4. yval of d5 is 5. d5 is east of c5. d5 is north of d4. d5 is northeast of c4. d5 is southeast of c6.
 
@@ -130,7 +159,7 @@ e2 is a room. xval of e2 is 5. yval of e2 is 2. e2 is east of d2. e2 is north of
 
 e3 is a room. xval of e3 is 5. yval of e3 is 3. e3 is east of d3. e3 is north of e2. e3 is northeast of d2. e3 is southeast of d4.
 
-e4 is a flee-at-end room. xval of e4 is 5. yval of e4 is 4. e4 is east of d4. e4 is north of e3. e4 is northeast of d3. e4 is southeast of d5.
+e4 is a room. xval of e4 is 5. yval of e4 is 4. e4 is east of d4. e4 is north of e3. e4 is northeast of d3. e4 is southeast of d5.
 
 e5 is a room. xval of e5 is 5. yval of e5 is 5. e5 is east of d5. e5 is north of e4. e5 is northeast of d4. e5 is southeast of d6.
 
@@ -146,7 +175,7 @@ f2 is a room. xval of f2 is 6. yval of f2 is 2. f2 is east of e2. f2 is north of
 
 f3 is a room. xval of f3 is 6. yval of f3 is 3. f3 is east of e3. f3 is north of f2. f3 is northeast of e2. f3 is southeast of e4.
 
-f4 is a flee-at-end room. xval of f4 is 6. yval of f4 is 4. f4 is east of e4. f4 is north of f3. f4 is northeast of e3. f4 is southeast of e5.
+f4 is a room. xval of f4 is 6. yval of f4 is 4. f4 is east of e4. f4 is north of f3. f4 is northeast of e3. f4 is southeast of e5.
 
 f5 is a room. xval of f5 is 6. yval of f5 is 5. f5 is east of e5. f5 is north of f4. f5 is northeast of e4. f5 is southeast of e6.
 
@@ -162,7 +191,7 @@ g2 is a room. xval of g2 is 7. yval of g2 is 2. g2 is east of f2. g2 is north of
 
 g3 is a room. xval of g3 is 7. yval of g3 is 3. g3 is east of f3. g3 is north of g2. g3 is northeast of f2. g3 is southeast of f4.
 
-g4 is a flee-at-end room. xval of g4 is 7. yval of g4 is 4. g4 is east of f4. g4 is north of g3. g4 is northeast of f3. g4 is southeast of f5.
+g4 is a room. xval of g4 is 7. yval of g4 is 4. g4 is east of f4. g4 is north of g3. g4 is northeast of f3. g4 is southeast of f5.
 
 g5 is a room. xval of g5 is 7. yval of g5 is 5. g5 is east of f5. g5 is north of g4. g5 is northeast of f4. g5 is southeast of f6.
 
@@ -178,7 +207,7 @@ h2 is a room. xval of h2 is 8. yval of h2 is 2. h2 is east of g2. h2 is north of
 
 h3 is a room. xval of h3 is 8. yval of h3 is 3. h3 is east of g3. h3 is north of h2. h3 is northeast of g2. h3 is southeast of g4.
 
-h4 is a flee-at-end room. xval of h4 is 8. yval of h4 is 4. h4 is east of g4. h4 is north of h3. h4 is northeast of g3. h4 is southeast of g5.
+h4 is a room. xval of h4 is 8. yval of h4 is 4. h4 is east of g4. h4 is north of h3. h4 is northeast of g3. h4 is southeast of g5.
 
 h5 is a room. xval of h5 is 8. yval of h5 is 5. h5 is east of g5. h5 is north of h4. h5 is northeast of g4. h5 is southeast of g6.
 
@@ -187,6 +216,20 @@ h6 is a room. xval of h6 is 8. yval of h6 is 6. h6 is east of g6. h6 is north of
 h7 is a room. xval of h7 is 8. yval of h7 is 7. h7 is east of g7. h7 is north of h6. h7 is northeast of g6. h7 is southeast of g8.
 
 h8 is a room. xval of h8 is 8. yval of h8 is 8. h8 is east of g8. h8 is north of h7. h8 is northeast of g7.
+
+chapter sorting rooms into fleeability
+
+[ there are 13 squares the black rook can move to once it's pretty obvious you've figured what to do. They can cause different bad endings if you mess up. ]
+
+rookstate of a2 is a-guarding. rookstate of a5 is a-guarding. rookstate of a6 is a-guarding. rookstate of a7 is a-guarding.
+
+rookstate of d4 is a-guarding. rookstate of e4 is a-guarding. rookstate of f4 is a-guarding. rookstate of g4 is a-guarding.  rookstate of h4 is a-guarding.
+
+rookstate of b4 is spite-checking. rookstate of c3 is spite-checking.
+
+rookstate of a8 is sucker-sacrificing.
+
+rookstate of c4 is useless-sacrificing.
 
 volume room description
 
@@ -450,9 +493,6 @@ definition: a room (called rm) is king-guarded:
 
 volume reset the board
 
-when play begins:
-	if a random chance of 1 in 2 succeeds, now rook-spite-check is true;
-
 to reset-the-board:
 	say "[line break]Well, let's try again.";
 	move black rook to d5;
@@ -476,13 +516,13 @@ to reset-the-board:
 volume going
 
 the friendly piece obstruction rule is listed first in the check going rules.
-the final step fail rule is listed after the friendly piece obstruction rule in the check going rules.
-the rook catches pawn rule is listed after the final step fail rule in the check going rules.
+the final semi-random rook move rule is listed after the friendly piece obstruction rule in the check going rules.
+the rook catches pawn rule is listed after the final semi-random rook move rule in the check going rules.
 
 check going (this is the friendly piece obstruction rule):
 	if the room gone to is friend-occupied, say "But [the random friendly person in room noun of location of player] is already there." instead;
-	if the room gone to is black-rook-guarded, say "But the enemy rook would [if room gone from is black-rook-guarded]still [end if]see you there." instead;
 	if the room gone to is king-guarded, say "Ugh, no. Don't want to get too close to the enemy king." instead;
+	if the room gone to is black-rook-guarded, say "But the enemy rook would [if room gone from is black-rook-guarded]still [end if]see you there." instead;
 
 this is the black-rook-takes-rook rule:
 	if noun is black-rook-guarded:
@@ -499,20 +539,18 @@ this is the you-missed-kb3 rule:
 	achieve "staler than stalemate, mate";
 	reset-the-board instead;
 
-check going when kb3-next is true (this is the final step fail rule):
+check going when kb3-next is true (this is the final semi-random rook move rule):
 	if room gone to is not b3, abide by the you-missed-kb3 rule;
-	if rook-spite-check is true:
-		let rsr be random check-at-end room;
+	if rookstate of rook-flee-room is spite-checking:
 		now kb3-next is false;
 		now take-rook-next is true;
-		say "There's a big argument. The black king insists the black rook give himself up for you. 'You will sacrifice yourself for your king and country, and you will sacrifice yourself for your king and country right NOW, do you hear?'[paragraph break]There's a big argument, which you sit back and enjoy, until you worry it might tip off the 50-move rule. Then you realize the 50-move rule doesn't progress without, you know, a legal move. So that's all good. The rook flings itself to [rsr].";
-		move black rook to rsr;
+		say "There's a big argument. The black king insists the black rook give himself up for you. 'You will sacrifice yourself for your king and country, and you will sacrifice yourself for your king and country right NOW, do you hear?'[paragraph break]There's a big argument, which you sit back and enjoy, until you worry it might tip off the 50-move rule. Then you realize the 50-move rule doesn't progress without, you know, a legal move. So that's all good. The rook flings itself to [rook-flee-room].";
+		move black rook to rook-flee-room;
 	else:
-		let rsr be random flee-at-end room;
-		say "The black rook flees to [rsr] to save its own skin!";
+		say "The black rook flees to [rook-flee-room] to save its own skin!";
 		now kb3-next is false;
 		now check-king-next is true;
-		move rook to rsr;
+		move rook to rook-flee-room;
 
 check going when take-rook-next is true:
 	if room gone to is not location of black rook:
@@ -520,7 +558,7 @@ check going when take-rook-next is true:
 		reset-the-board instead;
 	say "BAM! Take that, rook! [if location of rook is a3]The rest is straightforward. Your enemy moves to b1, you move to b3, and they move to a1, and your rook delivers the kill on c1[else]The rest is a bit tricky, since your king was decoyed to b4. But you've planned ahead: the enemy king to a2? Rook to c2. Enemy king to b1? King to b3. The rook on the c-file cuts your enemy off[end if]. Victory!";
 	check-drag-out;
-	now rook-spite-check is whether or not rook-spite-check is false;
+	choose-flee-room;
 	reset-the-board instead;
 
 check going (this is the rook catches pawn rule): [the logic here is: you move to the a-file, it's a draw. You move to the c-file too soon, it's a draw. There are side test cases, of course. ]
@@ -789,7 +827,6 @@ carry out squaregoing:
 			reset-the-board instead;
 		if noun is c1:
 			say "YOU WIN!";
-			now rook-spite-check is whether or not rook-spite-check is false;
 			reset-the-board instead;
 			the rule succeeds;
 		abide by the you-missed-kb3 rule;
