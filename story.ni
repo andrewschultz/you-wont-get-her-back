@@ -36,6 +36,10 @@ repeat-whines is a number that varies.
 
 ever-won is a truth state that varies.
 
+alt-b3 is a truth state that varies.
+
+alt-c3 is a truth state that varies.
+
 chapter square states
 
 fleestate is a kind of value. the fleestates are unreachable, a-guarding, a-allowing, spite-checking, sucker-sacrificing, useless-sacrificing.
@@ -564,9 +568,21 @@ check going when take-rook-next is true:
 	choose-flee-room;
 	reset-the-board instead;
 
+to decide whether seen-alts:
+	if alt-c3 is false, no;
+	if alt-b3 is false, no;
+	yes;
+
+to check-for-alts:
+	unless location of black rook is d4 and location of player is b4, continue the action;
+	if noun is southeast, now alt-c3 is true;
+	if noun is south, now alt-b3 is true;
+	if seen-alts, achieve "alternate paths";
+
 check going (this is the rook catches pawn rule): [the logic here is: you move to the a-file, it's a draw. You move to the c-file too soon, it's a draw. There are side test cases, of course. ]
 	if room gone to is nowhere, continue the action;
 	if debug-state is true, say "DEBUG: [room gone from] to [room gone to], with rook at [location of black rook].";
+	if not seen-alts, check-for-alts;
 	if location of white pawn is c6:
 		say "The black rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Of course, the enemy king has no shot of corralling the pawn so the rook doesn't die in the process[if xval of room gone to is 1], even though you'll need to make a move to guard your pawn[else if xval of room gone to is 3], even though you'll need to get back out of your pawn's way[end if]. Your hopes of winning are dashed!";
 		achieve "traded pawn";
@@ -898,6 +914,7 @@ achievement	achieved	details
 "pinned pawn"	false	"letting the rook pin your pawn"
 "captured pawn"	false	"letting the rook take your pawn for free"
 "traded pawn"	false	"letting the rook sacrifice itself for your pawn"
+"alternate paths"	false	"realizing two moves from b4 are okay"
 "skewered to a draw"	false	"letting the rook check you on c1 to sacrifice itself for the pawn"
 "skewered to death"	false	"letting the rook check you on a1 and take the pawn without being captured"
 "stalemate, mate"	false	"getting the Queen back but walking into stalemate"
