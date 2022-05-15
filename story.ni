@@ -880,9 +880,14 @@ carry out squaregoing:
 			reset-the-board;
 			the rule succeeds;
 		if noun is location of black rook:
-			say "You captured the black rook! Congratulations. This is relatively rare, since the squares are picked at random. Or maybe not, now that I defined how you can pick stuff off.";
-			achieve "rook capture";
-			reset-the-board instead;
+			if noun is a8:
+				say "The black king, trapped on the edge of the board, will die off soon enough. It's time to pillage a bit! You order your rook to smack up their opposing number, and they do so with relish.";
+				achieve "running up the score";
+			else if noun is c4:
+				say "Well, since the black rook forced you to, why not? That doesn't stop the inevitable. In fact, it barely delays things. But it was fun, seeing your opponents grovel for a bit, in a way.";
+				achieve "rook on rook violence";
+			reset-the-board;
+			the rule succeeds;
 		if noun is c1:
 			say "YOU WIN!";
 			choose-flee-room;
@@ -892,16 +897,22 @@ carry out squaregoing:
 	if hinted-person is black king and the room north of location of white pawn is the noun:
 		if noun is adjacent to location of player:
 			say "(moving the pawn, as is conventional with chess notation when no piece is given)[line break]";
-		try pawning instead;
+		try pawning;
+		the rule succeeds;
 	if hinted-person is white pawn and the room north of location of white pawn is the noun:
 		say "(the p at the command's start is implicit, so you don't need it)[line break]";
-		try pawning instead;
+		try pawning;
+		the rule succeeds;
 	if hinted-person is the player and the noun is adjacent to the location of the player:
-		let x be the best route from location of player to noun;
-		try going x;
+		say "Going to [noun].";
+		go-to-square noun;
 		the rule succeeds;
 	d "Couldn't find any way to move [hinted-person] to [noun].";
 	say "You don't seem to be able to move anything to [noun].";
+
+to go-to-square (rm - a room):
+	let x be the best route from location of player to noun;
+	try going x;
 
 volume meta verbs
 
@@ -963,6 +974,8 @@ achievement	achieved	details
 "all for naught"	false	"managing to give your rook away"
 "staler than stalemate, mate"	false	"drawn ending with equal material"
 "winners can spite-check too"	false	"checking the enemy king with their rook prone"
+"running up the score"	false	"taking the opposing rook when mate was available"
+"rook on rook violence"	false	"taking the opposing rook when they left you no choice"
 "cowardly rook"	false	"winning with the enemy rook fleeing"
 "sacrificial rook"	false	"winning with the enemy rook sacrificing itself hopelessly"
 "dragging it out"	false	"taking a few turns to win, considering repetition"
