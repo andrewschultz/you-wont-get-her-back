@@ -49,10 +49,13 @@ fleestate-index is a number that varies;
 rook-flee-room is a room that varies.
 
 when play begins (this is the sort fleestates randomly rule):
-	now fsl is the list of all fleestates;
-	remove unreachable from fsl;
+	init-fsl;
 	sort fsl in random order;
 	choose-flee-room;
+
+to init-fsl:
+	now fsl is the list of all fleestates;
+	remove unreachable from fsl;
 
 to choose-flee-room:
 	increment fleestate-index;

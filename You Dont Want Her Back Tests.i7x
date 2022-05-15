@@ -10,6 +10,20 @@ report verbsing:
 	say "Information for testing verbs that should not pop up in debug mode:[paragraph break]";
 	say "UY/UN toggle undo-allow on and off.";
 	say "RF (room) = rook-flee to a specific room. The only ones are either on the a-file or fourth rank.";
+	say "ORD = put final puzzles in default order e.g. a-guarding, a-allowing, spite-checking, sucker-sacrificing, useless-sacrificing.";
+
+chapter ording
+
+ording is an action out of world.
+
+understand the command "ord" as something new.
+
+understand "ord" as ording.
+
+carry out ording:
+	init-fsl;
+	say "The puzzle types are in order now.";
+	the rule succeeds;
 
 chapter rfing
 
@@ -23,6 +37,11 @@ understand "rf [any room]" as rfing.
 
 rule for supplying a missing noun when rfing:
 	say "You need to supply a square to [b]RF[r] properly.";
+	say "[line break]However, [b]RF[r] alone shows debug information.";
+	say "[line break]Current room is [rook-flee-room].";
+	say "[line break]Current order is [fleestate-index].";
+	say "[line break]Current state is [current-fleestate].";
+	say "[line break]The list of states in order is [fsl].";
 	reject the player's command;
 
 carry out rfing:
