@@ -2,6 +2,12 @@ Version 1/220511 of You Dont Want Her Back Tests by Andrew Schultz begins here.
 
 "This should briefly describe the purpose of You Dont Want Her Back Tests."
 
+volume when play begins
+
+when play begins:
+	say "Setting undo-allowed to [b]TRUE[r] for testing purposes.";
+	now undo-allow is true;
+
 volume verbs
 
 chapter post-verbsing
@@ -46,8 +52,10 @@ rule for supplying a missing noun when rfing:
 
 carry out rfing:
 	let this-fleestate be rookstate of noun;
-	if this-fleestate is unreachable, say "The black rook can't reach [noun] for its last move." instead;
+	if this-fleestate is unreachable:
+		say "The black rook can't reach [noun] for its last move." instead;
 	now rook-flee-room is noun;
+	say "New rook flee square is [rook-flee-room].";
 	the rule succeeds;
 
 chapter uying
@@ -80,10 +88,38 @@ carry out uning:
 	now undo-allow is false;
 	the rule succeeds;
 
+chapter 0ing
+
+0ing is an action applying to one visible thing.
+
+understand the command "0" as something new.
+understand the command "0 [any room]" as something new.
+
+understand "0" as 0ing.
+understand "0 [any room]" as 0ing.
+
+rule for supplying a missing noun when 0ing:
+	say "Choosing a1 (automatic failure) as the room, so we don't change [rook-flee-room].";
+	now the noun is a1;
+
+carry out 0ing:
+	try rfing the noun;
+	if the rule failed, say "No valid room, so just charging ahead.";
+	try squaregoing c7;
+	try going south;
+	try going south;
+	try going south;
+	try going southeast;
+	try rooking;
+	try squaregoing c8;
+	try going northwest;
+	the rule succeeds;
+
 volume quick tests
 
-test rep1 with "p/s/n/s/s/s/n/se/s/n/s".
-test rep2 with "p/s/n/s/s/s/n/s/se/n/s".
+test p1 with "rf a3/p/s/s/se/s/c8r/nw/w".
+test p2 with "rf a3/p/s/s/s/se/c8r/nw/w".
+test q with "p/s/s/s/se/c8r/nw"
 
 You Dont Want Her Back Tests ends here.
 
