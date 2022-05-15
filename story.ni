@@ -751,6 +751,34 @@ rule for printing a parser error when the latest parser error is the i beg your 
 
 check waiting: say "Hey, yeah. It's your turn to move, so why not use all the time you want? Keep the opponent nervous." instead;
 
+chapter rxring
+
+rxring is an action out of world.
+
+understand the command "rxr" as something new.
+
+understand "rxr" as rxring.
+
+carry out rxring:
+	if white rook is off-stage, say "You don't have a rook on the  board!" instead;
+	now hinted-person is white rook;
+	try squaregoing location of black rook;
+	the rule succeeds;
+
+chapter rxring
+
+kxring is an action out of world.
+
+understand the command "kxr" as something new.
+
+understand "kxr" as rxring.
+
+carry out kxring:
+	if location of black rook is not adjacent to location of player, say "The black rook isn't close enough to take!" instead;
+	if location of black rook is adjacent to location of black king, say "But the black king is guarding that square!" instead;
+	go-to-square noun instead;
+
+
 volume parsing
 
 hinted-person is a person that varies.
