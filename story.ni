@@ -223,7 +223,7 @@ chapter sorting rooms into fleeability
 
 rookstate of a2 is a-guarding. rookstate of a5 is a-guarding. rookstate of a6 is a-guarding. rookstate of a7 is a-guarding.
 
-rookstate of d4 is a-guarding. rookstate of e4 is a-guarding. rookstate of f4 is a-guarding. rookstate of g4 is a-guarding.  rookstate of h4 is a-guarding.
+rookstate of d4 is a-allowing. rookstate of e4 is a-allowing. rookstate of f4 is a-allowing. rookstate of g4 is a-allowing.  rookstate of h4 is a-allowing.
 
 rookstate of b4 is spite-checking. rookstate of c3 is spite-checking.
 
