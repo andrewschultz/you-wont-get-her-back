@@ -874,6 +874,11 @@ carry out squaregoing:
 		if noun is location of the player, say "Your rook is great and all, but you can't share a square with them!" instead;
 		if noun is not white-rook-reachable, say "Your rook would have to jump over something to get to [noun]." instead;
 		abide by the black-rook-takes-rook rule;
+		if noun is a8 and location of black rook is c4:
+			say "Yes! Why not give the black rook a bit of false hope? Throw a check their way. The enemy king can't move too far. Sure, it would've been quicker to take the other rook, but sometimes, it's fun to play with your prey.";
+			achieve "winners can spite-check too";
+			reset-the-board;
+			the rule succeeds;
 		if noun is location of black rook:
 			say "You captured the black rook! Congratulations. This is relatively rare, since the squares are picked at random. Or maybe not, now that I defined how you can pick stuff off.";
 			achieve "rook capture";
@@ -957,6 +962,7 @@ achievement	achieved	details
 "castle carnage"	false	"managing to trade off rooks"
 "all for naught"	false	"managing to give your rook away"
 "staler than stalemate, mate"	false	"drawn ending with equal material"
+"winners can spite-check too"	false	"checking the enemy king with their rook prone"
 "cowardly rook"	false	"winning with the enemy rook fleeing"
 "sacrificial rook"	false	"winning with the enemy rook sacrificing itself hopelessly"
 "dragging it out"	false	"taking a few turns to win, considering repetition"
