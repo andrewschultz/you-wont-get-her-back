@@ -24,8 +24,6 @@ volume game state variables and procedural rules
 
 move-log is a list of numbers variable.
 
-take-rook-next is a truth state that varies.
-
 check-king-next is a truth state that varies.
 
 repeat-yourmove-whine is a truth state that varies.
@@ -236,7 +234,7 @@ rookstate of a2 is a-guarding. rookstate of a5 is a-guarding. rookstate of a6 is
 
 rookstate of d4 is a-allowing. rookstate of e4 is a-allowing. rookstate of f4 is a-allowing. rookstate of g4 is a-allowing.  rookstate of h4 is a-allowing.
 
-rookstate of b4 is spite-checking. rookstate of c3 is spite-checking.
+rookstate of b4 is spite-checking. rookstate of a3 is spite-checking.
 
 rookstate of a8 is sucker-sacrificing.
 
@@ -311,7 +309,7 @@ carry out pawning:
 	if location of black rook is d1:
 		say "But, alas, the black rook is ready to slide in to c1 and skewer you. Once you move out of check, [the piece-to-promote] will fall. Then the king and rook will defeat you.";
 		reset-the-board;
-		achieve "skewered to death";
+		achieve "skewered to death (pawn)";
 		reset-the-board instead;
 		the rule succeeds;
 	if piece-to-promote is white queen:
@@ -516,7 +514,6 @@ to reset-the-board:
 	now white knight is off-stage;
 	now repeat-yourmove-whine is false;
 	now repeat-whines is 0;
-	now take-rook-next is false;
 	now check-king-next is false;
 	now my-move-log is {};
 	if black-move is false:
@@ -528,12 +525,13 @@ volume going
 
 the friendly piece obstruction rule is listed first in the check going rules.
 the final semi-random rook move rule is listed after the friendly piece obstruction rule in the check going rules.
+the king shouldn't move at end rule is listed before the final semi-random rook move rule in the check going rules.
 the rook catches pawn rule is listed after the final semi-random rook move rule in the check going rules.
 
 check going (this is the friendly piece obstruction rule):
 	if the room gone to is friend-occupied, say "But [the random friendly person in room noun of location of player] is already there." instead;
-	if the room gone to is king-guarded, say "Ugh, no. Don't want to get too close to the enemy king." instead;
 	if the room gone to is black-rook-guarded, say "But the enemy rook would [if room gone from is black-rook-guarded]still [end if]see you there." instead;
+	if the room gone to is king-guarded, say "Ugh, no. Don't want to get too close to the enemy king." instead;
 
 this is the black-rook-takes-rook rule:
 	if noun is black-rook-guarded:
@@ -547,32 +545,64 @@ this is the black-rook-takes-rook rule:
 		reset-the-board;
 		the rule succeeds;
 
-this is the dreary-draw rule:
-	say "The black rook and king breathe a collective sigh of relief as the black king edges [if location of player is b3]across to b1[else]up to a2[end if]. The black rook can just shuffle on the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.";
+this is the bungled-it-late rule:
+	abide by the black-rook-takes-rook rule;
+	if location of white rook is a8:
+		say "There are spite checks and then there are spite checks! Your rook slides all the way to the side. The black king moves, but you have no follow-up. The black rook zips to the side of the board, and you will be pushed away from the enemy king.";
+		achieve "spite check (drawing)";
+	if location of white rook is b8 and location of black rook is a2:
+		say "Oh no! The black rook moves to b2! You got your rook skewered!";
+		achieve "skewered to death (rook)";
+		reset-the-board;
+		the rule succeeds;
+	say "The black rook and king breathe a collective sigh of relief as ";
+	if location of black rook is b4:
+		if location of player is a3:
+			say "the black rook moves back to b1";
+		else if location of player is c3:
+			say "the black rook moves back to b7, where it can check you for a good while";
+		else if location of player is c2:
+			say "the black rook sneaks in to b2, pushing you away from the enemy king, or into perpetual checks";
+		else:
+			say "BUG";
+	else if yval of location of player is 4 or location of player is c3:
+		say "you allow the enemy king much more freedom";
+	else if yval of location of white rook is 3:
+		say "the black rook moves to the first rank, so his king can never be safely checked";
+	else if location of player is c2:
+		if location of black rook is a2:
+			say "the black rook pesters you from below with a check at b2";
+		else:
+			say "the black king slides up to a2, relieved he's out of the corner and his rook defends the a-file";
+	else if xval of location of white rook is not 2:
+		say "the black rook begins checking you vertically. You'll never be able to stay on a3 and b3 to keep the enemy king boxed in";
+	else:
+		say "the black king slides to b1. You have a discovered check, but it won't come to much, and if you move from the b-file, the black rook will annoy you";
+	say ". It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.";
 	achieve "staler than stalemate, mate";
 	reset-the-board;
 	the rule succeeds;
 
 check going when current-game-state is need-kb3 (this is the final semi-random rook move rule):
-	if room gone to is not b3, abide by the dreary-draw rule;
-	now current-game-state is rook-doomed;
+	if room gone to is not b3, abide by the bungled-it-late rule;
 	if rookstate of rook-flee-room is spite-checking:
-		now take-rook-next is true;
 		say "There's a big argument. The black king insists the black rook give himself up for you. 'You will sacrifice yourself for your king and country, and you will sacrifice yourself for your king and country right NOW, do you hear?'[paragraph break]There's a big argument, which you sit back and enjoy, until you worry it might tip off the 50-move rule. Then you realize the 50-move rule doesn't progress without, you know, a legal move. So that's all good. The rook flings itself to [rook-flee-room].";
 		move black rook to rook-flee-room;
 	else:
 		say "The black rook flees to [rook-flee-room] to save its own skin!";
 		now check-king-next is true;
 		move rook to rook-flee-room;
+	if current-game-state is need-kb3, now current-game-state is rook-doomed;
 
-check going when take-rook-next is true:
+check going when current-game-state is rook-doomed (this is the king shouldn't move at end rule):
 	if room gone to is not location of black rook:
-		say "'Geez. What a coward. Didn't even want to capture me.' The rook proceeds to [if location of black rook is a3]patrol the third rank[else]patrol the first rank, checking you if you try for a sneaky checkmate on b3[end if], and after fifty moves, the war is officially declared a draw.";
+		say "'Geez. What a coward. Didn't even want to capture me.' The rook proceeds to [if location of player is c2]patrol the a-file[else if location of black rook is a3]patrol the third rank[else]patrol the first rank, checking you if you try for a sneaky checkmate on b3[end if], and after fifty moves, the war is officially declared a draw.";
 		reset-the-board instead;
 	say "BAM! Take that, rook! [if location of rook is a3]The rest is straightforward. Your enemy moves to b1, you move to b3, and they move to a1, and your rook delivers the kill on c1[else]The rest is a bit tricky, since your king was decoyed to b4. But you've planned ahead: the enemy king to a2? Rook to c2. Enemy king to b1? King to b3. The rook on the c-file cuts your enemy off[end if]. Victory!";
 	check-drag-out;
 	choose-flee-room;
-	reset-the-board instead;
+	reset-the-board;
+	the rule succeeds;
 
 to decide whether seen-alts:
 	if alt-c3 is false, no;
@@ -621,7 +651,7 @@ check going (this is the rook catches pawn rule): [the logic here is: you move t
 	if x-to is 3 or x-to is 1:
 		if location of black rook is d1 and (room gone to is c3 or room gone to is c4):
 			say "Ouch! You're running back to guard your pawn, but the black rook checks you at c1, and there's just no way you can defend it.";
-			achieve "skewered to death";
+			achieve "skewered to death (pawn)";
 			reset-the-board instead;
 		if y-to > 3:
 			say "The rook zips down to d1. So unfair! You have feet and legs and everything, and you're nowhere near that fast! But you see what's up. [if y-to is 4]That rook's going to c1, and you can barely stumble back to guard the pawn behind/ahead of you[else]You'll be able to guard your pawn easily[end if]. Thankfully, the enemy king's too far away to gang up on your pawn, but it's a stalemate all the same.";
@@ -865,18 +895,41 @@ to check-drag-out:
 	if repeat-whines > 0 or repeat-yourmove-whine is true:
 		achieve "dragging it out";
 
+this is the implicit pawn movement rule:
+	if hinted-person is black king and the room north of location of white pawn is the noun:
+		if noun is adjacent to location of player:
+			say "(moving the pawn, as is conventional with chess notation when no piece is given)[line break]";
+		try pawning;
+		the rule succeeds;
+	if hinted-person is white pawn and the room north of location of white pawn is the noun:
+		say "(the p at the command's start is implicit, so you don't need it)[line break]";
+		try pawning;
+		the rule succeeds;
+
+this is the implicit king movement rule:
+	if hinted-person is black king and noun is adjacent to location of the player, now hinted-person is the player;
+	if hinted-person is the player:
+		if the noun is adjacent to the location of the player:
+			go-to-square noun;
+		else:
+			say "You can't travel that far!";
+		the rule succeeds;
+
 carry out squaregoing:
 	if noun is location of hinted-person, say "You can't pass. In fact, it won't ever do you any good. There's no zugzwang anywhere around." instead;
+	if white pawn is not off-stage, abide by the implicit pawn movement rule;
+	abide by the implicit king movement rule;
 	if hinted-person is white rook:
 		unless xval of noun is xval of location of white rook or yval of noun is yval of location of white rook:
 			say "The white rook can't move there.";
 			the rule succeeds;
+		if location of player is black-rook-guarded and noun is not location of black rook, say "You need to get out of check, somehow." instead;
 		if noun is location of the player, say "Your rook is great and all, but you can't share a square with them!" instead;
 		if noun is not white-rook-reachable, say "Your rook would have to jump over something to get to [noun]." instead;
-		abide by the black-rook-takes-rook rule;
+	if current-game-state is rook-doomed:
 		if noun is a8 and location of black rook is c4:
 			say "Yes! Why not give the black rook a bit of false hope? Throw a check their way. The enemy king can't move too far. Sure, it would've been quicker to take the other rook, but sometimes, it's fun to play with your prey.";
-			achieve "winners can spite-check too";
+			achieve "spite check (winning)";
 			reset-the-board;
 			the rule succeeds;
 		if noun is location of black rook:
@@ -890,23 +943,14 @@ carry out squaregoing:
 			the rule succeeds;
 		if noun is c1:
 			say "YOU WIN!";
+			achieve "plain old checkmate";
 			choose-flee-room;
 			reset-the-board;
 			the rule succeeds;
-		abide by the dreary-draw rule;
-	if hinted-person is black king and the room north of location of white pawn is the noun:
-		if noun is adjacent to location of player:
-			say "(moving the pawn, as is conventional with chess notation when no piece is given)[line break]";
-		try pawning;
+		abide by the bungled-it-late rule;
 		the rule succeeds;
-	if hinted-person is white pawn and the room north of location of white pawn is the noun:
-		say "(the p at the command's start is implicit, so you don't need it)[line break]";
-		try pawning;
-		the rule succeeds;
-	if hinted-person is the player and the noun is adjacent to the location of the player:
-		say "Going to [noun].";
-		go-to-square noun;
-		the rule succeeds;
+	if hinted-person is white rook:
+		abide by the bungled-it-late rule;
 	d "Couldn't find any way to move [hinted-person] to [noun].";
 	say "You don't seem to be able to move anything to [noun].";
 
@@ -967,13 +1011,16 @@ achievement	achieved	details
 "traded pawn"	false	"letting the rook sacrifice itself for your pawn"
 "alternate paths"	false	"realizing two moves from b4 are okay"
 "skewered to a draw"	false	"letting the rook check you on c1 to sacrifice itself for the pawn"
-"skewered to death"	false	"letting the rook check you on a1 and take the pawn without being captured"
+"skewered to death (pawn)"	false	"letting the rook check you on a1 and take the pawn without being captured"
 "stalemate, mate"	false	"getting the Queen back but walking into stalemate"
 "forked to death"	false	"managing to get forked, along with your pawn, by the enemy rook"
+"plain old checkmate"	false	"finding the main line solution"
 "castle carnage"	false	"managing to trade off rooks"
 "all for naught"	false	"managing to give your rook away"
 "staler than stalemate, mate"	false	"drawn ending with equal material"
-"winners can spite-check too"	false	"checking the enemy king with their rook prone"
+"skewered to death (rook)"	false	"letting the black rook go to b2 and skewer your b8-rook"
+"spite check (winning)"	false	"checking the enemy king with their rook prone"
+"spite check (drawing)"	false	"checking the enemy king instead of checkmating"
 "running up the score"	false	"taking the opposing rook when mate was available"
 "rook on rook violence"	false	"taking the opposing rook when they left you no choice"
 "cowardly rook"	false	"winning with the enemy rook fleeing"
