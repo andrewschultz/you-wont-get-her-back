@@ -364,6 +364,8 @@ The black rook snickers as it slides over to c4. Your friend the white bishop wi
 Triumph! The pawn makes it to the eighth rank. There is a swirl of light before the white knight pops up.
 The black rook snickers as it slides over to c4. Your friend the white knight will be captured next move, and a very unpleasant but inevitably lost rook endgame awaits.
 
+>undo
+
 # move 6 right, move 7 wrong
 
 >c8r
@@ -375,87 +377,114 @@ Ugh, no. Don't want to get too close to the enemy king.
 Ugh, no. Don't want to get too close to the enemy king.
 
 >n
-The black rook and king breathe a sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw.
+The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw.
 
 >undo
 
 >ne
-The black rook and king breathe a sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw.
+The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw.
 
 >undo
 
 >e
-The black rook and king breathe a sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw.
+The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw.
 
 >undo
 
 >se
-The black rook and king breathe a sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw.
+The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw.
 
 >undo
 
 >s
-The black rook and king breathe a sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw.
+The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw.
 
 >undo
 
 >rc1
-WRONG
+Your rook would have to jump over something to get to c1.
+
 >undo
 
 >rc2
-WRONG
+Your rook is great and all, but you can't share a square with them!
 >undo
 
 >rc3
-WRONG
+The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+DEBUG: checking for staler than stalemate, mate achievement.
+Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >rc4
-WRONG
+Your rook looks dismayed as the black rook laughs and jumps at them! All that work, and nothing to show for it. You can't even take the enemy rook back! What a sad way to lose.
+DEBUG: checking for all for naught achievement.
+Congratulations! You just got the ALL FOR NAUGHT achievement!
 >undo
 
 >rc5
-WRONG
+The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+DEBUG: checking for staler than stalemate, mate achievement.
+Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >rc6
-WRONG
+The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+DEBUG: checking for staler than stalemate, mate achievement.
+Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >rc7
-WRONG
+The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+DEBUG: checking for staler than stalemate, mate achievement.
+Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >rc8
-WRONG
+You can't pass. In fact, it won't ever do you any good. There's no zugzwang anywhere around.
+!DEBUG: checking for staler than stalemate, mate achievement.
+!Congratulations
 >undo
 
 >ra8
-WRONG
+Your rook looks dismayed as the black rook laughs and jumps at them! All that work, and nothing to show for it. You can't even take the enemy rook back! What a sad way to lose.
+DEBUG: checking for all for naught achievement.
+Congratulations! You just got the ALL FOR NAUGHT achievement!
 >undo
 
 >rb8
-WRONG
+The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+DEBUG: checking for staler than stalemate, mate achievement.
+Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >rd8
-WRONG
+The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+DEBUG: checking for staler than stalemate, mate achievement.
+Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >re8
-WRONG
+The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+DEBUG: checking for staler than stalemate, mate achievement.
+Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >rf8
-WRONG
+The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+DEBUG: checking for staler than stalemate, mate achievement.
+Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >rg8
-WRONG
+The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+DEBUG: checking for staler than stalemate, mate achievement.
+Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >rh8
-WRONG
+The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+DEBUG: checking for staler than stalemate, mate achievement.
+Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 

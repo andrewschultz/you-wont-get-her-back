@@ -406,22 +406,39 @@ definition: a room (called rm) is friend-occupied:
 	if number of friendly people in rm > 0, yes;
 	no;
 
-definition: a room (called rm) is rook-guarded:
-	if rook-see of north and rm, yes;
-	if rook-see of south and rm, yes;
-	if rook-see of east and rm, yes;
-	if rook-see of west and rm, yes;
+chapter rook stuff to be conglomerated later once the program is stable
+
+definition: a room (called rm) is black-rook-guarded:
+	if black-rook-see of north and rm, yes;
+	if black-rook-see of south and rm, yes;
+	if black-rook-see of east and rm, yes;
+	if black-rook-see of west and rm, yes;
+	no.
+
+definition: a room (called rm) is white-rook-reachable:
+	if white-rook-reach of north and rm, yes;
+	if white-rook-reach of south and rm, yes;
+	if white-rook-reach of east and rm, yes;
+	if white-rook-reach of west and rm, yes;
 	no.
 
 to decide whether rook-check:
-	if location of player is rook-guarded, yes;
+	if location of player is black-rook-guarded, yes;
 	no;
 
-to decide whether rook-see of (di - a direction) and (rm - a room):
-	let rm2 be the room di of location of rook;
+to decide whether black-rook-see of (di - a direction) and (rm - a room):
+	let rm2 be the room di of location of black rook;
 	while rm2 is not nothing:
 		if rm is rm2, yes;
 		if number of people in rm2 > 0 and player is not in rm2, no;
+		now rm2 is the room di of rm2;
+	no;
+
+to decide whether white-rook-reach of (di - a direction) and (rm - a room):
+	let rm2 be the room di of location of white rook;
+	while rm2 is not nothing:
+		if rm is rm2, yes;
+		if number of people in rm2 > 0, no;
 		now rm2 is the room di of rm2;
 	no;
 
@@ -464,11 +481,22 @@ the rook catches pawn rule is listed after the final step fail rule in the check
 
 check going (this is the friendly piece obstruction rule):
 	if the room gone to is friend-occupied, say "But [the random friendly person in room noun of location of player] is already there." instead;
-	if the room gone to is rook-guarded, say "But the enemy rook would [if room gone from is rook-guarded]still [end if]see you there." instead;
+	if the room gone to is black-rook-guarded, say "But the enemy rook would [if room gone from is black-rook-guarded]still [end if]see you there." instead;
 	if the room gone to is king-guarded, say "Ugh, no. Don't want to get too close to the enemy king." instead;
 
+this is the black-rook-takes-rook rule:
+	if noun is black-rook-guarded:
+		say "Your rook looks dismayed as the black rook laughs and jumps at them! All that work, and nothing to show for it. ";
+		if noun is adjacent to location of player:
+			say "At least you are able to take the enemy rook back to force a draw.";
+			achieve "castle carnage";
+		else:
+			say "You can't even take the enemy rook back! What a sad way to lose.";
+			achieve "all for naught";
+		reset-the-board;
 this is the you-missed-kb3 rule:
-	say "The black rook and king breathe a sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw.";
+	say "The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.";
+	achieve "staler than stalemate, mate";
 	reset-the-board instead;
 
 check going when kb3-next is true (this is the final step fail rule):
@@ -752,6 +780,9 @@ carry out squaregoing:
 		unless xval of noun is xval of location of white rook or yval of noun is yval of location of white rook:
 			say "The white rook can't move there.";
 			the rule succeeds;
+		if noun is location of the player, say "Your rook is great and all, but you can't share a square with them!" instead;
+		if noun is not white-rook-reachable, say "Your rook would have to jump over something to get to [noun]." instead;
+		abide by the black-rook-takes-rook rule;
 		if noun is location of black rook:
 			say "You captured the black rook! Congratulations. This is relatively rare, since the squares are picked at random. Or maybe not, now that I defined how you can pick stuff off.";
 			achieve "rook capture";
@@ -831,6 +862,9 @@ achievement	achieved	details
 "skewered to death"	false	"letting the rook check you on a1 and take the pawn without being captured"
 "stalemate, mate"	false	"getting the Queen back but walking into stalemate"
 "forked to death"	false	"managing to get forked, along with your pawn, by the enemy rook"
+"castle carnage"	false	"managing to trade off rooks"
+"all for naught"	false	"managing to give your rook away"
+"staler than stalemate, mate"	false	"drawn ending with equal material"
 "cowardly rook"	false	"winning with the enemy rook fleeing"
 "sacrificial rook"	false	"winning with the enemy rook sacrificing itself hopelessly"
 "dragging it out"	false	"taking a few turns to win, considering repetition"
