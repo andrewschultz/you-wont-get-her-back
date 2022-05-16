@@ -5,10 +5,10 @@
 ** game: /home/andrew/prt/debug-you-dont-want-her-back.z8
 ** interpreter: /home/andrew/prt/dfrotz -m -w5000 -h25
 
-* _gotta_get_em_all
+* gotta_get_em_all
 
 >think
-You haven't found any achievements, but don't worry. You'll get one soon. [this-game] tracks both wins and losses. You'll find creative losses as you go.
+You haven't found any achievements, but don't worry. You'll get one soon. You Don't Want Her Back tracks both wins and losses. You'll find creative losses as you go.
 
 >kb7
 
@@ -29,6 +29,7 @@ Congratulations! You just got the SKEWERED TO A DRAW achievement!
 TRADED PAWN: letting the rook sacrifice itself for your pawn
 SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the pawn
 
+>p
 >s
 >n
 >s
@@ -78,6 +79,7 @@ The rook chuckles as it swoops behind the pawn to c6. And you're too far away to
 DEBUG: checking for captured pawn achievement.
 Congratulations! You just got the CAPTURED PAWN achievement!
 
+>think
 THREEFOLD: repeating a position three times
 PINNED PAWN: letting the rook pin your pawn
 CAPTURED PAWN: letting the rook take your pawn for free
@@ -85,10 +87,11 @@ TRADED PAWN: letting the rook sacrifice itself for your pawn
 SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the pawn
 STALEMATE, MATE: getting the Queen back but walking into stalemate
 
+>p
 >s
 >s
 >se
-WRONG
+Why, yes ... it seems like there are two different ways to c2. This may not be terribly useful, but it's good to know.
 Congratulations! You just got the ALTERNATE PATHS achievement!
 
 >think
@@ -109,13 +112,13 @@ Congratulations! You just got the FORKED TO DEATH achievement!
 
 >undo
 >c8b
-WRONG
+The black rook snickers as it slides over to c4. Your newly returned ally, the white bishop, will be captured next move, and a very unpleasant but inevitably lost rook endgame awaits.
 DEBUG: checking for forked to death achievement.
 Congratulations! You just got the FORKED TO DEATH achievement!
 
 >undo
 >c8n
-WRONG
+The black rook snickers as it slides over to c4. Your newly returned ally, the white knight, will be captured next move, and a very unpleasant but inevitably lost rook endgame awaits.
 DEBUG: checking for forked to death achievement.
 Congratulations! You just got the FORKED TO DEATH achievement!
 
@@ -162,8 +165,7 @@ FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
 >c8r
 >kb3
 >rc1
-YOU WIN!
-WRONG
+And so it comes to pass: the enemy king, safe from the main action for so long, is trapped.
 DEBUG: checking for plain old checkmate achievement.
 Congratulations! You just got the PLAIN OLD CHECKMATE achievement!
 
@@ -242,7 +244,7 @@ RUNNING UP THE SCORE: taking the opposing rook when mate was available
 >kb3
 >ra8
 There are spite checks and then there are spite checks! Your rook slides all the way to the side. The black king moves, but you have no follow-up. The black rook zips to the side of the board, and you will be pushed away from the enemy king.
-DEBUG: check for spite check (drawing) achievement.
+DEBUG: checking for spite check (drawing) achievement.
 Congratulations! You just got the SPITE CHECK (DRAWING) achievement!
 
 >think
@@ -268,7 +270,10 @@ RUNNING UP THE SCORE: taking the opposing rook when mate was available
 >se
 >c8r
 >kb3
->ra8
+>rc4
+Well, since the black rook forced you to, why not? That doesn't stop the inevitable. In fact, it barely delays things. But it was fun, seeing your opponents grovel for a bit, in a way.
+DEBUG: checking for rook on rook violence achievement.
+Congratulations! You just got the ROOK ON ROOK VIOLENCE achievement!
 
 >think
 THREEFOLD: repeating a position three times
@@ -285,6 +290,141 @@ SPITE CHECK (WINNING): checking the enemy king with their rook prone
 SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
 RUNNING UP THE SCORE: taking the opposing rook when mate was available
 ROOK ON ROOK VIOLENCE: taking the opposing rook when they left you no choice
+
+# note: maybe try alternate path through with e4, f4, g4, h4 etc.?
+>rf d4
+>p
+>s
+>s
+>s
+>se
+>c8r
+>kb3
+>rc4
+Your rook looks dismayed. The black rook seems surprised. "Take him and get it over with! I'm tired of this stupid war!" the king booms from the corner. The black rook and your rook protest. They'd like a good, long, boring draw, but your opposite number doesn't have time for that. The black rook sighs and does its duty.
+All that work, and nothing to show for it all around.
+DEBUG: checking for castle carnage achievement.
+Congratulations! You just got the CASTLE CARNAGE achievement!
+
+>think
+THREEFOLD: repeating a position three times
+PINNED PAWN: letting the rook pin your pawn
+CAPTURED PAWN: letting the rook take your pawn for free
+TRADED PAWN: letting the rook sacrifice itself for your pawn
+ALTERNATE PATHS: realizing two moves from b4 are okay
+SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the pawn
+SKEWERED TO DEATH (PAWN): letting the rook check you on a1 and take the pawn without being captured
+STALEMATE, MATE: getting the Queen back but walking into stalemate
+FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
+PLAIN OLD CHECKMATE: finding the main line solution
+SPITE CHECK (WINNING): checking the enemy king with their rook prone
+SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
+RUNNING UP THE SCORE: taking the opposing rook when mate was available
+ROOK ON ROOK VIOLENCE: taking the opposing rook when they left you no choice
+CASTLE CARNAGE: managing to trade off rooks
+
+# two cases here: b8 and d8
+>rf a8
+>p
+>s
+>s
+>s
+>se
+>c8r
+>kb3
+>rd8
+Your rook looks dismayed as the black rook laughs and jumps at them! All that work, and nothing to show for it. You can't even take the enemy rook back! What a sad way to lose.
+DEBUG: checking for all for naught achievement.
+Congratulations! You just got the ALL FOR NAUGHT achievement!
+
+>think
+THREEFOLD: repeating a position three times
+PINNED PAWN: letting the rook pin your pawn
+CAPTURED PAWN: letting the rook take your pawn for free
+TRADED PAWN: letting the rook sacrifice itself for your pawn
+ALTERNATE PATHS: realizing two moves from b4 are okay
+SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the pawn
+SKEWERED TO DEATH (PAWN): letting the rook check you on a1 and take the pawn without being captured
+STALEMATE, MATE: getting the Queen back but walking into stalemate
+FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
+PLAIN OLD CHECKMATE: finding the main line solution
+SPITE CHECK (WINNING): checking the enemy king with their rook prone
+SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
+RUNNING UP THE SCORE: taking the opposing rook when mate was available
+ROOK ON ROOK VIOLENCE: taking the opposing rook when they left you no choice
+CASTLE CARNAGE: managing to trade off rooks
+ALL FOR NAUGHT: managing to give your rook away
+
+>rf a7
+>p
+>s
+>n
+>s
+>s
+>s
+>se
+>c8r
+>kb3
+>h8
+The black rook and king breathe a collective sigh of relief as the black rook begins checking you vertically. You'll never be able to stay on a3 and b3 to keep the enemy king boxed in. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+DEBUG: checking for staler than stalemate, mate achievement.
+Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
+
+>think
+THREEFOLD: repeating a position three times
+PINNED PAWN: letting the rook pin your pawn
+CAPTURED PAWN: letting the rook take your pawn for free
+TRADED PAWN: letting the rook sacrifice itself for your pawn
+ALTERNATE PATHS: realizing two moves from b4 are okay
+SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the pawn
+SKEWERED TO DEATH (PAWN): letting the rook check you on a1 and take the pawn without being captured
+STALEMATE, MATE: getting the Queen back but walking into stalemate
+FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
+PLAIN OLD CHECKMATE: finding the main line solution
+SPITE CHECK (WINNING): checking the enemy king with their rook prone
+SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
+RUNNING UP THE SCORE: taking the opposing rook when mate was available
+ROOK ON ROOK VIOLENCE: taking the opposing rook when they left you no choice
+CASTLE CARNAGE: managing to trade off rooks
+ALL FOR NAUGHT: managing to give your rook away
+STALER THAN STALEMATE, MATE: drawn ending with equal material
+
+>rf a2
+>p
+>s
+>n
+>s
+>s
+>s
+>se
+>c8r
+>kb3
+>rb8
+A loud shout from behind: "what the heck are you doing? Are you TRYING to find ways to lose?"
+
+You turn your head, and when you face forward, the black rook is staring at you, about to break down in laughter.
+DEBUG: checking for skewered to death (rook) achievement.
+Congratulations! You just got the SKEWERED TO DEATH (ROOK) achievement!
+
+>think
+THREEFOLD: repeating a position three times
+PINNED PAWN: letting the rook pin your pawn
+CAPTURED PAWN: letting the rook take your pawn for free
+TRADED PAWN: letting the rook sacrifice itself for your pawn
+ALTERNATE PATHS: realizing two moves from b4 are okay
+SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the pawn
+SKEWERED TO DEATH (PAWN): letting the rook check you on a1 and take the pawn without being captured
+STALEMATE, MATE: getting the Queen back but walking into stalemate
+FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
+PLAIN OLD CHECKMATE: finding the main line solution
+SPITE CHECK (WINNING): checking the enemy king with their rook prone
+SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
+RUNNING UP THE SCORE: taking the opposing rook when mate was available
+ROOK ON ROOK VIOLENCE: taking the opposing rook when they left you no choice
+CASTLE CARNAGE: managing to trade off rooks
+ALL FOR NAUGHT: managing to give your rook away
+STALER THAN STALEMATE, MATE: drawn ending with equal material
+SKEWERED TO DEATH (ROOK): letting the black rook go to b2 and skewer your b8-rook
 
 >rf a7
 >p
@@ -317,6 +457,10 @@ SPITE CHECK (WINNING): checking the enemy king with their rook prone
 SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
 RUNNING UP THE SCORE: taking the opposing rook when mate was available
 ROOK ON ROOK VIOLENCE: taking the opposing rook when they left you no choice
+CASTLE CARNAGE: managing to trade off rooks
+ALL FOR NAUGHT: managing to give your rook away
+SKEWERED TO DEATH (ROOK): letting the black rook go to b2 and skewer your b8-rook
+STALER THAN STALEMATE, MATE: drawn ending with equal material
 DRAGGING IT OUT: taking extra turns to win, considering repetition
 
 >rf a7
@@ -340,19 +484,36 @@ DEBUG: checking for dragging it out all the way achievement.
 Congratulations! You just got the DRAGGING IT OUT ALL THE WAY achievement!
 
 >think
-THREEFOLD: repeating a position three times
-PINNED PAWN: letting the rook pin your pawn
-CAPTURED PAWN: letting the rook take your pawn for free
-TRADED PAWN: letting the rook sacrifice itself for your pawn
-ALTERNATE PATHS: realizing two moves from b4 are okay
-SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the pawn
-SKEWERED TO DEATH (PAWN): letting the rook check you on a1 and take the pawn without being captured
-STALEMATE, MATE: getting the Queen back but walking into stalemate
-FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
-PLAIN OLD CHECKMATE: finding the main line solution
-SPITE CHECK (WINNING): checking the enemy king with their rook prone
-SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
-RUNNING UP THE SCORE: taking the opposing rook when mate was available
-ROOK ON ROOK VIOLENCE: taking the opposing rook when they left you no choice
+Would you like to RESTART, RESTORE a saved game, QUIT, UNDO the last command or see NOTES on the initial position?
+
+>notes
+The position at the start is known as the Saaverda position. Saaverda himself didn't create it. He just found a hole in the "black to draw" puzzle from the original position, by G. E. Barbier, who saw Rc4+! after the promotion to a queen but missed the underpromotion. The Wikipedia entry has more detail on the history, but I found it to be the simplest example of a legitimate surprise to be found in a chess game, where once you see it, it's obvious. And while one may wonder what the heck the black king is doing off in the corner, a lot of the themes come up elsewhere, and anyone who says this ruins the puzzle probably nitpicks cartoons for realism, too.
+My own experience with this was back in my junior year of high school. I beat a gentleman named Slavko Milovanovic who was rated 2000 and may or may not have been sandbagging. But he was very nice about a loss to a considerably lower-rated player, and afterwards he showed me a bunch of neat stuff. This was the neatest and most memorable. It's one of the very top puzzles I try and pass on to people who may be interested in chess but don't want to devote an insane amount of time to opening theory, and I hope you enjoyed it, too.
+
+* drag_out_all_first
+
+>rf a7
+>p
+>s
+>n
+>s
+>s
+>s
+>n
+>se
+>s
+>n
+>s
+>c8r
+>kb3
+>rc1
+Wow! You really left your enemies hanging before finishing them off. Impossible to imagine doing better, really.
+DEBUG: checking for dragging it out all the way achievement.
+Congratulations! You just got the DRAGGING IT OUT ALL THE WAY achievement!
+[NOTE: I gave you the "dragging it out" achievement, too, for if you repeated any position at all and still won. But you found the maximum amount to repeat without a draw, so great job there!]
+DEBUG: checking for dragging it out achievement.
+
+>think
 DRAGGING IT OUT: taking extra turns to win, considering repetition
 DRAGGING IT OUT ALL THE WAY: taking the maximum turns to win, considering repetition
+
