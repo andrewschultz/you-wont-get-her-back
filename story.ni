@@ -318,6 +318,7 @@ carry out pawning:
 		reset-the-board instead;
 	if piece-to-promote is white bishop or piece-to-promote is white knight:
 		say "The black rook snickers as it slides over to c4. Your friend [the piece-to-promote] will be captured next move, and a very unpleasant but inevitably lost rook endgame awaits.";
+		achieve "forked to death";
 		reset-the-board;
 		the rule succeeds;
 	now white pawn is off-stage;
@@ -413,14 +414,28 @@ understand "t" as thinking.
 the block thinking rule is not listed in any rulebook.
 
 check thinking:
-	if achieve-score is 0, say "You haven't achieved any accomplishments, but don't worry. You'll get one soon. [this-game] tracks both wins and losses." instead;
+	if achieve-score is 0, say "You haven't found any achievements, but don't worry. You'll get one soon. [this-game] tracks both wins and losses. You'll find creative losses as you go." instead;
 	say "Here are the accomplishments so far from your various playthroughs. Note that they are listed roughly in the time it takes to find them, which will hopefully be a clue if you want to plow through everything.";
+	let count be 0;
 	repeat through table of unachievements:
+		increment count;
+		if count > last-got:
+			let dif be number of rows in table of unachievements - last-got;
+			say "[dif] achievement[if dif > 1]s[end if] below this.";
+			break;
 		if achieved entry is true:
-			say "[achievement entry in upper case]: [details entry][line break]";
+			say "[b][achievement entry in upper case][r]: [details entry][line break]";
 		else:
 			say "--[line break]";
 	the rule succeeds;
+
+to decide which number is last-got:
+	let count be 0;
+	let return-val be 0;
+	repeat through table of unachievements:
+		increment count;
+		if achieved entry is true, now return-val is count;
+	decide on return-val;
 
 volume dramatis personae
 
@@ -502,6 +517,8 @@ definition: a room (called rm) is king-guarded:
 
 volume reset the board
 
+repeats-this-time is a number that varies.
+
 to reset-the-board:
 	say "[line break]Well, let's try again.";
 	move black rook to d5;
@@ -516,6 +533,7 @@ to reset-the-board:
 	now repeat-whines is 0;
 	now check-king-next is false;
 	now my-move-log is {};
+	now repeats-this-time is 0;
 	if black-move is false:
 		move the player to b6;
 	else:
@@ -607,13 +625,17 @@ check going when current-game-state is rook-doomed (this is the king shouldn't m
 to decide whether seen-alts:
 	if alt-c3 is false, no;
 	if alt-b3 is false, no;
+	if the room noun of location of player is c2, yes;
+	if b3 is unvisited, no;
 	yes;
 
 to check-for-alts:
 	unless location of black rook is d4 and location of player is b4, continue the action;
 	if noun is southeast, now alt-c3 is true;
 	if noun is south, now alt-b3 is true;
-	if seen-alts, achieve "alternate paths";
+	if seen-alts:
+		say "Why, yes ... it seems like there are two different ways to c2. This may not be terribly useful, but it's good to know.";
+		achieve "alternate paths";
 
 check going (this is the rook catches pawn rule): [the logic here is: you move to the a-file, it's a draw. You move to the c-file too soon, it's a draw. There are side test cases, of course. ]
 	if room gone to is nowhere, continue the action;
@@ -732,6 +754,7 @@ to decide whether threefold-repetition of (N - a number):
 					increment repeat-whines;
 					choose row repeat-whines in table of repeat whines;
 					say "[line break][rook-whine entry][line break]";
+					increment repeats-this-time;
 	add N to my-move-log;
 	no;
 
@@ -881,7 +904,10 @@ squaregoing is an action applying to one visible thing.
 understand "[any room]" as squaregoing.
 
 to check-drag-out:
-	if number of entries in my-move-log >= 23:
+	if repeats-this-time > 0:
+		say "[repeats-this-time] repeats: [my-move-log].";
+	if repeats-this-time >= 5:
+		say "Wow! You really left your enemies hanging before finishing them off. Impossible to imagine doing better, really.";
 		achieve "dragging it out all the way";
 		repeat through table of unachievements:
 			if achievement entry is "dragging it out":
@@ -889,7 +915,10 @@ to check-drag-out:
 					ital-say "I gave you the 'dragging it out' achievement, too, which was if you repeated any moves. But you found the maximum first, so nice job!";
 					now achieved entry is true;
 				break;
-	if number of entries in my-move-log > 23:
+	else if repeats-this-time > 0:
+		say "You felt a small wicked twinge for teasing the enemy rook and king a bit before going in for the kill.";
+		achieve "dragging it out";
+	if repeats-this-time > 5:
 		ital-say "somehow, you managed to make more moves than I calculated possible. If you're willing to email this log (or a transcript) to me, I'd appreciate it!";
 		say "[my-move-log]";
 	if repeat-whines > 0 or repeat-yourmove-whine is true:
@@ -927,23 +956,33 @@ carry out squaregoing:
 		if noun is location of the player, say "Your rook is great and all, but you can't share a square with them!" instead;
 		if noun is not white-rook-reachable, say "Your rook would have to jump over something to get to [noun]." instead;
 	if current-game-state is rook-doomed:
-		if noun is a8 and location of black rook is c4:
-			say "Yes! Why not give the black rook a bit of false hope? Throw a check their way. The enemy king can't move too far. Sure, it would've been quicker to take the other rook, but sometimes, it's fun to play with your prey.";
-			achieve "spite check (winning)";
-			reset-the-board;
-			the rule succeeds;
+		if noun is a8:
+			if location of black rook is c4:
+				say "Yes! Why not give the black rook a bit of false hope? Throw a check their way. The enemy king can't move too far. Sure, it would've been quicker to take the other rook, but sometimes, it's fun to play with your prey.";
+				achieve "spite check (winning)";
+				check-drag-out;
+				reset-the-board;
+				the rule succeeds;
+			else if yval of location of black rook is 4:
+				say "There are spite checks and then there are spite checks! Your rook slides all the way to the side. The black king moves, but you have no follow-up. The black rook zips to the side of the board, and you will be pushed away from the enemy king.";
+				achieve "spite check (drawing)";
+				reset-the-board;
+				the rule succeeds;
 		if noun is location of black rook:
 			if noun is a8:
 				say "The black king, trapped on the edge of the board, will die off soon enough. It's time to pillage a bit! You order your rook to smack up their opposing number, and they do so with relish.";
+				check-drag-out;
 				achieve "running up the score";
 			else if noun is c4:
 				say "Well, since the black rook forced you to, why not? That doesn't stop the inevitable. In fact, it barely delays things. But it was fun, seeing your opponents grovel for a bit, in a way.";
+				check-drag-out;
 				achieve "rook on rook violence";
 			reset-the-board;
 			the rule succeeds;
 		if noun is c1:
 			say "YOU WIN!";
 			achieve "plain old checkmate";
+			check-drag-out;
 			choose-flee-room;
 			reset-the-board;
 			the rule succeeds;
@@ -1023,8 +1062,6 @@ achievement	achieved	details
 "spite check (drawing)"	false	"checking the enemy king instead of checkmating"
 "running up the score"	false	"taking the opposing rook when mate was available"
 "rook on rook violence"	false	"taking the opposing rook when they left you no choice"
-"cowardly rook"	false	"winning with the enemy rook fleeing"
-"sacrificial rook"	false	"winning with the enemy rook sacrificing itself hopelessly"
 "dragging it out"	false	"taking a few turns to win, considering repetition"
 "dragging it out all the way"	false	"taking the maximum turns to win, considering repetition"
 
