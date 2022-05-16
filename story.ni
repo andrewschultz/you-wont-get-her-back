@@ -317,7 +317,7 @@ carry out pawning:
 		achieve "stalemate, mate";
 		reset-the-board instead;
 	if piece-to-promote is white bishop or piece-to-promote is white knight:
-		say "The black rook snickers as it slides over to c4. Your friend [the piece-to-promote] will be captured next move, and a very unpleasant but inevitably lost rook endgame awaits.";
+		say "The black rook snickers as it slides over to c4. Your newly returned ally, [the piece-to-promote], will be captured next move, and a very unpleasant but inevitably lost rook endgame awaits.";
 		achieve "forked to death";
 		reset-the-board;
 		the rule succeeds;
@@ -497,7 +497,7 @@ to decide whether black-rook-see of (di - a direction) and (rm - a room):
 	let rm2 be the room di of location of black rook;
 	while rm2 is not nothing:
 		if rm is rm2, yes;
-		if number of people in rm2 > 0 and player is not in rm2, no;
+		if number of people in rm2 > 0 and (player is not in rm2 and white rook is not in rm2), no;
 		now rm2 is the room di of rm2;
 	no;
 
@@ -552,13 +552,13 @@ check going (this is the friendly piece obstruction rule):
 	if the room gone to is king-guarded, say "Ugh, no. Don't want to get too close to the enemy king." instead;
 
 this is the black-rook-takes-rook rule:
+	say "[location of black rook] [location of white rook] [noun].";
 	if noun is black-rook-guarded:
-		say "Your rook looks dismayed as the black rook laughs and jumps at them! All that work, and nothing to show for it. ";
 		if noun is adjacent to location of player:
-			say "At least you are able to take the enemy rook back to force a draw.";
+			say "Your rook looks dismayed. The black rook seems surprised. 'Take him and get it over with! I'm tired of this stupid war!' the king booms from the corner. The black rook and your rook protest. They'd like a good, long, boring draw, but your opposite number doesn't have time for that. The black rook sighs and does its duty.[paragraph break]All that work, and nothing to show for it all around. At least you are able to take the enemy rook back to force a draw.";
 			achieve "castle carnage";
 		else:
-			say "You can't even take the enemy rook back! What a sad way to lose.";
+			say "Your rook looks dismayed as the black rook laughs and jumps at them! All that work, and nothing to show for it. You can't even take the enemy rook back! What a sad way to lose.";
 			achieve "all for naught";
 		reset-the-board;
 		the rule succeeds;
@@ -568,9 +568,6 @@ this is the bungled-it-late rule:
 	if location of white rook is a8:
 		say "There are spite checks and then there are spite checks! Your rook slides all the way to the side. The black king moves, but you have no follow-up. The black rook zips to the side of the board, and you will be pushed away from the enemy king.";
 		achieve "spite check (drawing)";
-	if location of white rook is b8 and location of black rook is a2:
-		say "Oh no! The black rook moves to b2! You got your rook skewered!";
-		achieve "skewered to death (rook)";
 		reset-the-board;
 		the rule succeeds;
 	say "The black rook and king breathe a collective sigh of relief as ";
@@ -912,7 +909,7 @@ to check-drag-out:
 		repeat through table of unachievements:
 			if achievement entry is "dragging it out":
 				if achieved entry is false:
-					ital-say "I gave you the 'dragging it out' achievement, too, which was if you repeated any moves. But you found the maximum first, so nice job!";
+					ital-say "I gave you the 'dragging it out' achievement, too, for if you repeated any position at all and still won. But you found the maximum amount to repeat without a draw, so great job there!";
 					now achieved entry is true;
 				break;
 	else if repeats-this-time > 0:
@@ -956,6 +953,11 @@ carry out squaregoing:
 		if noun is location of the player, say "Your rook is great and all, but you can't share a square with them!" instead;
 		if noun is not white-rook-reachable, say "Your rook would have to jump over something to get to [noun]." instead;
 	if current-game-state is rook-doomed:
+		if location of black rook is a2 and noun is b8:
+			say "A loud shout from behind: 'what the heck are you doing? Are you TRYING to find ways to lose?'[paragraph break]You turn your head, and when you face forward, the black rook is staring at you, about to break down in laughter.";
+			achieve "skewered to death (rook)";
+			reset-the-board;
+			the rule succeeds;
 		if noun is a8:
 			if location of black rook is c4:
 				say "Yes! Why not give the black rook a bit of false hope? Throw a check their way. The enemy king can't move too far. Sure, it would've been quicker to take the other rook, but sometimes, it's fun to play with your prey.";
@@ -980,7 +982,7 @@ carry out squaregoing:
 			reset-the-board;
 			the rule succeeds;
 		if noun is c1:
-			say "YOU WIN!";
+			say "And so it comes to pass: the enemy king, safe from the main action for so long, is trapped. He thought he was safe or, if you got close, he could get out of the corner quickly enough. Even being one square away from the corner would've been good enough! Well, he deserved his fate. You can't remember how or why he got there. You have your revenge, which is something, even if you will have to do without your queen.[paragraph break]It's been a long fight. You don't even remember why it started. But with your rook beside you, you will restore the kingdom, slowly but surely.";
 			achieve "plain old checkmate";
 			check-drag-out;
 			choose-flee-room;
@@ -1062,7 +1064,7 @@ achievement	achieved	details
 "spite check (drawing)"	false	"checking the enemy king instead of checkmating"
 "running up the score"	false	"taking the opposing rook when mate was available"
 "rook on rook violence"	false	"taking the opposing rook when they left you no choice"
-"dragging it out"	false	"taking a few turns to win, considering repetition"
+"dragging it out"	false	"taking extra turns to win, considering repetition"
 "dragging it out all the way"	false	"taking the maximum turns to win, considering repetition"
 
 to decide which number is achieve-score:
@@ -1097,4 +1099,4 @@ final question wording	only if victorious	topic	final response rule	final respon
 "see [b]NOTES[r] on the initial position"	true	"notes/position"	puzzle notes rule	--
 
 this is the puzzle notes rule:
-	say "The position at the start is known as the Saaverda position. Saaverda himself didn't create it. He just found a hole in the 'black to draw' puzzle from the original position, by G. E. Barbier, who saw Rc4+! after the promotion to a queen but missed the underpromotion. The Wikipedia entry has more detail on the history, but I found it to be the simplest example of a legitimate surprise to be found in a chess game, where once you see it, it's obvious. And while one may wonder what the heck the black king is doing off in the corner, a lot of the themes come up elsewhere, and anyone who says this ruins the puzzle probably nitpicks cartoons for realism, too.[paragraph break]My own experience with this was back in my junior year of high school. I beat a gentleman named Slavko Milovanovic who was rated 2000 and may or may not have been sandbagging. But he was very nice about a loss to a considerably lower-rated player, and afterwards he showed me a bunch of neat stuff. This was the neatest and most memorable. But it's one of the very top puzzles I try and pass on to people who may be interested in chess but don't want to devote an insane amount of time to opening theory."
+	say "The position at the start is known as the Saaverda position. Saaverda himself didn't create it. He just found a hole in the 'black to draw' puzzle from the original position, by G. E. Barbier, who saw Rc4+! after the promotion to a queen but missed the underpromotion. The Wikipedia entry has more detail on the history, but I found it to be the simplest example of a legitimate surprise to be found in a chess game, where once you see it, it's obvious. And while one may wonder what the heck the black king is doing off in the corner, a lot of the themes come up elsewhere, and anyone who says this ruins the puzzle probably nitpicks cartoons for realism, too.[paragraph break]My own experience with this was back in my junior year of high school. I beat a gentleman named Slavko Milovanovic who was rated 2000 and may or may not have been sandbagging. But he was very nice about a loss to a considerably lower-rated player, and afterwards he showed me a bunch of neat stuff. This was the neatest and most memorable. It's one of the very top puzzles I try and pass on to people who may be interested in chess but don't want to devote an insane amount of time to opening theory, and I hope you enjoyed it, too."
