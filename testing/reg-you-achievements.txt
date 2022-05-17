@@ -2,7 +2,7 @@
 
 ## failures for Saaverda problem game
 
-** game: /home/andrew/prt/debug-you-dont-want-her-back.z8
+** game: /home/andrew/prt/debug-you-wont-get-her-back.z8
 ** interpreter: /home/andrew/prt/dfrotz -m -w5000 -h25
 
 * gotta_get_em_all

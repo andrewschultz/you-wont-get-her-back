@@ -2,10 +2,10 @@
 
 ## failures for Saaverda problem game
 
-** game: /home/andrew/prt/debug-you-dont-want-her-back.z8
+** game: /home/andrew/prt/debug-you-wont-get-her-back.z8
 ** interpreter: /home/andrew/prt/dfrotz -m -w5000 -h25
 
-* _main_stuff
+* main_stuff
 
 # repetition first
 
@@ -299,8 +299,8 @@ Congratulations! You just got the CAPTURED PAWN achievement!
 
 >n
 Ouch! You're running back to guard your pawn, but the black rook checks you at c1, and there's just no way you can defend it.
-DEBUG: checking for skewered to death achievement.
-Congratulations! You just got the SKEWERED TO DEATH achievement!
+DEBUG: checking for skewered to death (pawn) achievement.
+Congratulations! You just got the SKEWERED TO DEATH (PAWN) achievement!
 
 >undo
 
@@ -355,14 +355,18 @@ The black rook slides south to d1.
 >c8b
 !You decide to promote to the white bishop, not the white queen, if your pawn ever makes it.
 Triumph! The pawn makes it to the eighth rank. There is a swirl of light before the white bishop pops up.
-The black rook snickers as it slides over to c4. Your friend the white bishop will be captured next move, and a very unpleasant but inevitably lost rook endgame awaits.
+The black rook snickers as it slides over to c4. Your newly returned ally, the white bishop, will be captured next move, and a very unpleasant but inevitably lost rook endgame awaits.
+DEBUG: checking for forked to death achievement.
+Congratulations! You just got the FORKED TO DEATH achievement!
 
 >undo
 
 >c8n
 !You decide to promote to the white knight, not the white queen, if your pawn ever makes it.
 Triumph! The pawn makes it to the eighth rank. There is a swirl of light before the white knight pops up.
-The black rook snickers as it slides over to c4. Your friend the white knight will be captured next move, and a very unpleasant but inevitably lost rook endgame awaits.
+The black rook snickers as it slides over to c4. Your newly returned ally, the white knight, will be captured next move, and a very unpleasant but inevitably lost rook endgame awaits.
+DEBUG: checking for forked to death achievement.
+Congratulations! You just got the FORKED TO DEATH achievement!
 
 >undo
 
@@ -377,27 +381,37 @@ Ugh, no. Don't want to get too close to the enemy king.
 Ugh, no. Don't want to get too close to the enemy king.
 
 >n
-The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw.
+The black rook and king breathe a collective sigh of relief as the black king slides up to a2, relieved he's out of the corner and his rook defends the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+DEBUG: checking for staler than stalemate, mate achievement.
+Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 
 >undo
 
 >ne
-The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw.
+The black rook and king breathe a collective sigh of relief as the black king slides up to a2, relieved he's out of the corner and his rook defends the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+DEBUG: checking for staler than stalemate, mate achievement.
+Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 
 >undo
 
 >e
-The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw.
+The black rook and king breathe a collective sigh of relief as the black king slides up to a2, relieved he's out of the corner and his rook defends the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+DEBUG: checking for staler than stalemate, mate achievement.
+Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 
 >undo
 
 >se
-The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw.
+The black rook and king breathe a collective sigh of relief as the black king slides up to a2, relieved he's out of the corner and his rook defends the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+DEBUG: checking for staler than stalemate, mate achievement.
+Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 
 >undo
 
 >s
-The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw.
+The black rook and king breathe a collective sigh of relief as the black king slides up to a2, relieved he's out of the corner and his rook defends the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+DEBUG: checking for staler than stalemate, mate achievement.
+Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 
 >undo
 
@@ -411,7 +425,7 @@ Your rook is great and all, but you can't share a square with them!
 >undo
 
 >rc3
-The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+The black rook and king breathe a collective sigh of relief as the black king slides up to a2, relieved he's out of the corner and his rook defends the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
 DEBUG: checking for staler than stalemate, mate achievement.
 Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
@@ -423,19 +437,19 @@ Congratulations! You just got the ALL FOR NAUGHT achievement!
 >undo
 
 >rc5
-The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+The black rook and king breathe a collective sigh of relief as the black king slides up to a2, relieved he's out of the corner and his rook defends the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
 DEBUG: checking for staler than stalemate, mate achievement.
 Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >rc6
-The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+The black rook and king breathe a collective sigh of relief as the black king slides up to a2, relieved he's out of the corner and his rook defends the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
 DEBUG: checking for staler than stalemate, mate achievement.
 Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >rc7
-The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+The black rook and king breathe a collective sigh of relief as the black king slides up to a2, relieved he's out of the corner and his rook defends the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
 DEBUG: checking for staler than stalemate, mate achievement.
 Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
