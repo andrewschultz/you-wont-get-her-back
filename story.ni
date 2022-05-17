@@ -44,7 +44,7 @@ current-game-state is a game-state that varies.
 
 chapter square states
 
-fleestate is a kind of value. the fleestates are unreachable, a-guarding, a-allowing, spite-checking, sucker-sacrificing, useless-sacrificing.
+fleestate is a kind of value. the fleestates are unreachable, a-guarding, a-allowing, spite-checking, skewer-allow, sucker-sacrificing, useless-sacrificing.
 
 fsl is a list of fleestates variable.
 
@@ -230,7 +230,7 @@ chapter sorting rooms into fleeability
 
 [ there are 13 squares the black rook can move to once it's pretty obvious you've figured what to do. They can cause different bad endings if you mess up. ]
 
-rookstate of a2 is a-guarding. rookstate of a5 is a-guarding. rookstate of a6 is a-guarding. rookstate of a7 is a-guarding.
+rookstate of a5 is a-guarding. rookstate of a6 is a-guarding. rookstate of a7 is a-guarding.
 
 rookstate of d4 is a-allowing. rookstate of e4 is a-allowing. rookstate of f4 is a-allowing. rookstate of g4 is a-allowing.  rookstate of h4 is a-allowing.
 
@@ -239,6 +239,8 @@ rookstate of b4 is spite-checking. rookstate of a3 is spite-checking.
 rookstate of a8 is sucker-sacrificing.
 
 rookstate of c4 is useless-sacrificing.
+
+rookstate of a2 is skewer-allow.
 
 volume room description
 
