@@ -1,4 +1,4 @@
-"You Don't Want Her Back" by Andrew Schultz
+"You Won't Get Her Back" by Andrew Schultz
 
 volume metadata
 
@@ -14,7 +14,7 @@ include Old School Verb Total Carnage by Andrew Schultz.
 
 include Trivial Niceties by Andrew Schultz.
 
-include You Dont Want Her Back Tests by Andrew Schultz.
+include You Wont Get Her Back Tests by Andrew Schultz.
 
 include Conditional Undo by Jesse McGrew.
 

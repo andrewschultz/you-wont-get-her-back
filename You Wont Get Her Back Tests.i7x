@@ -1,6 +1,6 @@
-Version 1/220511 of You Dont Want Her Back Tests by Andrew Schultz begins here.
+Version 1/220511 of You Wont Get Her Back Tests by Andrew Schultz begins here.
 
-"This should briefly describe the purpose of You Dont Want Her Back Tests."
+"Tests for You Won't Get Her Back, a text-adventurization of the Saaverda position. It lets the programmer (me!) test all the game states and thus all the odd responses the player may make."
 
 volume when play begins
 
@@ -121,6 +121,6 @@ test p1 with "rf a3/p/s/s/se/s/c8r/nw/w".
 test p2 with "rf a3/p/s/s/s/se/c8r/nw/w".
 test q with "p/s/s/s/se/c8r/nw"
 
-You Dont Want Her Back Tests ends here.
+You Wont Get Her Back Tests ends here.
 
 ---- DOCUMENTATION ----
