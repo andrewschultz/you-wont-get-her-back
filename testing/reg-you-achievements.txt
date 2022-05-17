@@ -8,7 +8,7 @@
 * gotta_get_em_all
 
 >think
-You haven't found any achievements, but don't worry. You'll get one soon. You Don't Want Her Back tracks both wins and losses. You'll find creative losses as you go.
+You haven't found any achievements, but don't worry. You'll get one soon. You Won't Get Her Back tracks both wins and losses. You'll find creative losses as you go.
 
 >kb7
 
@@ -358,8 +358,6 @@ ALL FOR NAUGHT: managing to give your rook away
 >rf a7
 >p
 >s
->n
->s
 >s
 >s
 >se
@@ -391,8 +389,6 @@ STALER THAN STALEMATE, MATE: drawn ending with equal material
 
 >rf a2
 >p
->s
->n
 >s
 >s
 >s
