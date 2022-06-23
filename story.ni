@@ -58,7 +58,7 @@ when play begins (this is the sort fleestates randomly rule):
 	init-fsl;
 	sort fsl in random order;
 	choose-flee-room;
-	say "The war was HIS fault, of course. And you would've won it quickly and easily if you hadn't tried so hard to keep your wife alive. Your counterpart, stupid though he is, knew this and kept forcing small advantages here and there, knowing you'd cede them so your wife and his wouldn't be killed. He didn't care about his own wife, of course. You can't blame him.";
+	say "The war was HIS fault, of course. And you would've won it quickly and easily if you hadn't tried so hard to keep your wife, the white queen, alive. Your counterpart, stupid though he is, knew this and kept forcing small advantages here and there, knowing you'd cede them so your wife and his wouldn't be killed. He didn't care about his own wife, of course. You can't blame him.";
 	wfak;
 	say "You knew you were objectively losing, but at some point, your wife set you straight. It was time to let her go. After you did, your counterpart skulked off to a corner and barked out commands and laughed as you mixed things up in the center of the board, trying to do something, anything, to keep hope alive.";
 	wfak;
@@ -66,7 +66,7 @@ when play begins (this is the sort fleestates randomly rule):
 	wfak;
 	say "From far away, your enemy calls out 'You won't get her back!' But you think you can, because you know the magic of what happens when a pawn makes it all the way across the battlefield, and they can and must lay down their lives so someone, anyone on your side, comes back to life. It's usually a queen. Well, in some cases, a monarch tired of his wife asks for someone less, just to show off they could win anyway.";
 	wfak;
-	say "But for all your faults, you know it breaks an unspoken code. You are glad to admit your wife saw and understood things you don't. You just wish she could come back to help with the whole rebuilding process and all the other great plans you had.";
+	say "But you could never show off that way. You are glad to admit your wife saw and understood things you don't. You just wish she could come back to help with the whole rebuilding process and all the other great plans you had.";
 	wfak;
 
 to init-fsl:
@@ -78,7 +78,11 @@ to choose-flee-room:
 	if fleestate-index > number of fleestates, now fleestate-index is 1;
 	now current-fleestate is entry fleestate-index of fsl;
 	now rook-flee-room is a random fleeable room;
-	d "New flee room is [rook-flee-room] with state [current-fleestate].";
+	if ever-won is true:
+		say "[one of]Since you're playing past the initial win, you will get a hint where the enemy rook will flee to. In this case it is [rook-flee-room]. Some of the bad endings can only be found when a rook to a certain square[or]The enemy rook will flee to [rook-flee-room] this time[stopping].";
+	if debug-state is true:
+		d "New flee room is [rook-flee-room] with state [current-fleestate].";
+		d "Set of states = [fsl].";
 
 definition: a room (called rm) is fleeable:
 	if rookstate of rm is current-fleestate, yes;
@@ -316,7 +320,11 @@ carry out pawning:
 		add 2645 to my-move-log;
 		add 12646 to my-move-log;
 		continue the action;
-	say "Triumph! The pawn makes it to the eighth rank. There is a swirl of light before [the piece-to-promote] pops up.";
+	say "Triumph! The pawn makes it to the eighth rank. ";
+	if piece-to-promote is white queen:
+		say "It's too good to be true! Your queen is back. At least, for now. But your joy is shortly dashed.";
+	else:
+		say "The black king laughs as [the piece-to-promote], and not your wife the white queen, pops up.";
 	move piece-to-promote to c8;
 	if location of black rook is d1:
 		say "But, alas, the black rook is ready to slide in to c1 and skewer you. Once you move out of check, [the piece-to-promote] will fall. Then the king and rook will defeat you.";
@@ -532,7 +540,7 @@ volume reset the board
 repeats-this-time is a number that varies.
 
 to reset-the-board:
-	say "[line break]Well, let's try again.";
+	say "[line break]Okay, let's set things back where they were and try again.";
 	move black rook to d5;
 	move white pawn to c6;
 	move black king to a1;
@@ -621,8 +629,10 @@ check going when current-game-state is need-kb3 (this is the final semi-random r
 
 check going when current-game-state is rook-doomed (this is the king shouldn't move at end rule):
 	if room gone to is not location of black rook:
-		say "'Geez. What a coward. Didn't even want to capture me.' The rook proceeds to [if location of player is c2]patrol the a-file[else if location of black rook is a3]patrol the third rank[else]patrol the first rank, checking you if you try for a sneaky checkmate on b3[end if], and after fifty moves, the war is officially declared a draw.";
-		reset-the-board instead;
+		say "'Geez. What a coward. Didn't even want to capture me.' The rook proceeds to [if location of player is c2]patrol the a-file[else if location of black rook is a3]patrol the third rank[else]patrol the a-file, checking you if you try for a sneaky checkmate on b3[end if], and after fifty moves, the war is officially declared a draw.";
+		achieve "staler than stalemate, mate";
+		reset-the-board;
+		the rule succeeds;
 	say "BAM! Take that, rook! [if location of rook is a3]The rest is straightforward. Your enemy moves to b1, you move to b3, and they move to a1, and your rook delivers the kill on c1[else]The rest is a bit tricky, since your king was decoyed to b4. But you've planned ahead: the enemy king to a2? Rook to c2. Enemy king to b1? King to b3. The rook on the c-file cuts your enemy off[end if]. Victory!";
 	check-drag-out;
 	choose-flee-room;
@@ -992,11 +1002,22 @@ carry out squaregoing:
 			reset-the-board;
 			the rule succeeds;
 		if noun is c1:
-			say "And so it comes to pass: the enemy king, safe from the main action for so long, is trapped. He thought he was safe or, if you got close, he could get out of the corner quickly enough. Even being one square away from the corner would've been good enough! Well, he deserved his fate. You can't remember how or why he got there. You have your revenge, which is something, even if you will have to do without your queen.[paragraph break]It's been a long fight. You don't even remember why it started. But with your rook beside you, you will restore the kingdom, slowly but surely.";
+			if achieved-yet of "plain old checkmate":
+				say "A painful trip through memory lane. No, there was nothing you could have done. You had that clever idea, and it just wasn't enough.";
+			else:
+				say "And so it comes to pass: the enemy king, safe from the main action for so long, is trapped. He thought he was safe or, if you got close, he could get out of the corner quickly enough. Even being one square away from the corner would've been good enough! Well, he deserved his fate. You can't remember how or why he got there. You have your revenge, which is something, even if you will have to do without your queen.[paragraph break]It's been a long fight. You don't even remember why it started. But with your rook beside you, you will restore the kingdom, slowly but surely.";
 			achieve "plain old checkmate";
 			check-drag-out;
-			choose-flee-room;
-			reset-the-board;
+			if ever-won is false:
+				now ever-won is true;
+				say "You figured the main solution, but if you want, you can [b]TRY[r] to find other ways to lose. I hope they are amusing. There are a few more squares the enemy rook may flee to now, making for more endings.";
+				add useless-sacrificing to fsl;
+				add spite-checking to fsl;
+				end the story finally saying "Personal Loss, Victory in Battle";
+				the rule succeeds;
+			else:
+				choose-flee-room;
+				reset-the-board;
 			the rule succeeds;
 		abide by the bungled-it-late rule;
 		the rule succeeds;
