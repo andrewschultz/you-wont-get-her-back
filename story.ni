@@ -72,6 +72,9 @@ when play begins (this is the sort fleestates randomly rule):
 to init-fsl:
 	now fsl is the list of all fleestates;
 	remove unreachable from fsl;
+	remove useless-sacrificing from fsl;
+	remove spite-checking from fsl;
+	remove sucker-sacrificing from fsl;
 
 to choose-flee-room:
 	increment fleestate-index;
@@ -1075,28 +1078,39 @@ carry out verbsing:
 
 volume unachievements
 
+[we could make state-list-delete a specific-state and then go through the table, looking to see if any of the other specific state was still there, but this feels like it might be too-cute code. Plus there's a chance that two game-states might allow an ending, and that would get tricky. I hope this is straightforward: we eliminate a game-state from fsl if it no longer can allow a unique ending, because we don't want to waste the player's time if possible.]
+
 table of unachievements
-achievement	achieved	details
-"threefold"	false	"repeating a position three times"
-"pinned pawn"	false	"letting the rook pin your pawn"
-"captured pawn"	false	"letting the rook take your pawn for free"
-"traded pawn"	false	"letting the rook sacrifice itself for your pawn"
-"alternate paths"	false	"realizing two moves from b4 are okay"
-"skewered to a draw"	false	"letting the rook check you on c1 to sacrifice itself for the pawn"
-"skewered to death (pawn)"	false	"letting the rook check you on a1 and take the pawn without being captured"
-"stalemate, mate"	false	"getting the Queen back but walking into stalemate"
-"forked to death"	false	"managing to get forked, along with your pawn, by the enemy rook"
-"plain old checkmate"	false	"finding the main line solution"
-"castle carnage"	false	"managing to trade off rooks"
-"all for naught"	false	"managing to give your rook away"
-"staler than stalemate, mate"	false	"drawn ending with equal material"
-"skewered to death (rook)"	false	"letting the black rook go to b2 and skewer your b8-rook"
-"spite check (winning)"	false	"checking the enemy king with their rook prone"
-"spite check (drawing)"	false	"checking the enemy king instead of checkmating"
-"running up the score"	false	"taking the opposing rook when mate was available"
-"rook on rook violence"	false	"taking the opposing rook when they left you no choice"
-"dragging it out"	false	"taking extra turns to win, considering repetition"
-"dragging it out all the way"	false	"taking the maximum turns to win, considering repetition"
+achievement	achieved	state-list-delete	details
+"threefold"	false	--	"repeating a position three times"
+"pinned pawn"	false	--	"letting the rook pin your pawn"
+"captured pawn"	false	--	"letting the rook take your pawn for free"
+"traded pawn"	false	--	"letting the rook sacrifice itself for your pawn"
+"alternate paths"	false	--	"realizing two moves from b4 are okay"
+"skewered to a draw"	false	--	"letting the rook check you on c1 to sacrifice itself for the pawn"
+"skewered to death (pawn)"	false	--	"letting the rook check you on a1 and take the pawn without being captured"
+"stalemate, mate"	false	--	"getting the Queen back but walking into stalemate"
+"forked to death"	false	--	"managing to get forked, along with your pawn, by the enemy rook"
+"plain old checkmate"	false	--	"finding the main line solution"
+"castle carnage"	false	--	"managing to trade off rooks"
+"all for naught"	false	--	"managing to give your rook away"
+"staler than stalemate, mate"	false	--	"drawn ending with equal material"
+"skewered to death (rook)"	false	disable-skewer-allow rule	"letting the black rook go to b2 and skewer your b8-rook"
+"spite check (winning)"	false	disable-useless-sacrificing rule	"checking the enemy king with their rook prone"
+"spite check (drawing)"	false	--	"checking the enemy king instead of checkmating"
+"running up the score"	false	disable-sucker-sacrificing rule	"taking the opposing rook when mate was available"
+"rook on rook violence"	false	disable-useless-sacrificing rule	"taking the opposing rook with the rook when they blocked immediate checkmate"
+"dragging it out"	false	--	"taking extra turns to win, considering repetition"
+"dragging it out all the way"	false	--	"taking the maximum turns to win, considering repetition"
+
+this is the disable-useless-sacrificing rule:
+	if achieved-yet of "giving futile hope" and achieved-yet of "rook on rook violence" and achieved-yet of "spite check (winning)", remove useless-sacrificing from fsl;
+
+this is the disable-sucker-sacrificing rule:
+	remove sucker-sacrificing from fsl;
+
+this is the disable-skewer-allow rule:
+	remove skewer-allow from fsl;
 
 to decide which number is achieve-score:
 	let temp be 0;
@@ -1118,10 +1132,20 @@ to achieve (t - text):
 		now X is "[b][achievement entry in upper case][r]";
 		say "Congratulations! You just got the [X] achievement!";
 		now achieved entry is true;
+		if there is a state-list-delete entry:
+			process the state-list-delete entry;
 		unless anything-unachieved:
 			end the story finally saying "You found everything!";
 		continue the action;
 	say "Uh oh. You were supposed to get the [t] achievement, but it wasn't in the table. This is a bug.";
+
+to decide whether achieved-yet of (t - text):
+	repeat through table of unachievements:
+		if achievement entry is not t, next;
+		if achieved entry is true, decide yes;
+		decide no;
+	say "BUG in code: [t] was not an achievement.";
+	decide no;
 
 volume post game stuff
 
