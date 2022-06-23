@@ -560,23 +560,21 @@ the rook catches pawn rule is listed after the final semi-random rook move rule 
 
 check going (this is the friendly piece obstruction rule):
 	if the room gone to is friend-occupied, say "But [the random friendly person in room noun of location of player] is already there." instead;
+	if the room gone to is king-guarded, say "Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward." instead;
 	if the room gone to is black-rook-guarded, say "But the enemy rook would [if room gone from is black-rook-guarded]still [end if]see you there." instead;
-	if the room gone to is king-guarded, say "Ugh, no. Don't want to get too close to the enemy king." instead;
 
 this is the black-rook-takes-rook rule:
-	say "[location of black rook] [location of white rook] [noun].";
-	if noun is black-rook-guarded:
-		if noun is adjacent to location of player:
-			say "Your rook looks dismayed. The black rook seems surprised. 'Take him and get it over with! I'm tired of this stupid war!' the king booms from the corner. The black rook and your rook protest. They'd like a good, long, boring draw, but your opposite number doesn't have time for that. The black rook sighs and does its duty.[paragraph break]All that work, and nothing to show for it all around. At least you are able to take the enemy rook back to force a draw.";
-			achieve "castle carnage";
-		else:
-			say "Your rook looks dismayed as the black rook laughs and jumps at them! All that work, and nothing to show for it. You can't even take the enemy rook back! What a sad way to lose.";
-			achieve "all for naught";
-		reset-the-board;
-		the rule succeeds;
+	if noun is adjacent to location of player:
+		say "Your rook looks dismayed. The black rook seems surprised. 'Take him and get it over with! I'm tired of this stupid war!' the king booms from the corner. The black rook and your rook protest. They'd like a good, long, boring draw, but your opposite number doesn't have time for that. The black rook sighs and does its duty.[paragraph break]All that work, and nothing to show for it all around. At least you are able to take the enemy rook back to force a draw.";
+		achieve "castle carnage";
+	else:
+		say "Your rook looks dismayed as the black rook laughs and jumps at them! All that work, and nothing to show for it. You can't even take the enemy rook back! What a sad way to lose.";
+		achieve "all for naught";
+	reset-the-board;
+	the rule succeeds;
 
 this is the bungled-it-late rule:
-	abide by the black-rook-takes-rook rule;
+	if noun is black-rook-guarded, abide by the black-rook-takes-rook rule;
 	if location of white rook is a8:
 		say "There are spite checks and then there are spite checks! Your rook slides all the way to the side. The black king moves, but you have no follow-up. The black rook zips to the side of the board, and you will be pushed away from the enemy king.";
 		achieve "spite check (drawing)";
