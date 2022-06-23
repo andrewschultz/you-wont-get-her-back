@@ -631,6 +631,12 @@ check going when current-game-state is need-kb3 (this is the final semi-random r
 	if current-game-state is need-kb3, now current-game-state is rook-doomed;
 
 check going when current-game-state is rook-doomed (this is the king shouldn't move at end rule):
+	if location of player is b3 and noun is northeast and location of black rook is c4:
+		say "Of course, you could have had your rook take. But you had a bit of unfinished business. You needed someone to beat up after being forced to get your rook and not your wife back. Your own rook understands, of course. The enemy king is forced out of the corner momentarily until you stuff him back in. It's a nice bit of petty revenge, especially since it doesn't get in the way of winning the war.";
+		achieve "giving futile hope";
+		reset-the-board;
+		the rule succeeds;
+	if location of white rook is black-rook-guarded, abide by the black-rook-takes-rook rule;
 	if room gone to is not location of black rook:
 		say "'Geez. What a coward. Didn't even want to capture me.' The rook proceeds to [if location of player is c2]patrol the a-file[else if location of black rook is a3]patrol the third rank[else]patrol the a-file, checking you if you try for a sneaky checkmate on b3[end if], and after fifty moves, the war is officially declared a draw.";
 		achieve "staler than stalemate, mate";
@@ -1100,6 +1106,7 @@ achievement	achieved	state-list-delete	details
 "spite check (drawing)"	false	--	"checking the enemy king instead of checkmating"
 "running up the score"	false	disable-sucker-sacrificing rule	"taking the opposing rook when mate was available"
 "rook on rook violence"	false	disable-useless-sacrificing rule	"taking the opposing rook with the rook when they blocked immediate checkmate"
+"giving futile hope"	false	disable-useless-sacrificing rule	"taking the opposing rook with the king when they blocked immediate checkmate"
 "dragging it out"	false	--	"taking extra turns to win, considering repetition"
 "dragging it out all the way"	false	--	"taking the maximum turns to win, considering repetition"
 
