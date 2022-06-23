@@ -1128,6 +1128,38 @@ volume post game stuff
 table of final question options (continued)
 final question wording	only if victorious	topic	final response rule	final response activity
 "see [b]NOTES[r] on the initial position"	true	"notes/position"	puzzle notes rule	--
+"[b]TRY[r] new ways to lose"	true	"try/lose"	try new ways to lose rule	--
 
 this is the puzzle notes rule:
 	say "The position at the start is known as the Saaverda position. Saaverda himself didn't create it. He just found a hole in the 'black to draw' puzzle from the original position, by G. E. Barbier, who saw Rc4+! after the promotion to a queen but missed the underpromotion. The Wikipedia entry has more detail on the history, but I found it to be the simplest example of a legitimate surprise to be found in a chess game, where once you see it, it's obvious. And while one may wonder what the heck the black king is doing off in the corner, a lot of the themes come up elsewhere, and anyone who says this ruins the puzzle probably nitpicks cartoons for realism, too.[paragraph break]My own experience with this was back in my junior year of high school. I beat a gentleman named Slavko Milovanovic who was rated 2000 and may or may not have been sandbagging. But he was very nice about a loss to a considerably lower-rated player, and afterwards he showed me a bunch of neat stuff. This was the neatest and most memorable. It's one of the very top puzzles I try and pass on to people who may be interested in chess but don't want to devote an insane amount of time to opening theory, and I hope you enjoyed it, too."
+
+this is the try new ways to lose rule:
+	eliminate-retry;
+	fully resume the story;
+	choose-flee-room;
+	reset-the-board;
+
+to eliminate-retry:
+	choose row with final response rule of try new ways to lose rule in table of final question options;
+	blank out the whole row;
+
+Include (-
+
+[ ASK_FINAL_QUESTION_R;
+	print "^";
+	(+ escape mode +) = false;
+	while ((+ escape mode +) == false) {
+		CarryOutActivity(DEALING_WITH_FINAL_QUESTION_ACT);
+		DivideParagraphPoint();
+	}
+];
+
+-) instead of "Ask The Final Question Rule" in "OrderOfPlay.i6t".
+
+The escape mode is a truth state that varies.
+
+To fully resume the story:
+	resume the story;
+	now escape mode is true;
+	clear the screen;
+	say paragraph break.
