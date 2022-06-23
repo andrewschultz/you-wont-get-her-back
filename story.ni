@@ -970,6 +970,12 @@ this is the implicit king movement rule:
 			say "You can't travel that far!";
 		the rule succeeds;
 
+this is the white-rook-coward rule:
+	if location of white rook is black-rook-guarded and noun is not black-rook-guarded and noun is location of black rook:
+		say "'Geez. What a coward. Didn't even want to capture me.' The rook proceeds to [if location of player is c2]patrol the a-file[else if location of black rook is a3]patrol the third rank[else]patrol the a-file, checking you if you try for a sneaky checkmate on b3[end if], and after fifty moves, the war is officially declared a draw.";
+		reset-the-board;
+		the rule succeeds;
+
 carry out squaregoing:
 	if noun is location of hinted-person, say "You can't pass. In fact, it won't ever do you any good. There's no zugzwang anywhere around." instead;
 	if white pawn is not off-stage, abide by the implicit pawn movement rule;
@@ -1008,6 +1014,7 @@ carry out squaregoing:
 				say "Well, since the black rook forced you to, why not? That doesn't stop the inevitable. In fact, it barely delays things. But it was fun, seeing your opponents grovel for a bit, in a way.";
 				check-drag-out;
 				achieve "rook on rook violence";
+				choose-flee-room;
 			reset-the-board;
 			the rule succeeds;
 		if noun is c1:
@@ -1028,6 +1035,7 @@ carry out squaregoing:
 				choose-flee-room;
 				reset-the-board;
 			the rule succeeds;
+		abide by the white-rook-coward rule;
 		abide by the bungled-it-late rule;
 		the rule succeeds;
 	if hinted-person is white rook:
@@ -1131,13 +1139,16 @@ to decide whether anything-unachieved:
 	no;
 
 to achieve (t - text):
-	if debug-state is true, say "DEBUG: checking for [t] achievement.";
+	if debug-state is true:
+		say "DEBUG: checking for [t] achievement.";
+		if black rook is not off-stage, say "DEBUG: black rook on [location of black rook].";
+		if white rook is not off-stage, say "DEBUG: white rook on [if hinted-person is white rook][noun][else][location of white rook][end if].";
 	repeat through table of unachievements:
 		if achievement entry is not t, next;
 		if achieved entry is true, continue the action;
 		let X be indexed text;
 		now X is "[b][achievement entry in upper case][r]";
-		say "Congratulations! You just got the [X] achievement!";
+		say "Congratulations! You just got the [b][X][r] achievement!";
 		now achieved entry is true;
 		if there is a state-list-delete entry:
 			process the state-list-delete entry;
