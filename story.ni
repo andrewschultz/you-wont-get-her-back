@@ -58,6 +58,16 @@ when play begins (this is the sort fleestates randomly rule):
 	init-fsl;
 	sort fsl in random order;
 	choose-flee-room;
+	say "The war was HIS fault, of course. And you would've won it quickly and easily if you hadn't tried so hard to keep your wife alive. Your counterpart, stupid though he is, knew this and kept forcing small advantages here and there, knowing you'd cede them so your wife and his wouldn't be killed. He didn't care about his own wife, of course. You can't blame him.";
+	wfak;
+	say "You knew you were objectively losing, but at some point, your wife set you straight. It was time to let her go. After you did, your counterpart skulked off to a corner and barked out commands and laughed as you mixed things up in the center of the board, trying to do something, anything, to keep hope alive.";
+	wfak;
+	say "Now everyone is almost gone. Your 'friend' is still smirking in the corner, not getting his hands dirty. You have but a loyal pawn remaining. He has a rook. But your pawn is far advanced. Still, it's too much to expect ... or is it?";
+	wfak;
+	say "From far away, your enemy calls out 'You won't get her back!' But you think you can, because you know the magic of what happens when a pawn makes it all the way across the battlefield, and they can and must lay down their lives so someone, anyone on your side, comes back to life. It's usually a queen. Well, in some cases, a monarch tired of his wife asks for someone less, just to show off they could win anyway.";
+	wfak;
+	say "But for all your faults, you know it breaks an unspoken code. You are glad to admit your wife saw and understood things you don't. You just wish she could come back to help with the whole rebuilding process and all the other great plans you had.";
+	wfak;
 
 to init-fsl:
 	now fsl is the list of all fleestates;
