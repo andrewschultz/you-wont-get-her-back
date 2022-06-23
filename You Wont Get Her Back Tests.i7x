@@ -27,7 +27,7 @@ understand the command "ord" as something new.
 understand "ord" as ording.
 
 carry out ording:
-	init-fsl;
+	init-fleestate-list;
 	say "The puzzle types are in order now.";
 	the rule succeeds;
 
@@ -47,7 +47,7 @@ rule for supplying a missing noun when rfing:
 	say "[line break]Current room is [rook-flee-room].";
 	say "[line break]Current order is [fleestate-index].";
 	say "[line break]Current state is [current-fleestate].";
-	say "[line break]The list of states in order is [fsl].";
+	say "[line break]The list of states in order is [available-fleestate-list].";
 	reject the player's command;
 
 carry out rfing:

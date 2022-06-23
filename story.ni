@@ -46,7 +46,7 @@ chapter square states
 
 fleestate is a kind of value. the fleestates are unreachable, a-guarding, a-allowing, spite-checking, skewer-allow, sucker-sacrificing, useless-sacrificing.
 
-fsl is a list of fleestates variable.
+available-fleestate-list is a list of fleestates variable.
 
 current-fleestate is a fleestate that varies.
 
@@ -55,8 +55,8 @@ fleestate-index is a number that varies;
 rook-flee-room is a room that varies.
 
 when play begins (this is the sort fleestates randomly rule):
-	init-fsl;
-	sort fsl in random order;
+	init-fleestate-list;
+	sort available-fleestate-list in random order;
 	choose-flee-room;
 	say "The war was HIS fault, of course. And you would've won it quickly and easily if you hadn't tried so hard to keep your wife, the white queen, alive. Your counterpart, stupid though he is, knew this and kept forcing small advantages here and there, knowing you'd cede them so your wife and his wouldn't be killed. He didn't care about his own wife, of course. You can't blame him.";
 	wfak;
@@ -69,23 +69,23 @@ when play begins (this is the sort fleestates randomly rule):
 	say "But you could never show off that way. You are glad to admit your wife saw and understood things you don't. You just wish she could come back to help with the whole rebuilding process and all the other great plans you had.";
 	wfak;
 
-to init-fsl:
-	now fsl is the list of all fleestates;
-	remove unreachable from fsl;
-	remove useless-sacrificing from fsl;
-	remove spite-checking from fsl;
-	remove sucker-sacrificing from fsl;
+to init-fleestate-list:
+	now available-fleestate-list is the list of all fleestates;
+	remove unreachable from available-fleestate-list;
+	remove useless-sacrificing from available-fleestate-list;
+	remove spite-checking from available-fleestate-list;
+	remove sucker-sacrificing from available-fleestate-list;
 
 to choose-flee-room:
 	increment fleestate-index;
 	if fleestate-index > number of fleestates, now fleestate-index is 1;
-	now current-fleestate is entry fleestate-index of fsl;
+	now current-fleestate is entry fleestate-index of available-fleestate-list;
 	now rook-flee-room is a random fleeable room;
 	if ever-won is true:
 		say "[one of]Since you're playing past the initial win, you will get a hint where the enemy rook will flee to. In this case it is [rook-flee-room]. Some of the bad endings can only be found when a rook to a certain square[or]The enemy rook will flee to [rook-flee-room] this time[stopping].";
 	if debug-state is true:
 		d "New flee room is [rook-flee-room] with state [current-fleestate].";
-		d "Set of states = [fsl].";
+		d "Set of states = [available-fleestate-list].";
 
 definition: a room (called rm) is fleeable:
 	if rookstate of rm is current-fleestate, yes;
@@ -1027,8 +1027,8 @@ carry out squaregoing:
 			if ever-won is false:
 				now ever-won is true;
 				say "You figured the main solution, but if you want, you can [b]TRY[r] to find other ways to lose. I hope they are amusing. There are a few more squares the enemy rook may flee to now, making for more endings.";
-				add useless-sacrificing to fsl;
-				add spite-checking to fsl;
+				add useless-sacrificing to available-fleestate-list;
+				add spite-checking to available-fleestate-list;
 				end the story finally saying "Personal Loss, Victory in Battle";
 				the rule succeeds;
 			else:
@@ -1092,7 +1092,7 @@ carry out verbsing:
 
 volume unachievements
 
-[we could make state-list-delete a specific-state and then go through the table, looking to see if any of the other specific state was still there, but this feels like it might be too-cute code. Plus there's a chance that two game-states might allow an ending, and that would get tricky. I hope this is straightforward: we eliminate a game-state from fsl if it no longer can allow a unique ending, because we don't want to waste the player's time if possible.]
+[we could make state-list-delete a specific-state and then go through the table, looking to see if any of the other specific state was still there, but this feels like it might be too-cute code. Plus there's a chance that two game-states might allow an ending, and that would get tricky. I hope this is straightforward: we eliminate a game-state from available-fleestate-list if it no longer can allow a unique ending, because we don't want to waste the player's time if possible.]
 
 table of unachievements
 achievement	achieved	state-list-delete	details
@@ -1119,13 +1119,13 @@ achievement	achieved	state-list-delete	details
 "dragging it out all the way"	false	--	"taking the maximum turns to win, considering repetition"
 
 this is the disable-useless-sacrificing rule:
-	if achieved-yet of "giving futile hope" and achieved-yet of "rook on rook violence" and achieved-yet of "spite check (winning)", remove useless-sacrificing from fsl;
+	if achieved-yet of "giving futile hope" and achieved-yet of "rook on rook violence" and achieved-yet of "spite check (winning)", remove useless-sacrificing from available-fleestate-list;
 
 this is the disable-sucker-sacrificing rule:
-	remove sucker-sacrificing from fsl;
+	remove sucker-sacrificing from available-fleestate-list;
 
 this is the disable-skewer-allow rule:
-	remove skewer-allow from fsl;
+	remove skewer-allow from available-fleestate-list;
 
 to decide which number is achieve-score:
 	let temp be 0;
