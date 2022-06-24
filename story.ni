@@ -38,7 +38,7 @@ alt-c3 is a truth state that varies.
 
 chapter game states
 
-game-state is a kind of value. game-states are the-beginning, need-kb3 and rook-doomed.
+game-state is a kind of value. game-states are the-beginning, need-kb3, rook-forks-kq and rook-doomed.
 
 current-game-state is a game-state that varies.
 
@@ -325,10 +325,11 @@ carry out pawning:
 		continue the action;
 	say "Triumph! The pawn makes it to the eighth rank. ";
 	if piece-to-promote is white queen:
-		say "It's too good to be true! Your queen is back. At least, for now. But your joy is shortly dashed.";
+		say "It's too good to be true! Your queen is back. Surely she will be able to outmaneuver a mere rook?";
 	else:
 		say "The black king laughs as [the piece-to-promote], and not your wife the white queen, pops up.";
 	move piece-to-promote to c8;
+	now white pawn is off-stage;
 	if location of black rook is d1:
 		say "But, alas, the black rook is ready to slide in to c1 and skewer you. Once you move out of check, [the piece-to-promote] will fall. Then the king and rook will defeat you.";
 		reset-the-board;
@@ -336,9 +337,11 @@ carry out pawning:
 		reset-the-board instead;
 		the rule succeeds;
 	if piece-to-promote is white queen:
-		say "The black rook sneaks to c4! You have nothing better to do than have your queen take the rook, which triggers stalemate.";
-		achieve "stalemate, mate";
-		reset-the-board instead;
+		say "[line break]The black rook seems unconcerned. It sneaks to c4! You and your queen are now both under attack, but she can just take it...right?";
+		now current-game-state is rook-forks-kq;
+		move black rook to c4;
+		try looking;
+		the rule succeeds;
 	if piece-to-promote is white bishop or piece-to-promote is white knight:
 		say "The black rook snickers as it slides over to c4. Your newly returned ally, [the piece-to-promote], will be captured next move, and a very unpleasant but inevitably lost rook endgame awaits.";
 		achieve "forked to death";
@@ -616,6 +619,12 @@ this is the bungled-it-late rule:
 		say "the black king slides to b1. You have a discovered check, but it won't come to much, and if you move from the b-file, the black rook will annoy you";
 	say ". It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.";
 	achieve "staler than stalemate, mate";
+	reset-the-board;
+	the rule succeeds;
+
+check going when current-game-state is rook-forks-kq:
+	say "You recognize it will be stalemate if your wife captures the enemy rook. You give some bathetic moan about how life isn't worth living without her, but ... she's too smart for that. She knows it would have been better to at least survive.[paragraph break]And of course, you realize this, too, as the enemy king and rook move in on you slowly. You realize that even if you join her in the afterlife and all that, she's not going to have much respect for you.";
+	achieve "pointless bathos and loss";
 	reset-the-board;
 	the rule succeeds;
 
@@ -976,6 +985,17 @@ this is the white-rook-coward rule:
 		reset-the-board;
 		the rule succeeds;
 
+definition: a room (called rm) is queen-seeable:
+	let lq be location of queen;
+	if rm is lq, no;
+	if xval of rm is xval of lq, yes;
+	if yval of rm is yval of lq:
+		if yval of rm < 4, no;
+		yes;
+	if (xval of rm + yval of rm) is (xval of lq + yval of lq), yes;
+	if (xval of rm - yval of rm) is (xval of lq - yval of lq), yes;
+	no;
+
 carry out squaregoing:
 	if noun is location of hinted-person, say "You can't pass. In fact, it won't ever do you any good. There's no zugzwang anywhere around." instead;
 	if white pawn is not off-stage, abide by the implicit pawn movement rule;
@@ -987,6 +1007,23 @@ carry out squaregoing:
 		if location of player is black-rook-guarded and noun is not location of black rook, say "You need to get out of check, somehow." instead;
 		if noun is location of the player, say "Your rook is great and all, but you can't share a square with them!" instead;
 		if noun is not white-rook-reachable, say "Your rook would have to jump over something to get to [noun]." instead;
+	if current-game-state is rook-forks-kq and hinted-person is queen:
+		if noun is not c4:
+			say "All your wife can do is capture the enemy rook";
+			if noun is not queen-seeable:
+				say ". She can't access [noun], anyway";
+			say "." instead;
+		say "Your wife swoops in and gives the enemy rook a good what-for. But there's a problem! The enemy king can't move anywhere! By some really awful ancient rules of war, this is not on. Stalemate, it's called. All the fighting is for naught. You're forced to resign your royal title because, apparently, you didn't do things right.[paragraph break]They claim you could've avoided it. ";
+		if achieved-yet of "plain old checkmate":
+			say "And you could've. ";
+			if achieved-yet of "stalemate, mate":
+				say "This must not be the way to figure everything out.";
+				say "But you-the-player are glad to have checked off one more accomplishment.";
+		else:
+			say "But what is the right way, then?";
+		achieve "stalemate, mate";
+		reset-the-board;
+		the rule succeeds;
 	if current-game-state is rook-doomed:
 		if location of black rook is a2 and noun is b8:
 			say "A loud shout from behind: 'what the heck are you doing? Are you TRYING to find ways to lose?'[paragraph break]You turn your head, and when you face forward, the black rook is staring at you, about to break down in laughter.";
@@ -1103,7 +1140,8 @@ achievement	achieved	state-list-delete	details
 "alternate paths"	false	--	"realizing two moves from b4 are okay"
 "skewered to a draw"	false	--	"letting the rook check you on c1 to sacrifice itself for the pawn"
 "skewered to death (pawn)"	false	--	"letting the rook check you on a1 and take the pawn without being captured"
-"stalemate, mate"	false	--	"getting the Queen back but walking into stalemate"
+"pointless bathos and loss"	false	--	"letting the black rook take the white Queen"
+"stalemate, mate"	false	--	"allowing stalemate when the white Queen takes the black rook"
 "forked to death"	false	--	"managing to get forked, along with your pawn, by the enemy rook"
 "plain old checkmate"	false	--	"finding the main line solution"
 "castle carnage"	false	--	"managing to trade off rooks"
