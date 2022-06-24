@@ -632,7 +632,7 @@ check going when current-game-state is need-kb3 (this is the final semi-random r
 
 check going when current-game-state is rook-doomed (this is the king shouldn't move at end rule):
 	if location of player is b3 and noun is northeast and location of black rook is c4:
-		say "Of course, you could have had your rook take. But you had a bit of unfinished business. You needed someone to beat up after being forced to get your rook and not your wife back. Your own rook understands, of course. The enemy king is forced out of the corner momentarily until you stuff him back in. It's a nice bit of petty revenge, especially since it doesn't get in the way of winning the war.";
+		say "Of course, you could have had your rook do the taking. But you had a bit of unfinished business. You needed someone to beat up after being forced to get your rook and not your wife back. Your own rook understands, of course. The enemy king is forced out of the corner momentarily until you stuff him back in. It's a nice bit of petty revenge, especially since it doesn't get in the way of winning the war.";
 		achieve "giving futile hope";
 		reset-the-board;
 		the rule succeeds;

@@ -18,6 +18,26 @@ Congratulations! You just got the TRADED PAWN achievement!
 
 >think
 TRADED PAWN: letting the rook sacrifice itself for your pawn
+!THREEFOLD:
+!PINNED PAWN:
+!CAPTURED PAWN:
+!ALTERNATE PATHS:
+!SKEWERED TO A DRAW:
+!SKEWERED TO DEATH (PAWN):
+!STALEMATE, MATE:
+!FORKED TO DEATH:
+!PLAIN OLD CHECKMATE:
+!CASTLE CARNAGE:
+!ALL FOR NAUGHT:
+!STALER THAN STALEMATE, MATE:
+!SKEWERED TO DEATH (ROOK):
+!SPITE CHECK (WINNING):
+!SPITE CHECK (DRAWING):
+!RUNNING UP THE SCORE:
+!ROOK ON ROOK VIOLENCE:
+!GIVING FUTILE HOPE:
+!DRAGGING IT OUT:
+!DRAGGING IT OUT ALL THE WAY:
 
 >c7
 >kc5
@@ -294,6 +314,36 @@ SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
 RUNNING UP THE SCORE: taking the opposing rook when mate was available
 ROOK ON ROOK VIOLENCE: taking the opposing rook with the rook when they blocked immediate checkmate
 
+>rf c4
+>p
+>s
+>s
+>s
+>se
+>c8r
+>kb3
+>kc4
+Of course, you could have had your rook do the taking. But you had a bit of unfinished business. You needed someone to beat up after being forced to get your rook and not your wife back. Your own rook understands, of course. The enemy king is forced out of the corner momentarily until you stuff him back in. It's a nice bit of petty revenge, especially since it doesn't get in the way of winning the war.
+DEBUG: checking for giving futile hope achievement.
+Congratulations! You just got the GIVING FUTILE HOPE achievement!
+
+>think
+THREEFOLD: repeating a position three times
+PINNED PAWN: letting the rook pin your pawn
+CAPTURED PAWN: letting the rook take your pawn for free
+TRADED PAWN: letting the rook sacrifice itself for your pawn
+ALTERNATE PATHS: realizing two moves from b4 are okay
+SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the pawn
+SKEWERED TO DEATH (PAWN): letting the rook check you on a1 and take the pawn without being captured
+STALEMATE, MATE: getting the Queen back but walking into stalemate
+FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
+PLAIN OLD CHECKMATE: finding the main line solution
+SPITE CHECK (WINNING): checking the enemy king with their rook prone
+SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
+RUNNING UP THE SCORE: taking the opposing rook when mate was available
+ROOK ON ROOK VIOLENCE: taking the opposing rook with the rook when they blocked immediate checkmate
+GIVING FUTILE HOPE: taking the opposing rook with the king when they blocked immediate checkmate
+
 # note: maybe try alternate path through with e4, f4, g4, h4 etc.?
 >rf d4
 >p
@@ -324,6 +374,7 @@ SPITE CHECK (WINNING): checking the enemy king with their rook prone
 SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
 RUNNING UP THE SCORE: taking the opposing rook when mate was available
 ROOK ON ROOK VIOLENCE: taking the opposing rook with the rook when they blocked immediate checkmate
+GIVING FUTILE HOPE: taking the opposing rook with the king when they blocked immediate checkmate
 CASTLE CARNAGE: managing to trade off rooks
 
 # two cases here: b8 and d8
@@ -355,6 +406,7 @@ SPITE CHECK (WINNING): checking the enemy king with their rook prone
 SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
 RUNNING UP THE SCORE: taking the opposing rook when mate was available
 ROOK ON ROOK VIOLENCE: taking the opposing rook with the rook when they blocked immediate checkmate
+GIVING FUTILE HOPE: taking the opposing rook with the king when they blocked immediate checkmate
 CASTLE CARNAGE: managing to trade off rooks
 ALL FOR NAUGHT: managing to give your rook away
 
@@ -386,6 +438,7 @@ SPITE CHECK (WINNING): checking the enemy king with their rook prone
 SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
 RUNNING UP THE SCORE: taking the opposing rook when mate was available
 ROOK ON ROOK VIOLENCE: taking the opposing rook with the rook when they blocked immediate checkmate
+GIVING FUTILE HOPE: taking the opposing rook with the king when they blocked immediate checkmate
 CASTLE CARNAGE: managing to trade off rooks
 ALL FOR NAUGHT: managing to give your rook away
 STALER THAN STALEMATE, MATE: drawn ending with equal material
@@ -420,6 +473,7 @@ SPITE CHECK (WINNING): checking the enemy king with their rook prone
 SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
 RUNNING UP THE SCORE: taking the opposing rook when mate was available
 ROOK ON ROOK VIOLENCE: taking the opposing rook with the rook when they blocked immediate checkmate
+GIVING FUTILE HOPE: taking the opposing rook with the king when they blocked immediate checkmate
 CASTLE CARNAGE: managing to trade off rooks
 ALL FOR NAUGHT: managing to give your rook away
 STALER THAN STALEMATE, MATE: drawn ending with equal material
@@ -456,6 +510,7 @@ SPITE CHECK (WINNING): checking the enemy king with their rook prone
 SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
 RUNNING UP THE SCORE: taking the opposing rook when mate was available
 ROOK ON ROOK VIOLENCE: taking the opposing rook with the rook when they blocked immediate checkmate
+GIVING FUTILE HOPE: taking the opposing rook with the king when they blocked immediate checkmate
 CASTLE CARNAGE: managing to trade off rooks
 ALL FOR NAUGHT: managing to give your rook away
 SKEWERED TO DEATH (ROOK): letting the black rook go to b2 and skewer your b8-rook
@@ -517,4 +572,3 @@ DEBUG: checking for dragging it out achievement.
 >think
 DRAGGING IT OUT: taking extra turns to win, considering repetition
 DRAGGING IT OUT ALL THE WAY: taking the maximum turns to win, considering repetition
-

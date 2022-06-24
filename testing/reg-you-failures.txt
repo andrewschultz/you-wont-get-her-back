@@ -798,7 +798,7 @@ Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >kb3
 
 >kc4
-Of course, you could have had your rook take. But you had a bit of unfinished business. You needed someone to beat up after being forced to get your rook and not your wife back. Your own rook understands, of course. The enemy king is forced out of the corner momentarily until you stuff him back in. It's a nice bit of petty revenge, especially since it doesn't get in the way of winning the war.
+Of course, you could have had your rook do the taking. But you had a bit of unfinished business. You needed someone to beat up after being forced to get your rook and not your wife back. Your own rook understands, of course. The enemy king is forced out of the corner momentarily until you stuff him back in. It's a nice bit of petty revenge, especially since it doesn't get in the way of winning the war.
 DEBUG: checking for giving futile hope achievement.
 Congratulations! You just got the GIVING FUTILE HOPE achievement!
 >undo
