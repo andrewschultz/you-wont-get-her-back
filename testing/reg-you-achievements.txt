@@ -24,6 +24,7 @@ TRADED PAWN: letting the rook sacrifice itself for your pawn
 !ALTERNATE PATHS:
 !SKEWERED TO A DRAW:
 !SKEWERED TO DEATH (PAWN):
+!POINTLESS BATHOS AND LOSS:
 !STALEMATE, MATE:
 !FORKED TO DEATH:
 !PLAIN OLD CHECKMATE:
@@ -48,6 +49,26 @@ Congratulations! You just got the SKEWERED TO A DRAW achievement!
 >think
 TRADED PAWN: letting the rook sacrifice itself for your pawn
 SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the pawn
+!THREEFOLD:
+!PINNED PAWN:
+!CAPTURED PAWN:
+!ALTERNATE PATHS:
+!SKEWERED TO DEATH (PAWN):
+!POINTLESS BATHOS AND LOSS:
+!STALEMATE, MATE:
+!FORKED TO DEATH:
+!PLAIN OLD CHECKMATE:
+!CASTLE CARNAGE:
+!ALL FOR NAUGHT:
+!STALER THAN STALEMATE, MATE:
+!SKEWERED TO DEATH (ROOK):
+!SPITE CHECK (WINNING):
+!SPITE CHECK (DRAWING):
+!RUNNING UP THE SCORE:
+!ROOK ON ROOK VIOLENCE:
+!GIVING FUTILE HOPE:
+!DRAGGING IT OUT:
+!DRAGGING IT OUT ALL THE WAY:
 
 >p
 >s
@@ -62,6 +83,25 @@ Congratulations! You just got the THREEFOLD achievement!
 THREEFOLD: repeating a position three times
 TRADED PAWN: letting the rook sacrifice itself for your pawn
 SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the pawn
+!PINNED PAWN:
+!CAPTURED PAWN:
+!ALTERNATE PATHS:
+!SKEWERED TO DEATH (PAWN):
+!POINTLESS BATHOS AND LOSS:
+!STALEMATE, MATE:
+!FORKED TO DEATH:
+!PLAIN OLD CHECKMATE:
+!CASTLE CARNAGE:
+!ALL FOR NAUGHT:
+!STALER THAN STALEMATE, MATE:
+!SKEWERED TO DEATH (ROOK):
+!SPITE CHECK (WINNING):
+!SPITE CHECK (DRAWING):
+!RUNNING UP THE SCORE:
+!ROOK ON ROOK VIOLENCE:
+!GIVING FUTILE HOPE:
+!DRAGGING IT OUT:
+!DRAGGING IT OUT ALL THE WAY:
 
 >p
 >s
@@ -69,8 +109,10 @@ SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the
 >s
 >se
 >p
-Triumph! The pawn makes it to the eighth rank. It's too good to be true! Your queen is back. At least, for now. But your joy is shortly dashed.
-The black rook sneaks to c4! You have nothing better to do than have your queen take the rook, which triggers stalemate.
+Triumph! The pawn makes it to the eighth rank. It's too good to be true! Your queen is back. Surely she will be able to outmaneuver a mere rook?
+The black rook seems unconcerned. It sneaks to c4! You and your queen are now both under attack, but she can just take it...right?
+
+>qc4
 DEBUG: checking for stalemate, mate achievement.
 Congratulations! You just got the STALEMATE, MATE achievement!
 
@@ -78,7 +120,60 @@ Congratulations! You just got the STALEMATE, MATE achievement!
 THREEFOLD: repeating a position three times
 TRADED PAWN: letting the rook sacrifice itself for your pawn
 SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the pawn
-STALEMATE, MATE: getting the Queen back but walking into stalemate
+STALEMATE, MATE: allowing stalemate when the white Queen takes the black rook
+!PINNED PAWN:
+!CAPTURED PAWN:
+!ALTERNATE PATHS:
+!SKEWERED TO DEATH (PAWN):
+!POINTLESS BATHOS AND LOSS:
+!FORKED TO DEATH:
+!PLAIN OLD CHECKMATE:
+!CASTLE CARNAGE:
+!ALL FOR NAUGHT:
+!STALER THAN STALEMATE, MATE:
+!SKEWERED TO DEATH (ROOK):
+!SPITE CHECK (WINNING):
+!SPITE CHECK (DRAWING):
+!RUNNING UP THE SCORE:
+!ROOK ON ROOK VIOLENCE:
+!GIVING FUTILE HOPE:
+!DRAGGING IT OUT:
+!DRAGGING IT OUT ALL THE WAY:
+
+>p
+>s
+>s
+>s
+>se
+>p
+>kb3
+You recognize it will be stalemate if your wife captures the enemy rook. You give some bathetic moan about how life isn't worth living without her, but ... she's too smart for that. She knows it would have been better to at least survive.
+And of course, you realize this, too, as the enemy king and rook move in on you slowly. You realize that even if you join her in the afterlife and all that, she's not going to have much respect for you.
+Congratulations! You just got the POINTLESS BATHOS AND LOSS achievement!
+
+>think
+THREEFOLD: repeating a position three times
+TRADED PAWN: letting the rook sacrifice itself for your pawn
+SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the pawn
+STALEMATE, MATE: allowing stalemate when the white Queen takes the black rook
+POINTLESS BATHOS AND LOSS: letting the black rook take the white Queen
+!PINNED PAWN:
+!CAPTURED PAWN:
+!ALTERNATE PATHS:
+!SKEWERED TO DEATH (PAWN):
+!FORKED TO DEATH:
+!PLAIN OLD CHECKMATE:
+!CASTLE CARNAGE:
+!ALL FOR NAUGHT:
+!STALER THAN STALEMATE, MATE:
+!SKEWERED TO DEATH (ROOK):
+!SPITE CHECK (WINNING):
+!SPITE CHECK (DRAWING):
+!RUNNING UP THE SCORE:
+!ROOK ON ROOK VIOLENCE:
+!GIVING FUTILE HOPE:
+!DRAGGING IT OUT:
+!DRAGGING IT OUT ALL THE WAY:
 
 >c7
 >kb7
@@ -91,7 +186,24 @@ THREEFOLD: repeating a position three times
 PINNED PAWN: letting the rook pin your pawn
 TRADED PAWN: letting the rook sacrifice itself for your pawn
 SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the pawn
-STALEMATE, MATE: getting the Queen back but walking into stalemate
+STALEMATE, MATE: allowing stalemate when the white Queen takes the black rook
+POINTLESS BATHOS AND LOSS: letting the black rook take the white Queen
+!CAPTURED PAWN:
+!ALTERNATE PATHS:
+!SKEWERED TO DEATH (PAWN):
+!FORKED TO DEATH:
+!PLAIN OLD CHECKMATE:
+!CASTLE CARNAGE:
+!ALL FOR NAUGHT:
+!STALER THAN STALEMATE, MATE:
+!SKEWERED TO DEATH (ROOK):
+!SPITE CHECK (WINNING):
+!SPITE CHECK (DRAWING):
+!RUNNING UP THE SCORE:
+!ROOK ON ROOK VIOLENCE:
+!GIVING FUTILE HOPE:
+!DRAGGING IT OUT:
+!DRAGGING IT OUT ALL THE WAY:
 
 >c7
 >ka5
@@ -105,7 +217,23 @@ PINNED PAWN: letting the rook pin your pawn
 CAPTURED PAWN: letting the rook take your pawn for free
 TRADED PAWN: letting the rook sacrifice itself for your pawn
 SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the pawn
-STALEMATE, MATE: getting the Queen back but walking into stalemate
+POINTLESS BATHOS AND LOSS: letting the black rook take the white Queen
+STALEMATE, MATE: allowing stalemate when the white Queen takes the black rook
+!ALTERNATE PATHS:
+!SKEWERED TO DEATH (PAWN):
+!FORKED TO DEATH:
+!PLAIN OLD CHECKMATE:
+!CASTLE CARNAGE:
+!ALL FOR NAUGHT:
+!STALER THAN STALEMATE, MATE:
+!SKEWERED TO DEATH (ROOK):
+!SPITE CHECK (WINNING):
+!SPITE CHECK (DRAWING):
+!RUNNING UP THE SCORE:
+!ROOK ON ROOK VIOLENCE:
+!GIVING FUTILE HOPE:
+!DRAGGING IT OUT:
+!DRAGGING IT OUT ALL THE WAY:
 
 >p
 >s
@@ -121,7 +249,22 @@ CAPTURED PAWN: letting the rook take your pawn for free
 TRADED PAWN: letting the rook sacrifice itself for your pawn
 ALTERNATE PATHS: realizing two moves from b4 are okay
 SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the pawn
-STALEMATE, MATE: getting the Queen back but walking into stalemate
+STALEMATE, MATE: allowing stalemate when the white Queen takes the black rook
+POINTLESS BATHOS AND LOSS: letting the black rook take the white Queen
+!SKEWERED TO DEATH (PAWN):
+!FORKED TO DEATH:
+!PLAIN OLD CHECKMATE:
+!CASTLE CARNAGE:
+!ALL FOR NAUGHT:
+!STALER THAN STALEMATE, MATE:
+!SKEWERED TO DEATH (ROOK):
+!SPITE CHECK (WINNING):
+!SPITE CHECK (DRAWING):
+!RUNNING UP THE SCORE:
+!ROOK ON ROOK VIOLENCE:
+!GIVING FUTILE HOPE:
+!DRAGGING IT OUT:
+!DRAGGING IT OUT ALL THE WAY:
 
 >s
 
@@ -149,8 +292,22 @@ CAPTURED PAWN: letting the rook take your pawn for free
 TRADED PAWN: letting the rook sacrifice itself for your pawn
 ALTERNATE PATHS: realizing two moves from b4 are okay
 SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the pawn
-STALEMATE, MATE: getting the Queen back but walking into stalemate
+POINTLESS BATHOS AND LOSS: letting the black rook take the white Queen
+STALEMATE, MATE: allowing stalemate when the white Queen takes the black rook
 FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
+!SKEWERED TO DEATH (PAWN):
+!PLAIN OLD CHECKMATE:
+!CASTLE CARNAGE:
+!ALL FOR NAUGHT:
+!STALER THAN STALEMATE, MATE:
+!SKEWERED TO DEATH (ROOK):
+!SPITE CHECK (WINNING):
+!SPITE CHECK (DRAWING):
+!RUNNING UP THE SCORE:
+!ROOK ON ROOK VIOLENCE:
+!GIVING FUTILE HOPE:
+!DRAGGING IT OUT:
+!DRAGGING IT OUT ALL THE WAY:
 
 >p
 >s
@@ -173,8 +330,21 @@ TRADED PAWN: letting the rook sacrifice itself for your pawn
 ALTERNATE PATHS: realizing two moves from b4 are okay
 SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the pawn
 SKEWERED TO DEATH (PAWN): letting the rook check you on a1 and take the pawn without being captured
-STALEMATE, MATE: getting the Queen back but walking into stalemate
+POINTLESS BATHOS AND LOSS: letting the black rook take the white Queen
+STALEMATE, MATE: allowing stalemate when the white Queen takes the black rook
 FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
+!PLAIN OLD CHECKMATE:
+!CASTLE CARNAGE:
+!ALL FOR NAUGHT:
+!STALER THAN STALEMATE, MATE:
+!SKEWERED TO DEATH (ROOK):
+!SPITE CHECK (WINNING):
+!SPITE CHECK (DRAWING):
+!RUNNING UP THE SCORE:
+!ROOK ON ROOK VIOLENCE:
+!GIVING FUTILE HOPE:
+!DRAGGING IT OUT:
+!DRAGGING IT OUT ALL THE WAY:
 
 >rf a8
 >p
@@ -200,9 +370,21 @@ TRADED PAWN: letting the rook sacrifice itself for your pawn
 ALTERNATE PATHS: realizing two moves from b4 are okay
 SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the pawn
 SKEWERED TO DEATH (PAWN): letting the rook check you on a1 and take the pawn without being captured
-STALEMATE, MATE: getting the Queen back but walking into stalemate
+POINTLESS BATHOS AND LOSS: letting the black rook take the white Queen
+STALEMATE, MATE: allowing stalemate when the white Queen takes the black rook
 FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
 PLAIN OLD CHECKMATE: finding the main line solution
+!CASTLE CARNAGE:
+!ALL FOR NAUGHT:
+!STALER THAN STALEMATE, MATE:
+!SKEWERED TO DEATH (ROOK):
+!SPITE CHECK (WINNING):
+!SPITE CHECK (DRAWING):
+!RUNNING UP THE SCORE:
+!ROOK ON ROOK VIOLENCE:
+!GIVING FUTILE HOPE:
+!DRAGGING IT OUT:
+!DRAGGING IT OUT ALL THE WAY:
 
 >rf a8
 >p
@@ -225,10 +407,21 @@ TRADED PAWN: letting the rook sacrifice itself for your pawn
 ALTERNATE PATHS: realizing two moves from b4 are okay
 SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the pawn
 SKEWERED TO DEATH (PAWN): letting the rook check you on a1 and take the pawn without being captured
-STALEMATE, MATE: getting the Queen back but walking into stalemate
+POINTLESS BATHOS AND LOSS: letting the black rook take the white Queen
+STALEMATE, MATE: allowing stalemate when the white Queen takes the black rook
 FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
 PLAIN OLD CHECKMATE: finding the main line solution
 RUNNING UP THE SCORE: taking the opposing rook when mate was available
+!CASTLE CARNAGE:
+!ALL FOR NAUGHT:
+!STALER THAN STALEMATE, MATE:
+!SKEWERED TO DEATH (ROOK):
+!SPITE CHECK (WINNING):
+!SPITE CHECK (DRAWING):
+!ROOK ON ROOK VIOLENCE:
+!GIVING FUTILE HOPE:
+!DRAGGING IT OUT:
+!DRAGGING IT OUT ALL THE WAY:
 
 >rf c4
 >p
@@ -251,11 +444,21 @@ TRADED PAWN: letting the rook sacrifice itself for your pawn
 ALTERNATE PATHS: realizing two moves from b4 are okay
 SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the pawn
 SKEWERED TO DEATH (PAWN): letting the rook check you on a1 and take the pawn without being captured
-STALEMATE, MATE: getting the Queen back but walking into stalemate
+POINTLESS BATHOS AND LOSS: letting the black rook take the white Queen
+STALEMATE, MATE: allowing stalemate when the white Queen takes the black rook
 FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
 PLAIN OLD CHECKMATE: finding the main line solution
 SPITE CHECK (WINNING): checking the enemy king with their rook prone
 RUNNING UP THE SCORE: taking the opposing rook when mate was available
+!CASTLE CARNAGE:
+!ALL FOR NAUGHT:
+!STALER THAN STALEMATE, MATE:
+!SKEWERED TO DEATH (ROOK):
+!SPITE CHECK (DRAWING):
+!ROOK ON ROOK VIOLENCE:
+!GIVING FUTILE HOPE:
+!DRAGGING IT OUT:
+!DRAGGING IT OUT ALL THE WAY:
 
 >rf h4
 >p
@@ -278,12 +481,21 @@ TRADED PAWN: letting the rook sacrifice itself for your pawn
 ALTERNATE PATHS: realizing two moves from b4 are okay
 SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the pawn
 SKEWERED TO DEATH (PAWN): letting the rook check you on a1 and take the pawn without being captured
-STALEMATE, MATE: getting the Queen back but walking into stalemate
+POINTLESS BATHOS AND LOSS: letting the black rook take the white Queen
+STALEMATE, MATE: allowing stalemate when the white Queen takes the black rook
 FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
 PLAIN OLD CHECKMATE: finding the main line solution
 SPITE CHECK (WINNING): checking the enemy king with their rook prone
 SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
 RUNNING UP THE SCORE: taking the opposing rook when mate was available
+!CASTLE CARNAGE:
+!ALL FOR NAUGHT:
+!STALER THAN STALEMATE, MATE:
+!SKEWERED TO DEATH (ROOK):
+!ROOK ON ROOK VIOLENCE:
+!GIVING FUTILE HOPE:
+!DRAGGING IT OUT:
+!DRAGGING IT OUT ALL THE WAY:
 
 >rf c4
 >p
@@ -306,13 +518,21 @@ TRADED PAWN: letting the rook sacrifice itself for your pawn
 ALTERNATE PATHS: realizing two moves from b4 are okay
 SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the pawn
 SKEWERED TO DEATH (PAWN): letting the rook check you on a1 and take the pawn without being captured
-STALEMATE, MATE: getting the Queen back but walking into stalemate
+POINTLESS BATHOS AND LOSS: letting the black rook take the white Queen
+STALEMATE, MATE: allowing stalemate when the white Queen takes the black rook
 FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
 PLAIN OLD CHECKMATE: finding the main line solution
 SPITE CHECK (WINNING): checking the enemy king with their rook prone
 SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
 RUNNING UP THE SCORE: taking the opposing rook when mate was available
 ROOK ON ROOK VIOLENCE: taking the opposing rook with the rook when they blocked immediate checkmate
+!CASTLE CARNAGE:
+!ALL FOR NAUGHT:
+!STALER THAN STALEMATE, MATE:
+!SKEWERED TO DEATH (ROOK):
+!GIVING FUTILE HOPE:
+!DRAGGING IT OUT:
+!DRAGGING IT OUT ALL THE WAY:
 
 >rf c4
 >p
@@ -335,7 +555,8 @@ TRADED PAWN: letting the rook sacrifice itself for your pawn
 ALTERNATE PATHS: realizing two moves from b4 are okay
 SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the pawn
 SKEWERED TO DEATH (PAWN): letting the rook check you on a1 and take the pawn without being captured
-STALEMATE, MATE: getting the Queen back but walking into stalemate
+POINTLESS BATHOS AND LOSS: letting the black rook take the white Queen
+STALEMATE, MATE: allowing stalemate when the white Queen takes the black rook
 FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
 PLAIN OLD CHECKMATE: finding the main line solution
 SPITE CHECK (WINNING): checking the enemy king with their rook prone
@@ -343,6 +564,12 @@ SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
 RUNNING UP THE SCORE: taking the opposing rook when mate was available
 ROOK ON ROOK VIOLENCE: taking the opposing rook with the rook when they blocked immediate checkmate
 GIVING FUTILE HOPE: taking the opposing rook with the king when they blocked immediate checkmate
+!CASTLE CARNAGE:
+!ALL FOR NAUGHT:
+!STALER THAN STALEMATE, MATE:
+!SKEWERED TO DEATH (ROOK):
+!DRAGGING IT OUT:
+!DRAGGING IT OUT ALL THE WAY:
 
 # note: maybe try alternate path through with e4, f4, g4, h4 etc.?
 >rf d4
@@ -367,7 +594,8 @@ TRADED PAWN: letting the rook sacrifice itself for your pawn
 ALTERNATE PATHS: realizing two moves from b4 are okay
 SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the pawn
 SKEWERED TO DEATH (PAWN): letting the rook check you on a1 and take the pawn without being captured
-STALEMATE, MATE: getting the Queen back but walking into stalemate
+POINTLESS BATHOS AND LOSS: letting the black rook take the white Queen
+STALEMATE, MATE: allowing stalemate when the white Queen takes the black rook
 FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
 PLAIN OLD CHECKMATE: finding the main line solution
 SPITE CHECK (WINNING): checking the enemy king with their rook prone
@@ -376,6 +604,11 @@ RUNNING UP THE SCORE: taking the opposing rook when mate was available
 ROOK ON ROOK VIOLENCE: taking the opposing rook with the rook when they blocked immediate checkmate
 GIVING FUTILE HOPE: taking the opposing rook with the king when they blocked immediate checkmate
 CASTLE CARNAGE: managing to trade off rooks
+!ALL FOR NAUGHT:
+!STALER THAN STALEMATE, MATE:
+!SKEWERED TO DEATH (ROOK):
+!DRAGGING IT OUT:
+!DRAGGING IT OUT ALL THE WAY:
 
 # two cases here: b8 and d8
 >rf a8
@@ -399,7 +632,8 @@ TRADED PAWN: letting the rook sacrifice itself for your pawn
 ALTERNATE PATHS: realizing two moves from b4 are okay
 SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the pawn
 SKEWERED TO DEATH (PAWN): letting the rook check you on a1 and take the pawn without being captured
-STALEMATE, MATE: getting the Queen back but walking into stalemate
+POINTLESS BATHOS AND LOSS: letting the black rook take the white Queen
+STALEMATE, MATE: allowing stalemate when the white Queen takes the black rook
 FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
 PLAIN OLD CHECKMATE: finding the main line solution
 SPITE CHECK (WINNING): checking the enemy king with their rook prone
@@ -409,6 +643,10 @@ ROOK ON ROOK VIOLENCE: taking the opposing rook with the rook when they blocked 
 GIVING FUTILE HOPE: taking the opposing rook with the king when they blocked immediate checkmate
 CASTLE CARNAGE: managing to trade off rooks
 ALL FOR NAUGHT: managing to give your rook away
+!STALER THAN STALEMATE, MATE:
+!SKEWERED TO DEATH (ROOK):
+!DRAGGING IT OUT:
+!DRAGGING IT OUT ALL THE WAY:
 
 >rf a7
 >p
@@ -431,7 +669,8 @@ TRADED PAWN: letting the rook sacrifice itself for your pawn
 ALTERNATE PATHS: realizing two moves from b4 are okay
 SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the pawn
 SKEWERED TO DEATH (PAWN): letting the rook check you on a1 and take the pawn without being captured
-STALEMATE, MATE: getting the Queen back but walking into stalemate
+POINTLESS BATHOS AND LOSS: letting the black rook take the white Queen
+STALEMATE, MATE: allowing stalemate when the white Queen takes the black rook
 FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
 PLAIN OLD CHECKMATE: finding the main line solution
 SPITE CHECK (WINNING): checking the enemy king with their rook prone
@@ -442,6 +681,9 @@ GIVING FUTILE HOPE: taking the opposing rook with the king when they blocked imm
 CASTLE CARNAGE: managing to trade off rooks
 ALL FOR NAUGHT: managing to give your rook away
 STALER THAN STALEMATE, MATE: drawn ending with equal material
+!SKEWERED TO DEATH (ROOK):
+!DRAGGING IT OUT:
+!DRAGGING IT OUT ALL THE WAY:
 
 >rf a2
 >p
@@ -466,7 +708,8 @@ TRADED PAWN: letting the rook sacrifice itself for your pawn
 ALTERNATE PATHS: realizing two moves from b4 are okay
 SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the pawn
 SKEWERED TO DEATH (PAWN): letting the rook check you on a1 and take the pawn without being captured
-STALEMATE, MATE: getting the Queen back but walking into stalemate
+POINTLESS BATHOS AND LOSS: letting the black rook take the white Queen
+STALEMATE, MATE: allowing stalemate when the white Queen takes the black rook
 FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
 PLAIN OLD CHECKMATE: finding the main line solution
 SPITE CHECK (WINNING): checking the enemy king with their rook prone
@@ -478,6 +721,8 @@ CASTLE CARNAGE: managing to trade off rooks
 ALL FOR NAUGHT: managing to give your rook away
 STALER THAN STALEMATE, MATE: drawn ending with equal material
 SKEWERED TO DEATH (ROOK): letting the black rook go to b2 and skewer your b8-rook
+!DRAGGING IT OUT:
+!DRAGGING IT OUT ALL THE WAY:
 
 >rf a7
 >p
@@ -503,7 +748,8 @@ TRADED PAWN: letting the rook sacrifice itself for your pawn
 ALTERNATE PATHS: realizing two moves from b4 are okay
 SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the pawn
 SKEWERED TO DEATH (PAWN): letting the rook check you on a1 and take the pawn without being captured
-STALEMATE, MATE: getting the Queen back but walking into stalemate
+POINTLESS BATHOS AND LOSS: letting the black rook take the white Queen
+STALEMATE, MATE: allowing stalemate when the white Queen takes the black rook
 FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
 PLAIN OLD CHECKMATE: finding the main line solution
 SPITE CHECK (WINNING): checking the enemy king with their rook prone
@@ -516,6 +762,7 @@ ALL FOR NAUGHT: managing to give your rook away
 SKEWERED TO DEATH (ROOK): letting the black rook go to b2 and skewer your b8-rook
 STALER THAN STALEMATE, MATE: drawn ending with equal material
 DRAGGING IT OUT: taking extra turns to win, considering repetition
+!DRAGGING IT OUT ALL THE WAY:
 
 >rf a7
 >p

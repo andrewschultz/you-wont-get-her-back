@@ -33,7 +33,7 @@ DEBUG: checking for threefold achievement.
 Congratulations! You just got the THREEFOLD achievement!
 
 # move 0 right, move 1 wrong
->note-0
+#note-0
 
 >ne
 The black rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Of course, the enemy king has no shot of corralling the pawn so the rook doesn't die in the process, even though you'll need to get back out of your pawn's way. Your hopes of winning are dashed!
@@ -83,7 +83,7 @@ DEBUG: checking for traded pawn achievement.
 !Congratulations!
 
 # move 1 right, move 2 wrong
->note-1
+#note-1
 
 >p
 b6
@@ -130,7 +130,7 @@ Okay, let's set things back where they were and try again.
 But the white pawn is already there.
 
 # move 2 right, move 3 wrong
->note-2
+#note-2
 
 >s
 b5
@@ -177,7 +177,7 @@ Congratulations! You just got the CAPTURED PAWN achievement!
 >undo
 
 # move 3 right, move 4 wrong
->note-3
+#note-3
 
 >s
 b4
@@ -214,7 +214,7 @@ But the enemy rook would still see you there.
 >w
 But the enemy rook would still see you there.
 
->note-4a
+#note-4a
 
 # move 4a right, move 5a wrong. 4a is moving to b3 instead of c3.
 >s
@@ -266,7 +266,7 @@ Congratulations! You just got the SKEWERED TO A DRAW achievement!
 >undo
 >undo
 
->note-4b
+#note-4b
 # move 4b right, move 5b wrong. 4b is moving to c3 instead of b3.
 
 >se
@@ -307,16 +307,7 @@ Congratulations! You just got the SKEWERED TO DEATH (PAWN) achievement!
 >s
 The black rook slides north to d4.
 
->note-5
-
-# move 5 right, move 6 wrong
->c8
-Triumph! The pawn makes it to the eighth rank. It's too good to be true! Your queen is back. At least, for now. But your joy is shortly dashed.
-The black rook sneaks to c4! You have nothing better to do than have your queen take the rook, which triggers stalemate.
-DEBUG: checking for stalemate, mate achievement.
-Congratulations! You just got the STALEMATE, MATE achievement!
-
->undo
+#note-5
 
 >w
 Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
@@ -369,6 +360,74 @@ DEBUG: checking for forked to death achievement.
 Congratulations! You just got the FORKED TO DEATH achievement!
 
 >undo
+
+# branch for stalemate or bathos
+
+>c8q
+Triumph! The pawn makes it to the eighth rank. It's too good to be true! Your queen is back. Surely she will be able to outmaneuver a mere rook?
+The black rook seems unconcerned. It sneaks to c4! You and your queen are now both under attack, but she can just take it...right?
+
+>qc4
+Your wife swoops in and gives the enemy rook a good what-for. But there's a problem! The enemy king can't move anywhere! By some really awful ancient rules of war, this is not on. Stalemate, it's called. All the fighting is for naught. You're forced to resign your royal title because, apparently, you didn't do things right.
+They claim you could've avoided it. But what is the right way, then?
+Congratulations! You just got the STALEMATE, MATE achievement!
+
+>undo
+
+>qa6
+All your wife can do is capture the enemy rook.
+!can't access
+>undo
+
+>qa7
+All your wife can do is capture the enemy rook. She can't access a7, anyway.
+>undo
+
+>qe6
+All your wife can do is capture the enemy rook.
+!can't access
+>undo
+
+>qe7
+All your wife can do is capture the enemy rook. She can't access e7, anyway.
+>undo
+
+>kb3
+Congratulations! You just got the POINTLESS BATHOS AND LOSS achievement!
+>undo
+
+>kc3
+But the enemy rook would still see you there.
+>undo
+
+>kd3
+Congratulations! You just got the POINTLESS BATHOS AND LOSS achievement!
+>undo
+
+>kb2
+Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
+>undo
+
+>kd2
+Congratulations! You just got the POINTLESS BATHOS AND LOSS achievement!
+>undo
+
+>kb1
+Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
+>undo
+
+>kc1
+But the enemy rook would still see you there.
+>undo
+
+>kd1
+Congratulations! You just got the POINTLESS BATHOS AND LOSS achievement!
+>undo
+
+>undo
+
+
+
 
 # move 6 right, move 7 wrong
 
