@@ -122,7 +122,7 @@ The rook chuckles as it backpedals to d7. Your pawn is pinned against you. Even 
 DEBUG: checking for pinned pawn achievement.
 !Congratulations! You just got the PINNED PAWN achievement!
 
-Well, let's try again.
+Okay, let's set things back where they were and try again.
 
 >undo
 
@@ -230,12 +230,12 @@ But the enemy rook would still see you there.
 >undo
 
 >sw
-Ugh, no. Don't want to get too close to the enemy king.
+Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
 
 >undo
 
 >s
-Ugh, no. Don't want to get too close to the enemy king.
+Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
 
 >undo
 
@@ -281,7 +281,7 @@ But the enemy rook would see you there.
 But the enemy rook would see you there.
 
 >sw
-Ugh, no. Don't want to get too close to the enemy king.
+Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
 
 >w
 Oh no! That prevents the rook skewering your advanced pawn, but after it slides to c1, the pawn is undefendable.
@@ -311,7 +311,7 @@ The black rook slides north to d4.
 
 # move 5 right, move 6 wrong
 >c8
-Triumph! The pawn makes it to the eighth rank. There is a swirl of light before the white queen pops up.
+Triumph! The pawn makes it to the eighth rank. It's too good to be true! Your queen is back. At least, for now. But your joy is shortly dashed.
 The black rook sneaks to c4! You have nothing better to do than have your queen take the rook, which triggers stalemate.
 DEBUG: checking for stalemate, mate achievement.
 Congratulations! You just got the STALEMATE, MATE achievement!
@@ -319,10 +319,10 @@ Congratulations! You just got the STALEMATE, MATE achievement!
 >undo
 
 >w
-Ugh, no. Don't want to get too close to the enemy king.
+Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
 
 >sw
-Ugh, no. Don't want to get too close to the enemy king.
+Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
 
 >e
 But the enemy rook would see you there.
@@ -354,7 +354,7 @@ The black rook slides south to d1.
 
 >c8b
 !You decide to promote to the white bishop, not the white queen, if your pawn ever makes it.
-Triumph! The pawn makes it to the eighth rank. There is a swirl of light before the white bishop pops up.
+Triumph! The pawn makes it to the eighth rank. The black king laughs as the white bishop, and not your wife the white queen, pops up.
 The black rook snickers as it slides over to c4. Your newly returned ally, the white bishop, will be captured next move, and a very unpleasant but inevitably lost rook endgame awaits.
 DEBUG: checking for forked to death achievement.
 Congratulations! You just got the FORKED TO DEATH achievement!
@@ -363,7 +363,7 @@ Congratulations! You just got the FORKED TO DEATH achievement!
 
 >c8n
 !You decide to promote to the white knight, not the white queen, if your pawn ever makes it.
-Triumph! The pawn makes it to the eighth rank. There is a swirl of light before the white knight pops up.
+Triumph! The pawn makes it to the eighth rank. The black king laughs as the white knight, and not your wife the white queen, pops up.
 The black rook snickers as it slides over to c4. Your newly returned ally, the white knight, will be captured next move, and a very unpleasant but inevitably lost rook endgame awaits.
 DEBUG: checking for forked to death achievement.
 Congratulations! You just got the FORKED TO DEATH achievement!
@@ -375,10 +375,10 @@ Congratulations! You just got the FORKED TO DEATH achievement!
 >c8r
 
 >w
-Ugh, no. Don't want to get too close to the enemy king.
+Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
 
 >sw
-Ugh, no. Don't want to get too close to the enemy king.
+Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
 
 >n
 The black rook and king breathe a collective sigh of relief as the black king slides up to a2, relieved he's out of the corner and his rook defends the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
@@ -467,37 +467,37 @@ Congratulations! You just got the ALL FOR NAUGHT achievement!
 >undo
 
 >rb8
-The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+The black rook and king breathe a collective sigh of relief as the black king slides up to a2, relieved he's out of the corner and his rook defends the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
 DEBUG: checking for staler than stalemate, mate achievement.
 Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >rd8
-The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+The black rook and king breathe a collective sigh of relief as the black king slides up to a2, relieved he's out of the corner and his rook defends the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
 DEBUG: checking for staler than stalemate, mate achievement.
 Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >re8
-The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+The black rook and king breathe a collective sigh of relief as the black king slides up to a2, relieved he's out of the corner and his rook defends the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
 DEBUG: checking for staler than stalemate, mate achievement.
 Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >rf8
-The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+The black rook and king breathe a collective sigh of relief as the black king slides up to a2, relieved he's out of the corner and his rook defends the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
 DEBUG: checking for staler than stalemate, mate achievement.
 Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >rg8
-The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+The black rook and king breathe a collective sigh of relief as the black king slides up to a2, relieved he's out of the corner and his rook defends the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
 DEBUG: checking for staler than stalemate, mate achievement.
 Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >rh8
-The black rook and king breathe a collective sigh of relief as the black king edges up to a2. The black rook can just shuffle on the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+The black rook and king breathe a collective sigh of relief as the black king slides up to a2, relieved he's out of the corner and his rook defends the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
 DEBUG: checking for staler than stalemate, mate achievement.
 Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
@@ -510,6 +510,8 @@ Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >s
 >se
 >c8r
+
+#start try/undo
 
 # final move: a8
 
@@ -529,29 +531,38 @@ Congratulations! You just got the ALL FOR NAUGHT achievement!
 >undo
 
 >rc7
-The black rook and king breathe a collective sigh of relief as the black king edges across to b1. The black rook can just shuffle on the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+The black rook and king breathe a collective sigh of relief as the black rook begins checking you vertically. You'll never be able to stay on a3 and b3 to keep the enemy king boxed in. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
 DEBUG: checking for staler than stalemate, mate achievement.
 Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >kc4
-WRONG
+Your rook looks dismayed as the black rook laughs and jumps at them! All that work, and nothing to show for it. You can't even take the enemy rook back! What a sad way to lose.
+DEBUG: checking for all for naught achievement.
+Congratulations! You just got the ALL FOR NAUGHT achievement!
 >undo
 
 >kc3
-WRONG
+Your rook looks dismayed as the black rook laughs and jumps at them! All that work, and nothing to show for it. You can't even take the enemy rook back! What a sad way to lose.
+DEBUG: checking for all for naught achievement.
+Congratulations! You just got the ALL FOR NAUGHT achievement!
 >undo
 
 >kb4
-WRONG
+Your rook looks dismayed as the black rook laughs and jumps at them! All that work, and nothing to show for it. You can't even take the enemy rook back! What a sad way to lose.
+DEBUG: checking for all for naught achievement.
+Congratulations! You just got the ALL FOR NAUGHT achievement!
 >undo
 
 >kc2
-WRONG
+Your rook looks dismayed as the black rook laughs and jumps at them! All that work, and nothing to show for it. You can't even take the enemy rook back! What a sad way to lose.
+DEBUG: checking for all for naught achievement.
+Congratulations! You just got the ALL FOR NAUGHT achievement!
 >undo
 
 >rc1
-YOU WIN!
+And so it comes to pass: the enemy king, safe from the main action for so long, is trapped. He thought he was safe or, if you got close, he could get out of the corner quickly enough. Even being one square away from the corner would've been good enough! Well, he deserved his fate. You can't remember how or why he got there. You have your revenge, which is something, even if you will have to do without your queen.
+It's been a long fight. You don't even remember why it started. But with your rook beside you, you will restore the kingdom, slowly but surely.
 DEBUG: checking for plain old checkmate achievement.
 Congratulations! You just got the PLAIN OLD CHECKMATE achievement!
 >undo
@@ -576,13 +587,14 @@ Congratulations! You just got the ALL FOR NAUGHT achievement!
 >undo
 
 >rc5
-The black rook and king breathe a collective sigh of relief as the black king edges across to b1. The black rook can just shuffle on the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+The black rook and king breathe a collective sigh of relief as the black rook begins checking you vertically. You'll never be able to stay on a3 and b3 to keep the enemy king boxed in. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+
 DEBUG: checking for staler than stalemate, mate achievement.
 Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >ka2
-Ugh, no. Don't want to get too close to the enemy king.
+Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
 >undo
 
 >ka3
@@ -591,14 +603,14 @@ But the enemy rook would see you there.
 
 >ka4
 But the enemy rook would see you there.
+>undo
 
 >rc1
-YOU WIN!
+*** Personal Loss, Victory in Battle ***
 DEBUG: checking for plain old checkmate achievement.
 Congratulations! You just got the PLAIN OLD CHECKMATE achievement!
 >undo
 
->undo
 >undo
 >undo
 
@@ -614,15 +626,18 @@ Congratulations! You just got the ALL FOR NAUGHT achievement!
 >undo
 
 >rc5
-The black rook and king breathe a collective sigh of relief as the black king edges across to b1. The black rook can just shuffle on the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+The black rook and king breathe a collective sigh of relief as the black rook begins checking you vertically. You'll never be able to stay on a3 and b3 to keep the enemy king boxed in. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
 DEBUG: checking for staler than stalemate, mate achievement.
 Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >rc1
-YOU WIN!
+*** Personal Loss, Victory in Battle ***
 DEBUG: checking for plain old checkmate achievement.
 Congratulations! You just got the PLAIN OLD CHECKMATE achievement!
+>undo
+
+>undo
 >undo
 
 # final move: a5
@@ -637,15 +652,18 @@ Congratulations! You just got the ALL FOR NAUGHT achievement!
 >undo
 
 >rh8
-The black rook and king breathe a collective sigh of relief as the black king edges across to b1. The black rook can just shuffle on the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+The black rook and king breathe a collective sigh of relief as the black rook begins checking you vertically. You'll never be able to stay on a3 and b3 to keep the enemy king boxed in. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
 DEBUG: checking for staler than stalemate, mate achievement.
 Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >rc1
-YOU WIN!
+*** Personal Loss, Victory in Battle ***
 DEBUG: checking for plain old checkmate achievement.
 Congratulations! You just got the PLAIN OLD CHECKMATE achievement!
+>undo
+
+>undo
 >undo
 
 # final move: a2
@@ -660,134 +678,167 @@ Congratulations! You just got the ALL FOR NAUGHT achievement!
 >undo
 
 >rb8
-OH MAN YOU LOST
+A loud shout from behind: "what the heck are you doing? Are you TRYING to find ways to lose?"
+You turn your head, and when you face forward, the black rook is staring at you, about to break down in laughter.
+Congratulations! You just got the SKEWERED TO DEATH (ROOK) achievement!
+>undo
 
 >rc2
-Your rook looks dismayed as the black rook laughs and jumps at them! All that work, and nothing to show for it. You can't even take the enemy rook back! What a sad way to lose.
-DEBUG: checking for all for naught achievement.
-Congratulations! You just got the ALL FOR NAUGHT achievement!
+Your rook looks dismayed. The black rook seems surprised. "Take him and get it over with! I'm tired of this stupid war!" the king booms from the corner. The black rook and your rook protest. They'd like a good, long, boring draw, but your opposite number doesn't have time for that. The black rook sighs and does its duty.
+All that work, and nothing to show for it all around. At least you are able to take the enemy rook back to force a draw.
+Congratulations! You just got the CASTLE CARNAGE achievement!
 >undo
 
 >rh8
-The black rook and king breathe a collective sigh of relief as the black king edges across to b1. The black rook can just shuffle on the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+The black rook and king breathe a collective sigh of relief as the black rook begins checking you vertically. You'll never be able to stay on a3 and b3 to keep the enemy king boxed in. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
 DEBUG: checking for staler than stalemate, mate achievement.
 Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >rc1
-YOU WIN!
+*** Personal Loss, Victory in Battle ***
 DEBUG: checking for plain old checkmate achievement.
 Congratulations! You just got the PLAIN OLD CHECKMATE achievement!
 >undo
 
+>undo
+>undo
+
 # final move: a3
+
 >rf a3
 >kb3
 
 >ka2
-WRONG
+Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
 >undo
 
 >kb2
-WRONG
+Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
 >undo
 
 >kc2
-WRONG
+"Geez. What a coward. Didn't even want to capture me." The rook proceeds to patrol the third rank, and after fifty moves, the war is officially declared a draw.
+DEBUG: checking for staler than stalemate, mate achievement.
+Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >ka3
-YOU WIN
+BAM! Take that, rook! The rest is straightforward. Your enemy moves to b1, you move to b3, and they move to a1, and your rook delivers the kill on c1. Victory!
 >undo
 
 >kc3
-WRONG
+But the enemy rook would still see you there.
 >undo
 
 >kb4
-WRONG
+"Geez. What a coward. Didn't even want to capture me." The rook proceeds to patrol the third rank, and after fifty moves, the war is officially declared a draw.
+DEBUG: checking for staler than stalemate, mate achievement.
+Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >kc4
-WRONG
+"Geez. What a coward. Didn't even want to capture me." The rook proceeds to patrol the third rank, and after fifty moves, the war is officially declared a draw.
+DEBUG: checking for staler than stalemate, mate achievement.
+Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >undo
 >undo
 
 # final move: b4
+
 >rf b4
 >kb3
 
 >ka4
-WRONG
+But the enemy rook would still see you there.
 >undo
 
 >kc4
-WRONG
+But the enemy rook would still see you there.
 >undo
 
 >ka3
-WRONG
+"Geez. What a coward. Didn't even want to capture me." The rook proceeds to patrol the a-file, checking you if you try for a sneaky checkmate on b3, and after fifty moves, the war is officially declared a draw.
+DEBUG: checking for staler than stalemate, mate achievement.
+Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >kb3
-WRONG
+You can't pass. In fact, it won't ever do you any good. There's no zugzwang anywhere around.
 >undo
 
 >kc3
-WRONG
+"Geez. What a coward. Didn't even want to capture me." The rook proceeds to patrol the a-file, checking you if you try for a sneaky checkmate on b3, and after fifty moves, the war is officially declared a draw.
+DEBUG: checking for staler than stalemate, mate achievement.
+Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >ka2
-WRONG
+Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
 >undo
 
 >kb2
-WRONG
+Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
 >undo
 
 >kc2
-WRONG
+"Geez. What a coward. Didn't even want to capture me." The rook proceeds to patrol the a-file, checking you if you try for a sneaky checkmate on b3, and after fifty moves, the war is officially declared a draw.
+DEBUG: checking for staler than stalemate, mate achievement.
+Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >undo
 >undo
 
 # final move: c4
+
 >rf c4
 >kb3
 
 >kc4
-WRONG
+Of course, you could have had your rook take. But you had a bit of unfinished business. You needed someone to beat up after being forced to get your rook and not your wife back. Your own rook understands, of course. The enemy king is forced out of the corner momentarily until you stuff him back in. It's a nice bit of petty revenge, especially since it doesn't get in the way of winning the war.
+DEBUG: checking for giving futile hope achievement.
+Congratulations! You just got the GIVING FUTILE HOPE achievement!
 >undo
 
 >ka3
-WRONG
+Your rook looks dismayed as the black rook laughs and jumps at them! All that work, and nothing to show for it. You can't even take the enemy rook back! What a sad way to lose.
+DEBUG: checking for all for naught achievement.
+Congratulations! You just got the ALL FOR NAUGHT achievement!
 >undo
 
 >kb4
-WRONG
+But the enemy rook would see you there.
 >undo
 
 >kc3
-WRONG
+But the enemy rook would see you there.
 >undo
 
 >kb2
-WRONG
+Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
 >undo
 
 >rc4
-WRONG
+Well, since the black rook forced you to, why not? That doesn't stop the inevitable. In fact, it barely delays things. But it was fun, seeing your opponents grovel for a bit, in a way.
+DEBUG: checking for rook on rook violence achievement.
+Congratulations! You just got the ROOK ON ROOK VIOLENCE achievement!
 >undo
 
 >rc6
-WRONG
+Your rook looks dismayed as the black rook laughs and jumps at them! All that work, and nothing to show for it. You can't even take the enemy rook back! What a sad way to lose.
+DEBUG: checking for all for naught achievement.
+Congratulations! You just got the ALL FOR NAUGHT achievement!
 >undo
 
 >rc8
-WRONG
+You can't pass. In fact, it won't ever do you any good. There's no zugzwang anywhere around.
+>undo
+
+>rc1
+Your rook would have to jump over something to get to c1.
 >undo
 
 >undo
@@ -799,19 +850,28 @@ WRONG
 >kb3
 
 >rc4
->WRONG
+Your rook looks dismayed. The black rook seems surprised. "Take him and get it over with! I'm tired of this stupid war!" the king booms from the corner. The black rook and your rook protest. They'd like a good, long, boring draw, but your opposite number doesn't have time for that. The black rook sighs and does its duty.
+All that work, and nothing to show for it all around. At least you are able to take the enemy rook back to force a draw.
+DEBUG: checking for castle carnage achievement.
+Congratulations! You just got the CASTLE CARNAGE achievement!
 >undo
 
 >rd8
->WRONG
+Your rook looks dismayed as the black rook laughs and jumps at them! All that work, and nothing to show for it. You can't even take the enemy rook back! What a sad way to lose.
+DEBUG: checking for all for naught achievement.
+Congratulations! You just got the ALL FOR NAUGHT achievement!
 >undo
 
 >rh8
->WRONG
+The black rook and king breathe a collective sigh of relief as the black rook begins checking you vertically. You'll never be able to stay on a3 and b3 to keep the enemy king boxed in. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+DEBUG: checking for staler than stalemate, mate achievement.
+Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >ra8
-WRONG
+There are spite checks and then there are spite checks! Your rook slides all the way to the side. The black king moves, but you have no follow-up. The black rook zips to the side of the board, and you will be pushed away from the enemy king.
+DEBUG: checking for spite check (drawing) achievement.
+Congratulations! You just got the SPITE CHECK (DRAWING) achievement!
 >undo
 
 >undo
@@ -823,19 +883,29 @@ WRONG
 >kb3
 
 >rc4
->WRONG
+Your rook looks dismayed. The black rook seems surprised. "Take him and get it over with! I'm tired of this stupid war!" the king booms from the corner. The black rook and your rook protest. They'd like a good, long, boring draw, but your opposite number doesn't have time for that. The black rook sighs and does its duty.
+
+All that work, and nothing to show for it all around. At least you are able to take the enemy rook back to force a draw.
+DEBUG: checking for castle carnage achievement.
+Congratulations! You just got the CASTLE CARNAGE achievement!
 >undo
 
 >re8
->WRONG
+Your rook looks dismayed as the black rook laughs and jumps at them! All that work, and nothing to show for it. You can't even take the enemy rook back! What a sad way to lose.
+DEBUG: checking for all for naught achievement.
+Congratulations! You just got the ALL FOR NAUGHT achievement!
 >undo
 
 >rh8
->WRONG
+The black rook and king breathe a collective sigh of relief as the black rook begins checking you vertically. You'll never be able to stay on a3 and b3 to keep the enemy king boxed in. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+DEBUG: checking for staler than stalemate, mate achievement.
+Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >ra8
-WRONG
+There are spite checks and then there are spite checks! Your rook slides all the way to the side. The black king moves, but you have no follow-up. The black rook zips to the side of the board, and you will be pushed away from the enemy king.
+DEBUG: checking for spite check (drawing) achievement.
+Congratulations! You just got the SPITE CHECK (DRAWING) achievement!
 >undo
 
 >undo
@@ -847,19 +917,28 @@ WRONG
 >kb3
 
 >rc4
->WRONG
+Your rook looks dismayed. The black rook seems surprised. "Take him and get it over with! I'm tired of this stupid war!" the king booms from the corner. The black rook and your rook protest. They'd like a good, long, boring draw, but your opposite number doesn't have time for that. The black rook sighs and does its duty.
+All that work, and nothing to show for it all around. At least you are able to take the enemy rook back to force a draw.
+DEBUG: checking for castle carnage achievement.
+Congratulations! You just got the CASTLE CARNAGE achievement!
 >undo
 
 >rf8
->WRONG
+Your rook looks dismayed as the black rook laughs and jumps at them! All that work, and nothing to show for it. You can't even take the enemy rook back! What a sad way to lose.
+DEBUG: checking for all for naught achievement.
+Congratulations! You just got the ALL FOR NAUGHT achievement!
 >undo
 
 >rh8
->WRONG
+The black rook and king breathe a collective sigh of relief as the black rook begins checking you vertically. You'll never be able to stay on a3 and b3 to keep the enemy king boxed in. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+DEBUG: checking for staler than stalemate, mate achievement.
+Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >ra8
-WRONG
+There are spite checks and then there are spite checks! Your rook slides all the way to the side. The black king moves, but you have no follow-up. The black rook zips to the side of the board, and you will be pushed away from the enemy king.
+DEBUG: checking for spite check (drawing) achievement.
+Congratulations! You just got the SPITE CHECK (DRAWING) achievement!
 >undo
 
 >undo
@@ -871,19 +950,28 @@ WRONG
 >kb3
 
 >rc4
->WRONG
+Your rook looks dismayed. The black rook seems surprised. "Take him and get it over with! I'm tired of this stupid war!" the king booms from the corner. The black rook and your rook protest. They'd like a good, long, boring draw, but your opposite number doesn't have time for that. The black rook sighs and does its duty.
+All that work, and nothing to show for it all around. At least you are able to take the enemy rook back to force a draw.
+DEBUG: checking for castle carnage achievement.
+Congratulations! You just got the CASTLE CARNAGE achievement!
 >undo
 
 >rg8
->WRONG
+Your rook looks dismayed as the black rook laughs and jumps at them! All that work, and nothing to show for it. You can't even take the enemy rook back! What a sad way to lose.
+DEBUG: checking for all for naught achievement.
+Congratulations! You just got the ALL FOR NAUGHT achievement!
 >undo
 
 >rh8
->WRONG
+The black rook and king breathe a collective sigh of relief as the black rook begins checking you vertically. You'll never be able to stay on a3 and b3 to keep the enemy king boxed in. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+DEBUG: checking for staler than stalemate, mate achievement.
+Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >ra8
-WRONG
+There are spite checks and then there are spite checks! Your rook slides all the way to the side. The black king moves, but you have no follow-up. The black rook zips to the side of the board, and you will be pushed away from the enemy king.
+DEBUG: checking for spite check (drawing) achievement.
+Congratulations! You just got the SPITE CHECK (DRAWING) achievement!
 >undo
 
 >undo
@@ -895,19 +983,28 @@ WRONG
 >kb3
 
 >rc4
->WRONG
+Your rook looks dismayed. The black rook seems surprised. "Take him and get it over with! I'm tired of this stupid war!" the king booms from the corner. The black rook and your rook protest. They'd like a good, long, boring draw, but your opposite number doesn't have time for that. The black rook sighs and does its duty.
+All that work, and nothing to show for it all around. At least you are able to take the enemy rook back to force a draw.
+DEBUG: checking for castle carnage achievement.
+Congratulations! You just got the CASTLE CARNAGE achievement!
 >undo
 
 >rh8
->WRONG
+Your rook looks dismayed as the black rook laughs and jumps at them! All that work, and nothing to show for it. You can't even take the enemy rook back! What a sad way to lose.
+DEBUG: checking for all for naught achievement.
+Congratulations! You just got the ALL FOR NAUGHT achievement!
 >undo
 
 >re8
->WRONG
+The black rook and king breathe a collective sigh of relief as the black rook begins checking you vertically. You'll never be able to stay on a3 and b3 to keep the enemy king boxed in. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
+DEBUG: checking for staler than stalemate, mate achievement.
+Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >ra8
-WRONG
+There are spite checks and then there are spite checks! Your rook slides all the way to the side. The black king moves, but you have no follow-up. The black rook zips to the side of the board, and you will be pushed away from the enemy king.
+DEBUG: checking for spite check (drawing) achievement.
+Congratulations! You just got the SPITE CHECK (DRAWING) achievement!
 >undo
 
 >undo
