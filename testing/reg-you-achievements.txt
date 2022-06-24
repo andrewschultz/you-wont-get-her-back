@@ -49,7 +49,7 @@ SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the
 >s
 >se
 >p
-Triumph! The pawn makes it to the eighth rank. There is a swirl of light before the white queen pops up.
+Triumph! The pawn makes it to the eighth rank. It's too good to be true! Your queen is back. At least, for now. But your joy is shortly dashed.
 The black rook sneaks to c4! You have nothing better to do than have your queen take the rook, which triggers stalemate.
 DEBUG: checking for stalemate, mate achievement.
 Congratulations! You just got the STALEMATE, MATE achievement!
@@ -168,6 +168,9 @@ FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
 And so it comes to pass: the enemy king, safe from the main action for so long, is trapped.
 DEBUG: checking for plain old checkmate achievement.
 Congratulations! You just got the PLAIN OLD CHECKMATE achievement!
+
+Would you like to RESTART, RESTORE a saved game, QUIT, UNDO the last command, see NOTES on the initial position or TRY new ways to lose?
+>try
 
 >think
 THREEFOLD: repeating a position three times
@@ -289,7 +292,7 @@ PLAIN OLD CHECKMATE: finding the main line solution
 SPITE CHECK (WINNING): checking the enemy king with their rook prone
 SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
 RUNNING UP THE SCORE: taking the opposing rook when mate was available
-ROOK ON ROOK VIOLENCE: taking the opposing rook when they left you no choice
+ROOK ON ROOK VIOLENCE: taking the opposing rook with the rook when they blocked immediate checkmate
 
 # note: maybe try alternate path through with e4, f4, g4, h4 etc.?
 >rf d4
@@ -320,7 +323,7 @@ PLAIN OLD CHECKMATE: finding the main line solution
 SPITE CHECK (WINNING): checking the enemy king with their rook prone
 SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
 RUNNING UP THE SCORE: taking the opposing rook when mate was available
-ROOK ON ROOK VIOLENCE: taking the opposing rook when they left you no choice
+ROOK ON ROOK VIOLENCE: taking the opposing rook with the rook when they blocked immediate checkmate
 CASTLE CARNAGE: managing to trade off rooks
 
 # two cases here: b8 and d8
@@ -351,7 +354,7 @@ PLAIN OLD CHECKMATE: finding the main line solution
 SPITE CHECK (WINNING): checking the enemy king with their rook prone
 SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
 RUNNING UP THE SCORE: taking the opposing rook when mate was available
-ROOK ON ROOK VIOLENCE: taking the opposing rook when they left you no choice
+ROOK ON ROOK VIOLENCE: taking the opposing rook with the rook when they blocked immediate checkmate
 CASTLE CARNAGE: managing to trade off rooks
 ALL FOR NAUGHT: managing to give your rook away
 
@@ -382,7 +385,7 @@ PLAIN OLD CHECKMATE: finding the main line solution
 SPITE CHECK (WINNING): checking the enemy king with their rook prone
 SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
 RUNNING UP THE SCORE: taking the opposing rook when mate was available
-ROOK ON ROOK VIOLENCE: taking the opposing rook when they left you no choice
+ROOK ON ROOK VIOLENCE: taking the opposing rook with the rook when they blocked immediate checkmate
 CASTLE CARNAGE: managing to trade off rooks
 ALL FOR NAUGHT: managing to give your rook away
 STALER THAN STALEMATE, MATE: drawn ending with equal material
@@ -416,7 +419,7 @@ PLAIN OLD CHECKMATE: finding the main line solution
 SPITE CHECK (WINNING): checking the enemy king with their rook prone
 SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
 RUNNING UP THE SCORE: taking the opposing rook when mate was available
-ROOK ON ROOK VIOLENCE: taking the opposing rook when they left you no choice
+ROOK ON ROOK VIOLENCE: taking the opposing rook with the rook when they blocked immediate checkmate
 CASTLE CARNAGE: managing to trade off rooks
 ALL FOR NAUGHT: managing to give your rook away
 STALER THAN STALEMATE, MATE: drawn ending with equal material
@@ -452,7 +455,7 @@ PLAIN OLD CHECKMATE: finding the main line solution
 SPITE CHECK (WINNING): checking the enemy king with their rook prone
 SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
 RUNNING UP THE SCORE: taking the opposing rook when mate was available
-ROOK ON ROOK VIOLENCE: taking the opposing rook when they left you no choice
+ROOK ON ROOK VIOLENCE: taking the opposing rook with the rook when they blocked immediate checkmate
 CASTLE CARNAGE: managing to trade off rooks
 ALL FOR NAUGHT: managing to give your rook away
 SKEWERED TO DEATH (ROOK): letting the black rook go to b2 and skewer your b8-rook
@@ -508,6 +511,8 @@ DEBUG: checking for dragging it out all the way achievement.
 Congratulations! You just got the DRAGGING IT OUT ALL THE WAY achievement!
 [NOTE: I gave you the "dragging it out" achievement, too, for if you repeated any position at all and still won. But you found the maximum amount to repeat without a draw, so great job there!]
 DEBUG: checking for dragging it out achievement.
+
+>try
 
 >think
 DRAGGING IT OUT: taking extra turns to win, considering repetition
