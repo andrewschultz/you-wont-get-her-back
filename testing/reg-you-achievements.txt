@@ -147,9 +147,12 @@ STALEMATE, MATE: allowing stalemate when the white Queen takes the black rook
 >se
 >p
 >kb3
-You recognize it will be stalemate if your wife captures the enemy rook. You give some bathetic moan about how life isn't worth living without her, but ... she's too smart for that. She knows it would have been better to at least survive.
-And of course, you realize this, too, as the enemy king and rook move in on you slowly. You realize that even if you join her in the afterlife and all that, she's not going to have much respect for you.
+You recognize it will be stalemate if your wife captures the enemy rook. "Thus, I perish," you cry, adding how life isn't worth living without her, but ... it's not exactly what she'd have chosen as her final memory. She never asked for that melodramatic nonsense.
+And of course, you realize this, too, as the enemy king and rook move in on you slowly.
+In the afterlife, a low-ranking angel informs you that you'd have gotten to see her even if you hadn't died together, but she hasn't quite forgiven you yet, and what's more, she'll be allowed to move up from Limbo even without forgiving you. Ouch!
 Congratulations! You just got the POINTLESS BATHOS AND LOSS achievement!
+
+Okay, let's set things back where they were and try again.
 
 >think
 THREEFOLD: repeating a position three times

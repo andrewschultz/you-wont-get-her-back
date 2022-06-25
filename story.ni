@@ -837,9 +837,37 @@ check going nowhere:
 
 volume verbs
 
-show-all-moves is a truth state that varies.
+chapter abouting
+
+abouting is an action out of world.
+
+understand the command "about" as something new.
+
+understand "about" as abouting.
+
+carry out abouting:
+	say "[this-game] is my third text adventure based on chess. The first is [i]Fivebyfivia Delenda Est[r], for ParserComp 2021, and the second is [i]Fourbyfourian Quarryin['][r], for IFComp 2021. That seemed about all I could do, where you placed pieces instead of making moves.";
+	say "[line break]But then after some discussion on the intfiction boards about chess and text adventures, I was alerted to Magnus Olsson's [i]Zugzwang[r]. It was part of a text-adventure April Fools['] joke, but it was well-constructed and explored different possible moves.";
+	say "[line break]I'd already done the canonical three pawns vs. three pawns puzzle a long time ago as a sort of experiment, but I remembered one puzzle that would fit well. I didn't want too many pieces. And, well, I remembered one. I hope it's fun for chessplayers and nonplayers alike.";
+	the rule succeeds;
+
+chapter creditsing
+
+creditsing is an action out of world.
+
+understand the command "credits" as something new.
+
+understand "credits" as creditsing.
+
+carry out creditsing:
+	say "Thanks to Adam Sommerf(i?)eld for bringing ParserComp back in 2021. Thanks to Christopher Merriner and fos for administrating it in 2022.";
+	say "[line break]Thanks to (testers) for testing.";
+	say "[line break]Thanks to you for playing.";
+	the rule succeeds;
 
 chapter moves-oning
+
+show-all-moves is a truth state that varies.
 
 movesoning is an action out of world.
 
@@ -887,10 +915,15 @@ the empty command to waiting rule is listed first in the for printing a parser e
 
 the general info error rule is listed after the empty command to waiting rule in the for printing a parser error rulebook.
 
+descriptive-warn is a truth state that varies.
+
 rule for printing a parser error (this is the general info error rule):
-	say "I couldn't parse that. Commands never need to be more than three words long, and there are only limited squares per move. In this case, you can ";
+	say "Sorry, I couldn't parse that. Commands never need to be more than three words long, and there are only limited squares per move. In this case, you can ";
 	process the print-legal-moves rule;
 	say "Note most of the time you can drop a piece's first letter if only one piece can move to a square, and commands are case-insensitive.[paragraph break]Also, a more comprehensive list of commands is at [verb-say].";
+	if descriptive-warn is false:
+		say "[line break]Also, descriptive notation is not available. If you don't know what this means, don't worry, you're probably better off not knowing. But for chess players who wish to do so, sorry. I couldn't find any way to distinguish King to Bishop Seven from King to B7. Which was a convenient excuse to avoid an interesting coding puzzle.";
+		now descriptive-warn is true;
 	the rule succeeds;
 
 this is the print-legal-moves rule:
