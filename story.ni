@@ -837,6 +837,13 @@ check going nowhere:
 
 volume verbs
 
+the block saying yes rule is not listed in any rulebook.
+the block saying no rule is not listed in any rulebook.
+
+check saying yes: say "Yes! You believe you will find a way to win the war." instead;
+
+check saying no: say "No. No. No. You can't let your enemy king win or even force you into a stalemate!" instead;
+
 chapter abouting
 
 abouting is an action out of world.
@@ -908,6 +915,18 @@ after printing the locale description when show-all-moves is true:
 	say "In this position, you can ";
 	process the print-legal-moves rule;
 	continue the action;
+
+chapter xyzzying
+
+xyzzying is an action out of world.
+
+understand the command "xyzzy" as something new.
+
+understand "xyzzy" as xyzzying.
+
+carry out xyzzying:
+	say " You think back to how you totally skunked the enemy king when one of your pawns ninja'ed another with that new-fangled [i]en passant[r] move you'd drilled your troops on. Oh, the gloating that ensued when you assured him it was really only fair and sensible, all things considered![paragraph break]Of course, later in the battle, he had a chance to do so, too. But, sneak that you were, you made sure it was unfavorable. The art of war isn't just about having superior forces!";
+	the rule succeeds;
 
 book parser errors
 
