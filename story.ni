@@ -20,6 +20,8 @@ include Conditional Undo by Jesse McGrew.
 
 include Undo Output Control by Erik Temple.
 
+include Bold Final Question Rows by Andrew Schultz.
+
 volume game state variables and procedural rules
 
 move-log is a list of numbers variable.
@@ -623,7 +625,7 @@ this is the bungled-it-late rule:
 	the rule succeeds;
 
 check going when current-game-state is rook-forks-kq:
-	say "You recognize it will be stalemate if your wife captures the enemy rook. You give some bathetic moan about how life isn't worth living without her, but ... she's too smart for that. She knows it would have been better to at least survive.[paragraph break]And of course, you realize this, too, as the enemy king and rook move in on you slowly. You realize that even if you join her in the afterlife and all that, she's not going to have much respect for you.";
+	say "You recognize it will be stalemate if your wife captures the enemy rook. 'Thus, I perish,' you cry, adding how life isn't worth living without her, but ... it's not exactly what she'd have chosen as her final memory. She never asked for that melodramatic nonsense.[paragraph break]And of course, you realize this, too, as the enemy king and rook move in on you slowly.[paragraph break]In the afterlife, a low-ranking angel informs you that you'd have gotten to see her even if you hadn't died together, but she hasn't quite forgiven you yet, and what's more, she'll be allowed to move up from Limbo even without forgiving you. Ouch!";
 	achieve "pointless bathos and loss";
 	reset-the-board;
 	the rule succeeds;
@@ -1160,10 +1162,11 @@ understand "verb" as verbsing.
 understand "v" as verbsing.
 
 carry out verbsing:
-	say "You can move your king with the eight compass directions. You can also specify the square you want the king to move to.";
-	say "[line break]Of course, you will have to do more than move your king. If you wish to move a pawn, you can say c7. (Pawns take priority over kings.) To promote the pawn, c8. To underpromote it, c8=b or c8b will do so.";
-	say "[line break]To move a promoted piece, qa8 will do so for the queen. Note that N is used to refer to a knight, as K is taken by the king.";
-	say "[line break]You can also say [b]B[r] to set the default piece to promote to, say, a bishop. In this case, K is referred to as the knight, since you can't have two kings on the board.";
+	say "[this-game] accepts commands in standard chess algebraic notation, which seems intimidating, but don't worry, you don't have to know the details. Also, you can use upper or lower case for your commands.";
+	say "[line break]You are a king, which moves you can move to any squares vertically, horizontally, or diagonally adjacent. That means if you are on f6, the commands [b]SE[r], [b]e5[r] and [b]Ke5[r] would give the same result, assuming no other piece can move to e5.";
+	say "[line break]Of course, you will have to do more than move your king. If you wish to move a pawn, you can say pc7 or even just c7. (Pawns take priority over other pieces if both can move to the same square.) To promote the pawn, c8. To underpromote it, c8=b or c8b will do so.";
+	say "[line break]To move a promoted piece, [b]qa8[r] will do so for the queen. Note that [b]N[r] is used to refer to a knight, as [b]K[r] is taken by the king.";
+	say "[line break]You can also say [b]B[r] to set the default piece to promote to, say, a bishop. In this case, although [b]K[r] is usually the king in algebraic notation, [b]K[r] is referred to as the knight, since you can't have two kings on the board.";
 	say "[line break]All command parsing is case-insensitive, though standard chess notation capitalizes the piece name. This is just so you have one less thing to worry about.";
 	say "[line break]Finally, there is no [b]UNDO[r] or takebacks, because we want to mirror an actual chess scenario here. But don't worry. A successful run shouldn't take too long, so you should be able to retrace your steps easily enough.";
 	the rule succeeds;
