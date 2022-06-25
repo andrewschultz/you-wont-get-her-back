@@ -839,9 +839,50 @@ check going nowhere:
 
 volume verbs
 
-rule for printing a parser error when the latest parser error is the i beg your pardon error:
+the empty command to waiting rule is listed first in the for printing a parser error rulebook.
+
+the general info error rule is listed after the empty command to waiting rule in the for printing a parser error rulebook.
+
+rule for printing a parser error (this is the general info error rule):
+	say "I couldn't parse that. Commands never need to be more than three words long, and there are only limited squares per move. In this case, you can ";
+	if  white queen is not off-stage:
+		say "move qc4 or ";
+	else if white pawn is not off-stage:
+		if location of player is not black-rook-guarded:
+			say "move your pawn with [b][the room north of location of pawn][r] or ";
+	else if white rook is not off-stage:
+		now rook-go is true;
+		if location of player is not black-rook-guarded:
+			say "move your rook with [list of white-rook-reachable rooms] or ";
+		else if location of white rook is black-rook-guarded:
+			say "take the black rook with [location of black rook] or ";
+		now rook-go is false;
+	now king-go is true;
+	say "move your king with [list of king-available rooms].";
+	now king-go is false;
+	say "[line break]Note most of the time you can drop a piece's first letter if only one piece can move to a square, and commands are case-insensitive.[paragraph break]Also, a more comprehensive list of commands is at [verb-say].";
+
+rook-go is a truth state that varies.
+king-go is a truth state that varies.
+
+before printing the name of a room (called rm) when king-go is true: say "[b]K";
+after printing the name of a room (called rm) when king-go is true: say "[r]";
+
+before printing the name of a room (called rm) when rook-go is true: say "[b]R";
+after printing the name of a room (called rm) when rook-go is true: say "[r]";
+
+to say verb-say: say "[b]V[r]/[b]VERB[r]/[b]VERBS[r]"
+
+rule for printing a parser error when the latest parser error is the i beg your pardon error (this is the empty command to waiting rule):
 	try waiting;
 	the rule succeeds;
+
+definition: a room (called rm) is king-available:
+	if rm is location of white pawn, no;
+	if rm is black-rook-guarded, no;
+	if rm is king-guarded, no;
+	if rm is adjacent to location of player, yes;
+	no;
 
 check waiting: say "Hey, yeah. It's your turn to move, so why not use all the time you want? Keep the opponent nervous." instead;
 
