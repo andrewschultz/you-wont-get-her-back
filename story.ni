@@ -26,17 +26,15 @@ volume game state variables and procedural rules
 
 move-log is a list of numbers variable.
 
-check-king-next is a truth state that varies.
+repeat-yourmove-whine is a truth state that varies. [ Have you repeated moves this go round? ]
 
-repeat-yourmove-whine is a truth state that varies.
+repeat-whines is a number that varies. [ How many repeated positions have you achieved? ]
 
-repeat-whines is a number that varies.
-
-ever-won is a truth state that varies.
+ever-won is a truth state that varies. [ Did you ever win the main game? I could use "if achieved-yet of plain-old" but that feels less readable ]
 
 alt-b3 is a truth state that varies.
 
-alt-c3 is a truth state that varies.
+alt-c3 is a truth state that varies. [ These two truth states track whether you saw both possible still-winning moves after Rd4+. ]
 
 chapter game states
 
@@ -559,7 +557,6 @@ to reset-the-board:
 	now white knight is off-stage;
 	now repeat-yourmove-whine is false;
 	now repeat-whines is 0;
-	now check-king-next is false;
 	now my-move-log is {};
 	now repeats-this-time is 0;
 	if black-move is false:
@@ -637,7 +634,6 @@ check going when current-game-state is need-kb3 (this is the final semi-random r
 		move black rook to rook-flee-room;
 	else:
 		say "The black rook flees to [rook-flee-room] to save its own skin!";
-		now check-king-next is true;
 		move rook to rook-flee-room;
 	if current-game-state is need-kb3, now current-game-state is rook-doomed;
 
@@ -841,12 +837,63 @@ check going nowhere:
 
 volume verbs
 
+show-all-moves is a truth state that varies.
+
+chapter moves-oning
+
+movesoning is an action out of world.
+
+understand the command "moves" as something new.
+
+understand "moves on" as movesoning.
+
+carry out movesoning:
+	say "Showing moves with the board is [if show-all-moves is true]already[else]now[end if] on.";
+	now show-all-moves is true;
+	the rule succeeds;
+
+chapter moves-offing
+
+movesoffing is an action out of world.
+
+understand "moves off" as movesoffing.
+
+carry out movesoffing:
+	say "Showing moves with the board is [if show-all-moves is false]already[else]now[end if] off.";
+	now show-all-moves is false;
+	the rule succeeds;
+
+chapter movesing
+
+movesing is an action out of world.
+
+understand "moves" as movesing.
+
+carry out movesing:
+	if show-all-moves is true:
+		try movesoffing;
+	else:
+		try movesoning;
+	the rule succeeds;
+
+after printing the locale description when show-all-moves is true:
+	say "In this position, you can ";
+	process the print-legal-moves rule;
+	continue the action;
+
+book parser errors
+
 the empty command to waiting rule is listed first in the for printing a parser error rulebook.
 
 the general info error rule is listed after the empty command to waiting rule in the for printing a parser error rulebook.
 
 rule for printing a parser error (this is the general info error rule):
 	say "I couldn't parse that. Commands never need to be more than three words long, and there are only limited squares per move. In this case, you can ";
+	process the print-legal-moves rule;
+	say "Note most of the time you can drop a piece's first letter if only one piece can move to a square, and commands are case-insensitive.[paragraph break]Also, a more comprehensive list of commands is at [verb-say].";
+	the rule succeeds;
+
+this is the print-legal-moves rule:
 	if  white queen is not off-stage:
 		say "move qc4 or ";
 	else if white pawn is not off-stage:
@@ -862,7 +909,6 @@ rule for printing a parser error (this is the general info error rule):
 	now king-go is true;
 	say "move your king with [list of king-available rooms].";
 	now king-go is false;
-	say "[line break]Note most of the time you can drop a piece's first letter if only one piece can move to a square, and commands are case-insensitive.[paragraph break]Also, a more comprehensive list of commands is at [verb-say].";
 
 rook-go is a truth state that varies.
 king-go is a truth state that varies.
@@ -887,6 +933,8 @@ definition: a room (called rm) is king-available:
 	no;
 
 check waiting: say "Hey, yeah. It's your turn to move, so why not use all the time you want? Keep the opponent nervous." instead;
+
+book miscellaneous descriptive notation
 
 chapter rxring
 
@@ -914,7 +962,6 @@ carry out kxring:
 	if location of black rook is not adjacent to location of player, say "The black rook isn't close enough to take!" instead;
 	if location of black rook is adjacent to location of black king, say "But the black king is guarding that square!" instead;
 	go-to-square noun instead;
-
 
 volume parsing
 
@@ -1132,6 +1179,9 @@ volume meta verbs
 chapter undo
 
 rule for deciding whether to allow undo:
+	if game-over:
+		say "You decide to relive your final moment of victory. Or find new stuff to do. Whichever.";
+		allow undo;
 	if undo-allow is true:
 		say "Undo allowed for testing.";
 		allow undo;
@@ -1140,9 +1190,6 @@ rule for deciding whether to allow undo:
 		say "[line break]";
 		ital-say "undoing is disabled, but since the whole game shouldn't take more than fourteen moves, you should be able to recreaete what you did. I hope this balances forcing you to a bit of challenging calculation with not getting too frustrated.";
 		now undo-explain-shown is true;
-	if game-over:
-		say "You decide to relive your final moment of victory. Or find new stuff to do. Whichever.";
-		allow undo;
 	deny undo;
 
 report undoing an action when debug-state is true:
