@@ -8,6 +8,8 @@ the story description is "An implementation of a classic chess puzzle".
 
 the release number is 1.
 
+release along with the "Parchment" interpreter.
+
 release along with a website.
 
 include Old School Verb Total Carnage by Andrew Schultz.
@@ -92,6 +94,10 @@ definition: a room (called rm) is fleeable:
 	no;
 
 a room has a fleestate called rookstate. the rookstate of a room is usually unreachable.
+
+after looking for the first time:
+	say "[i][bracket][b]NOTE[r][i]: if you haven't played chess, [b]CH[r][i] or [b]CHESS[r][i] will show you all possible moves. Alternatively, [b]MOVES ON/OFF[r][i] will toggle whether you see all legal moves along with the board. [verb-say][i] gives an overview of verbs, and [b]ABOUT[r][i] and [b]CREDITS[r][i] both give general information about [b][this-game][i].[close bracket][r][line break]";
+	continue the action;
 
 chapter options
 
@@ -941,7 +947,7 @@ rule for printing a parser error (this is the general info error rule):
 	process the print-legal-moves rule;
 	say "Note most of the time you can drop a piece's first letter if only one piece can move to a square, and commands are case-insensitive.[paragraph break]Also, a more comprehensive list of commands is at [verb-say].";
 	if descriptive-warn is false:
-		say "[line break]Also, descriptive notation is not available. If you don't know what this means, don't worry, you're probably better off not knowing. But for chess players who wish to do so, sorry. I couldn't find any way to distinguish King to Bishop Seven from King to B7. Which was a convenient excuse to avoid an interesting coding puzzle.";
+		say "[line break]Finally, the parser does not recognize descriptive notation. If you don't know what this means, don't worry. You're probably better off not knowing. But for chess players who wish to do so, sorry. I couldn't find any way to distinguish King to Bishop Seven from King to B7. Which was a convenient excuse to avoid an interesting coding puzzle.";
 		now descriptive-warn is true;
 	the rule succeeds;
 
@@ -1227,6 +1233,26 @@ to go-to-square (rm - a room):
 	try going x;
 
 volume meta verbs
+
+chapter chessing
+
+chessing is an action out of world.
+
+understand the command "chess" as something new.
+understand the command "ch" as something new.
+
+understand "ch" as chessing.
+understand "chess" as chessing.
+
+carry out chessing:
+	say "The pawn, rook and king are the main pieces you'll be concerned with here. The board is an 8x8 grid, with a1 in the bottom left and h8 in the upper right.";
+	say "[line break]A pawn moves forward and captures diagonally. For white, that means moving c3 to c4. For black, it would mean c5 to c4. Capturing would be c3 to b4 or d4 for white, c5 to b4 or d4 for black. In addition, when a pawn gets to c8, it must become one of the pieces below, though usually it becomes a queen, the most powerful one.";
+	say "[line break]A knight moves in an L-shape but not off the board. So, from b2, it could go to a4, c4, d3 and d1. Unlike other pieces, it can jump over other pieces.";
+	say "[line break]A bishop moves diagonally but not off the board. So, from b2, it could go to a3, c1, a1, c3, d4, e5, f6, g7, and h8.";
+	say "[line break]A rook moves moves vertically or horizontally. So, from b2, it could go to a2, c2, d2, e2, f2, g2, h2, b1, b3, b4, b5, b6, b7, or b8.";
+	say "[line break]A queen can move either diagonally, vertically or horizontally.";
+	say "[line break]A king can move one square vertically, diagonally or horizontally, but it cannot move where it would be attacked.";
+	the rule succeeds;
 
 chapter undo
 
