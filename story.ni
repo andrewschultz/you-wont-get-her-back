@@ -113,6 +113,10 @@ undo-allow is a truth state that varies.
 
 undo-explain-shown is a truth state that varies.
 
+chapter you
+
+description of player is "Dusty and sweaty. It's been a long war, and it has to be over soon. You just wish you could've saved more of your troops."
+
 volume properties
 
 a room has a number called xval. a room has a number called yval.
@@ -874,7 +878,7 @@ understand "credits" as creditsing.
 
 carry out creditsing:
 	say "Thanks to Adam Sommerf(i?)eld for bringing ParserComp back in 2021. Thanks to Christopher Merriner and fos for administrating it in 2022.";
-	say "[line break]Thanks to (testers) for testing.";
+	say "[line break]Thanks to Jade, Mike Russo, John Zeigler and ChrisM for testing.";
 	say "[line break]Thanks to you for playing.";
 	the rule succeeds;
 
@@ -887,9 +891,10 @@ movesoning is an action out of world.
 understand the command "moves" as something new.
 
 understand "moves on" as movesoning.
+understand "moveson" as movesoning.
 
 carry out movesoning:
-	say "Showing moves with the board is [if show-all-moves is true]already[else]now[end if] on.";
+	say "Showing legal moves under the position is [if show-all-moves is true]already[else]now[end if] on.";
 	now show-all-moves is true;
 	the rule succeeds;
 
@@ -898,9 +903,10 @@ chapter moves-offing
 movesoffing is an action out of world.
 
 understand "moves off" as movesoffing.
+understand "movesoff" as movesoffing.
 
 carry out movesoffing:
-	say "Showing moves with the board is [if show-all-moves is false]already[else]now[end if] off.";
+	say "Showing legal moves under the position is [if show-all-moves is false]already[else]now[end if] off.";
 	now show-all-moves is false;
 	the rule succeeds;
 
