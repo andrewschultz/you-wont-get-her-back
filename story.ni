@@ -117,6 +117,8 @@ chapter options
 
 option-persist-warn is a truth state that varies.
 
+show-coords is a truth state that varies. show-coords is true.
+
 chapter rules
 
 procedural rule: ignore the print final score rule.
@@ -296,14 +298,23 @@ to say text-board-description:
 	let my-piece be a random allied person;
 	say "You're currently at [location of player]. Your ally, [the my-piece], is at [location of my-piece].";
 	say "[line break]The enemy king is still skulking at a1, watching the carnage from afar. The enemy rook is at [location of black rook].";
-to say border: say "+-+-+-+-+-+-+-+-+";
+
+to say border:
+	if show-coords is true, say "   ";
+	say "+-+-+-+-+-+-+-+-+";
 
 to invert-text: (- style reverse; -)
 
+to say my-row of (num - a number):
+	(- print (char) ({num} + 96); -)
+
 to say grid-printout:
 	say "[fixed letter spacing]";
+	print-column-numbers;
 	repeat with Y running from 1 to 8:
 		say "[border][line break]";
+		if show-coords is true:
+			say " [my-row of Y] ";
 		say "|";
 		repeat with X running from 1 to 8:
 			if the remainder after dividing (X + Y) by 2 is 1:
@@ -313,7 +324,16 @@ to say grid-printout:
 			say "|";
 		say "[line break]";
 	say "[border]";
+	if show-coords is true, say "[line break]";
+	print-column-numbers;
 	say "[variable letter spacing]";
+
+to print-column-numbers:
+	if show-coords is false, continue the action;
+	say "   ";
+	repeat with X running from 1 to 8:
+		say " [X]";
+	say "[line break]";
 
 to say occupant of (x - a number) and (y - a number):
 	repeat with rm running through rooms:
@@ -906,6 +926,64 @@ carry out creditsing:
 	say "[line break]Thanks to you for playing.";
 	the rule succeeds;
 
+chapter coordsing
+
+coordsing is an action out of world.
+
+understand the command "coords" as something new.
+understand the command "coord" as something new.
+understand the command "coor" as something new.
+understand the command "coo" as something new.
+
+understand "coords" as coordsing.
+understand "coord" as coordsing.
+understand "coor" as coordsing.
+understand "coo" as coordsing.
+
+carry out coordsing:
+	if show-coords is true:
+		try coordsoffing;
+	else:
+		try coordsoning;
+	the rule succeeds;
+
+this is the screen-mode-hidden-note rule: say "[i][bracket][b]NOTE:[r][i] this option should be hidden in screen-reader mode, but there is no penalty for toggling it.[close bracket][r]"
+
+chapter coordsoffing
+
+coordsoffing is an action out of world.
+
+understand the command "coordsoff" as something new.
+
+understand "coordsoff" as coordsoffing.
+understand "coords off" as coordsoffing.
+understand "coord off" as coordsoffing.
+understand "coor off" as coordsoffing.
+understand "coo off" as coordsoffing.
+
+carry out coordsoffing:
+	say "Board coordinates are [if show-coords is true]already[else]now[end if] off.";
+	now show-coords is false;
+	the rule succeeds;
+
+chapter coordsoning
+
+coordsoning is an action out of world.
+
+understand the command "coordson" as something new.
+understand the command "coords on" as something new.
+understand the command "coord on" as something new.
+understand the command "coor on" as something new.
+understand the command "coo on" as something new.
+
+understand "coordson" as coordsoning.
+
+carry out coordsoning:
+	abide by the screen-mode-hidden-note rule;
+	say "Board coordinates are [if show-coords is true]already[else]now[end if] on.";
+	now show-coords is true;
+	the rule succeeds;
+
 chapter moves-oning
 
 show-all-moves is a truth state that varies.
@@ -1322,6 +1400,8 @@ carry out verbsing:
 	say "[line break]Of course, you will have to do more than move your king. If you wish to move a pawn, you can say pc7 or even just c7. (Pawns take priority over other pieces if both can move to the same square.) To promote the pawn, c8. To underpromote it, c8=b or c8b will do so.";
 	say "[line break]To move a promoted piece, [b]qa8[r] will do so for the queen. Note that [b]N[r] is used to refer to a knight, as [b]K[r] is taken by the king.";
 	say "[line break]You can also say [b]B[r] to set the default piece to promote to, say, a bishop. In this case, although [b]K[r] is usually the king in algebraic notation, [b]K[r] is referred to as the knight, since you can't have two kings on the board.";
+	if screenread is false:
+		say "[line break]You can toggle coordinates with [b]COO[r]/[b]COOR[r]/[b]COORD[r]/[b]COORDS[r] or set them specifically with [b]COO ON[r] or [b]COO OFF[r], etc.";
 	say "[line break]All command parsing is case-insensitive, though standard chess notation capitalizes the piece name. This is just so you have one less thing to worry about.";
 	say "[line break]Finally, there is no [b]UNDO[r] or takebacks, because we want to mirror an actual chess scenario here. But don't worry. A successful run shouldn't take too long, so you should be able to retrace your steps easily enough.";
 	the rule succeeds;
