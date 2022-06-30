@@ -22,13 +22,15 @@ include Undo Output Control by Erik Temple.
 
 include Bold Final Question Rows by Andrew Schultz.
 
+include Intro Restore Skip by Andrew Schultz.
+
 section not for release
 
 include You Wont Get Her Back Beta Testing by Andrew Schultz.
 
 section not for release
 
-include You Wont Get Her Back Beta Tests by Andrew Schultz.
+include You Wont Get Her Back Tests by Andrew Schultz.
 
 volume game state variables and procedural rules
 
@@ -66,6 +68,7 @@ when play begins (this is the sort fleestates randomly rule):
 	init-fleestate-list;
 	sort available-fleestate-list in random order;
 	choose-flee-room;
+	process the check-skip-intro rule;
 	say "The war was HIS fault, of course. And you would've won it quickly and easily if you hadn't tried so hard to keep your wife, the white queen, alive. Your counterpart, stupid though he is, knew this and kept forcing small advantages here and there, knowing you'd cede them so your wife and his wouldn't be killed. He didn't care about his own wife, of course. You can't blame him.";
 	wfak;
 	say "You knew you were objectively losing, but at some point, your wife set you straight. It was time to let her go. After you did, your counterpart skulked off to a corner and barked out commands and laughed as you mixed things up in the center of the board, trying to do something, anything, to keep hope alive.";
@@ -76,6 +79,11 @@ when play begins (this is the sort fleestates randomly rule):
 	wfak;
 	say "But you could never show off that way. You are glad to admit your wife saw and understood things you don't. You just wish she could come back to help with the whole rebuilding process and all the other great plans you had.";
 	wfak;
+
+when play begins (this is the slightly custom screenread rule):
+	now use-custom-screenread is true;
+	say "[this-game] renders a chessboard in text maps for room descriptions. This will play very poorly with screen readers. In addition, you may prefer a text description to a chessboard as a matter of taste. Do you wish to activate text/screenreader mode?";
+	if debug-state is false, ask-screenread;
 
 to init-fleestate-list:
 	now available-fleestate-list is the list of all fleestates;
@@ -128,6 +136,11 @@ volume properties
 a room has a number called xval. a room has a number called yval.
 
 a person can be friendly or enemy. a person is usually friendly.
+
+definition: a person (called pe) is allied:
+	if pe is enemy, no;
+	if pe is the player, no;
+	yes;
 
 volume board layout
 
@@ -277,10 +290,12 @@ rookstate of a2 is skewer-allow.
 
 volume room description
 
-screen-reader is a truth state that varies.
+the description of a room is usually "[if screenread is true][text-board-description].[else][grid-printout][end if]";
 
-the description of a room is usually "[if screen-reader is true][list of not off-stage people].[else][grid-printout][end if]";
-
+to say text-board-description:
+	let my-piece be a random allied person;
+	say "You're currently at [location of player]. Your ally, [the my-piece], is at [location of my-piece].";
+	say "[line break]The enemy king is still skulking at a1, watching the carnage from afar. The enemy rook is at [location of black rook].";
 to say border: say "+-+-+-+-+-+-+-+-+";
 
 to invert-text: (- style reverse; -)
