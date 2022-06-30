@@ -333,7 +333,7 @@ to say grid-printout:
 			say " [my-row of Y] ";
 		say "|";
 		repeat with X running from 1 to 8:
-			if the remainder after dividing (X + Y) by 2 is 1:
+			if checkerboard is true and the remainder after dividing (X + Y) by 2 is 1:
 				invert-text;
 			say "[row-left of column-width]";
 			say "[occupant of X and (9 - Y)]";
@@ -983,6 +983,7 @@ understand "coor off" as coordsoffing.
 understand "coo off" as coordsoffing.
 
 carry out coordsoffing:
+	abide by the screen-mode-hidden-note rule;
 	say "Board coordinates are [if show-coords is true]already[else]now[end if] off.";
 	now show-coords is false;
 	the rule succeeds;
@@ -1063,13 +1064,67 @@ understand "width [number]" as widthing.
 understand "w [number]" as widthing.
 
 carry out widthing:
+	abide by the screen-mode-hidden-note rule;
 	if the number understood < 1 or the number understood > 5, say "The width can only be between 1 and 5." instead;
+	say "The column width is [if column-width is number understood]already[else]now[end if] [number understood][even-width-warning].";
 	now column-width is the number understood;
-	say "The column width is now [number understood][even-width-warning].";
 	the rule succeeds;
 
 to say even-width-warning:
 	if the remainder after dividing the number understood by 2 is 0, say ". Note that an even width will make asymmetrical squares";
+
+chapter bwing
+
+checkerboard is a truth state that varies. checkerboard is true.
+
+bwing is an action out of world.
+
+understand the command "bw" as something new.
+understand the command "wb" as something new.
+
+understand "bw" as bwing.
+understand "wb" as bwing.
+
+carry out bwing:
+	if checkerboard is true:
+		try bwoffing;
+	else:
+		try bwoning;
+	the rule succeeds;
+
+chapter bwoffing
+
+bwoffing is an action out of world.
+
+understand the command "bwoff" as something new.
+
+understand "bwoff" as bwoffing.
+understand "bw off" as bwoffing.
+understand "wboff" as bwoffing.
+understand "wb off" as bwoffing.
+
+carry out bwoffing:
+	abide by the screen-mode-hidden-note rule;
+	say "Checkerboard effects for the board are [if checkerboard is false]already[else]now[end if] off.";
+	now checkerboard is false;
+	the rule succeeds;
+
+chapter bwoning
+
+bwoning is an action out of world.
+
+understand the command "bwon" as something new.
+
+understand "bwon" as bwoning.
+understand "bw on" as bwoning.
+understand "wbon" as bwoning.
+understand "wb on" as bwoning.
+
+carry out bwoning:
+	abide by the screen-mode-hidden-note rule;
+	say "Checkerboard effects for the board are [if checkerboard is true]already[else]now[end if] on.";
+	now checkerboard is true;
+	the rule succeeds;
 
 chapter xyzzying
 
@@ -1444,6 +1499,7 @@ carry out verbsing:
 	if screenread is false:
 		say "[line break]You can toggle coordinates with [b]COO[r]/[b]COOR[r]/[b]COORD[r]/[b]COORDS[r] or set them specifically with [b]COO ON[r] or [b]COO OFF[r], etc.";
 		say "[line break]You can also change the board square width with, say, [b]W 3[r] or [b]WIDTH 4[r]. Valid values are 1-5.";
+		say "[line break]You can also toggle the inverse 'checkerboard' effect with [b]WB[r] or [b]WB ON[r] or [b]WB OFF[r].";
 	say "[line break]All command parsing is case-insensitive, though standard chess notation capitalizes the piece name. This is just so you have one less thing to worry about.";
 	say "[line break]Finally, there is no [b]UNDO[r] or takebacks, because we want to mirror an actual chess scenario here. But don't worry. A successful run shouldn't take too long, so you should be able to retrace your steps easily enough.";
 	the rule succeeds;
