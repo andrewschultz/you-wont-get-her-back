@@ -94,7 +94,7 @@ to init-fleestate-list:
 
 to choose-flee-room:
 	increment fleestate-index;
-	if fleestate-index > number of fleestates, now fleestate-index is 1;
+	if fleestate-index > number of entries in available-fleestate-list, now fleestate-index is 1;
 	now current-fleestate is entry fleestate-index of available-fleestate-list;
 	now rook-flee-room is a random fleeable room;
 	if ever-won is true:
@@ -507,7 +507,16 @@ check requesting the score:
 chapter thinking
 
 understand the command "t" as something new.
+understand the command "t" as something new.
 understand "t" as thinking.
+understand "a" as thinking.
+
+understand the command "ach" as something new.
+understand "ach" as thinking.
+understand the command "achieve" as something new.
+understand "achieve" as thinking.
+understand the command "achievement" as something new.
+understand "achievement" as thinking.
 
 the block thinking rule is not listed in any rulebook.
 
@@ -749,24 +758,24 @@ check going (this is the rook catches pawn rule): [the logic here is: you move t
 	if debug-state is true, say "DEBUG: [room gone from] to [room gone to], with rook at [location of black rook].";
 	if not seen-alts, check-for-alts;
 	if location of white pawn is c6:
-		say "The black rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Of course, the enemy king has no shot of corralling the pawn so the rook doesn't die in the process[if xval of room gone to is 1], even though you'll need to make a move to guard your pawn[else if xval of room gone to is 3], even though you'll need to get back out of your pawn's way[end if]. Your hopes of winning are dashed!";
+		say "The black rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Fortuntaely, the enemy king can't help the rook corral the pawn for free[if xval of room gone to is 1], even though you'll need to make a move to guard your pawn[else if xval of room gone to is 3], even though you'll need to get back out of your pawn's way[end if].[paragraph break]Of course, that doesn't stop him taunting you.[paragraph break]'Should I let that silly pawn promote, then kill your wife just as she comes back?'";
 		achieve "traded pawn";
 		reset-the-board instead;
 	if xval of room gone to is 2 and location of player is c3 and location of black rook is d1:
-		say "Oh no! That prevents the rook skewering your advanced pawn, but after it slides to c1, the pawn is undefendable.";
+		say "The enemy king begins laughing. 'Of course! Bring your queen back for one final moment together! Except, of course, you aren't. Not even close.' As he orders his rook to d1, you see what he means. You're too far away to guard your Queen, if you bring her back, as the rook will check on c1.";
 		achieve "captured pawn";
 		reset-the-board instead;
 	if room gone to is c1:
 		if location of black rook is not d4:
 			say "Oh no! There's a bug here. The black rook should be at d4. Sorry--I'm resetting.";
 			reset-the-board instead;
-		say "The black rook slides over to c4, forking you and your pawn on [location of white pawn]. The rook and king endgame ahead will be painful.";
+		say "You freeze up. It's almost too good to be true, getting your wife back. And then, something too awful to be true: the black rook slides over to c4, forking you and your pawn on [location of white pawn]. The rook and king endgame ahead will be painful.";
 		achieve "forked to death";
 		reset-the-board instead;
 	let y-to be yval of room gone to;
 	let x-to be xval of room gone to;
 	if y-to is 7:
-		say "The rook chuckles as it backpedals to d7. Your pawn is pinned against you. Even if you go to the eighth rank, the rook will take it the next move.";
+		say "The rook chuckles as it backpedals to d7.[paragraph break]From a distance, the opposing king laughs. 'What made you think you could win? The only bummer for me is, my rook will have to kill that worthless pawn next move. I won't get to make you watch your wife die twice in the same war.'";
 		achieve "pinned pawn";
 		reset-the-board instead;
 	if x-to is 1:
@@ -1294,7 +1303,7 @@ to check-drag-out:
 	if repeats-this-time > 0:
 		say "[repeats-this-time] repeats: [my-move-log].";
 	if repeats-this-time >= 5:
-		say "Wow! You really left your enemies hanging before finishing them off. Impossible to imagine doing better, really.";
+		say "You were feeling a bit sadstic, there. The enemy king meant to cause maximum pain, and now you're causing it back, dragging things out all the way. Serves him right.";
 		achieve "dragging it out all the way";
 		repeat through table of unachievements:
 			if achievement entry is "dragging it out":
