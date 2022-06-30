@@ -603,7 +603,9 @@ the king shouldn't move at end rule is listed before the final semi-random rook 
 the rook catches pawn rule is listed after the final semi-random rook move rule in the check going rules.
 
 check going (this is the friendly piece obstruction rule):
-	if the room gone to is friend-occupied, say "But [the random friendly person in room noun of location of player] is already there." instead;
+	if the room gone to is friend-occupied:
+		let obstructor be random friendly person in room gone to;
+		say "But [the obstructor] is already there[if obstructor is pawn]. If you meant to move the pawn, you should type [the room north of room gone to][end if]." instead;
 	if the room gone to is king-guarded, say "Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward." instead;
 	if the room gone to is black-rook-guarded, say "But the enemy rook would [if room gone from is black-rook-guarded]still [end if]see you there." instead;
 
@@ -898,8 +900,9 @@ understand the command "credits" as something new.
 understand "credits" as creditsing.
 
 carry out creditsing:
-	say "Thanks to Adam Sommerf(i?)eld for bringing ParserComp back in 2021. Thanks to Christopher Merriner and fos for administrating it in 2022.";
-	say "[line break]Thanks to Jade, Mike Russo, John Zeigler and ChrisM for testing.";
+	say "Thanks to Adam Sommerfield for bringing ParserComp back in 2021. Thanks to Christopher Merriner and fos for administrating it in 2022.";
+	say "[line break]Thanks to Jade, ChrisM. Mike Russo, John Zeigler and for testing.";
+	say "[line break]Thanks to everyone who showed me cool puzzles over the years (especially this one!) and those who listened to me as I showed a neat game or puzzle to them, as well as all the people who helped renew interest in chess during the pandemic.";
 	say "[line break]Thanks to you for playing.";
 	the rule succeeds;
 
