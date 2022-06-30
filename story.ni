@@ -301,12 +301,28 @@ to say text-board-description:
 
 to say border:
 	if show-coords is true, say "   ";
-	say "+-+-+-+-+-+-+-+-+";
+	say "+";
+	repeat with Y running from 1 to 8:
+		repeat with count running from 1 to column-width:
+			say "-";
+		say "+";
 
 to invert-text: (- style reverse; -)
 
 to say my-row of (num - a number):
 	(- print (char) ({num} + 96); -)
+
+to space-print (n - a number):
+	let count be 0;
+	while count < n:
+		say " ";
+		increment count;
+
+to say row-left of (L - a number):
+	space-print (L / 2);
+
+to say row-right of (L - a number):
+	space-print (L - 1) / 2;
 
 to say grid-printout:
 	say "[fixed letter spacing]";
@@ -319,7 +335,9 @@ to say grid-printout:
 		repeat with X running from 1 to 8:
 			if the remainder after dividing (X + Y) by 2 is 1:
 				invert-text;
+			say "[row-left of column-width]";
 			say "[occupant of X and (9 - Y)]";
+			say "[row-right of column-width]";
 			say "[roman type]";
 			say "|";
 		say "[line break]";
@@ -329,10 +347,13 @@ to say grid-printout:
 	say "[variable letter spacing]";
 
 to print-column-numbers:
+	say "    ";
 	if show-coords is false, continue the action;
-	say "   ";
 	repeat with X running from 1 to 8:
-		say " [X]";
+		say "[row-left of column-width]";
+		say "[X]";
+		say "[row-right of column-width]";
+		say " ";
 	say "[line break]";
 
 to say occupant of (x - a number) and (y - a number):
@@ -1030,6 +1051,26 @@ after printing the locale description when show-all-moves is true:
 	process the print-legal-moves rule;
 	continue the action;
 
+chapter widthing
+
+column-width is a number that varies. column-width is 1.
+
+widthing is an action applying to one number.
+
+understand the command "width" as something new.
+
+understand "width [number]" as widthing.
+understand "w [number]" as widthing.
+
+carry out widthing:
+	if the number understood < 1 or the number understood > 5, say "The width can only be between 1 and 5." instead;
+	now column-width is the number understood;
+	say "The column width is now [number understood][even-width-warning].";
+	the rule succeeds;
+
+to say even-width-warning:
+	if the remainder after dividing the number understood by 2 is 0, say ". Note that an even width will make asymmetrical squares";
+
 chapter xyzzying
 
 xyzzying is an action out of world.
@@ -1402,6 +1443,7 @@ carry out verbsing:
 	say "[line break]You can also say [b]B[r] to set the default piece to promote to, say, a bishop. In this case, although [b]K[r] is usually the king in algebraic notation, [b]K[r] is referred to as the knight, since you can't have two kings on the board.";
 	if screenread is false:
 		say "[line break]You can toggle coordinates with [b]COO[r]/[b]COOR[r]/[b]COORD[r]/[b]COORDS[r] or set them specifically with [b]COO ON[r] or [b]COO OFF[r], etc.";
+		say "[line break]You can also change the board square width with, say, [b]W 3[r] or [b]WIDTH 4[r]. Valid values are 1-5.";
 	say "[line break]All command parsing is case-insensitive, though standard chess notation capitalizes the piece name. This is just so you have one less thing to worry about.";
 	say "[line break]Finally, there is no [b]UNDO[r] or takebacks, because we want to mirror an actual chess scenario here. But don't worry. A successful run shouldn't take too long, so you should be able to retrace your steps easily enough.";
 	the rule succeeds;
