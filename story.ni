@@ -16,13 +16,19 @@ include Old School Verb Total Carnage by Andrew Schultz.
 
 include Trivial Niceties by Andrew Schultz.
 
-include You Wont Get Her Back Tests by Andrew Schultz.
-
 include Conditional Undo by Jesse McGrew.
 
 include Undo Output Control by Erik Temple.
 
 include Bold Final Question Rows by Andrew Schultz.
+
+section not for release
+
+include You Wont Get Her Back Beta Testing by Andrew Schultz.
+
+section not for release
+
+include You Wont Get Her Back Beta Tests by Andrew Schultz.
 
 volume game state variables and procedural rules
 
