@@ -918,235 +918,6 @@ check going nowhere:
 	if noun is west, say "There's no zeroth column, so you'd fall off the east edge of the board! What a sad end that would be." instead;
 	say "You just aren't able to move that way." instead;
 
-volume verbs
-
-the block saying yes rule is not listed in any rulebook.
-the block saying no rule is not listed in any rulebook.
-
-check saying yes: say "Yes! You believe you will find a way to win the war." instead;
-
-check saying no: say "No. No. No. You can't let your enemy king win or even force you into a stalemate!" instead;
-
-chapter abouting
-
-abouting is an action out of world.
-
-understand the command "about" as something new.
-
-understand "about" as abouting.
-
-carry out abouting:
-	say "[this-game] is my third text adventure based on chess. The first is [i]Fivebyfivia Delenda Est[r], for ParserComp 2021, and the second is [i]Fourbyfourian Quarryin['][r], for IFComp 2021. That seemed about all I could do, where you placed pieces instead of making moves.";
-	say "[line break]But then after some discussion on the intfiction boards about chess and text adventures, I was alerted to Magnus Olsson's [i]Zugzwang[r]. It was part of a text-adventure April Fools['] joke, but it was well-constructed and explored different possible moves.";
-	say "[line break]I'd already done the canonical three pawns vs. three pawns puzzle a long time ago as a sort of experiment, but I remembered one puzzle that would fit well. I didn't want too many pieces. And, well, I remembered one. I hope it's fun for chessplayers and nonplayers alike.";
-	the rule succeeds;
-
-chapter creditsing
-
-creditsing is an action out of world.
-
-understand the command "credits" as something new.
-
-understand "credits" as creditsing.
-
-carry out creditsing:
-	say "Thanks to Adam Sommerfield for bringing ParserComp back in 2021. Thanks to Christopher Merriner and fos for administrating it in 2022.";
-	say "[line break]Thanks to Jade, ChrisM. Mike Russo, John Zeigler and for testing.";
-	say "[line break]Thanks to everyone who showed me cool puzzles over the years (especially this one!) and those who listened to me as I showed a neat game or puzzle to them, as well as all the people who helped renew interest in chess during the pandemic.";
-	say "[line break]Thanks to you for playing.";
-	the rule succeeds;
-
-chapter coordsing
-
-coordsing is an action out of world.
-
-understand the command "coords" as something new.
-understand the command "coord" as something new.
-understand the command "coor" as something new.
-understand the command "coo" as something new.
-
-understand "coords" as coordsing.
-understand "coord" as coordsing.
-understand "coor" as coordsing.
-understand "coo" as coordsing.
-
-carry out coordsing:
-	if show-coords is true:
-		try coordsoffing;
-	else:
-		try coordsoning;
-	the rule succeeds;
-
-this is the screen-mode-hidden-note rule: say "[i][bracket][b]NOTE:[r][i] this option should be hidden in screen-reader mode, but there is no penalty for toggling it.[close bracket][r]"
-
-chapter coordsoffing
-
-coordsoffing is an action out of world.
-
-understand the command "coordsoff" as something new.
-
-understand "coordsoff" as coordsoffing.
-understand "coords off" as coordsoffing.
-understand "coord off" as coordsoffing.
-understand "coor off" as coordsoffing.
-understand "coo off" as coordsoffing.
-
-carry out coordsoffing:
-	abide by the screen-mode-hidden-note rule;
-	say "Board coordinates are [if show-coords is true]already[else]now[end if] off.";
-	now show-coords is false;
-	the rule succeeds;
-
-chapter coordsoning
-
-coordsoning is an action out of world.
-
-understand the command "coordson" as something new.
-understand the command "coords on" as something new.
-understand the command "coord on" as something new.
-understand the command "coor on" as something new.
-understand the command "coo on" as something new.
-
-understand "coordson" as coordsoning.
-
-carry out coordsoning:
-	abide by the screen-mode-hidden-note rule;
-	say "Board coordinates are [if show-coords is true]already[else]now[end if] on.";
-	now show-coords is true;
-	the rule succeeds;
-
-chapter moves-oning
-
-show-all-moves is a truth state that varies.
-
-movesoning is an action out of world.
-
-understand the command "moves" as something new.
-
-understand "moves on" as movesoning.
-understand "moveson" as movesoning.
-
-carry out movesoning:
-	say "Showing legal moves under the position is [if show-all-moves is true]already[else]now[end if] on.";
-	now show-all-moves is true;
-	the rule succeeds;
-
-chapter moves-offing
-
-movesoffing is an action out of world.
-
-understand "moves off" as movesoffing.
-understand "movesoff" as movesoffing.
-
-carry out movesoffing:
-	say "Showing legal moves under the position is [if show-all-moves is false]already[else]now[end if] off.";
-	now show-all-moves is false;
-	the rule succeeds;
-
-chapter movesing
-
-movesing is an action out of world.
-
-understand "moves" as movesing.
-
-carry out movesing:
-	if show-all-moves is true:
-		try movesoffing;
-	else:
-		try movesoning;
-	the rule succeeds;
-
-after printing the locale description when show-all-moves is true:
-	say "In this position, you can ";
-	process the print-legal-moves rule;
-	continue the action;
-
-chapter widthing
-
-column-width is a number that varies. column-width is 1.
-
-widthing is an action applying to one number.
-
-understand the command "width" as something new.
-
-understand "width [number]" as widthing.
-understand "w [number]" as widthing.
-
-carry out widthing:
-	abide by the screen-mode-hidden-note rule;
-	if the number understood < 1 or the number understood > 5, say "The width can only be between 1 and 5." instead;
-	say "The column width is [if column-width is number understood]already[else]now[end if] [number understood][even-width-warning].";
-	now column-width is the number understood;
-	the rule succeeds;
-
-to say even-width-warning:
-	if the remainder after dividing the number understood by 2 is 0, say ". Note that an even width will make asymmetrical squares";
-
-chapter bwing
-
-checkerboard is a truth state that varies. checkerboard is true.
-
-bwing is an action out of world.
-
-understand the command "bw" as something new.
-understand the command "wb" as something new.
-
-understand "bw" as bwing.
-understand "wb" as bwing.
-
-carry out bwing:
-	if checkerboard is true:
-		try bwoffing;
-	else:
-		try bwoning;
-	the rule succeeds;
-
-chapter bwoffing
-
-bwoffing is an action out of world.
-
-understand the command "bwoff" as something new.
-
-understand "bwoff" as bwoffing.
-understand "bw off" as bwoffing.
-understand "wboff" as bwoffing.
-understand "wb off" as bwoffing.
-
-carry out bwoffing:
-	abide by the screen-mode-hidden-note rule;
-	say "Checkerboard effects for the board are [if checkerboard is false]already[else]now[end if] off.";
-	now checkerboard is false;
-	the rule succeeds;
-
-chapter bwoning
-
-bwoning is an action out of world.
-
-understand the command "bwon" as something new.
-
-understand "bwon" as bwoning.
-understand "bw on" as bwoning.
-understand "wbon" as bwoning.
-understand "wb on" as bwoning.
-
-carry out bwoning:
-	abide by the screen-mode-hidden-note rule;
-	say "Checkerboard effects for the board are [if checkerboard is true]already[else]now[end if] on.";
-	now checkerboard is true;
-	the rule succeeds;
-
-chapter xyzzying
-
-xyzzying is an action out of world.
-
-understand the command "xyzzy" as something new.
-
-understand "xyzzy" as xyzzying.
-
-carry out xyzzying:
-	say " You think back to how you totally skunked the enemy king when one of your pawns ninja'ed another with that new-fangled [i]en passant[r] move you'd drilled your troops on. Oh, the gloating that ensued when you assured him it was really only fair and sensible, all things considered![paragraph break]Of course, later in the battle, he had a chance to do so, too. But, sneak that you were, you made sure it was unfavorable. The art of war isn't just about having superior forces!";
-	the rule succeeds;
-
 book parser errors
 
 the empty command to waiting rule is listed first in the for printing a parser error rulebook.
@@ -1447,6 +1218,27 @@ to go-to-square (rm - a room):
 
 volume meta verbs
 
+the block saying yes rule is not listed in any rulebook.
+the block saying no rule is not listed in any rulebook.
+
+check saying yes: say "Yes! You believe you will find a way to win the war." instead;
+
+check saying no: say "No. No. No. You can't let your enemy king win or even force you into a stalemate!" instead;
+
+chapter abouting
+
+abouting is an action out of world.
+
+understand the command "about" as something new.
+
+understand "about" as abouting.
+
+carry out abouting:
+	say "[this-game] is my third text adventure based on chess. The first is [i]Fivebyfivia Delenda Est[r], for ParserComp 2021, and the second is [i]Fourbyfourian Quarryin['][r], for IFComp 2021. That seemed about all I could do, where you placed pieces instead of making moves.";
+	say "[line break]But then after some discussion on the intfiction boards about chess and text adventures, I was alerted to Magnus Olsson's [i]Zugzwang[r]. It was part of a text-adventure April Fools['] joke, but it was well-constructed and explored different possible moves.";
+	say "[line break]I'd already done the canonical three pawns vs. three pawns puzzle a long time ago as a sort of experiment, but I remembered one puzzle that would fit well. I didn't want too many pieces. And, well, I remembered one. I hope it's fun for chessplayers and nonplayers alike.";
+	the rule succeeds;
+
 chapter chessing
 
 chessing is an action out of world.
@@ -1465,6 +1257,21 @@ carry out chessing:
 	say "[line break]A rook moves moves vertically or horizontally. So, from b2, it could go to a2, c2, d2, e2, f2, g2, h2, b1, b3, b4, b5, b6, b7, or b8.";
 	say "[line break]A queen can move either diagonally, vertically or horizontally.";
 	say "[line break]A king can move one square vertically, diagonally or horizontally, but it cannot move where it would be attacked.";
+	the rule succeeds;
+
+chapter creditsing
+
+creditsing is an action out of world.
+
+understand the command "credits" as something new.
+
+understand "credits" as creditsing.
+
+carry out creditsing:
+	say "Thanks to Adam Sommerfield for bringing ParserComp back in 2021. Thanks to Christopher Merriner and fos for administrating it in 2022.";
+	say "[line break]Thanks to Jade, ChrisM. Mike Russo, John Zeigler and for testing.";
+	say "[line break]Thanks to everyone who showed me cool puzzles over the years (especially this one!) and those who listened to me as I showed a neat game or puzzle to them, as well as all the people who helped renew interest in chess during the pandemic.";
+	say "[line break]Thanks to you for playing.";
 	the rule succeeds;
 
 chapter undo
@@ -1487,6 +1294,43 @@ report undoing an action when debug-state is true:
 	try looking;
 	the rule succeeds;
 
+chapter metaing
+
+metaing is an action out of world.
+
+understand the command "meta" as something new.
+
+understand "meta" as metaing.
+
+carry out metaing:
+	say "[b]ABOUT[r] gives general information about [this-game].";
+	say "[b]CREDITS[r] shows the credits.";
+	say "[b]META[r] is, well, this, and [b]OPTS[r] shows possible options. [b]VERBS[r] shows verbs.";
+	say "[b]THINK[r]/[b]ACHIEVEMENTS[r]/ACH[r]/[b]A[r] shows achievements.";
+	say "[line break]You should be able to use abbreviations for most or all of these meta-commands, but the full list is too numerous.";
+	the rule succeeds;
+
+chapter opting
+
+opting is an action out of world.
+
+understand the command "options" as something new.
+understand the command "option" as something new.
+understand the command "opts" as something new.
+understand the command "opt" as something new.
+
+understand "options" as opting.
+understand "option" as opting.
+understand "opts" as opting.
+understand "opt" as opting.
+
+carry out opting:
+	if screenread is true, say "There are no options in screenreading mode. The ones that exist are for adjusting text maps." instead;
+	say "You can toggle coordinates with [b]COO[r]/[b]COOR[r]/[b]COORD[r]/[b]COORDS[r] or set them specifically with [b]COO ON[r] or [b]COO OFF[r], etc.";
+	say "[line break]You can also change the board square width with, say, [b]W 3[r] or [b]WIDTH 4[r]. Valid values are 1-5.";
+	say "[line break]You can also toggle the inverse 'checkerboard' effect with [b]WB[r] or [b]WB ON[r] or [b]WB OFF[r].";
+	the rule succeeds;
+
 chapter verbsing
 
 verbsing is an action out of world.
@@ -1504,13 +1348,205 @@ carry out verbsing:
 	say "[line break]You are a king, which moves you can move to any squares vertically, horizontally, or diagonally adjacent. That means if you are on f6, the commands [b]SE[r], [b]e5[r] and [b]Ke5[r] would give the same result, assuming no other piece can move to e5.";
 	say "[line break]Of course, you will have to do more than move your king. If you wish to move a pawn, you can say pc7 or even just c7. (Pawns take priority over other pieces if both can move to the same square.) To promote the pawn, c8. To underpromote it, c8=b or c8b will do so.";
 	say "[line break]To move a promoted piece, [b]qa8[r] will do so for the queen. Note that [b]N[r] is used to refer to a knight, as [b]K[r] is taken by the king.";
-	say "[line break]You can also say [b]B[r] to set the default piece to promote to, say, a bishop. In this case, although [b]K[r] is usually the king in algebraic notation, [b]K[r] is referred to as the knight, since you can't have two kings on the board.";
+	say "[line break]You can also say [b]N[r] to set the default piece to promote to, say, the knight. In this case, although [b]K[r] is usually the king in algebraic notation, [b]K[r] is referred to as the knight, since you can't have two kings on the board.";
+	say "[line break]After typing meta-commands ([b]META[r] lists these)[if screenread is false] or toggling options (you can list them with [b]OPT[r],)[else],[end if] typing [b]L[r] or [b]LOOK[r] lets you see the board again.";
 	if screenread is false:
-		say "[line break]You can toggle coordinates with [b]COO[r]/[b]COOR[r]/[b]COORD[r]/[b]COORDS[r] or set them specifically with [b]COO ON[r] or [b]COO OFF[r], etc.";
-		say "[line break]You can also change the board square width with, say, [b]W 3[r] or [b]WIDTH 4[r]. Valid values are 1-5.";
-		say "[line break]You can also toggle the inverse 'checkerboard' effect with [b]WB[r] or [b]WB ON[r] or [b]WB OFF[r].";
+		say "You can see options for board display with [b]OPT[r].";
 	say "[line break]All command parsing is case-insensitive, though standard chess notation capitalizes the piece name. This is just so you have one less thing to worry about.";
 	say "[line break]Finally, there is no [b]UNDO[r] or takebacks, because we want to mirror an actual chess scenario here. But don't worry. A successful run shouldn't take too long, so you should be able to retrace your steps easily enough.";
+	the rule succeeds;
+
+chapter xyzzying
+
+xyzzying is an action out of world.
+
+understand the command "xyzzy" as something new.
+
+understand "xyzzy" as xyzzying.
+
+carry out xyzzying:
+	say " You think back to how you totally skunked the enemy king when one of your pawns ninja'ed another with that new-fangled [i]en passant[r] move you'd drilled your troops on. Oh, the gloating that ensued when you assured him it was really only fair and sensible, all things considered![paragraph break]Of course, later in the battle, he had a chance to do so, too. But, sneak that you were, you made sure it was unfavorable. The art of war isn't just about having superior forces!";
+	the rule succeeds;
+
+volume option toggling verbs
+
+chapter coordsing
+
+coordsing is an action out of world.
+
+understand the command "coords" as something new.
+understand the command "coord" as something new.
+understand the command "coor" as something new.
+understand the command "coo" as something new.
+
+understand "coords" as coordsing.
+understand "coord" as coordsing.
+understand "coor" as coordsing.
+understand "coo" as coordsing.
+
+carry out coordsing:
+	if show-coords is true:
+		try coordsoffing;
+	else:
+		try coordsoning;
+	the rule succeeds;
+
+this is the screen-mode-hidden-note rule: if screenread is true, say "[i][bracket][b]NOTE:[r][i] this option should be hidden in screen-reader mode, but there is no penalty for toggling it.[close bracket][r][paragraph break];"
+
+chapter coordsoffing
+
+coordsoffing is an action out of world.
+
+understand the command "coordsoff" as something new.
+
+understand "coordsoff" as coordsoffing.
+understand "coords off" as coordsoffing.
+understand "coord off" as coordsoffing.
+understand "coor off" as coordsoffing.
+understand "coo off" as coordsoffing.
+
+carry out coordsoffing:
+	abide by the screen-mode-hidden-note rule;
+	say "Board coordinates are [if show-coords is true]already[else]now[end if] off.";
+	now show-coords is false;
+	the rule succeeds;
+
+chapter coordsoning
+
+coordsoning is an action out of world.
+
+understand the command "coordson" as something new.
+understand the command "coords on" as something new.
+understand the command "coord on" as something new.
+understand the command "coor on" as something new.
+understand the command "coo on" as something new.
+
+understand "coordson" as coordsoning.
+
+carry out coordsoning:
+	abide by the screen-mode-hidden-note rule;
+	say "Board coordinates are [if show-coords is true]already[else]now[end if] on.";
+	now show-coords is true;
+	the rule succeeds;
+
+chapter moves-oning
+
+show-all-moves is a truth state that varies.
+
+movesoning is an action out of world.
+
+understand the command "moves" as something new.
+
+understand "moves on" as movesoning.
+understand "moveson" as movesoning.
+
+carry out movesoning:
+	say "Showing legal moves under the position is [if show-all-moves is true]already[else]now[end if] on.";
+	now show-all-moves is true;
+	the rule succeeds;
+
+chapter moves-offing
+
+movesoffing is an action out of world.
+
+understand "moves off" as movesoffing.
+understand "movesoff" as movesoffing.
+
+carry out movesoffing:
+	say "Showing legal moves under the position is [if show-all-moves is false]already[else]now[end if] off.";
+	now show-all-moves is false;
+	the rule succeeds;
+
+chapter movesing
+
+movesing is an action out of world.
+
+understand "moves" as movesing.
+
+carry out movesing:
+	if show-all-moves is true:
+		try movesoffing;
+	else:
+		try movesoning;
+	the rule succeeds;
+
+after printing the locale description when show-all-moves is true:
+	say "In this position, you can ";
+	process the print-legal-moves rule;
+	continue the action;
+
+chapter widthing
+
+column-width is a number that varies. column-width is 1.
+
+widthing is an action applying to one number.
+
+understand the command "width" as something new.
+
+understand "width [number]" as widthing.
+understand "w [number]" as widthing.
+
+carry out widthing:
+	abide by the screen-mode-hidden-note rule;
+	if the number understood < 1 or the number understood > 5, say "The width can only be between 1 and 5." instead;
+	say "The column width is [if column-width is number understood]already[else]now[end if] [number understood][even-width-warning].";
+	now column-width is the number understood;
+	the rule succeeds;
+
+to say even-width-warning:
+	if the remainder after dividing the number understood by 2 is 0, say ". Note that an even width will make asymmetrical squares";
+
+chapter bwing
+
+checkerboard is a truth state that varies. checkerboard is true.
+
+bwing is an action out of world.
+
+understand the command "bw" as something new.
+understand the command "wb" as something new.
+
+understand "bw" as bwing.
+understand "wb" as bwing.
+
+carry out bwing:
+	if checkerboard is true:
+		try bwoffing;
+	else:
+		try bwoning;
+	the rule succeeds;
+
+chapter bwoffing
+
+bwoffing is an action out of world.
+
+understand the command "bwoff" as something new.
+
+understand "bwoff" as bwoffing.
+understand "bw off" as bwoffing.
+understand "wboff" as bwoffing.
+understand "wb off" as bwoffing.
+
+carry out bwoffing:
+	abide by the screen-mode-hidden-note rule;
+	say "Checkerboard effects for the board are [if checkerboard is false]already[else]now[end if] off.";
+	now checkerboard is false;
+	the rule succeeds;
+
+chapter bwoning
+
+bwoning is an action out of world.
+
+understand the command "bwon" as something new.
+
+understand "bwon" as bwoning.
+understand "bw on" as bwoning.
+understand "wbon" as bwoning.
+understand "wb on" as bwoning.
+
+carry out bwoning:
+	abide by the screen-mode-hidden-note rule;
+	say "Checkerboard effects for the board are [if checkerboard is true]already[else]now[end if] on.";
+	now checkerboard is true;
 	the rule succeeds;
 
 volume unachievements
