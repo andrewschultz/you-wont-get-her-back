@@ -522,7 +522,7 @@ a person has a number called pointvalue.
 
 the black rook is an enemy person in d5. shorthand of black rook is "r".
 
-the white pawn is a friendly person in c6. shorthand of white pawn is "p". pointvalue of white pawn is 1.
+the white pawn is a friendly person in c6. shorthand of white pawn is "P". pointvalue of white pawn is 1.
 
 the black king is an enemy person in a1. shorthand of black king is "k".
 
@@ -1111,7 +1111,7 @@ understand the command "rxr" as something new.
 understand "rxr" as rxring.
 
 carry out rxring:
-	if white rook is off-stage, say "You don't have a rook on the  board!" instead;
+	if white rook is off-stage, say "You don't have a rook on the board!" instead;
 	now hinted-person is white rook;
 	try squaregoing location of black rook;
 	the rule succeeds;
@@ -1122,7 +1122,7 @@ kxring is an action out of world.
 
 understand the command "kxr" as something new.
 
-understand "kxr" as rxring.
+understand "kxr" as kxring.
 
 carry out kxring:
 	if location of black rook is not adjacent to location of player, say "The black rook isn't close enough to take!" instead;
