@@ -331,7 +331,7 @@ to say grid-printout:
 	repeat with Y running from 1 to 8:
 		say "[border][line break]";
 		if show-coords is true:
-			say " [my-row of Y] ";
+			say " [Y] ";
 		say "|";
 		repeat with X running from 1 to 8:
 			if checkerboard is true and the remainder after dividing (X + Y) by 2 is 1:
@@ -352,7 +352,7 @@ to print-column-numbers:
 	if show-coords is false, continue the action;
 	repeat with X running from 1 to 8:
 		say "[row-left of column-width]";
-		say "[X]";
+		say "[my-row of X]";
 		say "[row-right of column-width]";
 		say " ";
 
@@ -437,7 +437,7 @@ to promote-check (pi - a person):
 	note-promote-change pi;
 	if option-persist-warn is false:
 		say "[line break]";
-		ital-say "this option will persist if the puzzle is restarted.";
+		ital-say "this default will persist if the puzzle is restarted, though you can always change it whenever you please.";
 		now option-persist-warn is true;
 
 to note-promote-change (pi - a person):
@@ -1271,6 +1271,7 @@ understand "credits" as creditsing.
 carry out creditsing:
 	say "Thanks to Adam Sommerfield for bringing ParserComp back in 2021. Thanks to Christopher Merriner and fos for administrating it in 2022.";
 	say "[line break]Thanks to Jade, ChrisM. Mike Russo, John Zeigler and for testing.";
+	say "[line break]Thanks to Wade Clarke for super-quick bug reports (hours after ParserComp 2022 started!) of things that should've been obvious in programmer testing.";
 	say "[line break]Thanks to everyone who showed me cool puzzles over the years (especially this one!) and those who listened to me as I showed a neat game or puzzle to them, as well as all the people who helped renew interest in chess during the pandemic.";
 	say "[line break]Thanks to you for playing.";
 	the rule succeeds;
@@ -1349,7 +1350,7 @@ carry out verbsing:
 	say "[line break]You are a king, which moves you can move to any squares vertically, horizontally, or diagonally adjacent. That means if you are on f6, the commands [b]SE[r], [b]e5[r] and [b]Ke5[r] would give the same result, assuming no other piece can move to e5.";
 	say "[line break]Of course, you will have to do more than move your king. If you wish to move a pawn, you can say pc7 or even just c7. (Pawns take priority over other pieces if both can move to the same square.) To promote the pawn, c8. To underpromote it, c8=b or c8b will do so.";
 	say "[line break]To move a promoted piece, [b]qa8[r] will do so for the queen. Note that [b]N[r] is used to refer to a knight, as [b]K[r] is taken by the king.";
-	say "[line break]You can also say [b]N[r] to set the default piece to promote to, say, the knight. In this case, although [b]K[r] is usually the king in algebraic notation, [b]K[r] is referred to as the knight, since you can't have two kings on the board.";
+	say "[line break]You can also say [b]N[r] to set (or re-set) the default piece to promote to, say, the knight. In this case, although [b]K[r] is usually the king in algebraic notation, [b]K[r] is referred to as the knight, since you can't have two kings on the board.";
 	say "[line break]After typing meta-commands ([b]META[r] lists these)[if screenread is false] or toggling options (you can list them with [b]OPT[r],)[else],[end if] typing [b]L[r] or [b]LOOK[r] lets you see the board again.";
 	if screenread is false:
 		say "You can see options for board display with [b]OPT[r].";
@@ -1485,6 +1486,7 @@ widthing is an action applying to one number.
 understand the command "width" as something new.
 
 understand "width [number]" as widthing.
+understand "wi [number]" as widthing.
 understand "w [number]" as widthing.
 
 carry out widthing:
@@ -1496,6 +1498,14 @@ carry out widthing:
 
 to say even-width-warning:
 	if the remainder after dividing the number understood by 2 is 0, say ". Note that an even width will make asymmetrical squares";
+
+section westgoing
+
+westgoing is an action applying to nothing.
+
+understand "w" as westgoing.
+
+carry out westgoing: try going west instead.
 
 chapter bwing
 
