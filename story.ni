@@ -292,7 +292,7 @@ rookstate of a2 is skewer-allow.
 
 volume room description
 
-the description of a room is usually "[if screenread is true][text-board-description].[else][grid-printout][end if]";
+the description of a room is usually "[if screenread is true][text-board-description].[else][grid-printout][run paragraph on][end if]";
 
 to say text-board-description:
 	let my-piece be a random allied person;
@@ -327,6 +327,7 @@ to say row-right of (L - a number):
 to say grid-printout:
 	say "[fixed letter spacing]";
 	print-column-numbers;
+	if show-coords is true, say "[line break]";
 	repeat with Y running from 1 to 8:
 		say "[border][line break]";
 		if show-coords is true:
@@ -354,7 +355,6 @@ to print-column-numbers:
 		say "[X]";
 		say "[row-right of column-width]";
 		say " ";
-	say "[line break]";
 
 to say occupant of (x - a number) and (y - a number):
 	repeat with rm running through rooms:
@@ -1152,7 +1152,7 @@ carry out squaregoing:
 				say "This must not be the way to figure everything out.";
 				say "But you-the-player are glad to have checked off one more accomplishment.";
 		else:
-			say "But what is the right way, then?";
+			say "But what is the right way, then? You did everything the best you could, you think. Maybe you're missing a hidden detail.";
 		achieve "stalemate, mate";
 		reset-the-board;
 		the rule succeeds;
@@ -1209,6 +1209,7 @@ carry out squaregoing:
 		the rule succeeds;
 	if hinted-person is white rook:
 		abide by the bungled-it-late rule;
+	if location of player is noun, say "You're already on [noun]." instead;
 	d "Couldn't find any way to move [hinted-person] to [noun].";
 	say "You don't seem to be able to move anything to [noun].";
 
