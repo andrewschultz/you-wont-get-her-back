@@ -69,6 +69,7 @@ when play begins (this is the sort fleestates randomly rule):
 	sort available-fleestate-list in random order;
 	choose-flee-room;
 	process the check-skip-intro rule;
+	if the rule succeeded, continue the action;
 	say "The war was HIS fault, of course. And you would've won it quickly and easily if you hadn't tried so hard to keep your wife, the white queen, alive. Your counterpart, stupid though he is, knew this and kept forcing small advantages here and there, knowing you'd cede them so your wife and his wouldn't be killed. He didn't care about his own wife, of course. You can't blame him.";
 	wfak;
 	say "You knew you were objectively losing, but at some point, your wife set you straight. It was time to let her go. After you did, your counterpart skulked off to a corner and barked out commands and laughed as you mixed things up in the center of the board, trying to do something, anything, to keep hope alive.";
@@ -331,7 +332,7 @@ to say grid-printout:
 	repeat with Y running from 1 to 8:
 		say "[border][line break]";
 		if show-coords is true:
-			say " [Y] ";
+			say " [9 - Y] ";
 		say "|";
 		repeat with X running from 1 to 8:
 			if checkerboard is true and the remainder after dividing (X + Y) by 2 is 1:
@@ -638,12 +639,12 @@ to reset-the-board:
 	now white knight is off-stage;
 	now repeat-yourmove-whine is false;
 	now repeat-whines is 0;
-	now my-move-log is {};
 	now repeats-this-time is 0;
-	if black-move is false:
+	if black-move is false and number of entries in my-move-log > 0: [for 2 achievements in one turn]
 		move the player to b6;
 	else:
 		move player to b6, without printing a room description;
+	now my-move-log is {};
 
 volume going
 
@@ -1023,7 +1024,6 @@ after reading a command:
 			let X be the player's command;
 			replace the text "=" in X with "";
 			change the text of the player's command to "[X]";
-			say "(eq) [the player's command].";
 		let nc be the number of characters in the player's command;
 		if character number nc in the player's command is "q":
 			note-promote-change-q white queen;
@@ -1039,7 +1039,6 @@ after reading a command:
 		let X be the player's command;
 		replace the regular expression ".$" in X with "";
 		change the text of the player's command to "[X]";
-		say "eq new: [the player's command].";
 	if the player's command matches the regular expression "^<a-z><a-z><1-8>$":
 		if character number 1 in the player's command is "k":
 			now hinted-person is the player;
@@ -1270,8 +1269,8 @@ understand "credits" as creditsing.
 
 carry out creditsing:
 	say "Thanks to Adam Sommerfield for bringing ParserComp back in 2021. Thanks to Christopher Merriner and fos for administrating it in 2022.";
-	say "[line break]Thanks to Jade, ChrisM. Mike Russo, John Zeigler and for testing.";
-	say "[line break]Thanks to Wade Clarke for super-quick bug reports (hours after ParserComp 2022 started!) of things that should've been obvious in programmer testing.";
+	say "[line break]Thanks to Jade, Mike Russo, and John Zeigler for testing.";
+	say "[line break]Thanks to Wade Clarke and Olaf Nowacki for super-quick bug reports (within 24 hours of ParserComp 2022 starting!) of things that should've been obvious in programmer testing, especially if I'd implemented some features at the start of the cycle.";
 	say "[line break]Thanks to everyone who showed me cool puzzles over the years (especially this one!) and those who listened to me as I showed a neat game or puzzle to them, as well as all the people who helped renew interest in chess during the pandemic.";
 	say "[line break]Thanks to you for playing.";
 	the rule succeeds;
@@ -1327,8 +1326,9 @@ understand "opts" as opting.
 understand "opt" as opting.
 
 carry out opting:
-	if screenread is true, say "There are no options in screenreading mode. The ones that exist are for adjusting text maps." instead;
-	say "You can toggle coordinates with [b]COO[r]/[b]COOR[r]/[b]COORD[r]/[b]COORDS[r] or set them specifically with [b]COO ON[r] or [b]COO OFF[r], etc.";
+	say "You can toggle screen reader mode with [b]SCR[r]. In screen reader mode, [this-game] describes which pieces are where.";
+	if screenread is true, say "[line break]There are no other options in screenreading mode. The ones that exist are for adjusting text maps." instead;
+	say "[line break]You can toggle coordinates with [b]COO[r]/[b]COOR[r]/[b]COORD[r]/[b]COORDS[r] or set them specifically with [b]COO ON[r] or [b]COO OFF[r], etc.";
 	say "[line break]You can also change the board square width with, say, [b]W 3[r] or [b]WIDTH 4[r]. Valid values are 1-5.";
 	say "[line break]You can also toggle the inverse 'checkerboard' effect with [b]WB[r] or [b]WB ON[r] or [b]WB OFF[r].";
 	the rule succeeds;
