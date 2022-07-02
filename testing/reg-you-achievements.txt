@@ -12,7 +12,7 @@ You haven't found any achievements, but don't worry. You'll get one soon. You Wo
 
 >kb7
 
-The black rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Of course, the enemy king has no shot of corralling the pawn so the rook doesn't die in the process. Your hopes of winning are dashed!
+The black rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Fortuntaely, the enemy king can't help the rook corral the pawn for free.
 DEBUG: checking for traded pawn achievement.
 Congratulations! You just got the TRADED PAWN achievement!
 
@@ -180,7 +180,7 @@ POINTLESS BATHOS AND LOSS: letting the black rook take the white Queen
 
 >c7
 >kb7
-The rook chuckles as it backpedals to d7. Your pawn is pinned against you. Even if you go to the eighth rank, the rook will take it the next move.
+From a distance, the opposing king laughs. "What made you think you could win? The only bummer for me is, my rook will have to kill that worthless pawn next move. I won't get to make you watch your wife die twice in the same war."
 DEBUG: checking for pinned pawn achievement.
 Congratulations! You just got the PINNED PAWN achievement!
 
@@ -272,7 +272,7 @@ POINTLESS BATHOS AND LOSS: letting the black rook take the white Queen
 >s
 
 >kc1
-The black rook slides over to c4, forking you and your pawn on c7. The rook and king endgame ahead will be painful.
+You freeze up. It's almost too good to be true, getting your wife back. And then, something too awful to be true: the black rook slides over to c4, forking you and your pawn on c7. The rook and king endgame ahead will be painful.
 DEBUG: checking for forked to death achievement.
 Congratulations! You just got the FORKED TO DEATH achievement!
 
@@ -783,8 +783,8 @@ DRAGGING IT OUT: taking extra turns to win, considering repetition
 >kb3
 >rc1
 
-Wow! You really left your enemies hanging before finishing them off. Impossible to imagine doing better, really.
-DEBUG: checking for dragging it out all the way achievement.
+A painful trip through memory lane. No, there was nothing you could have done. You had that clever idea, and it just wasn't enough.
+You were feeling a bit sadstic, there. The enemy king meant to cause maximum pain, and now you're causing it back, dragging things out all the way. Serves him right.
 Congratulations! You just got the DRAGGING IT OUT ALL THE WAY achievement!
 
 >think
@@ -811,7 +811,8 @@ My own experience with this was back in my junior year of high school. I beat a 
 >c8r
 >kb3
 >rc1
-Wow! You really left your enemies hanging before finishing them off. Impossible to imagine doing better, really.
+
+And so it comes to pass: the enemy king, safe from the main action for so long, is trapped. He thought he was safe or, if you got close, he could get out of the corner quickly enough. Even being one square away from the corner would've been good enough! Well, he deserved his fate. You can't remember how or why he got there. You have your revenge, which is something, even if you will have to do without your queen.
 DEBUG: checking for dragging it out all the way achievement.
 Congratulations! You just got the DRAGGING IT OUT ALL THE WAY achievement!
 [NOTE: I gave you the "dragging it out" achievement, too, for if you repeated any position at all and still won. But you found the maximum amount to repeat without a draw, so great job there!]

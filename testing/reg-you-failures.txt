@@ -36,22 +36,22 @@ Congratulations! You just got the THREEFOLD achievement!
 #note-0
 
 >ne
-The black rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Of course, the enemy king has no shot of corralling the pawn so the rook doesn't die in the process, even though you'll need to get back out of your pawn's way. Your hopes of winning are dashed!
+The black rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Fortuntaely, the enemy king can't help the rook corral the pawn for free, even though you'll need to get back out of your pawn's way.
 DEBUG: checking for traded pawn achievement.
 Congratulations! You just got the TRADED PAWN achievement!
 
 >n
-The black rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Of course, the enemy king has no shot of corralling the pawn so the rook doesn't die in the process. Your hopes of winning are dashed!
+The black rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Fortuntaely, the enemy king can't help the rook corral the pawn for free.
 DEBUG: checking for traded pawn achievement.
 !Congratulations!
 
 >nw
-The black rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Of course, the enemy king has no shot of corralling the pawn so the rook doesn't die in the process, even though you'll need to make a move to guard your pawn. Your hopes of winning are dashed!
+The black rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Fortuntaely, the enemy king can't help the rook corral the pawn for free, even though you'll need to make a move to guard your pawn.
 DEBUG: checking for traded pawn achievement.
 !Congratulations!
 
 >w
-The black rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Of course, the enemy king has no shot of corralling the pawn so the rook doesn't die in the process, even though you'll need to make a move to guard your pawn. Your hopes of winning are dashed!
+The black rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Fortuntaely, the enemy king can't help the rook corral the pawn for free, even though you'll need to make a move to guard your pawn.
 DEBUG: checking for traded pawn achievement.
 !Congratulations!
 
@@ -68,17 +68,21 @@ But the enemy rook would see you there.
 But the white pawn is already there.
 
 >nw
-The black rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Of course, the enemy king has no shot of corralling the pawn so the rook doesn't die in the process, even though you'll need to make a move to guard your pawn. Your hopes of winning are dashed!
+The black rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Fortuntaely, the enemy king can't help the rook corral the pawn for free, even though you'll need to make a move to guard your pawn.
 DEBUG: checking for traded pawn achievement.
 !Congratulations!
 
 >n
-The black rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Of course, the enemy king has no shot of corralling the pawn so the rook doesn't die in the process. Your hopes of winning are dashed!
+The black rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Fortuntaely, the enemy king can't help the rook corral the pawn for free.
 DEBUG: checking for traded pawn achievement.
 !Congratulations!
 
 >ne
-The black rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Of course, the enemy king has no shot of corralling the pawn so the rook doesn't die in the process, even though you'll need to get back out of your pawn's way. Your hopes of winning are dashed!
+The black rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Fortuntaely, the enemy king can't help the rook corral the pawn for free, even though you'll need to get back out of your pawn's way.
+
+Of course, that doesn't stop him taunting you.
+
+"Should I let that silly pawn promote, then kill your wife just as she comes back?"
 DEBUG: checking for traded pawn achievement.
 !Congratulations!
 
@@ -109,7 +113,7 @@ Congratulations! You just got the SKEWERED TO A DRAW achievement!
 >undo
 
 >n
-The rook chuckles as it backpedals to d7. Your pawn is pinned against you. Even if you go to the eighth rank, the rook will take it the next move.
+From a distance, the opposing king laughs. "What made you think you could win? The only bummer for me is, my rook will have to kill that worthless pawn next move. I won't get to make you watch your wife die twice in the same war."
 DEBUG: checking for pinned pawn achievement.
 Congratulations! You just got the PINNED PAWN achievement!
 
@@ -118,7 +122,7 @@ Congratulations! You just got the PINNED PAWN achievement!
 # here we want to test and make sure "pinned pawn" is not re-reported, which would not be possible with straight UNDO
 
 >nw
-The rook chuckles as it backpedals to d7. Your pawn is pinned against you. Even if you go to the eighth rank, the rook will take it the next move.
+From a distance, the opposing king laughs. "What made you think you could win? The only bummer for me is, my rook will have to kill that worthless pawn next move. I won't get to make you watch your wife die twice in the same war."
 DEBUG: checking for pinned pawn achievement.
 !Congratulations! You just got the PINNED PAWN achievement!
 
@@ -284,14 +288,14 @@ But the enemy rook would see you there.
 Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
 
 >w
-Oh no! That prevents the rook skewering your advanced pawn, but after it slides to c1, the pawn is undefendable.
+The enemy king begins laughing. "Of course! Bring your queen back for one final moment together! Except, of course, you aren't. Not even close." As he orders his rook to d1, you see what he means. You're too far away to guard your Queen, if you bring her back, as the rook will check on c1.
 DEBUG: checking for captured pawn achievement.
 Congratulations! You just got the CAPTURED PAWN achievement!
 
 >undo
 
 >nw
-Oh no! That prevents the rook skewering your advanced pawn, but after it slides to c1, the pawn is undefendable.
+The enemy king begins laughing. "Of course! Bring your queen back for one final moment together! Except, of course, you aren't. Not even close." As he orders his rook to d1, you see what he means. You're too far away to guard your Queen, if you bring her back, as the rook will check on c1.
 DEBUG: checking for captured pawn achievement.
 Congratulations! You just got the CAPTURED PAWN achievement!
 
@@ -325,7 +329,7 @@ But the enemy rook would see you there.
 But the enemy rook would see you there.
 
 >s
-The black rook slides over to c4, forking you and your pawn on c7. The rook and king endgame ahead will be painful.
+You freeze up. It's almost too good to be true, getting your wife back. And then, something too awful to be true: the black rook slides over to c4, forking you and your pawn on c7. The rook and king endgame ahead will be painful.
 DEBUG: checking for forked to death achievement.
 Congratulations! You just got the FORKED TO DEATH achievement!
 
