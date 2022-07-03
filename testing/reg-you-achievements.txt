@@ -1,6 +1,6 @@
 ## reg-you-failures.txt
 
-## failures for Saaverda problem game
+## failures for Saavedra problem game
 
 ** game: /home/andrew/prt/debug-you-wont-get-her-back.z8
 ** interpreter: /home/andrew/prt/dfrotz -m -w5000 -h25
@@ -791,7 +791,7 @@ Congratulations! You just got the DRAGGING IT OUT ALL THE WAY achievement!
 Would you like to RESTART, RESTORE a saved game, QUIT, UNDO the last command or see NOTES on the initial position?
 
 >notes
-The position at the start is known as the Saaverda position. Saaverda himself didn't create it. He just found a hole in the "black to draw" puzzle from the original position, by G. E. Barbier, who saw Rc4+! after the promotion to a queen but missed the underpromotion. The Wikipedia entry has more detail on the history, but I found it to be the simplest example of a legitimate surprise to be found in a chess game, where once you see it, it's obvious. And while one may wonder what the heck the black king is doing off in the corner, a lot of the themes come up elsewhere, and anyone who says this ruins the puzzle probably nitpicks cartoons for realism, too.
+The position at the start is known as the Saavedra position. Saavedra himself didn't create it. He just found a hole in the "black to draw" puzzle from the original position, by G. E. Barbier, who saw Rc4+! after the promotion to a queen but missed the underpromotion that would have rendered it harmless. The Wikipedia entry has more detail on the history, but I found it to be the simplest example of a legitimate surprise to be found in a chess game, where once you see it, it's obvious. And while one may wonder what the heck the black king is doing off in the corner, a lot of the themes come up elsewhere, and anyone who says this ruins the puzzle probably nitpicks cartoons for realism, too.
 My own experience with this was back in my junior year of high school. I beat a gentleman named Slavko Milovanovic who was rated 2000 and may or may not have been sandbagging. But he was very nice about a loss to a considerably lower-rated player, and afterwards he showed me a bunch of neat stuff. This was the neatest and most memorable. It's one of the very top puzzles I try and pass on to people who may be interested in chess but don't want to devote an insane amount of time to opening theory, and I hope you enjoyed it, too.
 
 * drag_out_all_first
