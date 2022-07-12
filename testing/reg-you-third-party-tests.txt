@@ -1,0 +1,23 @@
+## reg-you-third-party-tests.txt
+
+## test cases contributed by users (specifically, eddieriofer, but there may be more)
+## these do/will not fit nicely into my basic unit tests, but they're important
+
+** game: /home/andrew/prt/debug-you-wont-get-her-back.z8
+** interpreter: /home/andrew/prt/dfrotz -m -w5000 -h25
+
+* riofer-runtime-repeat
+
+>c7
+>Kb5
+>Kb4
+>Kb3
+>Kc2
+>Kc3
+>Kc2
+>Kb3
+>Kb4
+>Kb5
+>Kb6
+!Run-time
+!P22
