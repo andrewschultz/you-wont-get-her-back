@@ -1035,7 +1035,7 @@ understand "kxr" as kxring.
 carry out kxring:
 	if location of black rook is not adjacent to location of player, say "The black rook isn't close enough to take!" instead;
 	if location of black rook is adjacent to location of black king, say "But the black king is guarding that square!" instead;
-	go-to-square noun instead;
+	go-to-square location of black rook instead;
 
 volume parsing
 
@@ -1259,7 +1259,7 @@ carry out squaregoing:
 	say "You don't seem to be able to move anything to [noun].";
 
 to go-to-square (rm - a room):
-	let x be the best route from location of player to noun;
+	let x be the best route from location of player to rm;
 	try going x;
 
 volume meta verbs
