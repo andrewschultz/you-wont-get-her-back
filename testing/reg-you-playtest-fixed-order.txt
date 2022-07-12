@@ -1,0 +1,269 @@
+## reg-you-playtest-fixed-order.txt
+
+## Failures for the Saavedra problem game, but without test-commands to force certain endings.
+## The point is to make sure there's a way through. In the initial release, there was not, due to a one-line bug.
+## This doesn't cover all combinations, but it does cover one, given a fixed ordering of game-states.
+## Also, some flee squares are forced with the RFA command, which checks to make sure the flee type is unchanged.
+## The KXR comments are there to notify you that the enemy rook gave a spite check.
+## This could be changed later, e.g. once the rook gives a spite check and you take it, remove it from the list possible achievements. But it stays, now.
+
+** game: /home/andrew/prt/debug-you-wont-get-her-back.z8
+** interpreter: /home/andrew/prt/dfrotz -m -w5000 -h25
+
+* main_test
+
+>ord
+
+>c7
+>s
+>s
+>se
+>s
+>n
+>s
+>n
+Congratulations! You just got the THREEFOLD achievement!
+
+>c7
+>b7
+Congratulations! You just got the PINNED PAWN achievement!
+
+>c7
+>ka5
+Congratulations! You just got the CAPTURED PAWN achievement!
+
+>kb7
+Congratulations! You just got the TRADED PAWN achievement!
+
+>c7
+>s
+>s
+>s
+Congratulations! You just got the ALTERNATE PATHS achievement!
+
+>ne
+Congratulations! You just got the SKEWERED TO A DRAW achievement!
+
+>c7
+>s
+>s
+>se
+>c8
+Congratulations! You just got the SKEWERED TO DEATH (PAWN) achievement!
+
+>c7
+>s
+>s
+>s
+>se
+>c8q
+>kd1
+Congratulations! You just got the POINTLESS BATHOS AND LOSS achievement!
+
+>c7
+>s
+>s
+>s
+>se
+>c8q
+>qc4
+Congratulations! You just got the STALEMATE, MATE achievement!
+
+>c7
+>s
+>s
+>s
+>se
+>c8b
+Congratulations! You just got the FORKED TO DEATH achievement!
+
+>c7
+>s
+>s
+>s
+>se
+>c8r
+>kb3
+>rc1
+Congratulations! You just got the PLAIN OLD CHECKMATE achievement!
+
+>try
+
+>c7
+>s
+>s
+>s
+>se
+>c8r
+>kb3
+>rc4
+Congratulations! You just got the CASTLE CARNAGE achievement!
+
+>rfa h4
+>c7
+>s
+>s
+>s
+>se
+>c8r
+>kb3
+>rh8
+Congratulations! You just got the ALL FOR NAUGHT achievement!
+
+>c7
+>s
+>s
+>s
+>se
+>c8r
+>kb3
+>rg8
+Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
+
+>c7
+>s
+>s
+>s
+>se
+>c8r
+>kb3
+>ra8
+Congratulations! You just got the SPITE CHECK (DRAWING) achievement!
+
+# win once to get to skewer-allowing
+#start expansion from >NFS
+>c7
+>s
+>s
+>s
+>se
+>c8r
+>kb3
+>rc1
+#end expansion from >NFS
+
+# now get skewered on b8 by the rook on a2
+
+>c7
+>s
+>s
+>s
+>se
+>c8r
+>kb3
+>rb8
+Congratulations! You just got the SKEWERED TO DEATH (ROOK) achievement!
+
+>c7
+>s
+>s
+>s
+>se
+>c8r
+>kb3
+>ra8
+Congratulations! You just got the RUNNING UP THE SCORE achievement!
+
+>c7
+>s
+>s
+>s
+>se
+>c8r
+>kb3
+>ra8
+Congratulations! You just got the SPITE CHECK (WINNING) achievement!
+
+>c7
+>s
+>s
+>s
+>se
+>c8r
+>kb3
+>rc4
+Congratulations! You just got the ROOK ON ROOK VIOLENCE achievement!
+
+#kxr
+#start expansion from >NFS
+>c7
+>s
+>s
+>s
+>se
+>c8r
+>kb3
+>kxr
+#end expansion from >NFS
+
+#start expansion from >NFS
+>c7
+>s
+>s
+>s
+>se
+>c8r
+>kb3
+>rc1
+#end expansion from >NFS
+
+#start expansion from >NFS
+>c7
+>s
+>s
+>s
+>se
+>c8r
+>kb3
+>rc1
+#end expansion from >NFS
+
+>c7
+>s
+>s
+>s
+>se
+>c8r
+>kb3
+>kc4
+Congratulations! You just got the GIVING FUTILE HOPE achievement!
+
+#kxr
+#start expansion from >NFS
+>c7
+>s
+>s
+>s
+>se
+>c8r
+>kb3
+>kxr
+#end expansion from >NFS
+
+>p
+>s
+>n
+>s
+>s
+>s
+>se
+>c8r
+>kb3
+>rc1
+Congratulations! You just got the DRAGGING IT OUT achievement!
+
+>p
+>s
+>n
+>s
+>s
+>s
+>n
+>se
+>s
+>n
+>s
+>c8r
+>kb3
+>rc1
+Congratulations! You just got the DRAGGING IT OUT ALL THE WAY achievement!
