@@ -546,9 +546,9 @@ check thinking:
 	let count be 0;
 	repeat through table of unachievements:
 		increment count;
-		if count > last-got:
+		if count > last-got + 1:
 			let dif be number of rows in table of unachievements - last-got;
-			say "[dif] achievement[if dif > 1]s[end if] below this.";
+			say "Instead of writing lots of lines with dashes, I'll mention there are [dif] achievements below the trickiest you've found.";
 			break;
 		if achieved entry is true:
 			say "[b][achievement entry in upper case][r]: [details entry][line break]";
