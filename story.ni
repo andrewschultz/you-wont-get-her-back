@@ -54,7 +54,7 @@ current-game-state is a game-state that varies.
 
 chapter square states
 
-fleestate is a kind of value. the fleestates are unreachable, a-guarding, a-allowing, spite-checking, skewer-allow, sucker-sacrificing, useless-sacrificing.
+fleestate is a kind of value. the fleestates are unreachable, a-guarding, a-allowing, skewer-allow, sucker-sacrificing, useless-sacrificing, spite-checking.
 
 available-fleestate-list is a list of fleestates variable.
 
@@ -629,6 +629,9 @@ repeats-this-time is a number that varies.
 
 to reset-the-board:
 	say "[line break]Okay, let's set things back where they were and try again.";
+	reset-board-quietly;
+
+to reset-board-quietly:
 	move black rook to d5;
 	move white pawn to c6;
 	move black king to a1;
@@ -714,7 +717,7 @@ check going when current-game-state is rook-forks-kq:
 check going when current-game-state is need-kb3 (this is the final semi-random rook move rule):
 	if room gone to is not b3, abide by the bungled-it-late rule;
 	if rookstate of rook-flee-room is spite-checking:
-		say "There's a big argument. The black king insists the black rook give himself up for you. 'You will sacrifice yourself for your king and country, and you will sacrifice yourself for your king and country right NOW, do you hear?'[paragraph break]There's a big argument, which you sit back and enjoy, until you worry it might tip off the 50-move rule. Then you realize the 50-move rule doesn't progress without, you know, a legal move. So that's all good. The rook flings itself to [rook-flee-room].";
+		say "There's a big argument. The black king insists the black rook give himself up for you. 'You will sacrifice yourself for your king and country, and you will sacrifice yourself for your king and country right NOW, do you hear?'[paragraph break]You sit back and enjoy the animosity, until you worry it might tip off the 50-move rule. Then you realize the 50-move rule doesn't progress without, you know, your making a move. So that's all good. The rook flings itself to [rook-flee-room].";
 		move black rook to rook-flee-room;
 	else:
 		say "The black rook flees to [rook-flee-room] to save its own skin!";
@@ -863,8 +866,6 @@ to decide whether threefold-repetition of (N - a number):
 				yes;
 			else if temp is 1:
 				if black-move is false and repeat-yourmove-whine is false:
-					now repeat-yourmove-whine is true;
-					choose row repeat-whines in table of repeat whines;
 					say "'Back and forth, eh? One more time here and we can call this dumb war off. No winners, no losers. Them's the rules.'";
 					now repeat-yourmove-whine is true;
 				if black-move is true:
@@ -1090,10 +1091,13 @@ to check-drag-out:
 	if repeat-whines > 0 or repeat-yourmove-whine is true:
 		achieve "dragging it out";
 
+pawn-note is a truth state that varies.
+
 this is the implicit pawn movement rule:
 	if hinted-person is black king and the room north of location of white pawn is the noun:
-		if noun is adjacent to location of player:
+		if pawn-note is false and noun is adjacent to location of player:
 			say "(moving the pawn, as is conventional with chess notation when no piece is given)[line break]";
+			now pawn-note is true;
 		try pawning;
 		the rule succeeds;
 	if hinted-person is white pawn and the room north of location of white pawn is the noun:
@@ -1101,13 +1105,21 @@ this is the implicit pawn movement rule:
 		try pawning;
 		the rule succeeds;
 
+to decide which number is king-dist of (rm1 - a room) and (rm2 - a room):
+	let xdelta be xval of rm1 - xval of rm2;
+	let ydelta be yval of rm1 - yval of rm2;
+	if xdelta < 0, now xdelta is 0 - xdelta;
+	if ydelta < 0, now ydelta is 0 - ydelta;
+	if xdelta >= ydelta, decide on xdelta;
+	decide on ydelta;
+
 this is the implicit king movement rule:
 	if hinted-person is black king and noun is adjacent to location of the player, now hinted-person is the player;
 	if hinted-person is the player:
 		if the noun is adjacent to the location of the player:
 			go-to-square noun;
 		else:
-			say "You can't travel that far!";
+			say "You can't travel from [location of player] to [noun] in one move! It would take [king-dist of location of player and noun] moves.";
 		the rule succeeds;
 
 this is the white-rook-coward rule:
@@ -1270,6 +1282,7 @@ understand "credits" as creditsing.
 carry out creditsing:
 	say "Thanks to Adam Sommerfield for bringing ParserComp back in 2021. Thanks to Christopher Merriner and fos for administrating it in 2022.";
 	say "[line break]Thanks to Jade, Mike Russo, and John Zeigler for testing.";
+	say "[line break]Thanks to eddieriofer for a ton of really nice bug reports on Github. A lot of work went into them, and they were the first Github bugs I'd received in-comp. While it's always humbling to see what I missed, both technically and with big-picture planning, the work and help and support is greatly appreciated.";
 	say "[line break]Thanks to Wade Clarke and Olaf Nowacki for super-quick bug reports (within 24 hours of ParserComp 2022 starting!) of things that should've been obvious in programmer testing, especially if I'd implemented some features at the start of the cycle.";
 	say "[line break]Thanks to everyone who showed me cool puzzles over the years (especially this one!) and those who listened to me as I showed a neat game or puzzle to them, as well as all the people who helped renew interest in chess during the pandemic.";
 	say "[line break]Thanks to you for playing.";

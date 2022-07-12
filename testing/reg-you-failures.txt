@@ -1,6 +1,6 @@
 ## reg-you-failures.txt
 
-## failures for Saaverda problem game
+## failures for Saavedra problem game
 
 ** game: /home/andrew/prt/debug-you-wont-get-her-back.z8
 ** interpreter: /home/andrew/prt/dfrotz -m -w5000 -h25
