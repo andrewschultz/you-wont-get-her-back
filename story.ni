@@ -1232,22 +1232,7 @@ carry out squaregoing:
 			reset-the-board;
 			the rule succeeds;
 		if noun is c1:
-			if achieved-yet of "plain old checkmate":
-				say "A painful trip through memory lane. No, there was nothing you could have done. You had that clever idea, and it just wasn't enough.";
-			else:
-				say "And so it comes to pass: the enemy king, safe from the main action for so long, is trapped. He thought he was safe or, if you got close, he could get out of the corner quickly enough. Even being one square away from the corner would've been good enough! Well, he deserved his fate. You can't remember how or why he got there. You have your revenge, which is something, even if you will have to do without your queen.[paragraph break]It's been a long fight. You don't even remember why it started. But with your rook beside you, you will restore the kingdom, slowly but surely.";
-			achieve "plain old checkmate";
-			check-drag-out;
-			if ever-won is false:
-				now ever-won is true;
-				say "You figured the main solution, but if you want, you can [b]TRY[r] to find other ways to lose. I hope they are amusing. There are a few more squares the enemy rook may flee to now, making for more endings.";
-				add useless-sacrificing to available-fleestate-list;
-				add spite-checking to available-fleestate-list;
-				end the story finally saying "Personal Loss, Victory in Battle";
-				the rule succeeds;
-			else:
-				choose-flee-room;
-				reset-the-board;
+			check-initial-win;
 			the rule succeeds;
 		abide by the white-rook-coward rule;
 		abide by the bungled-it-late rule;
@@ -1257,6 +1242,34 @@ carry out squaregoing:
 	if location of player is noun, say "You're already on [noun]." instead;
 	d "Couldn't find any way to move [hinted-person] to [noun].";
 	say "You don't seem to be able to move anything to [noun].";
+
+to check-initial-win:
+	if achieved-yet of "plain old checkmate":
+		say "A painful trip through memory lane. No, there was nothing you could have done. You had that clever idea, and it just wasn't enough.";
+	else:
+		say "And so it comes to pass: the enemy king, safe from the main action for so long, is trapped. He thought he was safe or, if you got close, he could get out of the corner quickly enough. Even being one square away from the corner would've been good enough! Well, he deserved his fate. You can't remember how or why he got there. You have your revenge, which is something, even if you will have to do without your queen.[paragraph break]It's been a long fight. You don't even remember why it started. But with your rook beside you, you will restore the kingdom, slowly but surely.";
+	achieve "plain old checkmate";
+	check-drag-out;
+	if ever-won is false:
+		now ever-won is true;
+		say "You figured the main solution, but if you want, you can [b]TRY[r] to find other ways to lose. I hope they are amusing. There are a few more squares the enemy rook may flee to now, making for more endings.";
+		flee-add sucker-sacrificing;
+		flee-add useless-sacrificing;
+		flee-add spite-checking;
+		end the story finally saying "Personal Loss, Victory in Battle";
+		the rule succeeds;
+	else:
+		choose-flee-room;
+		reset-the-board;
+
+ordered is a truth state that varies.
+
+to flee-add (fl - a fleestate):
+	if ordered is false:
+		let RN be a random number between 1 and number of entries in available-fleestate-list;
+		add fl at entry RN in available-fleestate-list;
+	else:
+		add fl to available-fleestate-list;
 
 to go-to-square (rm - a room):
 	let x be the best route from location of player to rm;
