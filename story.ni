@@ -94,17 +94,26 @@ to init-fleestate-list:
 	remove sucker-sacrificing from available-fleestate-list;
 
 to choose-flee-room:
-	increment fleestate-index;
-	if fleestate-index > number of entries in available-fleestate-list, now fleestate-index is 1;
-	now current-fleestate is entry fleestate-index of available-fleestate-list;
-	now rook-flee-room is a random fleeable room;
+	if fleestate-index > number of entries in available-fleestate-list or fleestate-index is 0:
+		now fleestate-index is 1;
+		now current-fleestate is entry 1 of available-fleestate-list;
+		now rook-flee-room is a random currently-fleeable room;
+		continue the action;
+	let old-fleestate be current-fleestate;
+	now current-fleestate is entry fleestate-index in available-fleestate-list;
+	if current-fleestate is old-fleestate and number of entries in available-fleestate-list > 1:
+		increment fleestate-index;
+		if fleestate-index > number of entries in available-fleestate-list:
+			now fleestate-index is 1;
+		now current-fleestate is entry fleestate-index of available-fleestate-list;
+	now rook-flee-room is a random currently-fleeable room;
 	if ever-won is true:
 		say "[one of]Since you're playing past the initial win, you will get a hint where the enemy rook will flee to. In this case it is [rook-flee-room]. Some of the bad endings can only be found when a rook to a certain square[or]The enemy rook will flee to [rook-flee-room] this time[stopping].";
 	if debug-state is true:
 		d "New flee room is [rook-flee-room] with state [current-fleestate].";
 		d "Set of states = [available-fleestate-list].";
 
-definition: a room (called rm) is fleeable:
+definition: a room (called rm) is currently-fleeable:
 	if rookstate of rm is current-fleestate, yes;
 	no;
 
@@ -755,17 +764,18 @@ check going when current-game-state is rook-doomed (this is the king shouldn't m
 		achieve "staler than stalemate, mate";
 		reset-the-board;
 		the rule succeeds;
-	say "BAM! Take that, rook! [if location of rook is a3]The rest is straightforward. Your enemy moves to b1, you move to b3, and they move to a1, and your rook delivers the kill on c1[else]The rest is a bit tricky, since your king was decoyed to b4. But you've planned ahead: the enemy king to a2? Rook to c2. Enemy king to b1? King to b3. The rook on the c-file cuts your enemy off[end if]. Victory!";
-	check-drag-out;
-	choose-flee-room;
-	reset-the-board;
+	say "BAM! Take that, rook! [if location of black rook is a3]The rest is straightforward. Your enemy moves to b1, you move to b3, and they move to a1, and your rook delivers the kill on c1[else]The rest is a bit tricky, since your king was decoyed to b4. But you've planned ahead: the enemy king to a2? Rook to c2. Enemy king to b1? King to b3. The rook on the c-file cuts your enemy off[end if]. Victory!";
+	check-initial-win;
 	the rule succeeds;
 
+got-alt-paths is a truth state that varies.
+
 to decide whether seen-alts:
+	say "[got-alt-paths] [alt-c3] [alt-b3] [the room noun of location of player].";
+	if got-alt-paths is true, no;
 	if alt-c3 is false, no;
 	if alt-b3 is false, no;
 	if the room noun of location of player is c2, yes;
-	if b3 is unvisited, no;
 	yes;
 
 to check-for-alts:
@@ -775,11 +785,12 @@ to check-for-alts:
 	if seen-alts:
 		say "Why, yes ... it seems like there are two different ways to c2. This may not be terribly useful, but it's good to know.";
 		achieve "alternate paths";
+		now got-alt-paths is true;
 
 check going (this is the rook catches pawn rule): [the logic here is: you move to the a-file, it's a draw. You move to the c-file too soon, it's a draw. There are side test cases, of course. ]
 	if room gone to is nowhere, continue the action;
 	if debug-state is true, say "DEBUG: [room gone from] to [room gone to], with rook at [location of black rook].";
-	if not seen-alts, check-for-alts;
+	if got-alt-paths is false, check-for-alts;
 	if location of white pawn is c6:
 		say "The black rook slides over to c5, keeping an eye on the pawn, which can easily be taken before it is promoted. Fortuntaely, the enemy king can't help the rook corral the pawn for free[if xval of room gone to is 1], even though you'll need to make a move to guard your pawn[else if xval of room gone to is 3], even though you'll need to get back out of your pawn's way[end if].[paragraph break]Of course, that doesn't stop him taunting you.[paragraph break]'Should I let that silly pawn promote, then kill your wife just as she comes back?'";
 		achieve "traded pawn";
@@ -1613,22 +1624,26 @@ achievement	achieved	state-list-delete	details
 "all for naught"	false	--	"managing to give your rook away"
 "staler than stalemate, mate"	false	--	"drawn ending with equal material"
 "skewered to death (rook)"	false	disable-skewer-allow rule	"letting the black rook go to b2 and skewer your b8-rook"
+"running up the score"	false	disable-sucker-sacrificing rule	"taking the opposing rook when mate was available"
 "spite check (winning)"	false	disable-useless-sacrificing rule	"checking the enemy king with their rook prone"
 "spite check (drawing)"	false	--	"checking the enemy king instead of checkmating"
-"running up the score"	false	disable-sucker-sacrificing rule	"taking the opposing rook when mate was available"
 "rook on rook violence"	false	disable-useless-sacrificing rule	"taking the opposing rook with the rook when they blocked immediate checkmate"
 "giving futile hope"	false	disable-useless-sacrificing rule	"taking the opposing rook with the king when they blocked immediate checkmate"
 "dragging it out"	false	--	"taking extra turns to win, considering repetition"
 "dragging it out all the way"	false	--	"taking the maximum turns to win, considering repetition"
 
 this is the disable-useless-sacrificing rule:
-	if achieved-yet of "giving futile hope" and achieved-yet of "rook on rook violence" and achieved-yet of "spite check (winning)", remove useless-sacrificing from available-fleestate-list;
+	if achieved-yet of "giving futile hope" and achieved-yet of "rook on rook violence" and achieved-yet of "spite check (winning)":
+		remove useless-sacrificing from available-fleestate-list;
+		choose-flee-room;
 
 this is the disable-sucker-sacrificing rule:
 	remove sucker-sacrificing from available-fleestate-list;
+	choose-flee-room;
 
 this is the disable-skewer-allow rule:
 	remove skewer-allow from available-fleestate-list;
+	choose-flee-room;
 
 to decide which number is achieve-score:
 	let temp be 0;
