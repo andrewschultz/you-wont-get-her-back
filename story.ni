@@ -1121,17 +1121,21 @@ to check-drag-out:
 	if repeat-whines > 0 or repeat-yourmove-whine is true:
 		achieve "dragging it out";
 
-pawn-note is a truth state that varies.
+pawn-is-assumed is a truth state that varies.
+
+pawn-was-typed is a truth state that varies.
 
 this is the implicit pawn movement rule:
 	if hinted-person is black king and the room north of location of white pawn is the noun:
-		if pawn-note is false and noun is adjacent to location of player:
+		if pawn-is-assumed is false and noun is adjacent to location of player:
 			say "(moving the pawn, as is conventional with chess notation when no piece is given)[line break]";
-			now pawn-note is true;
+			now pawn-is-assumed is true;
 		try pawning;
 		the rule succeeds;
 	if hinted-person is white pawn and the room north of location of white pawn is the noun:
-		say "(the p at the command's start is implicit, so you don't need it)[line break]";
+		if pawn-was-typed is false:
+			say "(the p at the command's start is implicit, so you don't need it)[line break]";
+			now pawn-was-typed is true;
 		try pawning;
 		the rule succeeds;
 
