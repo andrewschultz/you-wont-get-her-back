@@ -1,0 +1,156 @@
+Hints:
+
+--you need 8 moves to win the first time. Variants may mean you need 9.
+--you need the pawn to reach the eighth rank
+--you actually don't need to get rid of the enemy rook
+--you need a tricky move
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+This is one of those games where you *can* win by trial and error, but the question is to know what to try. I think there's a genuine a-ha moment when you figure what's going on, and I'd like to give you all the chances possible to achieve it. The right move is sort of hidden, but not completely. I don't want to make it too obvious, but directing you away from it would be wrong.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+c7 is the only way to start. Otherwise the rook can capture the pawn.
+
+The rook will check you next. You need to prevent it from going to c6, and Kb7 walks into Rd7, pinning the pawn. On Kc5, you can't prevent the rook taking the pawn (or promoted piece) after ...Rc1.
+
+So Kb5 it is. Now the rook checks again.
+
+Kb4 is next. The rook checks again.
+
+Kb3 is next. The rook checks again, but Kb4 would lead to a repetition of moves. Note Kc3 also works, as on Rd1, Kc2 wins.
+
+Kc2 must be next. Now the rook can't get behind the king! It goes to d4. It can't stop promotion.
+
+However, the key here is that promoting to a queen triggers stalemate at best after Rc4+! But what else can you do?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+You can underpromote. The commands are either
+
+R, then c8, or c8R.
+
+Now the enemy rook is in a pickle! Ra8 checkmate is threatened, and Rc4+ Rxc4 isn't stalemate. So, Ra4.
+
+Now, though, Kb3 means checkmate with Rc1 is inevitable. Black can delay this with Ra3+ or Rb4+, but that doesn't change the result.

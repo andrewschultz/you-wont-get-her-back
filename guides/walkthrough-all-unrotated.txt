@@ -1,0 +1,68 @@
+There is more than one order to get some achievements, but this walkthrough aims to hit the quick ones. It will describe what the achievement is and then how to get it. For some achievements, the enemy rook needs to flee to a specific square or squares. Every time you win, the group of squares the rook flees to change, along with the possible endings. Note that some flee-squares are disabled once you get the corresponding achievement. Hopefully this makes things a bit easier.
+
+The TRADED PAWN achievement is the easiest to get.
+Moving the King at first instead of the pawn gives you the TRADED PAWN achievement. The rook can just go one square left.
+
+The PINNED PAWN achievement can be gotten after two moves.
+Move the pawn, then move the king north. The enemy rook will go north, too.
+
+The CAPTURED PAWN achievement can be achieved after two moves.
+Move the pawn, then move the king southwest. The rook can safely go behind the pawn.
+
+The ALTERNATE PATHS achievement is the only one that isn't given at the end. At one point, two moves are equally constructive.
+Move the pawn. You have two moves after going south twice. South or southeast will work, and you get the achievement after trying the second of others.
+
+The SKEWERED TO A DRAW achievement happens if you attack the rook too soon.
+You can push the pawn, go south and then go southeast. The rook will go to the bottom of the board. You can't stop it taking the pawn after it checks.
+
+The SKEWERED TO DEATH achievement happens if you let the rook win the pawn for free. This is actually a bit tricky, because it's possible to stumble back and defend the pawn in many cases.
+Move the pawn. You must move the king south, then southeast, then promote the pawn. The rook slides west.
+
+The POINTLESS BATHOS AND LOSS achievement is when you make an obvious bad move when you can no longer win.
+Move the pawn. You play the king south, south, south, south and southeast. Promote to a Queen. Move out of check instead of taking the enemy rook.
+
+The STALEMATE, MATE achievement is when you allow a surprise drawing resource for black. It's what most people fall into when they see this puzzle. The creator of the original puzzle saw it without seeing White's win.
+Move the pawn. Play the king south, south, south and southeast. Promote to a Queen. Take the rook when it checks.
+
+The FORKED TO DEATH achievement uses one command that is implied but not brought to the forefront.
+Move the pawn. Play the king south, south, south and southeast. Promote to a either a bishop or knight. The rook slides west with check and will take either piece the next move.
+
+The THREEFOLD achievement can be done in a variety of ways. It involves a chess rule where one player may claim a draw.
+Move the pawn. Play the king south, then north, then south, then north. The position has occurred three times, which makes a draw.
+
+The PLAIN OLD CHECKMATE achievement is similar to some solutions above. It is the main walkthrough.
+Move the pawn. Play the king south, south, south and southeast. Promote to a rook. Now the opponent plays the rook all the way west to stop a checkmate on the side. Move the king northwest. Black cannot avoid you bringing your new rook all the way down to win.
+
+The STALER THAN STALEMATE, MATE ending occurs because rook versus rook is, well, not a very exciting draw. It can be achieved by moving to a lot of different squares.
+Move the pawn. Play the king south, south, south and southeast. Promote to a rook. Now the opponent plays the rook all the way west to stop a checkmate on the side. You can now play the rook a square east. You can also move your king, then move the rook nowhere.
+
+The ALL FOR NAUGHT ending occurs if you manage to lose your newly-promoted rook. Depending where the enemy rook flees, you can achieve this in many different ways. It is not possible if the enemy rook checks you.
+Move the pawn. Play the king south, south, south and southeast. Promote to a rook. Now the opponent may play the rook all the way west to stop a checkmate on the side. You can now play your rook to the northwest square. But if the rook goes somewhere else without a check, move your rook to where it's north of the enemy rook.
+
+The CASTLE CARNAGE ending occurs if you manage to force a rook trade. It is not possible if the enemy rook checks you.
+Move the pawn. Play the king south, south, south and southeast. Promote to a rook. Now the opponent plays the rook all the way west to stop a checkmate on the side. If the enemy rook is on the fourth rank, you can move your rook to the fourth rank.
+
+Two achievements require you to win, but the enemy rook's ending square doesn't matter. One is an extension of the other, so you can save a bit of time getting the second before the first.
+
+The DRAGGING IT OUT achievement involves a less direct route to winning. Some moves don't make progress but can be undone.
+Push the pawn. Go south and north. Then follow the general winning strategy.
+
+The DRAGGING IT OUT ALL THE WAY achievement involves the least direct route to winning.
+Push the pawn. South. North. South three times. North. Southeast. South. North. South. Underpromote to a rook. Move the king northwest, then checkmate (or take the enemy rook.)
+
+There are some situation-specific achievements. They are listed below. At this point you are probably familiar with the main line, so only the enemy rook's final move is given.
+
+The SKEWERED TO DEATH (ROOK) achievement involves a spectacular forced loss if you are careless.
+If the enemy rook flees one square north of the king, play your rook to a square east of the northwest corner. The enemy rook will go east, and when you move out of check, the rook is lost.
+
+The RUNNING UP THE SCORE achievement involves capturing the enemy rook instead of giving mate.
+The enemy rook must flee to the northwest corner for this. Instead of giving mate with your rook as in the main line, take the enemy rook.
+
+The SPITE CHECK (WINNING) achievement involves a check that drags the game out a bit.
+The enemy rook must flee to northeast of your king. Then move your rook to the northwest corner. The enemy rook is lost even if it blocks.
+
+The ROOK ON ROOK VIOLENCE achievement involves your rook taking the enemy rook.
+The enemy rook must flee to northeast of your king. Then, take it with your rook.
+
+The GIVING FUTILE HOPE achievement involves your king taking the enemy rook.
+The enemy rook must flee to northeast of your king. Then, take it with your king. It's called futile hope because the enemy king escapes to the second rank, for the moment. But your rook can cut it off soon enough.

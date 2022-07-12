@@ -1,0 +1,72 @@
+There is more than one order to get some achievements, but this walkthrough aims to hit the quick ones. It will describe what the achievement is and then how to get it. For some achievements, the enemy rook needs to flee to a specific square or squares. Every time you win, the group of squares the rook flees to change, along with the possible endings. Note that some flee-squares are disabled once you get the corresponding achievement. Hopefully this makes things a bit easier.
+
+To decipher it, you'll want to put the text into ROT13.com. Each line is a different rotated number. First there will be a hint as to what the achievement is, and then it will list the achievement. They are in approximate order of difficulty. The lines start with ROT1 and go to ROT2, etc.
+
+To avoid any spoilers with numbers, "west" refers to left on the chessboard, "north" to up. So north of b2 is b3, and west of b2 is a2.
+
+01:Uif USBEFE QBXO bdijfwfnfou jt uif fbtjftu up hfu.
+02:Oqxkpi vjg Mkpi cv hktuv kpuvgcf qh vjg rcyp ikxgu aqw vjg VTCFGF RCYP cejkgxgogpv. Vjg tqqm ecp lwuv iq qpg uswctg nghv.
+
+03:Wkh SLQQHG SDZQ dfklhyhphqw fdq eh jrwwhq diwhu wzr pryhv.
+04:Qszi xli tear, xlir qszi xli omrk rsvxl. Xli iriqc vsso ampp ks rsvxl, xss.
+
+05:Ymj HFUYZWJI UFBS fhmnjajrjsy hfs gj fhmnjaji fkyjw ybt rtajx.
+06:Subk znk vgct, znkt subk znk qotm yuaznckyz. Znk xuuq igt yglkre mu hknotj znk vgct.
+
+07:Aol HSALYUHAL WHAOZ hjoplcltlua pz aol vusf vul aoha pzu'a npclu ha aol luk. Ha vul wvpua, adv tvclz hyl lxbhssf jvuzaybjapcl.
+08:Uwdm bpm xiev. Gwc pidm bew uwdma inbmz owqvo awcbp beqkm. Awcbp wz awcbpmiab eqtt ewzs, ivl gwc omb bpm ikpqmdmumvb inbmz bzgqvo bpm amkwvl wn wbpmza.
+
+09:Cqn BTNFNANM CX J MAJF jlqrnenvnwc qjyynwb ro hxd jccjlt cqn axxt cxx bxxw.
+10:Iye mkx zecr dro zkgx, qy cyedr kxn drox qy cyedrokcd. Dro byyu gsvv qy dy dro lyddyw yp dro lykbn. Iye mkx'd cdyz sd dkusxq dro zkgx kpdob sd mromuc.
+
+11:Esp DVPHPCPO EZ OPLES lnstpgpxpye slaapyd tq jzf wpe esp czzv hty esp alhy qzc qcpp. Estd td lneflwwj l mte ectnvj, mpnlfdp te'd azddtmwp ez defxmwp mlnv lyo opqpyo esp alhy ty xlyj nldpd.
+12:Yahq ftq bmiz. Kag ygef yahq ftq wuzs eagft, ftqz eagftqmef, ftqz bdayafq ftq bmiz. Ftq daaw exupqe iqef.
+
+13:Gur CBVAGYRFF ONGUBF NAQ YBFF npuvrirzrag vf jura lbh znxr na boivbhf onq zbir jura lbh pna ab ybatre jva.
+14:Acjs hvs dokb. Mci dzom hvs ywbu gcihv, gcihv, gcihv, gcihv obr gcihvsogh. Dfcachs hc o Eissb. Acjs cih ct qvsqy wbghsor ct hoywbu hvs sbsam fccy.
+
+15:Iwt HIPATBPIT, BPIT prwxtktbtci xh lwtc ndj paadl p hjgegxht sgplxcv gthdjgrt udg qaprz. Xi'h lwpi bdhi etdeat upaa xcid lwtc iwtn htt iwxh ejooat. Iwt rgtpidg du iwt dgxvxcpa ejooat hpl xi lxiwdji httxcv Lwxit'h lxc.
+16:Celu jxu fqmd. Fbqo jxu aydw iekjx, iekjx, iekjx qdt iekjxuqij. Fheceju je q Gkuud. Jqau jxu heea mxud yj sxusai.
+
+17:Kyv WFIBVU KF UVRKY rtyzvmvdvek ljvj fev tfddreu kyrk zj zdgczvu slk efk siflxyk kf kyv wfivwifek.
+18:Egnw lzw hsof. Hdsq lzw cafy kgmlz, kgmlz, kgmlz sfv kgmlzwskl. Hjgeglw lg s walzwj s takzgh gj cfayzl. Lzw jggc kdavwk owkl oalz uzwuc sfv oadd lscw walzwj hawuw lzw fwpl egnw.
+
+19:Max MAKXXYHEW tvabxoxfxgm vtg ux whgx bg t otkbxmr hy ptrl. Bm bgoheoxl t vaxll knex paxkx hgx ietrxk ftr vetbf t wktp.
+20:Gipy nby juqh. Jfus nby echa mionb, nbyh hilnb, nbyh mionb, nbyh hilnb. Nby jimcncih bum iwwollyx nblyy ncgym, qbcwb gueym u xluq.
+
+21:Ocz KGVDI JGY XCZXFHVOZ vxcdzqzhzio dn ndhdgvm oj njhz njgpodjin vwjqz. Do dn ocz hvdi rvgfocmjpbc.
+22:Ikra pda lwsj. Lhwu pda gejc okqpd, okqpd, okqpd wjz okqpdawop. Lnkikpa pk w nkkg. Jks pda kllkjajp lhwuo pda nkkg whh pda swu saop pk opkl w ydaygiwpa kj pda oeza. Ikra pda gejc jknpdsaop. Xhwyg ywjjkp wrkez ukq xnejcejc ukqn jas nkkg whh pda swu zksj pk sej.
+
+23:Qeb PQXIBO QEXK PQXIBJXQB, JXQB bkafkd lzzrop ybzxrpb ollh sboprp ollh fp, tbii, klq x sbov buzfqfkd aoxt. Fq zxk yb xzefbsba yv jlsfkd ql x ilq lc afccbobkq pnrxobp.
+24:Kmtc rfc nyul. Njyw rfc igle qmsrf, qmsrf, qmsrf ylb qmsrfcyqr. Npmkmrc rm y pmmi. Lmu rfc mnnmlclr njywq rfc pmmi yjj rfc uyw ucqr rm qrmn y afcaikyrc ml rfc qgbc. Wms ayl lmu njyw rfc pmmi y qosypc cyqr. Wms ayl yjqm kmtc wmsp igle, rfcl kmtc rfc pmmi lmufcpc.
+
+25:Sgd ZKK ENQ MZTFGS dmchmf nbbtqr he xnt lzmzfd sn knrd xntq mdvkx-oqnlnsdc qnnj. Cdodmchmf vgdqd sgd dmdlx qnnj ekddr, xnt bzm zbghdud sghr hm lzmx cheedqdms vzxr. Hs hr mns onrrhakd he sgd dmdlx qnnj bgdbjr xnt.
+01:Npwf uif qbxo. Qmbz uif ljoh tpvui, tpvui, tpvui boe tpvuifbtu. Qspnpuf up b sppl. Opx uif pqqpofou nbz qmbz uif sppl bmm uif xbz xftu up tupq b difdlnbuf po uif tjef. Zpv dbo opx qmbz zpvs sppl up uif opsuixftu trvbsf. Cvu jg uif sppl hpft tpnfxifsf fmtf xjuipvu b difdl, npwf zpvs sppl up xifsf ju't opsui pg uif fofnz sppl.
+
+02:Vjg ECUVNG ECTPCIG gpfkpi qeewtu kh aqw ocpcig vq hqteg c tqqm vtcfg. Kv ku pqv rquukdng kh vjg gpgoa tqqm ejgemu aqw.
+03:Pryh wkh sdzq. Sodb wkh nlqj vrxwk, vrxwk, vrxwk dqg vrxwkhdvw. Surprwh wr d urrn. Qrz wkh rssrqhqw sodbv wkh urrn doo wkh zdb zhvw wr vwrs d fkhfnpdwh rq wkh vlgh. Li wkh hqhpb urrn lv rq wkh irxuwk udqn, brx fdq pryh brxu urrn wr wkh irxuwk udqn.
+
+Two achievements require you to win, but the enemy rook's ending square doesn't matter. One is an extension of the other, so you can save a bit of time getting the second before the first.
+
+04:Xli HVEKKMRK MX SYX eglmiziqirx mrzspziw e piww hmvigx vsyxi xs amrrmrk. Wsqi qsziw hsr'x qeoi tvskviww fyx ger fi yrhsri.
+05:Uzxm ymj ufbs. Lt xtzym fsi stwym. Ymjs ktqqtb ymj ljsjwfq bnssnsl xywfyjld.
+
+06:Znk JXGMMOTM OZ UAZ GRR ZNK CGE ginokbksktz otburbky znk rkgyz joxkiz xuazk zu cottotm.
+07:Wbzo aol whdu. Zvbao. Uvyao. Zvbao aoyll aptlz. Uvyao. Zvbaolhza. Zvbao. Uvyao. Zvbao. Buklywyvtval av h yvvr. Tvcl aol rpun uvyaodlza, aolu joljrthal (vy ahrl aol lultf yvvr.)
+
+There are some situation-specific achievements. They are listed below. At this point you are probably familiar with the main line, so only the enemy rook's final move is given.
+
+08:Bpm ASMEMZML BW LMIBP (ZWWS) ikpqmdmumvb qvdwtdma i axmkbikctiz nwzkml twaa qn gwc izm kizmtmaa.
+09:Ro cqn nwnvh axxt ounnb xwn bzdjan wxacq xo cqn trwp, yujh hxda axxt cx j bzdjan njbc xo cqn wxacqfnbc lxawna. Cqn nwnvh axxt fruu px njbc, jwm fqnw hxd vxen xdc xo lqnlt, cqn axxt rb uxbc.
+
+10:Dro BEXXSXQ EZ DRO CMYBO kmrsofowoxd sxfyvfoc mkzdebsxq dro oxowi byyu sxcdokn yp qsfsxq wkdo.
+11:Esp pypxj czzv xfde qwpp ez esp yzceshpde nzcypc qzc estd. Tydeplo zq rtgtyr xlep htes jzfc czzv ld ty esp xlty wtyp, elvp esp pypxj czzv.
+
+12:Ftq EBUFQ OTQOW (IUZZUZS) motuqhqyqzf uzhaxhqe m otqow ftmf pdmse ftq smyq agf m nuf.
+13:Gur rarzl ebbx zhfg syrr gb abegurnfg bs lbhe xvat. Gura zbir lbhe ebbx gb gur abegujrfg pbeare. Gur rarzl ebbx vf ybfg rira vs vg oybpxf.
+
+14:Hvs FCCY CB FCCY JWCZSBQS oqvwsjsasbh wbjczjsg mcif fccy hoywbu hvs sbsam fccy.
+15:Iwt tctbn gddz bjhi uatt id cdgiwtphi du ndjg zxcv. Iwtc, ipzt xi lxiw ndjg gddz.
+
+16:Jxu WYLYDW VKJYBU XEFU qsxyulucudj ydleblui oekh aydw jqaydw jxu uduco heea.
+17:Kyv vevdp iffb dljk wcvv kf efikyvrjk fw pfli bzex. Kyve, krbv zk nzky pfli bzex. Zk'j trccvu wlkzcv yfgv svtrljv kyv vevdp bzex vjtrgvj kf kyv jvtfeu ireb, wfi kyv dfdvek. Slk pfli iffb tre tlk zk fww jffe veflxy.
