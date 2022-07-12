@@ -449,6 +449,25 @@ to note-promote-change-q (pi - a person):
 	if pi is piece-to-promote, continue the action;
 	now piece-to-promote is pi;
 
+chapter queening
+
+queening is an action out of world.
+
+understand the command "queen" as something new.
+understand the command "q" as something new.
+
+understand "queen" as queening.
+understand "q" as queening.
+
+q-warn is a truth state that varies.
+
+carry out queening:
+	if q-warn is false and word number 1 in the player's command is "q":
+		say "(changing promotion piece to Queen, instead of quitting, as is usual with [b]Q[r] in Z-code games--[b]QUIT[r] is needed instead)[paragraph break]";
+		now q-warn is true;
+	promote-check white queen;
+	the rule succeeds;
+
 chapter rooking
 
 rooking is an action out of world.
