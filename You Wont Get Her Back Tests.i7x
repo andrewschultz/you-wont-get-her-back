@@ -1,6 +1,6 @@
 Version 1/220511 of You Wont Get Her Back Tests by Andrew Schultz begins here.
 
-"Tests for You Won't Get Her Back, a text-adventurization of the Saaverda position. It lets the programmer (me!) test all the game states and thus all the odd responses the player may make."
+"Tests for You Won't Get Her Back, a text-adventurization of the Saavedra position. It lets the programmer (me!) test all the game states and thus all the odd responses the player may make."
 
 volume when play begins
 

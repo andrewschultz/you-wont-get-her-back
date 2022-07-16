@@ -1,6 +1,8 @@
 ## reg-you-failures.txt
 
-## failures for Saavedra problem game
+## This script goes through all possible player failures at all stages for the Saavedra problem.
+## It includes before and after promotion, as well as all possible rook-flee squares.
+## Because the flee-squares are forced, this can't be seen as a legitimate playthrough.
 
 ** game: /home/andrew/prt/debug-you-wont-get-her-back.z8
 ** interpreter: /home/andrew/prt/dfrotz -m -w5000 -h25

@@ -12,6 +12,8 @@ release along with the "Parchment" interpreter.
 
 release along with a website.
 
+release along with cover art.
+
 include Old School Verb Total Carnage by Andrew Schultz.
 
 include Trivial Niceties by Andrew Schultz.
