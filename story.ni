@@ -791,8 +791,9 @@ to decide which number is board-state:
 	else:
 		increase temp by 1000 * xval of go-room;
 		increase temp by 100 * yval of go-room;
-	increase temp by 10 * xval of location of rook;
-	increase temp by 1 * yval of location of rook;
+	increase temp by 10 * xval of location of black rook;
+	increase temp by 1 * yval of location of black rook;
+	if white rook is not off-stage, now temp is -1 * temp; [ this is for an obscure case when the rook goes to d4 fleeing after promotion ]
 	decide on temp;
 
 to decide which room is d-file-room:
@@ -969,8 +970,8 @@ squaregoing is an action applying to one visible thing.
 understand "[any room]" as squaregoing.
 
 to check-drag-out:
-	if repeats-this-time > 0:
-		say "[repeats-this-time] repeats: [my-move-log].";
+	if debug-state is true and repeats-this-time > 0:
+		say "DEBUG: [repeats-this-time] repeats: [my-move-log].";
 	if repeats-this-time >= 5:
 		say "You were feeling a bit sadstic, there. The enemy king meant to cause maximum pain, and now you're causing it back, dragging things out all the way. Serves him right.";
 		achieve "dragging it out all the way";
