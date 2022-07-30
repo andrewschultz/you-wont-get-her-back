@@ -1196,12 +1196,12 @@ understand the command "credits" as something new.
 understand "credits" as creditsing.
 
 carry out creditsing:
-	say "Thanks to Adam Sommerfield for bringing ParserComp back in 2021. Thanks to Christopher Merriner and fos for administrating it in 2022.";
-	say "[line break]Thanks to Jade, Mike Russo, and John Zeigler for testing.";
-	say "[line break]Thanks to eddieriofer for a ton of really nice bug reports on Github. A lot of work went into them, and they were the first Github bugs I'd received in-comp. While it's always humbling to see what I missed, both technically and with big-picture planning, the work and help and support is greatly appreciated.";
+	say "Thanks to Adam Sommerfield for bringing ParserComp back in 2021. Thanks to Christopher Merriner and fos for administrating it in 2022. It's been great to have a low-stress comp where I was even able to update cover art midway through.";
+	say "[line break]As for help with the specific game? Enough people helped, I feel bad bumping some people to the next paragraph. But ParserComp 2022 brought a first for me in any comp. Two people found useful in-comp bugs and reported them to GitHub. eddieriofer came through early, and they were the first in-comp GitHub bugs I'd received in any comp. Thanks also to Ben Kirwin for finding some good bugs while testing his Folly interpreter: https://github.com/bkirwi/folly. While it's always humbling to see what I missed, both technically and with big-picture planning, the work and help and support is greatly appreciated. I like the model of being able to report and receive typos and provide a quick turnaround.";
+	say "[line break]Thanks to Jade, Mike Russo, and John Zeigler for testing. They inspired me to write some needed features, and if I'd been a bit less lazy, I'd have gotten more in thanks to their observations. Or I'd have gotten more test cylces, but then I maybe wouldn't be able to say ...";
 	say "[line break]Thanks to Wade Clarke and Olaf Nowacki for super-quick bug reports (within 24 hours of ParserComp 2022 starting!) of things that should've been obvious in programmer testing, especially if I'd implemented some features at the start of the cycle.";
-	say "[line break]Thanks to everyone who showed me cool puzzles over the years (especially this one!) and those who listened to me as I showed a neat game or puzzle to them, as well as all the people who helped renew interest in chess during the pandemic.";
-	say "[line break]Thanks to you for playing.";
+	say "[line break]More generally, thanks to everyone who showed me cool puzzles over the years (logic or chess or math but, of course, this one! The person who showed me it has passed on.) Thanks also to those who listened to me as I showed a neat game or puzzle to them, whether or not chess was Their Thing, as well as all the people who helped renew interest in chess during the pandemic.";
+	say "[line break]Thanks to you for playing, and to the community for an unexpected number of helpful reviews and comments.";
 	the rule succeeds;
 
 chapter undo
@@ -1281,8 +1281,7 @@ carry out verbsing:
 	say "[line break]To move a promoted piece, [b]qa8[r] will do so for the queen. Note that [b]N[r] is used to refer to a knight, as [b]K[r] is taken by the king.";
 	say "[line break]You can also say [b]N[r] to set (or re-set) the default piece to promote to, say, the knight. In this case, although [b]K[r] is usually the king in algebraic notation, [b]K[r] is referred to as the knight, since you can't have two kings on the board.";
 	say "[line break]After typing meta-commands ([b]META[r] lists these)[if screenread is false] or toggling options (you can list them with [b]OPT[r],)[else],[end if] typing [b]L[r] or [b]LOOK[r] lets you see the board again.";
-	if screenread is false:
-		say "You can see options for board display with [b]OPT[r].";
+	say "[line break][if screenread is false]You can see options for board display with [b]OPT[r][else]With screen reader mode on, many text-map options are disabled[end if].";
 	say "[line break]All command parsing is case-insensitive, though standard chess notation capitalizes the piece name. This is just so you have one less thing to worry about.";
 	say "[line break]Finally, there is no [b]UNDO[r] or takebacks, because we want to mirror an actual chess scenario here. But don't worry. A successful run shouldn't take too long, so you should be able to retrace your steps easily enough.";
 	the rule succeeds;
