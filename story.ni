@@ -167,10 +167,15 @@ volume room description
 
 the description of a room is usually "[if screenread is true][text-board-description].[else][grid-printout][run paragraph on][end if]";
 
+definition: a person (called pe) is writeoutable:
+	if pe is off-stage, no;
+	if pe is allied, yes;
+	no;
+
 to say text-board-description:
-	let my-piece be a random allied person;
+	let my-piece be a random writeoutable person;
 	say "You're currently at [location of player]. Your ally, [the my-piece], is at [location of my-piece].";
-	say "[line break]The enemy king is still skulking at a1, watching the carnage from afar. The enemy rook is at [location of black rook].";
+	say "[line break]The enemy king is still skulking at a1, watching the carnage from afar. The enemy rook is at [location of black rook]";
 
 to say border:
 	if show-coords is true, say "   ";
