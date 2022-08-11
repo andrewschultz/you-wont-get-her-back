@@ -300,7 +300,11 @@ carry out pawning:
 	now white pawn is off-stage;
 	say "The black rook scoffs as you call for a rook, not your queen. 'Sheesh. If you wanted a draw, you could've repeated moves.' He shuffles over to a4.";
 	now current-game-state is need-kb3;
+	now black-move is false;
+	add board-state to my-move-log;
 	move black rook to a4;
+	now black-move is true;
+	add board-state to my-move-log;
 	try looking;
 	the rule succeeds;
 
@@ -543,6 +547,7 @@ to reset-board-quietly:
 		move the player to b6;
 	else:
 		move player to b6, without printing a room description;
+	now black-move is false;
 	now my-move-log is {};
 
 volume going
@@ -612,6 +617,9 @@ check going when current-game-state is rook-forks-kq:
 
 check going when current-game-state is need-kb3 (this is the final semi-random rook move rule):
 	if room gone to is not b3, abide by the bungled-it-late rule;
+	now black-move is false;
+	add board-state to my-move-log;
+	now black-move is true;
 	if rookstate of rook-flee-room is spite-checking:
 		say "There's a big argument. The black king insists the black rook give himself up for you. 'You will sacrifice yourself for your king and country, and you will sacrifice yourself for your king and country right NOW, do you hear?'[paragraph break]You sit back and enjoy the animosity, until you worry it might tip off the 50-move rule. Then you realize the 50-move rule doesn't progress without, you know, your making a move. So that's all good. The rook flings itself to [rook-flee-room].";
 		move black rook to rook-flee-room;
@@ -764,6 +772,7 @@ to decide whether threefold-repetition of (N - a number):
 				yes;
 			else if temp is 1:
 				if black-move is false and repeat-yourmove-whine is false:
+					if debug-state is true, say "[n] is found in [my-move-log].";
 					say "'Back and forth, eh? One more time here and we can call this dumb war off. No winners, no losers. Them's the rules.'";
 					now repeat-yourmove-whine is true;
 				if black-move is true:
@@ -793,7 +802,7 @@ to decide which number is board-state:
 		increase temp by 100 * yval of go-room;
 	increase temp by 10 * xval of location of black rook;
 	increase temp by 1 * yval of location of black rook;
-	if white rook is not off-stage, now temp is -1 * temp; [ this is for an obscure case when the rook goes to d4 fleeing after promotion ]
+	if white rook is not off-stage, now temp is -1 * temp; [ this is for the rare but possible case when the rook goes to d4 fleeing after promotion ]
 	decide on temp;
 
 to decide which room is d-file-room:
@@ -810,6 +819,7 @@ check going outside: say "You can only move in the eight basic directions." inst
 the force exit to outside rule is listed instead of the convert exit into go out rule in the check exiting rulebook.
 
 to decide which room is go-room:
+	if current action is pawning, decide on location of player;
 	decide on the room noun of location of player;
 
 check going nowhere:
@@ -1197,8 +1207,8 @@ understand "credits" as creditsing.
 
 carry out creditsing:
 	say "Thanks to Adam Sommerfield for bringing ParserComp back in 2021. Thanks to Christopher Merriner and fos for administrating it in 2022. It's been great to have a low-stress comp where I was even able to update cover art midway through.";
-	say "[line break]As for help with the specific game? Enough people helped, I feel bad bumping some people to the next paragraph. But ParserComp 2022 brought a first for me in any comp. Two people found useful in-comp bugs and reported them to GitHub. eddieriofer came through early, and they were the first in-comp GitHub bugs I'd received in any comp. Thanks also to Ben Kirwin for finding some good bugs while testing his Folly interpreter: https://github.com/bkirwi/folly. While it's always humbling to see what I missed, both technically and with big-picture planning, the work and help and support is greatly appreciated. I like the model of being able to report and receive typos and provide a quick turnaround.";
-	say "[line break]Thanks to Jade, Mike Russo, and John Zeigler for testing. They inspired me to write some needed features, and if I'd been a bit less lazy, I'd have gotten more in thanks to their observations. Or I'd have gotten more test cylces, but then I maybe wouldn't be able to say ...";
+	say "[line break]As for help with the specific game? Enough people helped, I feel bad bumping some people to the next paragraph. But ParserComp 2022 brought a first for me in any comp: two people found useful in-comp bugs and reported them to GitHub. Eddieriofer came through early with a raft of interesting ones. Then near the end, Ben Kirwin found some while testing his Folly handwriting-to-text interpreter: https://github.com/bkirwi/folly. While it's always humbling to see what I missed, both technically and with big-picture planning, the work and help and support is greatly appreciated. I like the model of being able to report and receive typos and provide a quick turnaround.";
+	say "[line break]Thanks to Jade, Mike Russo, and John Zeigler for testing. They inspired me to write some needed features, and if I'd been a bit less lazy, I'd have gotten more in thanks to their observations. Or I'd have gotten more test cycles, but then I maybe wouldn't be able to say ...";
 	say "[line break]Thanks to Wade Clarke and Olaf Nowacki for super-quick bug reports (within 24 hours of ParserComp 2022 starting!) of things that should've been obvious in programmer testing, especially if I'd implemented some features at the start of the cycle.";
 	say "[line break]More generally, thanks to everyone who showed me cool puzzles over the years (logic or chess or math but, of course, this one! The person who showed me it has passed on.) Thanks also to those who listened to me as I showed a neat game or puzzle to them, whether or not chess was Their Thing, as well as all the people who helped renew interest in chess during the pandemic.";
 	say "[line break]Thanks to you for playing, and to the community for an unexpected number of helpful reviews and comments.";

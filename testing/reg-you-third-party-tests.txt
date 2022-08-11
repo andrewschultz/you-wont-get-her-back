@@ -21,3 +21,39 @@
 >Kb6
 !Run-time
 !P22
+
+* kirwin-wrong-screenread
+
+>rf d4
+
+>scr
+>c7
+Your ally, the white pawn
+!Your ally, the white rook
+
+>s
+Your ally, the white pawn
+!Your ally, the white rook
+
+>s
+Your ally, the white pawn
+!Your ally, the white rook
+
+>s
+Your ally, the white pawn
+!Your ally, the white rook
+
+>se
+Your ally, the white pawn
+!Your ally, the white rook
+
+>c8r
+Your ally, the white rook
+!Your ally, the white pawn
+
+>kb3
+Your ally, the white rook
+!Your ally, the white pawn
+
+>rc1
+!DRAGGING
