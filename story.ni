@@ -588,7 +588,8 @@ check going when current-game-state is rook-doomed (this is the king shouldn't m
 		reset-the-board;
 		the rule succeeds;
 	say "BAM! Take that, rook! [if location of black rook is a3]The rest is straightforward. Your enemy moves to b1, you move to b3, and they move to a1, and your rook delivers the kill on c1[else]The rest is a bit tricky, since your king was decoyed to b4. But you've planned ahead: the enemy king to a2? Rook to c2. Enemy king to b1? King to b3. The rook on the c-file cuts your enemy off[end if]. Victory!";
-	check-initial-win;
+	achieve "a spite check before dying";
+	reset-the-board;
 	the rule succeeds;
 
 got-alt-paths is a truth state that varies.
@@ -1033,7 +1034,6 @@ carry out squaregoing:
 				say "Well, since the black rook forced you to, why not? That doesn't stop the inevitable. In fact, it barely delays things. But it was fun, seeing your opponents grovel for a bit, in a way.";
 				check-drag-out;
 				achieve "rook on rook violence";
-				choose-flee-room;
 			reset-the-board;
 			the rule succeeds;
 		if noun is c1:
@@ -1058,9 +1058,9 @@ to check-initial-win:
 	if ever-won is false:
 		now ever-won is true;
 		say "You figured the main solution, but if you want, you can [b]TRY[r] to find other ways to lose. I hope they are amusing. There are a few more squares the enemy rook may flee to now, making for more endings.";
+		flee-add skewer-allow;
 		flee-add sucker-sacrificing;
 		flee-add useless-sacrificing;
-		flee-add spite-checking;
 		flee-add a-allowing;
 		flee-add spite-checking;
 		remove a-guarding from available-fleestate-list;
@@ -1074,7 +1074,7 @@ ordered is a truth state that varies.
 
 to flee-add (fl - a fleestate):
 	if ordered is false:
-		let RN be a random number between 1 and number of entries in available-fleestate-list;
+		let RN be a random number between 1 and number of entries in available-fleestate-list + 1;
 		add fl at entry RN in available-fleestate-list;
 	else:
 		add fl to available-fleestate-list;
@@ -1255,9 +1255,9 @@ achievement	achieved	required-state	state-list-delete	details
 "stalemate, mate"	false	--	--	"allowing stalemate when the white Queen takes the black rook"
 "forked to death"	false	--	--	"managing to get forked, along with your pawn, by the enemy rook"
 "plain old checkmate"	false	--	--	"finding the main line solution"
-"castle carnage"	false	--	--	"managing to trade off rooks"
 "all for naught"	false	--	--	"managing to give your rook away"
 "staler than stalemate, mate"	false	--	--	"drawn ending with equal material"
+"castle carnage"	false	a-allowing	disable-a-allowing rule	"managing to trade off rooks"
 "a spite check before dying"	false	spite-checking	disable-spite-checking rule	"taking the enemy rook if it spite checks"
 "skewered to death (rook)"	false	skewer-allow	disable-skewer-allow rule	"letting the black rook go to b2 and skewer your b8-rook"
 "running up the score"	false	sucker-sacrificing	disable-sucker-sacrificing rule	"taking the opposing rook when mate was available"
@@ -1268,26 +1268,35 @@ achievement	achieved	required-state	state-list-delete	details
 "dragging it out"	false	--	--	"taking extra turns to win, considering repetition"
 "dragging it out all the way"	false	--	--	"taking the maximum turns to win, considering repetition"
 
+to squash-available (fs - a fleestate):
+	remove fs from available-fleestate-list;
+	if number of entries in available-fleestate-list is 0:
+		say "You've found all the state-based (e.g. the black rook flees to a specific square) achievements! The black rook will now always flee randomly anywhere from a5 to a7.";
+		add a-guarding to available-fleestate-list;
+	else:
+		say "You've found [if fs is useless-sacrificing]all the achievements[else if fs is a-allowing]both the achievements[else]the only achievement[end if] for a certain class of rook-fleeing, so I'm removing it from the rotation."
+
 this is the disable-a-allowing rule:
-	remove a-allowing from available-fleestate-list;
+	if achieved-yet of "castle carnage" and achieved-yet of "spite check (drawing)":
+		squash-available a-allowing;
 	choose-flee-room;
 
 this is the disable-spite-checking rule:
-	remove spite-checking from available-fleestate-list;
+	squash-available spite-checking;
 	choose-flee-room;
 
 this is the disable-skewer-allow rule:
-	remove skewer-allow from available-fleestate-list;
+	squash-available skewer-allow;
 	choose-flee-room;
 
 this is the disable-sucker-sacrificing rule:
-	remove sucker-sacrificing from available-fleestate-list;
+	squash-available sucker-sacrificing;
 	choose-flee-room;
 
 this is the disable-useless-sacrificing rule:
 	if achieved-yet of "giving futile hope" and achieved-yet of "rook on rook violence" and achieved-yet of "spite check (winning)":
-		remove useless-sacrificing from available-fleestate-list;
-		choose-flee-room;
+		squash-available useless-sacrificing;
+	choose-flee-room;
 
 to decide which number is achieve-score:
 	let temp be 0;
@@ -1339,7 +1348,11 @@ this is the puzzle notes rule:
 
 this is the try new ways to lose rule:
 	eliminate-retry;
-	fully resume the story;
+	resume the story;
+	now escape mode is true;
+	now fleestate-index is 0;
+	clear the screen;
+	say paragraph break;
 	choose-flee-room;
 	reset-the-board;
 
@@ -1361,9 +1374,3 @@ Include (-
 -) instead of "Ask The Final Question Rule" in "OrderOfPlay.i6t".
 
 The escape mode is a truth state that varies.
-
-To fully resume the story:
-	resume the story;
-	now escape mode is true;
-	clear the screen;
-	say paragraph break.
