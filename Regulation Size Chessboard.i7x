@@ -269,7 +269,7 @@ the black bishop is an enemy person. shorthand of black bishop is "b". pointvalu
 
 the black knight is an enemy person. shorthand of black knight is "n". pointvalue of black knight is 3. understand "bn" and "b n" and "n" as black knight.
 
-the black pawn is an enemy person. shorthand of black pawn is "q". pointvalue of black pawn is 1. understand "bp" and "b p" and "p" as black pawn.
+the black pawn is an enemy person. shorthand of black pawn is "p". pointvalue of black pawn is 1. understand "bp" and "b p" and "p" as black pawn.
 
 volume display options
 

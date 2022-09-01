@@ -113,7 +113,7 @@ to choose-flee-room:
 		say "[one of]Since you're playing past the initial win, you will get a hint where the enemy rook will flee to. In this case it is [rook-flee-room]. Some of the bad endings can only be found when a rook to a certain square[or]The enemy rook will flee to [rook-flee-room] this time[stopping].";
 	if debug-state is true:
 		d "New flee room is [rook-flee-room] with state [current-fleestate].";
-		d "Set of states = [available-fleestate-list].";
+		d "Set of states = [available-fleestate-list]. Current index = [fleestate-index].";
 
 definition: a room (called rm) is currently-fleeable:
 	if rookstate of rm is current-fleestate, yes;
@@ -509,7 +509,7 @@ check going (this is the friendly piece obstruction rule):
 	if the room gone to is friend-occupied:
 		let obstructor be random friendly person in room gone to;
 		say "But [the obstructor] is already there[if obstructor is pawn]. If you meant to move the pawn, you should type [the room north of room gone to][end if]." instead;
-	if the room gone to is king-guarded, say "Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward." instead;
+	if the room gone to is adjacent to location of black king, say "Unfortunately, going to [room gone to] would let the enemy king sock you from [location of black king]. He's a sneaky coward." instead;
 	if the room gone to is black-rook-guarded, say "But the enemy rook would [if room gone from is black-rook-guarded]still [end if]see you there." instead;
 
 this is the black-rook-takes-rook rule:
