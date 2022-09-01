@@ -466,9 +466,8 @@ to decide whether white-rook-reach of (di - a direction) and (rm - a room):
 	no;
 
 definition: a room (called rm) is king-guarded:
-	let ek be location of black king;
 	repeat with D running through directions:
-		if the room D of location of king is rm, yes;
+		if the room D of location of black king is rm, yes;
 	no;
 
 volume reset the board
@@ -573,7 +572,7 @@ check going when current-game-state is need-kb3 (this is the final semi-random r
 		move black rook to rook-flee-room;
 	else:
 		say "The black rook flees to [rook-flee-room] to save its own skin!";
-		move rook to rook-flee-room;
+		move black rook to rook-flee-room;
 	if current-game-state is need-kb3, now current-game-state is rook-doomed;
 
 check going when current-game-state is rook-doomed (this is the king shouldn't move at end rule):
@@ -638,7 +637,7 @@ check going (this is the rook catches pawn rule): [the logic here is: you move t
 		reset-the-board instead;
 	if x-to is 1:
 		if debug-state is true, say "DEBUG: you to [room gone to], rook from [location of black rook].";
-		say "The rook chuckles as it swoops behind the pawn to [the room west of location of rook]. [if pawn-guardable of room gone to]At least you'll be able to guard the pawn and smack the rook down! Or, if the rook checks you on the b-file, you can move to the a-file and move back to the b-file, for a repetition of moves[else]And you're too far away to even guard it! You will lose the war now[end if].";
+		say "The rook chuckles as it swoops behind the pawn to [the room west of location of black rook]. [if pawn-guardable of room gone to]At least you'll be able to guard the pawn and smack the rook down! Or, if the rook checks you on the b-file, you can move to the a-file and move back to the b-file, for a repetition of moves[else]And you're too far away to even guard it! You will lose the war now[end if].";
 		if pawn-guardable of room gone to:
 			achieve "traded pawn";
 		else:
@@ -666,7 +665,7 @@ after going when pawn is not off-stage (this is the transcribe moves rule):
 	if room gone to is c3 and room gone from is b4:
 		move-and-log d1;
 	else if room gone to is b3 and room gone from is c2:
-		if location of rook is d4:
+		if location of black rook is d4:
 			move-and-log d3;
 		else:
 			move-and-log d4;
