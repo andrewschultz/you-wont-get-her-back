@@ -171,12 +171,15 @@ definition: a direction (called d) is westerly:
 	if d is west or d is northwest or d is southwest, yes;
 	no;
 
+to say youd-fall (d - a direction): say "You'd fall off the east side of the [one of]board[or]battlefield[or]battlefield, umm, board[or]board, umm, battlefield[at random]"
+
 check going nowhere:
 	if (noun is northeast and player is in h8) or (noun is southwest and player is in a1), say "This isn't Clue. There's no secret passage to the other side of the board. And it'd only make your situation worse." instead;
-	if noun is easterly and horiz-val of player is 7, say "You'd fall off the east side of the board." instead;
-	if noun is northerly and vert-val of player is 7, say "You'd fall off the north side of the board." instead;
-	if noun is westerly and horiz-val of player is 0, say "You'd fall off the west side of the board." instead;
-	if noun is southerly and vert-val of player is 0, say "You'd fall off the south side of the board." instead;
+	if noun is easterly and horiz-val of player is 7, say "There's no I/9 file. [youd-fall of east]." instead;
+	if noun is northerly and vert-val of player is 7, say "There's no ninth column. [youd-fall of north]." instead;
+	if noun is westerly and horiz-val of player is 0, say "There's no A/0 file. [youd-fall of west]." instead;
+	if noun is southerly and vert-val of player is 0, say "There's no zeroth column. [youd-fall of south]." instead;
+	say "You're a monarch and all, and you're pretty powerful, but you just aren't able to move [noun]." instead;
 
 Regulation Size Chessboard ends here.
 

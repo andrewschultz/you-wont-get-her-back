@@ -883,13 +883,6 @@ to decide which room is go-room:
 	if current action is pawning, decide on location of player;
 	decide on the room noun of location of player;
 
-check going nowhere:
-	if noun is north, say "There's no ninth rank, so you'd fall off the north edge of the board! What a sad end that would be." instead;
-	if noun is south, say "There's no zeroth rank, so you'd fall off the south edge of the board! What a sad end that would be." instead;
-	if noun is east, say "There's no zeroth column Z, so you'd fall off the east edge of the board! What a sad end that would be." instead;
-	if noun is west, say "There's no ninth column I, so you'd fall off the east edge of the board! What a sad end that would be." instead;
-	say "You just aren't able to move that way." instead;
-
 book parser errors
 
 the empty command to waiting rule is listed first in the for printing a parser error rulebook.
