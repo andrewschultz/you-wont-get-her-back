@@ -143,6 +143,41 @@ h7 is a room. xval of h7 is 8. yval of h7 is 7. h7 is east of g7. h7 is north of
 
 h8 is a room. xval of h8 is 8. yval of h8 is 8. h8 is east of g8. h8 is north of h7. h8 is northeast of g7.
 
+volume going nowhere
+
+[ a lot of this is not really applicable to both games, but it's useful enough to here for general reference e.g. you can never reach a1 ]
+
+to decide which number is vert-val of (p - a person):
+	if p is off-stage, decide on -1;
+	decide on (yval of location of P) - 1;
+
+to decide which number is horiz-val of (p - a person):
+	if p is off-stage, decide on -1;
+	decide on (xval of location of P) - 1;
+
+definition: a direction (called d) is northerly:
+	if d is north or d is northeast or d is northwest, yes;
+	no;
+
+definition: a direction (called d) is easterly:
+	if d is east or d is northeast or d is southeast, yes;
+	no;
+
+definition: a direction (called d) is southerly:
+	if d is south or d is southwest or d is southeast, yes;
+	no;
+
+definition: a direction (called d) is westerly:
+	if d is west or d is northwest or d is southwest, yes;
+	no;
+
+check going nowhere:
+	if (noun is northeast and player is in h8) or (noun is southwest and player is in a1), say "This isn't Clue. There's no secret passage to the other side of the board. And it'd only make your situation worse." instead;
+	if noun is easterly and horiz-val of player is 7, say "You'd fall off the east side of the board." instead;
+	if noun is northerly and vert-val of player is 7, say "You'd fall off the north side of the board." instead;
+	if noun is westerly and horiz-val of player is 0, say "You'd fall off the west side of the board." instead;
+	if noun is southerly and vert-val of player is 0, say "You'd fall off the south side of the board." instead;
+
 Regulation Size Chessboard ends here.
 
 ---- DOCUMENTATION ----
