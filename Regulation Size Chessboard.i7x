@@ -13,6 +13,16 @@ definition: a person (called pe) is allied:
 	if pe is the player, no;
 	yes;
 
+volume calculation stubs
+
+to decide which number is king-dist of (rm1 - a room) and (rm2 - a room):
+	let xdelta be xval of rm1 - xval of rm2;
+	let ydelta be yval of rm1 - yval of rm2;
+	if xdelta < 0, now xdelta is 0 - xdelta;
+	if ydelta < 0, now ydelta is 0 - ydelta;
+	if xdelta >= ydelta, decide on xdelta;
+	decide on ydelta;
+
 volume board layout
 
 a1 is a room. xval of a1 is 1. yval of a1 is 1.

@@ -953,14 +953,6 @@ this is the implicit pawn movement rule:
 		try pawning;
 		the rule succeeds;
 
-to decide which number is king-dist of (rm1 - a room) and (rm2 - a room):
-	let xdelta be xval of rm1 - xval of rm2;
-	let ydelta be yval of rm1 - yval of rm2;
-	if xdelta < 0, now xdelta is 0 - xdelta;
-	if ydelta < 0, now ydelta is 0 - ydelta;
-	if xdelta >= ydelta, decide on xdelta;
-	decide on ydelta;
-
 this is the implicit king movement rule:
 	if hinted-person is black king and noun is adjacent to location of the player, now hinted-person is the player;
 	if hinted-person is the player:
