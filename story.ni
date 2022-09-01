@@ -93,11 +93,7 @@ when play begins (this is the slightly custom screenread rule):
 	if debug-state is false, ask-screenread;
 
 to init-fleestate-list:
-	now available-fleestate-list is the list of all fleestates;
-	remove unreachable from available-fleestate-list;
-	remove useless-sacrificing from available-fleestate-list;
-	remove spite-checking from available-fleestate-list;
-	remove sucker-sacrificing from available-fleestate-list;
+	now available-fleestate-list is { a-guarding }; [ all other flee states give a special odd ending. This stub used to be bigger, but I'm keeping it in the unlikely case I need to change anything, and for general clarity. ]
 
 to choose-flee-room:
 	if fleestate-index > number of entries in available-fleestate-list or fleestate-index is 0:
@@ -1189,6 +1185,9 @@ to check-initial-win:
 		flee-add sucker-sacrificing;
 		flee-add useless-sacrificing;
 		flee-add spite-checking;
+		flee-add a-allowing;
+		flee-add spite-checking;
+		remove a-guarding from available-fleestate-list;
 		end the story finally saying "Personal Loss, Victory in Battle";
 		the rule succeeds;
 	else:
@@ -1576,11 +1575,15 @@ achievement	achieved	state-list-delete	details
 "skewered to death (rook)"	false	disable-skewer-allow rule	"letting the black rook go to b2 and skewer your b8-rook"
 "running up the score"	false	disable-sucker-sacrificing rule	"taking the opposing rook when mate was available"
 "spite check (winning)"	false	disable-useless-sacrificing rule	"checking the enemy king with their rook prone"
-"spite check (drawing)"	false	--	"checking the enemy king instead of checkmating"
+"spite check (drawing)"	false	disable-a-allowing rule	"checking the enemy king instead of checkmating"
 "rook on rook violence"	false	disable-useless-sacrificing rule	"taking the opposing rook with the rook when they blocked immediate checkmate"
 "giving futile hope"	false	disable-useless-sacrificing rule	"taking the opposing rook with the king when they blocked immediate checkmate"
 "dragging it out"	false	--	"taking extra turns to win, considering repetition"
 "dragging it out all the way"	false	--	"taking the maximum turns to win, considering repetition"
+
+this is the disable-a-allowing rule:
+	remove a-allowing from available-fleestate-list;
+	choose-flee-room;
 
 this is the disable-useless-sacrificing rule:
 	if achieved-yet of "giving futile hope" and achieved-yet of "rook on rook violence" and achieved-yet of "spite check (winning)":
