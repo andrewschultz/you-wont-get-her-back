@@ -489,6 +489,59 @@ check going nowhere:
 	if noun is southerly and vert-val of player is 0, say "There's no zeroth column. [youd-fall of south]." instead;
 	say "You're a monarch and all, and you're pretty powerful, but you just aren't able to move [noun]." instead;
 
+volume examining
+
+chapter xing
+
+xing is an action applying to one visible thing.
+
+understand the command "x" as something new.
+understand the command "examine" as something new.
+
+understand "x" as xing.
+understand "examine" as xing.
+understand "x [any person]" as xing.
+understand "examine [any person]" as xing.
+
+rule for supplying a missing noun when xing:
+	now the noun is the black king;
+
+does the player mean xing a not off-stage person: it is likely.
+does the player mean xing an enemy person: it is unlikely.
+does the player mean xing an enemy off-stage person: it is very unlikely.
+
+check xing:
+	if noun is off-stage:
+		 say "You search your memory...";
+		 say "[memory-text of noun][line break]";
+		the rule succeeds;
+
+carry out xing:
+	let kd be king-dist of location of noun and location of player;
+	if kd is 1:
+		say "A brief glance over to [the noun]...";
+	else if kd > 1:
+		say "You gaze across the battlefield to [the noun]...";
+	say "[description of the noun][line break]";
+	the rule succeeds;
+
+section nagging X once
+
+x-vs-examine-note is a truth state that varies.
+
+check xing:
+	if x-vs-examine-note is false and word number 1 in the player's command is "examine":
+		now x-vs-examine-note is true;
+		say "[bracket][b][i]ONE-TIME NOTE: X[r][i] is shorter![close bracket][r][line break]";
+
+volume trivial parser stuff
+
+rule for printing a parser error when the latest parser error is the i beg your pardon error (this is the empty command to waiting rule):
+	try waiting;
+	the rule succeeds;
+
+check waiting: say "Hey, yeah. It's your turn to move, so why not use all the time you want? Keep the opponent nervous." instead;
+
 Regulation Size Chessboard ends here.
 
 ---- DOCUMENTATION ----

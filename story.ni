@@ -168,49 +168,6 @@ to say text-board-description: [this varies from game to game]
 
 volume commands
 
-chapter xing
-
-xing is an action applying to one visible thing.
-
-understand the command "x" as something new.
-understand the command "examine" as something new.
-
-understand "x" as xing.
-understand "examine" as xing.
-understand "x [any person]" as xing.
-understand "examine [any person]" as xing.
-
-rule for supplying a missing noun when xing:
-	now the noun is the black king;
-
-does the player mean xing a not off-stage person: it is likely.
-does the player mean xing an enemy person: it is unlikely.
-does the player mean xing an enemy off-stage person: it is very unlikely.
-
-check xing:
-	if noun is off-stage:
-		 say "You search your memory...";
-		 say "[memory-text of noun][line break]";
-		the rule succeeds;
-
-carry out xing:
-	let kd be king-dist of location of noun and location of player;
-	if kd is 1:
-		say "A brief glance over to [the noun]...";
-	else if kd > 1:
-		say "You gaze across the battlefield to [the noun]...";
-	say "[description of the noun][line break]";
-	the rule succeeds;
-
-section xing
-
-x-vs-examine-note is a truth state that varies.
-
-check xing:
-	if x-vs-examine-note is false and word number 1 in the player's command is "examine":
-		now x-vs-examine-note is true;
-		say "[bracket][b][i]ONE-TIME NOTE: X[r][i] is shorter![close bracket][r][line break]";
-
 chapter pawning
 
 pawning is an action out of world.
@@ -858,18 +815,12 @@ after printing the name of a room (called rm) when rook-go is true: say "[r]";
 
 to say verb-say: say "[b]V[r]/[b]VERB[r]/[b]VERBS[r]"
 
-rule for printing a parser error when the latest parser error is the i beg your pardon error (this is the empty command to waiting rule):
-	try waiting;
-	the rule succeeds;
-
 definition: a room (called rm) is king-available:
 	if rm is location of white pawn, no;
 	if rm is black-rook-guarded, no;
 	if rm is king-guarded, no;
 	if rm is adjacent to location of player, yes;
 	no;
-
-check waiting: say "Hey, yeah. It's your turn to move, so why not use all the time you want? Keep the opponent nervous." instead;
 
 book miscellaneous descriptive notation
 
