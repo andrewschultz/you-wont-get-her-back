@@ -236,12 +236,12 @@ But the enemy rook would still see you there.
 >undo
 
 >sw
-Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
+Unfortunately, going to a2 would let the enemy king sock you from a1.
 
 >undo
 
 >s
-Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
+Unfortunately, going to b2 would let the enemy king sock you from a1.
 
 >undo
 
@@ -287,7 +287,7 @@ But the enemy rook would see you there.
 But the enemy rook would see you there.
 
 >sw
-Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
+Unfortunately, going to b2 would let the enemy king sock you from a1.
 
 >w
 The enemy king begins laughing. "Of course! Bring your queen back for one final moment together! Except, of course, you aren't. Not even close." As he orders his rook to d1, you see what he means. You're too far away to guard your Queen, if you bring her back, as the rook will check on c1.
@@ -316,10 +316,10 @@ The black rook slides north to d4.
 #note-5
 
 >w
-Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
+Unfortunately, going to b2 would let the enemy king sock you from a1.
 
 >sw
-Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
+Unfortunately, going to b1 would let the enemy king sock you from a1.
 
 >e
 But the enemy rook would see you there.
@@ -411,7 +411,7 @@ Congratulations! You just got the POINTLESS BATHOS AND LOSS achievement!
 >undo
 
 >kb2
-Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
+Unfortunately, going to b2 would let the enemy king sock you from a1.
 >undo
 
 >kd2
@@ -419,7 +419,7 @@ Congratulations! You just got the POINTLESS BATHOS AND LOSS achievement!
 >undo
 
 >kb1
-Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
+Unfortunately, going to b1 would let the enemy king sock you from a1.
 >undo
 
 >kc1
@@ -440,10 +440,10 @@ Congratulations! You just got the POINTLESS BATHOS AND LOSS achievement!
 >c8r
 
 >w
-Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
+Unfortunately, going to b2 would let the enemy king sock you from a1.
 
 >sw
-Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
+Unfortunately, going to b1 would let the enemy king sock you from a1.
 
 >n
 The black rook and king breathe a collective sigh of relief as the black king slides up to a2, relieved he's out of the corner and his rook defends the a-file. It's going to be a draw. A long, fifty-move one, unless you agree to trade rooks. But even getting into position for that may be tiresome.
@@ -659,7 +659,7 @@ Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >ka2
-Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
+Unfortunately, going to a2 would let the enemy king sock you from a1.
 >undo
 
 >ka3
@@ -775,11 +775,11 @@ Congratulations! You just got the PLAIN OLD CHECKMATE achievement!
 >kb3
 
 >ka2
-Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
+Unfortunately, going to a2 would let the enemy king sock you from a1.
 >undo
 
 >kb2
-Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
+Unfortunately, going to b2 would let the enemy king sock you from a1.
 >undo
 
 >kc2
@@ -841,11 +841,11 @@ Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >undo
 
 >ka2
-Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
+Unfortunately, going to a2 would let the enemy king sock you from a1.
 >undo
 
 >kb2
-Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
+Unfortunately, going to b2 would let the enemy king sock you from a1.
 >undo
 
 >kc2
@@ -883,7 +883,7 @@ But the enemy rook would see you there.
 >undo
 
 >kb2
-Unfortunately, if you got that near the enemy king, he would sock you. He's a sneaky coward.
+Unfortunately, going to b2 would let the enemy king sock you from a1.
 >undo
 
 >rc4

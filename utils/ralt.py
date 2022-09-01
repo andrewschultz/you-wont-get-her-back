@@ -1,3 +1,9 @@
+#
+# ralt.py: converts alternate REG script (with NFS skip command) to actual typed commands
+# reg-youalt-* to reg-alt-*
+# currently only playest-fixed-order
+#
+
 import glob
 
 auto_moves = [ 'c7', 's', 's', 's', 'se', 'c8r', 'kb3', 'rc1' ]
@@ -30,6 +36,6 @@ for my_alt in alts:
             fout.write(line)
     fout.close()
     if not expansions:
-        print("No NFS command to expand.")
+        print("No NFS command to expand, so this was just a copy-over.")
     else:
-        print("Expanded {} NSF command{}.".format(expansions, 's' if expansions > 1 else ''))
+        print("Expanded {} NFS command{}.".format(expansions, 's' if expansions > 1 else ''))

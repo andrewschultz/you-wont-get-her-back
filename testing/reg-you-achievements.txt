@@ -34,6 +34,7 @@ TRADED PAWN: letting the rook sacrifice itself for your pawn
 !SKEWERED TO DEATH (ROOK):
 !SPITE CHECK (WINNING):
 !SPITE CHECK (DRAWING):
+!A SPITE CHECK BEFORE DYING:
 !RUNNING UP THE SCORE:
 !ROOK ON ROOK VIOLENCE:
 !GIVING FUTILE HOPE:
@@ -64,6 +65,7 @@ SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the
 !SKEWERED TO DEATH (ROOK):
 !SPITE CHECK (WINNING):
 !SPITE CHECK (DRAWING):
+!A SPITE CHECK BEFORE DYING:
 !RUNNING UP THE SCORE:
 !ROOK ON ROOK VIOLENCE:
 !GIVING FUTILE HOPE:
@@ -97,6 +99,7 @@ SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the
 !SKEWERED TO DEATH (ROOK):
 !SPITE CHECK (WINNING):
 !SPITE CHECK (DRAWING):
+!A SPITE CHECK BEFORE DYING:
 !RUNNING UP THE SCORE:
 !ROOK ON ROOK VIOLENCE:
 !GIVING FUTILE HOPE:
@@ -134,6 +137,7 @@ STALEMATE, MATE: allowing stalemate when the white Queen takes the black rook
 !SKEWERED TO DEATH (ROOK):
 !SPITE CHECK (WINNING):
 !SPITE CHECK (DRAWING):
+!A SPITE CHECK BEFORE DYING:
 !RUNNING UP THE SCORE:
 !ROOK ON ROOK VIOLENCE:
 !GIVING FUTILE HOPE:
@@ -172,6 +176,7 @@ POINTLESS BATHOS AND LOSS: letting the black rook take the white Queen
 !SKEWERED TO DEATH (ROOK):
 !SPITE CHECK (WINNING):
 !SPITE CHECK (DRAWING):
+!A SPITE CHECK BEFORE DYING:
 !RUNNING UP THE SCORE:
 !ROOK ON ROOK VIOLENCE:
 !GIVING FUTILE HOPE:
@@ -202,6 +207,7 @@ POINTLESS BATHOS AND LOSS: letting the black rook take the white Queen
 !SKEWERED TO DEATH (ROOK):
 !SPITE CHECK (WINNING):
 !SPITE CHECK (DRAWING):
+!A SPITE CHECK BEFORE DYING:
 !RUNNING UP THE SCORE:
 !ROOK ON ROOK VIOLENCE:
 !GIVING FUTILE HOPE:
@@ -232,6 +238,7 @@ STALEMATE, MATE: allowing stalemate when the white Queen takes the black rook
 !SKEWERED TO DEATH (ROOK):
 !SPITE CHECK (WINNING):
 !SPITE CHECK (DRAWING):
+!A SPITE CHECK BEFORE DYING:
 !RUNNING UP THE SCORE:
 !ROOK ON ROOK VIOLENCE:
 !GIVING FUTILE HOPE:
@@ -263,6 +270,7 @@ POINTLESS BATHOS AND LOSS: letting the black rook take the white Queen
 !SKEWERED TO DEATH (ROOK):
 !SPITE CHECK (WINNING):
 !SPITE CHECK (DRAWING):
+!A SPITE CHECK BEFORE DYING:
 !RUNNING UP THE SCORE:
 !ROOK ON ROOK VIOLENCE:
 !GIVING FUTILE HOPE:
@@ -306,6 +314,7 @@ FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
 !SKEWERED TO DEATH (ROOK):
 !SPITE CHECK (WINNING):
 !SPITE CHECK (DRAWING):
+!A SPITE CHECK BEFORE DYING:
 !RUNNING UP THE SCORE:
 !ROOK ON ROOK VIOLENCE:
 !GIVING FUTILE HOPE:
@@ -343,6 +352,7 @@ FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
 !SKEWERED TO DEATH (ROOK):
 !SPITE CHECK (WINNING):
 !SPITE CHECK (DRAWING):
+!A SPITE CHECK BEFORE DYING:
 !RUNNING UP THE SCORE:
 !ROOK ON ROOK VIOLENCE:
 !GIVING FUTILE HOPE:
@@ -383,6 +393,43 @@ PLAIN OLD CHECKMATE: finding the main line solution
 !SKEWERED TO DEATH (ROOK):
 !SPITE CHECK (WINNING):
 !SPITE CHECK (DRAWING):
+!A SPITE CHECK BEFORE DYING:
+!RUNNING UP THE SCORE:
+!ROOK ON ROOK VIOLENCE:
+!GIVING FUTILE HOPE:
+!DRAGGING IT OUT:
+!DRAGGING IT OUT ALL THE WAY:
+
+>rf b4
+>p
+>s
+>s
+>s
+>se
+>c8r
+>kb3
+>kb4
+Congratulations! You just got the A SPITE CHECK BEFORE DYING achievement!
+
+>think
+THREEFOLD: repeating a position three times
+PINNED PAWN: letting the rook pin your pawn
+CAPTURED PAWN: letting the rook take your pawn for free
+TRADED PAWN: letting the rook sacrifice itself for your pawn
+ALTERNATE PATHS: realizing two moves from b4 are okay
+SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the pawn
+SKEWERED TO DEATH (PAWN): letting the rook check you on a1 and take the pawn without being captured
+POINTLESS BATHOS AND LOSS: letting the black rook take the white Queen
+STALEMATE, MATE: allowing stalemate when the white Queen takes the black rook
+FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
+PLAIN OLD CHECKMATE: finding the main line solution
+A SPITE CHECK BEFORE DYING: taking the enemy rook if it spite checks
+!CASTLE CARNAGE:
+!ALL FOR NAUGHT:
+!STALER THAN STALEMATE, MATE:
+!SKEWERED TO DEATH (ROOK):
+!SPITE CHECK (WINNING):
+!SPITE CHECK (DRAWING):
 !RUNNING UP THE SCORE:
 !ROOK ON ROOK VIOLENCE:
 !GIVING FUTILE HOPE:
@@ -414,6 +461,7 @@ POINTLESS BATHOS AND LOSS: letting the black rook take the white Queen
 STALEMATE, MATE: allowing stalemate when the white Queen takes the black rook
 FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
 PLAIN OLD CHECKMATE: finding the main line solution
+A SPITE CHECK BEFORE DYING: taking the enemy rook if it spite checks
 RUNNING UP THE SCORE: taking the opposing rook when mate was available
 !CASTLE CARNAGE:
 !ALL FOR NAUGHT:
@@ -452,6 +500,7 @@ STALEMATE, MATE: allowing stalemate when the white Queen takes the black rook
 FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
 PLAIN OLD CHECKMATE: finding the main line solution
 SPITE CHECK (WINNING): checking the enemy king with their rook prone
+A SPITE CHECK BEFORE DYING: taking the enemy rook if it spite checks
 RUNNING UP THE SCORE: taking the opposing rook when mate was available
 !CASTLE CARNAGE:
 !ALL FOR NAUGHT:
@@ -490,6 +539,7 @@ FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
 PLAIN OLD CHECKMATE: finding the main line solution
 SPITE CHECK (WINNING): checking the enemy king with their rook prone
 SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
+A SPITE CHECK BEFORE DYING: taking the enemy rook if it spite checks
 RUNNING UP THE SCORE: taking the opposing rook when mate was available
 !CASTLE CARNAGE:
 !ALL FOR NAUGHT:
@@ -527,6 +577,7 @@ FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
 PLAIN OLD CHECKMATE: finding the main line solution
 SPITE CHECK (WINNING): checking the enemy king with their rook prone
 SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
+A SPITE CHECK BEFORE DYING: taking the enemy rook if it spite checks
 RUNNING UP THE SCORE: taking the opposing rook when mate was available
 ROOK ON ROOK VIOLENCE: taking the opposing rook with the rook when they blocked immediate checkmate
 !CASTLE CARNAGE:
@@ -564,6 +615,7 @@ FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
 PLAIN OLD CHECKMATE: finding the main line solution
 SPITE CHECK (WINNING): checking the enemy king with their rook prone
 SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
+A SPITE CHECK BEFORE DYING: taking the enemy rook if it spite checks
 RUNNING UP THE SCORE: taking the opposing rook when mate was available
 ROOK ON ROOK VIOLENCE: taking the opposing rook with the rook when they blocked immediate checkmate
 GIVING FUTILE HOPE: taking the opposing rook with the king when they blocked immediate checkmate
@@ -603,6 +655,7 @@ FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
 PLAIN OLD CHECKMATE: finding the main line solution
 SPITE CHECK (WINNING): checking the enemy king with their rook prone
 SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
+A SPITE CHECK BEFORE DYING: taking the enemy rook if it spite checks
 RUNNING UP THE SCORE: taking the opposing rook when mate was available
 ROOK ON ROOK VIOLENCE: taking the opposing rook with the rook when they blocked immediate checkmate
 GIVING FUTILE HOPE: taking the opposing rook with the king when they blocked immediate checkmate
@@ -641,6 +694,7 @@ FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
 PLAIN OLD CHECKMATE: finding the main line solution
 SPITE CHECK (WINNING): checking the enemy king with their rook prone
 SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
+A SPITE CHECK BEFORE DYING: taking the enemy rook if it spite checks
 RUNNING UP THE SCORE: taking the opposing rook when mate was available
 ROOK ON ROOK VIOLENCE: taking the opposing rook with the rook when they blocked immediate checkmate
 GIVING FUTILE HOPE: taking the opposing rook with the king when they blocked immediate checkmate
@@ -678,6 +732,7 @@ FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
 PLAIN OLD CHECKMATE: finding the main line solution
 SPITE CHECK (WINNING): checking the enemy king with their rook prone
 SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
+A SPITE CHECK BEFORE DYING: taking the enemy rook if it spite checks
 RUNNING UP THE SCORE: taking the opposing rook when mate was available
 ROOK ON ROOK VIOLENCE: taking the opposing rook with the rook when they blocked immediate checkmate
 GIVING FUTILE HOPE: taking the opposing rook with the king when they blocked immediate checkmate
@@ -717,6 +772,7 @@ FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
 PLAIN OLD CHECKMATE: finding the main line solution
 SPITE CHECK (WINNING): checking the enemy king with their rook prone
 SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
+A SPITE CHECK BEFORE DYING: taking the enemy rook if it spite checks
 RUNNING UP THE SCORE: taking the opposing rook when mate was available
 ROOK ON ROOK VIOLENCE: taking the opposing rook with the rook when they blocked immediate checkmate
 GIVING FUTILE HOPE: taking the opposing rook with the king when they blocked immediate checkmate
@@ -757,6 +813,7 @@ FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
 PLAIN OLD CHECKMATE: finding the main line solution
 SPITE CHECK (WINNING): checking the enemy king with their rook prone
 SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
+A SPITE CHECK BEFORE DYING: taking the enemy rook if it spite checks
 RUNNING UP THE SCORE: taking the opposing rook when mate was available
 ROOK ON ROOK VIOLENCE: taking the opposing rook with the rook when they blocked immediate checkmate
 GIVING FUTILE HOPE: taking the opposing rook with the king when they blocked immediate checkmate

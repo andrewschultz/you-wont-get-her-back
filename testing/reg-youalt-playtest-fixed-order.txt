@@ -84,30 +84,7 @@ Congratulations! You just got the FORKED TO DEATH achievement!
 >se
 >c8r
 >kb3
->rc1
-Congratulations! You just got the PLAIN OLD CHECKMATE achievement!
-
->try
-
->c7
->s
->s
->s
->se
->c8r
->kb3
->rc4
-Congratulations! You just got the CASTLE CARNAGE achievement!
-
->rfa h4
->c7
->s
->s
->s
->se
->c8r
->kb3
->rh8
+>ra8
 Congratulations! You just got the ALL FOR NAUGHT achievement!
 
 >c7
@@ -127,13 +104,15 @@ Congratulations! You just got the STALER THAN STALEMATE, MATE achievement!
 >se
 >c8r
 >kb3
->ra8
-Congratulations! You just got the SPITE CHECK (DRAWING) achievement!
+>rc1
+Congratulations! You just got the PLAIN OLD CHECKMATE achievement!
 
-# win once to get to skewer-allowing
->nfs
+>try
 
-# now get skewered on b8 by the rook on a2
+# states in order:
+# skewer-allow, sucker-sacrificing, useless-sacrificing, a-allowing, spite-checking
+
+# first get skewered on b8 by the rook on a2 (skewer-allow)
 
 >c7
 >s
@@ -145,6 +124,10 @@ Congratulations! You just got the SPITE CHECK (DRAWING) achievement!
 >rb8
 Congratulations! You just got the SKEWERED TO DEATH (ROOK) achievement!
 
+# now skewer-allow should be gone
+
+# second get distracted by the Ra8 instead of giving checkmate (sucker-sacrificing)
+
 >c7
 >s
 >s
@@ -155,15 +138,9 @@ Congratulations! You just got the SKEWERED TO DEATH (ROOK) achievement!
 >ra8
 Congratulations! You just got the RUNNING UP THE SCORE achievement!
 
->c7
->s
->s
->s
->se
->c8r
->kb3
->ra8
-Congratulations! You just got the SPITE CHECK (WINNING) achievement!
+# now sucker-sacrificing should be gone
+
+# third play Rxc4 because there is no easy mate (useless-sacrificing) (1)
 
 >c7
 >s
@@ -175,12 +152,35 @@ Congratulations! You just got the SPITE CHECK (WINNING) achievement!
 >rc4
 Congratulations! You just got the ROOK ON ROOK VIOLENCE achievement!
 
-#kxr
->nfs
+# useless-sacrificing stays, on to a-allowing
 
->nfs
+# fourth (1) trade rooks with Rc4 (a-allowing)
 
->nfs
+>c7
+>s
+>s
+>s
+>se
+>c8r
+>kb3
+>rc4
+Congratulations! You just got the CASTLE CARNAGE achievement!
+
+# a-allowing stays, on to spite-checking
+
+# fifth just take the enemy rook if it spite checks (spite-checking)
+
+>c7
+>s
+>s
+>s
+>se
+>c8r
+>kb3
+>kxr
+Congratulations! You just got the A SPITE CHECK BEFORE DYING achievement!
+
+# (useless-sacrificing, a-allowing) is left
 
 >c7
 >s
@@ -192,8 +192,33 @@ Congratulations! You just got the ROOK ON ROOK VIOLENCE achievement!
 >kc4
 Congratulations! You just got the GIVING FUTILE HOPE achievement!
 
-#kxr
->nfs
+# fourth (2) play Rf4 Ra8+?? (a-allowing)
+
+>c7
+>s
+>s
+>s
+>se
+>c8r
+>kb3
+>ra8
+Congratulations! You just got the SPITE CHECK (DRAWING) achievement!
+
+# a-allowing is gone
+
+# now we should be glued to the final useless-sacrificing game state
+
+>c7
+>s
+>s
+>s
+>se
+>c8r
+>kb3
+>ra8
+Congratulations! You just got the SPITE CHECK (WINNING) achievement!
+
+# the repetition achievements can be done with any game state, but we force things to a-guarding (a5/a6/a7)
 
 >p
 >s
