@@ -56,7 +56,16 @@ carry out rfing:
 	if this-fleestate is unreachable:
 		say "The black rook can't reach [noun] for its last move." instead;
 	now rook-flee-room is noun;
-	say "New rook flee square is [rook-flee-room].";
+	now current-fleestate is rookstate of rook-flee-room;
+	if current-fleestate is not listed in available-fleestate-list:
+		say "Obligatory warning: trying to force the rook to flee to a square whose fleestate is not in the active list. This means we may not be testing a fully real-world situation, or this flee-state may not be properly removed.";
+		add current-fleestate to available-fleestate-list;
+	now fleestate-index is 1;
+	repeat with x running from 1 to number of entries in available-fleestate-list:
+		if entry x of available-fleestate-list is rookstate of rook-flee-room:
+			now fleestate-index is x;
+			break;
+	say "New rook flee square is [rook-flee-room], with rookstate [rookstate of rook-flee-room], and current-fleestate is [current-fleestate].";
 	the rule succeeds;
 
 chapter rfaing
