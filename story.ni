@@ -506,43 +506,35 @@ to decide which number is last-got:
 		if achieved entry is true, now return-val is count;
 	decide on return-val;
 
-volume dramatis personae
+chapter allies' details
 
-a person has text called shorthand.
+the player is in b6.
 
-a person has text called memory-text.
+description of white pawn is "The white pawn looks back at you frantically, not believing they can make it. Their friends never got close. Apparently, pawns are the soul of war, but after much instruction, you still have no real clue how and when to move them.". memory-text of white pawn is "A brave soul. They knew what they had to do to succeed, and they did it, knowing they'd be disappeared after. It's called 'promotion' but mystics believe it may be worse than a standard battlefield death.".
 
-a person has a number called pointvalue.
+description of white queen is "Your wife looks upset. Not with you, but with how things turned out.". memory-text of white queen is "[one of]You tried too hard to keep your wife on the board, but your opponent kept trying to get rid of them both, and each time you declined, your army's position got worse. Sleazy cunning. Eventually you gave in[one of]. You have a lot more thoughts about her, of course[or][stopping][or]People said of course you were the divine ruler and all, but you tried to explain she moved around a lot better than you did, and so forth. Some took it as a sign of weakness[or]Some of your shadier counselors mentioned you should dump her for someone younger or with more land promised as a dowry. But you couldn't and can't[or]Said shady counselors also suggested that if she got killed in the war, that'd be a good thing in its own way, for the kingdom. You fired them[cycling]."
 
-the player is in b6. the player is friendly. shorthand of player is "K".
+description of white rook is "Your ally avoids eye contact but seems to be repressing a smile.". memory-text of white rook is "It must be frustrating to be a rook. All that sitting around, and too often when you're called into action, it's just for a pileup on the open file. Your one rook understood when you had to sacrifice them for a mere bishop. Or was it a knight? It was so long ago."
 
-chapter allies
+description of white bishop is "Unhappy. He knows he's in hot water.". memory-text of white bishop is "Your two bishops -- ugh. They squabbled on petty theological trivia, but they were so similar. They never got the chance to control the battlefield together. One got to kill his opposing number, and the other had the satisfaction of knowing the enemy who killed him would die shortly after."
 
-the white pawn is a friendly person in c6. shorthand of white pawn is "P". pointvalue of white pawn is 1. understand "wp" and "p" and "w p" as white pawn. description is "The white pawn looks back at you frantically, not believing they can make it. Their friends never got close. Apparently, pawns are the soul of war, but after much instruction, you still have no real clue how and when to move them.". "A brave soul. They knew what they had to do to succeed, and they did it, knowing they'd be disappeared after. It's called 'promotion' but mystics believe it may be worse than a standard battlefield death."
+description of white knight is "Unhappy. He knows he's in hot water.". memory-text of white knight is "Your one knight understood when they had to move to capture their counterpart who had invaded. They only got to move twice. The other was pleased to give himself up for a couple pawns so you could get here. Their sacrifices can't be in vain. They just can't."
 
-the white queen is a friendly person. shorthand of white queen is "Q". pointvalue of white queen is 9. understand "wq" and "w q" and "q" as white queen. description is "Your wife looks upset. Not with you, but with how things turned out.". memory-text is "[one of]You tried too hard to keep your wife on the board, but your opponent kept trying to get rid of them both, and each time you declined, your army's position got worse. Sleazy cunning. Eventually you gave in[one of]. You have a lot more thoughts about her, of course[or][stopping][or]People said of course you were the divine ruler and all, but you tried to explain she moved around a lot better than you did, and so forth. Some took it as a sign of weakness[or]Some of your shadier counselors mentioned you should dump her for someone younger or with more land promised as a dowry. But you couldn't and can't[or]Said shady counselors also suggested that if she got killed in the war, that'd be a good thing in its own way, for the kingdom. You fired them[cycling]."
+chapter enemies' details
 
-the white rook is a friendly person. shorthand of white rook is "R". understand "wr" and "w r" and "r" as white rook. pointvalue of white rook is 5. "Your ally avoids eye contact but seems to be repressing a smile.". memory-text is "It must be frustrating to be a rook. All that sitting around, and too often when you're called into action, it's just for a pileup on the open file. Your one rook understood when you had to sacrifice them for a mere bishop. Or was it a knight? It was so long ago."
+the black king is in a1. description of black king is "Physically and mentally repulsive. To you, anyway. He seems to shake his head and shrug his shoulders as if to ask, why are you bothering?". memory-text is "You shouldn't see this. The black king should always be on the board."
 
-the white bishop is a friendly person. shorthand of white bishop is "B". understand "wb" and "w b" and "b" as white bishop. pointvalue of white bishop is 3. "Unhappy. He knows he's in hot water.". memory-text is "Your two bishops -- ugh. They squabbled on petty theological trivia, but they were so similar. They never got the chance to control the battlefield together. One got to kill his opposing number, and the other had the satisfaction of knowing the enemy who killed him would die shortly after."
-
-the white knight is a friendly person. shorthand of white knight is "N". understand "wn" and "w n" and "n" as white knight. pointvalue of white knight is 3. "Unhappy. He knows he's in hot water.". memory-text is "Your one knight understood when they had to move to capture their counterpart who had invaded. They only got to move twice. The other was pleased to give himself up for a couple pawns so you could get here. Their sacrifices can't be in vain. They just can't."
-
-chapter enemies
-
-the black king is an enemy person in a1. shorthand of black king is "k". understand "bk" and "b k" and "k" as black king. description is "Physically and mentally repulsive. To you, anyway. He seems to shake his head and shrug his shoulders as if to ask, why are you bothering?". memory-text is "You shouldn't see this. The black king should always be on the board."
-
-the black rook is an enemy person in d5. shorthand of black rook is "r". description of black rook is "The black rook seems to be staring you down."
+the black rook is in d5. description of black rook is "The black rook seems to be staring you down." [ memory-text is not needed since a run ends once the black rook is captured ]
 
 section enemies that are completely off-stage
 
-the black queen is an enemy person. shorthand of black queen is "q". understand "bq" and "b q" and "q" as black queen. memory-text is "You never liked her. During diplomatic meetings, she and her husband tried to show they liked each other more than you did. But you remember the yelling from the royal visitors['] suite at night."
+memory-text of black queen is "You never liked her. During diplomatic meetings, she and her husband tried to show they liked each other more than you did. But you remember the yelling from the royal visitors['] suite at night."
 
-the black bishop is an enemy person. shorthand of black bishop is "b". understand "bb" and "b b" and "b" as black bishop. memory-text is "Your bishops squabbled about theological arcana, but the other bishops--man, they sat around planning how to guilt-trip the peasants into doing more than just tithing. You're not sorry they died early, though them dying along with your own bishops was only an 'even trade' in the warfare sense."
+memory-text of black bishop is "Your bishops squabbled about theological arcana, but the other bishops--man, they sat around planning how to guilt-trip the peasants into doing more than just tithing. You're not sorry they died early, though them dying along with your own bishops was only an 'even trade' in the warfare sense."
 
-the black knight is an enemy person. shorthand of black knight is "n". understand "bn" and "b n" and "n" as black knight. memory-text is "The two black knights ... well, they were bold. They deserved better than to serve in your enemy's army, you think."
+memory-text of black knight is "The two black knights ... well, they were bold. They deserved better than to serve in your enemy's army, you think."
 
-the black pawn is an enemy person. shorthand of black pawn is "q". understand "bp" and "b p" and "p" as black pawn. memory-text is "You felt almost as bad taking down enemy pawns as you did letting your own pawns die. Then you felt bad about not valuing all human lives equally."
+memory-text of black pawn is "You felt almost as bad taking down enemy pawns as you did letting your own pawns die. Then you felt bad about not valuing all human lives equally."
 
 chapter status line
 

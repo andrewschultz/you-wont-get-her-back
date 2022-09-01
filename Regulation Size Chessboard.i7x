@@ -143,6 +143,42 @@ h7 is a room. xval of h7 is 8. yval of h7 is 7. h7 is east of g7. h7 is north of
 
 h8 is a room. xval of h8 is 8. yval of h8 is 8. h8 is east of g8. h8 is north of h7. h8 is northeast of g7.
 
+volume dramatis personae
+
+a person has text called shorthand.
+
+a person has text called memory-text.
+
+a person has a number called pointvalue.
+
+the white king is a friendly person. the player is the white king. shorthand of white king is "K". understand "wk" and "w k" and "k" as the white king.
+
+chapter allies
+
+the white pawn is a friendly person in c6. shorthand of white pawn is "P". pointvalue of white pawn is 1. understand "wp" and "p" and "w p" as white pawn.
+
+the white queen is a friendly female person. shorthand of white queen is "Q". pointvalue of white queen is 9. understand "wq" and "w q" and "q" as white queen.
+
+the white rook is a friendly person. shorthand of white rook is "R". pointvalue of white rook is 5. understand "wr" and "w r" and "r" as white rook.
+
+the white bishop is a friendly person. shorthand of white bishop is "B". pointvalue of white bishop is 3. understand "wb" and "w b" and "b" as white bishop.
+
+the white knight is a friendly person. shorthand of white knight is "N". pointvalue of white knight is 3. understand "wn" and "w n" and "n" as white knight.
+
+chapter enemies
+
+the black king is an enemy person. shorthand of black king is "k". understand "bk" and "b k" and "k" as black king.
+
+the black rook is an enemy person. shorthand of black rook is "r". pointvalue of black rook is 5. understand "br" and "b r" and "r" as black rook.
+
+the black queen is an enemy female person. shorthand of black queen is "q". pointvalue of black queen is 9. understand "bq" and "b q" and "q" as black queen.
+
+the black bishop is an enemy person. shorthand of black bishop is "b". pointvalue of black bishop is 3. understand "bb" and "b b" and "b" as black bishop.
+
+the black knight is an enemy person. shorthand of black knight is "n". pointvalue of black knight is 3. understand "bn" and "b n" and "n" as black knight.
+
+the black pawn is an enemy person. shorthand of black pawn is "q". pointvalue of black pawn is 1. understand "bp" and "b p" and "p" as black pawn.
+
 volume going nowhere
 
 [ a lot of this is not really applicable to both games, but it's useful enough to here for general reference e.g. you can never reach a1 ]
@@ -171,7 +207,7 @@ definition: a direction (called d) is westerly:
 	if d is west or d is northwest or d is southwest, yes;
 	no;
 
-to say youd-fall (d - a direction): say "You'd fall off the east side of the [one of]board[or]battlefield[or]battlefield, umm, board[or]board, umm, battlefield[at random]"
+to say youd-fall of (d - a direction): say "You'd fall off the east side of the [one of]board[or]battlefield[or]battlefield, umm, board[or]board, umm, battlefield[at random]"
 
 check going nowhere:
 	if (noun is northeast and player is in h8) or (noun is southwest and player is in a1), say "This isn't Clue. There's no secret passage to the other side of the board. And it'd only make your situation worse." instead;
