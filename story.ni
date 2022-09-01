@@ -463,17 +463,39 @@ the block thinking rule is not listed in any rulebook.
 check thinking:
 	if achieve-score is 0, say "You haven't found any achievements, but don't worry. You'll get one soon. [this-game] tracks both wins and losses. You'll find creative losses as you go." instead;
 	say "Here are the accomplishments so far from your various playthroughs. Note that they are listed roughly in the time it takes to find them, which will hopefully be a clue if you want to plow through everything.";
-	let count be 0;
+	let achievement-count be 0;
+	let generic-achievement-got be 0;
+	let generic-achievement-missed be 0;
+	let special-achievement-got be 0;
+	let special-achievement-missed be 0;
+	let this-achievement-got be 0;
+	let this-achievement-missed be 0;
 	repeat through table of unachievements:
-		increment count;
-		if count > last-got + 1:
+		if there is a required-state:
+			if required-state is current-game-state:
+				if achieved entry is true:
+					increment this-achievement-got;
+				else:
+					increment this-achievement-missed;
+			if achieved entry is true:
+				increment special-achievement-got;
+			else:
+				increment special-achievement-missed;
+		else:
+			if achieved entry is true:
+				increment generic-achievement-got;
+			else:
+				increment generic-achievement-missed;
+	repeat through table of unachievements:
+		increment achievement-count;
+		if achievement-count > last-got:
 			let dif be number of rows in table of unachievements - last-got;
 			say "Instead of writing lots of lines with dashes, I'll mention there are [dif] achievements below the trickiest you've found.";
 			break;
 		if achieved entry is true:
 			say "[b][achievement entry in upper case][r]: [details entry][line break]";
 		else:
-			say "--[line break]";
+			say "[if screenread is true][b]UNDISCOVERED[r][else]--[end if][line break]";
 	the rule succeeds;
 
 to decide which number is last-got:
@@ -1557,29 +1579,29 @@ volume unachievements
 [we could make state-list-delete a specific-state and then go through the table, looking to see if any of the other specific state was still there, but this feels like it might be too-cute code. Plus there's a chance that two game-states might allow an ending, and that would get tricky. I hope this is straightforward: we eliminate a game-state from available-fleestate-list if it no longer can allow a unique ending, because we don't want to waste the player's time if possible.]
 
 table of unachievements
-achievement	achieved	state-list-delete	details
-"threefold"	false	--	"repeating a position three times"
-"pinned pawn"	false	--	"letting the rook pin your pawn"
-"captured pawn"	false	--	"letting the rook take your pawn for free"
-"traded pawn"	false	--	"letting the rook sacrifice itself for your pawn"
-"alternate paths"	false	--	"realizing two moves from b4 are okay"
-"skewered to a draw"	false	--	"letting the rook check you on c1 to sacrifice itself for the pawn"
-"skewered to death (pawn)"	false	--	"letting the rook check you on a1 and take the pawn without being captured"
-"pointless bathos and loss"	false	--	"letting the black rook take the white Queen"
-"stalemate, mate"	false	--	"allowing stalemate when the white Queen takes the black rook"
-"forked to death"	false	--	"managing to get forked, along with your pawn, by the enemy rook"
-"plain old checkmate"	false	--	"finding the main line solution"
-"castle carnage"	false	--	"managing to trade off rooks"
-"all for naught"	false	--	"managing to give your rook away"
-"staler than stalemate, mate"	false	--	"drawn ending with equal material"
-"skewered to death (rook)"	false	disable-skewer-allow rule	"letting the black rook go to b2 and skewer your b8-rook"
-"running up the score"	false	disable-sucker-sacrificing rule	"taking the opposing rook when mate was available"
-"spite check (winning)"	false	disable-useless-sacrificing rule	"checking the enemy king with their rook prone"
-"spite check (drawing)"	false	disable-a-allowing rule	"checking the enemy king instead of checkmating"
-"rook on rook violence"	false	disable-useless-sacrificing rule	"taking the opposing rook with the rook when they blocked immediate checkmate"
-"giving futile hope"	false	disable-useless-sacrificing rule	"taking the opposing rook with the king when they blocked immediate checkmate"
-"dragging it out"	false	--	"taking extra turns to win, considering repetition"
-"dragging it out all the way"	false	--	"taking the maximum turns to win, considering repetition"
+achievement	achieved	required-state	state-list-delete	details
+"threefold"	false	--	--	"repeating a position three times"
+"pinned pawn"	false	--	--	"letting the rook pin your pawn"
+"captured pawn"	false	--	--	"letting the rook take your pawn for free"
+"traded pawn"	false	--	--	"letting the rook sacrifice itself for your pawn"
+"alternate paths"	false	--	--	"realizing two moves from b4 are okay"
+"skewered to a draw"	false	--	--	"letting the rook check you on c1 to sacrifice itself for the pawn"
+"skewered to death (pawn)"	false	--	--	"letting the rook check you on a1 and take the pawn without being captured"
+"pointless bathos and loss"	false	--	--	"letting the black rook take the white Queen"
+"stalemate, mate"	false	--	--	"allowing stalemate when the white Queen takes the black rook"
+"forked to death"	false	--	--	"managing to get forked, along with your pawn, by the enemy rook"
+"plain old checkmate"	false	--	--	"finding the main line solution"
+"castle carnage"	false	--	--	"managing to trade off rooks"
+"all for naught"	false	--	--	"managing to give your rook away"
+"staler than stalemate, mate"	false	--	--	"drawn ending with equal material"
+"skewered to death (rook)"	false	skewer-allow	disable-skewer-allow rule	"letting the black rook go to b2 and skewer your b8-rook"
+"running up the score"	false	sucker-sacrificing	disable-sucker-sacrificing rule	"taking the opposing rook when mate was available"
+"spite check (winning)"	false	useless-sacrificing	disable-useless-sacrificing rule	"checking the enemy king with their rook prone"
+"spite check (drawing)"	false	a-allowing	disable-a-allowing rule	"checking the enemy king instead of checkmating"
+"rook on rook violence"	false	useless-sacrificing	disable-useless-sacrificing rule	"taking the opposing rook with the rook when they blocked immediate checkmate"
+"giving futile hope"	false	useless-sacrificing	disable-useless-sacrificing rule	"taking the opposing rook with the king when they blocked immediate checkmate"
+"dragging it out"	false	--	--	"taking extra turns to win, considering repetition"
+"dragging it out all the way"	false	--	--	"taking the maximum turns to win, considering repetition"
 
 this is the disable-a-allowing rule:
 	remove a-allowing from available-fleestate-list;
