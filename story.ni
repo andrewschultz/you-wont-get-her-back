@@ -471,8 +471,8 @@ check thinking:
 	let this-achievement-got be 0;
 	let this-achievement-missed be 0;
 	repeat through table of unachievements:
-		if there is a required-state:
-			if required-state is current-game-state:
+		if there is a required-state entry:
+			if required-state entry is current-fleestate:
 				if achieved entry is true:
 					increment this-achievement-got;
 				else:
@@ -1594,6 +1594,7 @@ achievement	achieved	required-state	state-list-delete	details
 "castle carnage"	false	--	--	"managing to trade off rooks"
 "all for naught"	false	--	--	"managing to give your rook away"
 "staler than stalemate, mate"	false	--	--	"drawn ending with equal material"
+"a spite check before dying"	false	spite-checking	disable-spite-checking rule	"taking the enemy rook if it spite checks"
 "skewered to death (rook)"	false	skewer-allow	disable-skewer-allow rule	"letting the black rook go to b2 and skewer your b8-rook"
 "running up the score"	false	sucker-sacrificing	disable-sucker-sacrificing rule	"taking the opposing rook when mate was available"
 "spite check (winning)"	false	useless-sacrificing	disable-useless-sacrificing rule	"checking the enemy king with their rook prone"
@@ -1607,18 +1608,22 @@ this is the disable-a-allowing rule:
 	remove a-allowing from available-fleestate-list;
 	choose-flee-room;
 
-this is the disable-useless-sacrificing rule:
-	if achieved-yet of "giving futile hope" and achieved-yet of "rook on rook violence" and achieved-yet of "spite check (winning)":
-		remove useless-sacrificing from available-fleestate-list;
-		choose-flee-room;
-
-this is the disable-sucker-sacrificing rule:
-	remove sucker-sacrificing from available-fleestate-list;
+this is the disable-spite-checking rule:
+	remove spite-checking from available-fleestate-list;
 	choose-flee-room;
 
 this is the disable-skewer-allow rule:
 	remove skewer-allow from available-fleestate-list;
 	choose-flee-room;
+
+this is the disable-sucker-sacrificing rule:
+	remove sucker-sacrificing from available-fleestate-list;
+	choose-flee-room;
+
+this is the disable-useless-sacrificing rule:
+	if achieved-yet of "giving futile hope" and achieved-yet of "rook on rook violence" and achieved-yet of "spite check (winning)":
+		remove useless-sacrificing from available-fleestate-list;
+		choose-flee-room;
 
 to decide which number is achieve-score:
 	let temp be 0;
