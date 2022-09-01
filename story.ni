@@ -129,8 +129,6 @@ chapter options
 
 option-persist-warn is a truth state that varies.
 
-show-coords is a truth state that varies. show-coords is true.
-
 chapter rules
 
 procedural rule: ignore the print final score rule.
@@ -163,88 +161,10 @@ rookstate of a2 is skewer-allow.
 
 volume room description
 
-the description of a room is usually "[if screenread is true][text-board-description].[else][grid-printout][run paragraph on][end if]";
-
-definition: a person (called pe) is writeoutable:
-	if pe is off-stage, no;
-	if pe is allied, yes;
-	no;
-
-to say text-board-description:
+to say text-board-description: [this varies from game to game]
 	let my-piece be a random writeoutable person;
 	say "You're currently at [location of player]. Your ally, [the my-piece], is at [location of my-piece].";
 	say "[line break]The enemy king is still skulking at a1, watching the carnage from afar. The enemy rook is at [location of black rook]";
-
-to say border:
-	if show-coords is true, say "   ";
-	say "+";
-	repeat with Y running from 1 to 8:
-		repeat with count running from 1 to column-width:
-			say "-";
-		say "+";
-
-to invert-text: (- style reverse; -)
-
-to say my-row of (num - a number):
-	(- print (char) ({num} + 96); -)
-
-to space-print (n - a number):
-	let count be 0;
-	while count < n:
-		say " ";
-		increment count;
-
-to say row-left of (L - a number):
-	space-print (L / 2);
-
-to say row-right of (L - a number):
-	space-print (L - 1) / 2;
-
-to say grid-printout:
-	say "[fixed letter spacing]";
-	print-column-numbers;
-	if show-coords is true, say "[line break]";
-	repeat with Y running from 1 to 8:
-		say "[border][line break]";
-		if show-coords is true:
-			say " [9 - Y] ";
-		say "|";
-		repeat with X running from 1 to 8:
-			if checkerboard is true and the remainder after dividing (X + Y) by 2 is 1:
-				invert-text;
-			say "[row-left of column-width]";
-			say "[occupant of X and (9 - Y)]";
-			say "[row-right of column-width]";
-			say "[roman type]";
-			say "|";
-		say "[line break]";
-	say "[border]";
-	if show-coords is true, say "[line break]";
-	print-column-numbers;
-	say "[variable letter spacing]";
-
-to print-column-numbers:
-	say "    ";
-	if show-coords is false, continue the action;
-	repeat with X running from 1 to 8:
-		say "[row-left of column-width]";
-		say "[my-row of X]";
-		say "[row-right of column-width]";
-		say " ";
-
-to say occupant of (x - a number) and (y - a number):
-	repeat with rm running through rooms:
-		if xval of rm is x and yval of rm is y:
-			if number of people in rm is 0:
-				say " ";
-				continue the action;
-			say "[shorthand of random person in rm]";
-			continue the action;
-	say "?"
-
-definition: a person (called p) is active:
-	if p is off-stage, no;
-	yes;
 
 volume commands
 
@@ -1399,8 +1319,6 @@ carry out coordsing:
 		try coordsoning;
 	the rule succeeds;
 
-this is the screen-mode-hidden-note rule: if screenread is true, say "[i][bracket][b]NOTE:[r][i] this option should be hidden in screen-reader mode, but there is no penalty for toggling it.[close bracket][r][paragraph break];"
-
 chapter coordsoffing
 
 coordsoffing is an action out of world.
@@ -1482,89 +1400,6 @@ after printing the locale description when show-all-moves is true:
 	say "In this position, you can ";
 	process the print-legal-moves rule;
 	continue the action;
-
-chapter widthing
-
-column-width is a number that varies. column-width is 1.
-
-widthing is an action applying to one number.
-
-understand the command "width" as something new.
-
-understand "width [number]" as widthing.
-understand "wi [number]" as widthing.
-understand "w [number]" as widthing.
-
-carry out widthing:
-	abide by the screen-mode-hidden-note rule;
-	if the number understood < 1 or the number understood > 5, say "The width can only be between 1 and 5." instead;
-	say "The column width is [if column-width is number understood]already[else]now[end if] [number understood][even-width-warning].";
-	now column-width is the number understood;
-	the rule succeeds;
-
-to say even-width-warning:
-	if the remainder after dividing the number understood by 2 is 0, say ". Note that an even width will make asymmetrical squares";
-
-section westgoing
-
-westgoing is an action applying to nothing.
-
-understand "w" as westgoing.
-
-carry out westgoing: try going west instead.
-
-chapter bwing
-
-checkerboard is a truth state that varies. checkerboard is true.
-
-bwing is an action out of world.
-
-understand the command "bw" as something new.
-understand the command "wb" as something new.
-
-understand "bw" as bwing.
-understand "wb" as bwing.
-
-carry out bwing:
-	if checkerboard is true:
-		try bwoffing;
-	else:
-		try bwoning;
-	the rule succeeds;
-
-chapter bwoffing
-
-bwoffing is an action out of world.
-
-understand the command "bwoff" as something new.
-
-understand "bwoff" as bwoffing.
-understand "bw off" as bwoffing.
-understand "wboff" as bwoffing.
-understand "wb off" as bwoffing.
-
-carry out bwoffing:
-	abide by the screen-mode-hidden-note rule;
-	say "Checkerboard effects for the board are [if checkerboard is false]already[else]now[end if] off.";
-	now checkerboard is false;
-	the rule succeeds;
-
-chapter bwoning
-
-bwoning is an action out of world.
-
-understand the command "bwon" as something new.
-
-understand "bwon" as bwoning.
-understand "bw on" as bwoning.
-understand "wbon" as bwoning.
-understand "wb on" as bwoning.
-
-carry out bwoning:
-	abide by the screen-mode-hidden-note rule;
-	say "Checkerboard effects for the board are [if checkerboard is true]already[else]now[end if] on.";
-	now checkerboard is true;
-	the rule succeeds;
 
 volume unachievements
 

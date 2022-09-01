@@ -143,6 +143,88 @@ h7 is a room. xval of h7 is 8. yval of h7 is 7. h7 is east of g7. h7 is north of
 
 h8 is a room. xval of h8 is 8. yval of h8 is 8. h8 is east of g8. h8 is north of h7. h8 is northeast of g7.
 
+volume room/square description(s)
+
+show-coords is a truth state that varies. show-coords is true.
+
+the description of a room is usually "[if screenread is true][text-board-description].[else][grid-printout][run paragraph on][end if]";
+
+definition: a person (called pe) is writeoutable:
+	if pe is off-stage, no;
+	if pe is allied, yes;
+	no;
+
+to say border:
+	if show-coords is true, say "   ";
+	say "+";
+	repeat with Y running from 1 to 8:
+		repeat with count running from 1 to column-width:
+			say "-";
+		say "+";
+
+to invert-text: (- style reverse; -)
+
+to say my-row of (num - a number):
+	(- print (char) ({num} + 96); -)
+
+to space-print (n - a number):
+	let count be 0;
+	while count < n:
+		say " ";
+		increment count;
+
+to say row-left of (L - a number):
+	space-print (L / 2);
+
+to say row-right of (L - a number):
+	space-print (L - 1) / 2;
+
+to say grid-printout:
+	say "[fixed letter spacing]";
+	print-column-numbers;
+	if show-coords is true, say "[line break]";
+	repeat with Y running from 1 to 8:
+		say "[border][line break]";
+		if show-coords is true:
+			say " [9 - Y] ";
+		say "|";
+		repeat with X running from 1 to 8:
+			if checkerboard is true and the remainder after dividing (X + Y) by 2 is 1:
+				invert-text;
+			say "[row-left of column-width]";
+			say "[occupant of X and (9 - Y)]";
+			say "[row-right of column-width]";
+			say "[roman type]";
+			say "|";
+		say "[line break]";
+	say "[border]";
+	if show-coords is true, say "[line break]";
+	print-column-numbers;
+	say "[variable letter spacing]";
+
+to print-column-numbers:
+	say "    ";
+	if show-coords is false, continue the action;
+	repeat with X running from 1 to 8:
+		say "[row-left of column-width]";
+		say "[my-row of X]";
+		say "[row-right of column-width]";
+		say " ";
+
+to say occupant of (x - a number) and (y - a number):
+	repeat with rm running through rooms:
+		if xval of rm is x and yval of rm is y:
+			if number of people in rm is 0:
+				say " ";
+				continue the action;
+			say "[shorthand of random person in rm]";
+			continue the action;
+	say "?"
+
+definition: a person (called p) is active:
+	if p is off-stage, no;
+	yes;
+
 volume dramatis personae
 
 a person has text called shorthand.
@@ -178,6 +260,196 @@ the black bishop is an enemy person. shorthand of black bishop is "b". pointvalu
 the black knight is an enemy person. shorthand of black knight is "n". pointvalue of black knight is 3. understand "bn" and "b n" and "n" as black knight.
 
 the black pawn is an enemy person. shorthand of black pawn is "q". pointvalue of black pawn is 1. understand "bp" and "b p" and "p" as black pawn.
+
+volume display options
+
+this is the screen-mode-hidden-note rule: if screenread is true, say "[i][bracket][b]NOTE:[r][i] this option should be hidden in screen-reader mode, but there is no penalty for toggling it.[close bracket][r][paragraph break];"
+
+chapter widthing
+
+column-width is a number that varies. column-width is 1.
+
+widthing is an action applying to one number.
+
+understand the command "width" as something new.
+
+understand "width [number]" as widthing.
+understand "wi [number]" as widthing.
+understand "w [number]" as widthing.
+
+carry out widthing:
+	abide by the screen-mode-hidden-note rule;
+	if the number understood < 1 or the number understood > 5, say "The width can only be between 1 and 5." instead;
+	say "The column width is [if column-width is number understood]already[else]now[end if] [number understood][even-width-warning].";
+	now column-width is the number understood;
+	the rule succeeds;
+
+to say even-width-warning:
+	if the remainder after dividing the number understood by 2 is 0, say ". Note that an even width will make asymmetrical squares";
+
+section westgoing
+
+westgoing is an action applying to nothing.
+
+understand "w" as westgoing.
+
+carry out westgoing: try going west instead.
+
+chapter bwing
+
+checkerboard is a truth state that varies. checkerboard is true.
+
+bwing is an action out of world.
+
+understand the command "bw" as something new.
+understand the command "wb" as something new.
+
+understand "bw" as bwing.
+understand "wb" as bwing.
+
+carry out bwing:
+	if checkerboard is true:
+		try bwoffing;
+	else:
+		try bwoning;
+	the rule succeeds;
+
+chapter bwoffing
+
+bwoffing is an action out of world.
+
+understand the command "bwoff" as something new.
+
+understand "bwoff" as bwoffing.
+understand "bw off" as bwoffing.
+understand "wboff" as bwoffing.
+understand "wb off" as bwoffing.
+
+carry out bwoffing:
+	abide by the screen-mode-hidden-note rule;
+	say "Checkerboard effects for the board are [if checkerboard is false]already[else]now[end if] off.";
+	now checkerboard is false;
+	the rule succeeds;
+
+chapter bwoning
+
+bwoning is an action out of world.
+
+understand the command "bwon" as something new.
+
+understand "bwon" as bwoning.
+understand "bw on" as bwoning.
+understand "wbon" as bwoning.
+understand "wb on" as bwoning.
+
+carry out bwoning:
+	abide by the screen-mode-hidden-note rule;
+	say "Checkerboard effects for the board are [if checkerboard is true]already[else]now[end if] on.";
+	now checkerboard is true;
+	the rule succeeds;
+
+chapter coordsing
+
+coordsing is an action out of world.
+
+understand the command "coords" as something new.
+understand the command "coord" as something new.
+understand the command "coor" as something new.
+understand the command "coo" as something new.
+
+understand "coords" as coordsing.
+understand "coord" as coordsing.
+understand "coor" as coordsing.
+understand "coo" as coordsing.
+
+carry out coordsing:
+	if show-coords is true:
+		try coordsoffing;
+	else:
+		try coordsoning;
+	the rule succeeds;
+
+chapter coordsoffing
+
+coordsoffing is an action out of world.
+
+understand the command "coordsoff" as something new.
+
+understand "coordsoff" as coordsoffing.
+understand "coords off" as coordsoffing.
+understand "coord off" as coordsoffing.
+understand "coor off" as coordsoffing.
+understand "coo off" as coordsoffing.
+
+carry out coordsoffing:
+	abide by the screen-mode-hidden-note rule;
+	say "Board coordinates are [if show-coords is true]already[else]now[end if] off.";
+	now show-coords is false;
+	the rule succeeds;
+
+chapter coordsoning
+
+coordsoning is an action out of world.
+
+understand the command "coordson" as something new.
+understand the command "coords on" as something new.
+understand the command "coord on" as something new.
+understand the command "coor on" as something new.
+understand the command "coo on" as something new.
+
+understand "coordson" as coordsoning.
+
+carry out coordsoning:
+	abide by the screen-mode-hidden-note rule;
+	say "Board coordinates are [if show-coords is true]already[else]now[end if] on.";
+	now show-coords is true;
+	the rule succeeds;
+
+chapter moves-oning
+
+show-all-moves is a truth state that varies.
+
+movesoning is an action out of world.
+
+understand the command "moves" as something new.
+
+understand "moves on" as movesoning.
+understand "moveson" as movesoning.
+
+carry out movesoning:
+	say "Showing legal moves under the position is [if show-all-moves is true]already[else]now[end if] on.";
+	now show-all-moves is true;
+	the rule succeeds;
+
+chapter moves-offing
+
+movesoffing is an action out of world.
+
+understand "moves off" as movesoffing.
+understand "movesoff" as movesoffing.
+
+carry out movesoffing:
+	say "Showing legal moves under the position is [if show-all-moves is false]already[else]now[end if] off.";
+	now show-all-moves is false;
+	the rule succeeds;
+
+chapter movesing
+
+movesing is an action out of world.
+
+understand "moves" as movesing.
+
+carry out movesing:
+	if show-all-moves is true:
+		try movesoffing;
+	else:
+		try movesoning;
+	the rule succeeds;
+
+after printing the locale description when show-all-moves is true:
+	say "In this position, you can ";
+	process the print-legal-moves rule;
+	continue the action;
 
 volume going nowhere
 
