@@ -1,0 +1,116 @@
+## reg-you-save-codes.txt
+
+## save codes testing for Saavedra problem game
+
+** game: /home/andrew/prt/debug-you-wont-get-her-back.z8
+** interpreter: /home/andrew/prt/dfrotz -m -w5000 -h25
+
+* main
+
+>1717 1717
+Valid save-state entered. Resetting the board.
+
+>think
+You haven't found any achievements, but don't worry. You'll get one soon. You Won't Get Her Back tracks both wins and losses. You'll find creative losses as you go.
+
+>1716 1717
+Valid save-state entered. Resetting the board.
+!a-allowing
+!useless-sacrificing
+!skewer-allow
+!spite-checking
+!sucker-sacrificing
+a-guarding
+
+>think
+22
+
+>1717 1719
+You entered an invalid save state number pair. Check for typos.
+Or if you're trying to fiddle with things, it's really not too tough to cheat and experiment to find one you want, it's a neat enough puzzle, one I won't spoil with hints.
+
+>6474 1354
+You entered an invalid save state number pair. Check for typos.
+!Or if you're trying to fiddle with things, it's really not too tough to cheat and experiment to find one you want, it's a neat enough puzzle, one I won't spoil with hints.
+
+>6474 1866
+Valid save-state entered. Resetting the board.
+!a-allowing
+!useless-sacrificing
+!skewer-allow
+!spite-checking
+!sucker-sacrificing
+a-guarding
+
+>6474 1098
+Valid save-state entered. Resetting the board.
+!a-allowing
+!useless-sacrificing
+!skewer-allow
+!spite-checking
+!sucker-sacrificing
+a-guarding
+
+>think
+THREEFOLD: repeating a position three times
+PINNED PAWN: letting the rook pin your pawn
+CAPTURED PAWN: letting the rook take your pawn for free
+TRADED PAWN: letting the rook sacrifice itself for your pawn
+ALTERNATE PATHS: realizing two moves from b4 are okay
+SKEWERED TO A DRAW: letting the rook check you on c1 to sacrifice itself for the pawn
+SKEWERED TO DEATH (PAWN): letting the rook check you on a1 and take the pawn without being captured
+POINTLESS BATHOS AND LOSS: letting the black rook take the white Queen
+STALEMATE, MATE: allowing stalemate when the white Queen takes the black rook
+FORKED TO DEATH: managing to get forked, along with your pawn, by the enemy rook
+PLAIN OLD CHECKMATE: finding the main line solution
+ALL FOR NAUGHT: managing to give your rook away
+STALER THAN STALEMATE, MATE: drawn ending with equal material
+--
+A SPITE CHECK BEFORE DYING: taking the enemy rook if it spite checks
+SKEWERED TO DEATH (ROOK): letting the black rook go to b2 and skewer your b8-rook
+RUNNING UP THE SCORE: taking the opposing rook when mate was available
+SPITE CHECK (WINNING): checking the enemy king with their rook prone
+SPITE CHECK (DRAWING): checking the enemy king instead of checkmating
+ROOK ON ROOK VIOLENCE: taking the opposing rook with the rook when they blocked immediate checkmate
+GIVING FUTILE HOPE: taking the opposing rook with the king when they blocked immediate checkmate
+
+>0693 1684
+Valid save-state entered. Resetting the board.
+skewer-allow
+useless-sacrificing
+sucker-sacrificing
+spite-checking
+!a-allowing
+
+>0693 1719
+Valid save-state entered. Resetting the board.
+sucker-sacrificing
+useless-sacrificing
+a-allowing
+skewer-allow
+!spite-checking
+
+>0693 1713
+Valid save-state entered. Resetting the board.
+spite-checking
+a-allowing
+useless-sacrificing
+sucker-sacrificing
+!skewer-allow
+
+>0693 1725
+Valid save-state entered. Resetting the board.
+a-allowing
+useless-sacrificing
+skewer-allow
+spite-checking
+!sucker-sacrificing
+
+>0693 1637
+Valid save-state entered. Resetting the board.
+a-allowing
+!useless-sacrificing
+skewer-allow
+spite-checking
+sucker-sacrificing
+

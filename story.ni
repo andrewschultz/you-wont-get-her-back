@@ -102,15 +102,15 @@ to choose-flee-room:
 		now fleestate-index is 1;
 		now current-fleestate is entry 1 of available-fleestate-list;
 		now rook-flee-room is a random currently-fleeable room;
-		continue the action;
-	let old-fleestate be current-fleestate;
-	now current-fleestate is entry fleestate-index in available-fleestate-list;
-	if current-fleestate is old-fleestate and number of entries in available-fleestate-list > 1:
-		increment fleestate-index;
-		if fleestate-index > number of entries in available-fleestate-list:
-			now fleestate-index is 1;
-		now current-fleestate is entry fleestate-index of available-fleestate-list;
-	now rook-flee-room is a random currently-fleeable room;
+	else:
+		let old-fleestate be current-fleestate;
+		now current-fleestate is entry fleestate-index in available-fleestate-list;
+		if current-fleestate is old-fleestate and number of entries in available-fleestate-list > 1:
+			increment fleestate-index;
+			if fleestate-index > number of entries in available-fleestate-list:
+				now fleestate-index is 1;
+			now current-fleestate is entry fleestate-index of available-fleestate-list;
+		now rook-flee-room is a random currently-fleeable room;
 	if ever-won is true:
 		say "[one of]Since you're playing past the initial win, you will get a hint where the enemy rook will flee to. In this case it is [rook-flee-room]. Some of the bad endings can only be found when a rook to a certain square[or]The enemy rook will flee to [rook-flee-room] this time[stopping].";
 	if debug-state is true:
@@ -1315,14 +1315,17 @@ rule for printing a parser error (this is the retrieve save-number rule):
 		the rule succeeds;
 	let save-1 be the hash of X and 1;
 	let save-2 be the hash of X and 5;
-	say "[save-1 bit-xor 1717] [save-2 bit-xor 1717].";
-	if invalid-state of (save-1 bit-xor 1717) and (save-2 bit-xor 1717):
-		say "You entered an invalid save state number pair. Check for typos.[paragraph break]Or if you're trying to fiddle with things, it's really not too tough to cheat and experiment to find one you want, it's a neat enough puzzle, one I won't spoil with hints.";
+	now save-1 is save-1 bit-xor 1717;
+	now save-2 is save-2 bit-xor 1717;
+	if invalid-state of save-1 and save-2:
+		say "You entered an invalid save state number pair. Check for typos[one of].[paragraph break]Or if you're trying to fiddle with things, it's really not too tough to cheat and experiment to find one you want, it's a neat enough puzzle, one I won't spoil with hints[or][stopping].";
 		the rule succeeds;
 	let count be 0;
-	let temp-shift be save-1 bit-xor 1717;
+	let temp-shift be save-1;
 	repeat through table of unachievements:
 		increment count;
+		if count is 14:
+			now temp-shift is save-2;
 		if count <= 13:
 			if temp-shift bit-and 1 is 1:
 				now achieved entry is true;
@@ -1334,22 +1337,21 @@ rule for printing a parser error (this is the retrieve save-number rule):
 				now achieved entry is true;
 			else:
 				now achieved entry is false;
-			bit-shr save-2 by 1;
-		if count is 13:
-			now temp-shift is save-2 bit-xor 1717;
+			bit-shr temp-shift by 1;
 	unless save-2 bit-and 255 is 0:
 		now available-fleestate-list is {};
-		unless save-2 bit-and 33 is 0, add a-allowing to available-fleestate-list;
-		unless save-2 bit-and 2 is 0, add spite-checking to available-fleestate-list;
-		unless save-2 bit-and 4 is 0, add skewer-allow to available-fleestate-list;
-		unless save-2 bit-and 8 is 0, add sucker-sacrificing to available-fleestate-list;
-		unless save-2 bit-and 208 is 0, add useless-sacrificing to available-fleestate-list;
+		unless save-2 bit-and 33 is 33, add a-allowing to available-fleestate-list; [ trading rooks + spite check drawing ]
+		unless save-2 bit-and 2 is 2, add spite-checking to available-fleestate-list; [ capture a spite checking rook ]
+		unless save-2 bit-and 4 is 4, add skewer-allow to available-fleestate-list; [ Rb8 allowing Rb2+ winning the rook ]
+		unless save-2 bit-and 8 is 8, add sucker-sacrificing to available-fleestate-list; [ Rxa8 with Rc1 available ]
+		unless save-2 bit-and 208 is 208, add useless-sacrificing to available-fleestate-list; [ Rc4 then Ra8+, Rxc4, Kxc4 ]
 		sort available-fleestate-list in random order;
 	if number of entries in available-fleestate-list is 0, now available-fleestate-list is { a-guarding };
+	if ordered is false, sort available-fleestate-list in random order;
 	now fleestate-index is 0;
-	say "Valid save-state entered. Resetting the board.[no line break]";
 	choose-flee-room;
 	reset-board-quietly;
+	say "Valid save-state entered. Resetting the board.";
 	the rule succeeds;
 
 fleestate is a kind of value. the fleestates are unreachable, a-guarding, a-allowing, skewer-allow, sucker-sacrificing, useless-sacrificing, spite-checking.
