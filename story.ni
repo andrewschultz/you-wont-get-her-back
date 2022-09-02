@@ -347,6 +347,37 @@ check thinking:
 	if achieve-score is 0, say "You haven't found any achievements, but don't worry. You'll get one soon. [this-game] tracks both wins and losses. You'll find creative losses as you go." instead;
 	say "Here are the accomplishments so far from your various playthroughs. Note that they are listed roughly in the time it takes to find them, which will hopefully be a clue if you want to plow through everything.";
 	let achievement-count be 0;
+	repeat through table of unachievements:
+		increment achievement-count;
+		if achievement-count > last-got:
+			let dif be number of rows in table of unachievements - last-got;
+			say "Instead of writing lots of lines with dashes, I'll mention there are [dif in words] achievements below the trickiest you've found.";
+			break;
+		if achieved entry is true:
+			say "[b][achievement entry in upper case][r]: [details entry][line break]";
+		else:
+			say "[if screenread is true][b]UNDISCOVERED[r][else]--[end if][line break]";
+	abide by the achievements-before-winning rule;
+	follow the achievement-detail rule;
+	abide by the print-save-state rule;
+	now score-to-think is true;
+	the rule succeeds;
+
+this is the achievements-before-winning rule:
+	if achieved-yet of "plain old checkmate", continue the action;
+	if achieve-score is (ruled-achievements of false) - 1:
+		say "You're doing well. You've gotten all the achievements you could have without finding the basic win, which is tricky in its own way.";
+		the rule succeeds;
+	say "You haven't unlocked some trickier formations depending on the enemy rook's final move. There are [ruled-achievements of true in words] hidden, but the other [ruled-achievements of false in words] are achievable.";
+
+to decide which number is ruled-achievements of (ts - a truth state):
+	let temp be 0;
+	repeat through table of unachievements:
+		let x be whether or not there is a required-state entry;
+		if x is ts, increment temp;
+	decide on temp;
+
+this is the achievement-detail rule:
 	let generic-achievement-got be 0;
 	let generic-achievement-missed be 0;
 	let special-achievement-got be 0;
@@ -369,21 +400,32 @@ check thinking:
 				increment generic-achievement-got;
 			else:
 				increment generic-achievement-missed;
-	repeat through table of unachievements:
-		increment achievement-count;
-		if achievement-count > last-got:
-			let dif be number of rows in table of unachievements - last-got;
-			say "Instead of writing lots of lines with dashes, I'll mention there are [dif] achievements below the trickiest you've found.";
-			break;
-		if achieved entry is true:
-			say "[b][achievement entry in upper case][r]: [details entry][line break]";
+	if generic-achievement-missed is 0:
+		say "You've gotten all the achievements that are [pos-regard].";
+	else:
+		say "You are still missing [generic-achievement-missed in words] achievement[plur of generic-achievement-missed] that [if generic-achievement-missed is 1]is[else]are[end if] [pos-regard].";
+	if current-fleestate is not a-guarding:
+		if this-achievement-missed is 0 and this-achievement-got is 0:
+			say "You have nothing more to do with achievements for where the rook flees now. Win regularly, then see about the next state.";
+		else if this-achievement-got is 0:
+			say "Though you've found nothing yet, you can find [achs of this-achievement-missed] with the current configuration. [if number of entries in available-fleestate-list > 1]You can win generically to try another black rook flee square if you're stuck here[else]This is the only 'special' rook-flee status type left[end if].";
 		else:
-			say "[if screenread is true][b]UNDISCOVERED[r][else]--[end if][line break]";
-	abide by the print-save-state rule;
-	now score-to-think is true;
-	the rule succeeds;
+			say "So far you've found [achs of this-achievement-got] and missed [achs of this-achievement-missed] for the black rook fleeing in its current state.";
+	if special-achievement-got is 0:
+		say "Overall, you've found no [ach-spec].";
+	else if special-achievement-missed is 0:
+		say "You've found all [ach-spec].";
+	else:
+		say "Overall, you've found [achs of special-achievement-got] achievements for a specific rook flee square type and still have [achs of special-achievement-missed] to go.";
+
+to say ach-spec: say "achievements specific to a certain rook flee square or type of square"
+
+to say achs of (nu - a number): say "[nu in words] achievement[plur of nu]";
 
 this is the print-save-state rule: if achieve-score > 0, say "If you wish to keep your progress for later without using [b]SAVE[r], the number [current-state-restore] will work.";
+
+to say pos-regard: say "possible regardless of black's critical move"
+
 
 to decide which number is last-got:
 	let count be 0;
