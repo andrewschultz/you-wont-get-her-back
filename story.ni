@@ -18,6 +18,8 @@ include Old School Verb Total Carnage by Andrew Schultz.
 
 include Trivial Niceties by Andrew Schultz.
 
+include Bitwise Operators by Bart Massey.
+
 include Conditional Undo by Jesse McGrew.
 
 include Undo Output Control by Erik Temple.
@@ -198,9 +200,8 @@ carry out pawning:
 	now white pawn is off-stage;
 	if location of black rook is d1:
 		say "But, alas, the black rook is ready to slide in to c1 and skewer you. Once you move out of check, [the piece-to-promote] will fall. Then the king and rook will defeat you.";
-		reset-the-board;
 		achieve "skewered to death (pawn)";
-		reset-the-board instead;
+		reset-the-board;
 		the rule succeeds;
 	if piece-to-promote is white queen:
 		say "[line break]The black rook seems unconcerned. It sneaks to c4! You and your queen are now both under attack, but she can just take it...right?";
@@ -309,6 +310,8 @@ carry out knighting:
 
 chapter requesting the score
 
+score-to-think is a truth state that varies.
+
 check requesting the score:
 	if white pawn is not off-stage:
 		say "By official rules, you're trailing by five points to one, but boy, that pawn of yours has potential to become a nine-point queen!";
@@ -319,6 +322,9 @@ check requesting the score:
 	else:
 		say "You're down five points to three. You should never see this, but you are.";
 	say "[line break]Okay, so there's no scoring here, but there are accomplishments of a sort. To find them, say [b]T[r] or [b]THINK[r].";
+	if score-to-think is false and achieve-score > 0:
+		now score-to-think is true;
+		say "[line break]In addition, a score of sorts is tracking achievements. You can get a save-number that makes [b]SAVE[r] unnecessary with [b]THINK[r].";
 	the rule succeeds;
 
 chapter thinking
@@ -373,7 +379,11 @@ check thinking:
 			say "[b][achievement entry in upper case][r]: [details entry][line break]";
 		else:
 			say "[if screenread is true][b]UNDISCOVERED[r][else]--[end if][line break]";
+	abide by the print-save-state rule;
+	now score-to-think is true;
 	the rule succeeds;
+
+this is the print-save-state rule: if achieve-score > 0, say "If you wish to keep your progress for later without using [b]SAVE[r], the number [current-state-restore] will work.";
 
 to decide which number is last-got:
 	let count be 0;
@@ -382,6 +392,12 @@ to decide which number is last-got:
 		increment count;
 		if achieved entry is true, now return-val is count;
 	decide on return-val;
+
+check quitting the game: abide by the print-save-state rule;
+
+check restoring the game: abide by the print-save-state rule;
+
+check saving the game: abide by the print-save-state rule;
 
 chapter allies' details
 
@@ -1238,35 +1254,144 @@ carry out xyzzying:
 	say " You think back to how you totally skunked the enemy king when one of your pawns ninja'ed another with that new-fangled [i]en passant[r] move you'd drilled your troops on. Oh, the gloating that ensued when you assured him it was really only fair and sensible, all things considered![paragraph break]Of course, later in the battle, he had a chance to do so, too. But, sneak that you were, you made sure it was unfavorable. The art of war isn't just about having superior forces!";
 	the rule succeeds;
 
+volume game restoring etc
+
+to say four-zeros of (n - a number):
+	if n < 1000, say "0";
+	if n < 100, say "0";
+	if n < 1, say "0";
+	say "[n]";
+
+to say current-state-restore:
+	let save-1 be 0;
+	let save-2 be 0;
+	let count be 0;
+	let add-index be 1;
+	repeat through table of unachievements:
+		increment count;
+		if count <= 13:
+			if achieved entry is true, increase save-1 by add-index;
+		else:
+			if achieved entry is true, increase save-2 by add-index;
+		if count is 13:
+			now add-index is 1;
+			next;
+		now add-index is add-index * 2;
+	say "[four-zeros of save-1 bit-xor 1717] [four-zeros of save-2 bit-xor 1717]";
+
+table of rough chr
+chr (indexed text)	ord
+"1"	1
+"2"	2
+"3"	3
+"4"	4
+"5"	5
+"6"	6
+"7"	7
+"8"	8
+"9"	9
+"0"	0
+
+to decide what indexed text is the filtered name of (t - a value of kind K):
+	let s be t in lower case;
+	replace the regular expression "<^0-9>" in s with "";	[ a-z would include accented characters]
+	decide on s;
+
+to decide what number is the hash of (t - a value of kind K) and (n - a number):
+	let s be the filtered name of t;
+	let hash be 0;
+	repeat with c running from n to n + 3:
+		now hash is hash * 10;
+		increase hash by the ord corresponding to a chr of (character number c in s) in the Table of rough chr;
+	decide on hash;
+
+rule for printing a parser error (this is the retrieve save-number rule):
+	unless character number 1 in the player's command matches the regular expression "<0-9>", continue the action;
+	let X be indexed text;
+	now X is the player's command;
+	replace the regular expression "<^0-9>" in X with "";
+	if number of characters in X is not 8:
+		say "To access a save state, you need a string of 8 numbers. Spaces optional.";
+		the rule succeeds;
+	let save-1 be the hash of X and 1;
+	let save-2 be the hash of X and 5;
+	say "[save-1 bit-xor 1717] [save-2 bit-xor 1717].";
+	if invalid-state of (save-1 bit-xor 1717) and (save-2 bit-xor 1717):
+		say "You entered an invalid save state number pair. Check for typos.[paragraph break]Or if you're trying to fiddle with things, it's really not too tough to cheat and experiment to find one you want, it's a neat enough puzzle, one I won't spoil with hints.";
+		the rule succeeds;
+	let count be 0;
+	let temp-shift be save-1 bit-xor 1717;
+	repeat through table of unachievements:
+		increment count;
+		if count <= 13:
+			if temp-shift bit-and 1 is 1:
+				now achieved entry is true;
+			else:
+				now achieved entry is false;
+			bit-shr temp-shift by 1;
+		else:
+			if temp-shift bit-and 1 is 1:
+				now achieved entry is true;
+			else:
+				now achieved entry is false;
+			bit-shr save-2 by 1;
+		if count is 13:
+			now temp-shift is save-2 bit-xor 1717;
+	unless save-2 bit-and 255 is 0:
+		now available-fleestate-list is {};
+		unless save-2 bit-and 33 is 0, add a-allowing to available-fleestate-list;
+		unless save-2 bit-and 2 is 0, add spite-checking to available-fleestate-list;
+		unless save-2 bit-and 4 is 0, add skewer-allow to available-fleestate-list;
+		unless save-2 bit-and 8 is 0, add sucker-sacrificing to available-fleestate-list;
+		unless save-2 bit-and 208 is 0, add useless-sacrificing to available-fleestate-list;
+		sort available-fleestate-list in random order;
+	if number of entries in available-fleestate-list is 0, now available-fleestate-list is { a-guarding };
+	now fleestate-index is 0;
+	say "Valid save-state entered. Resetting the board.[no line break]";
+	choose-flee-room;
+	reset-board-quietly;
+	the rule succeeds;
+
+fleestate is a kind of value. the fleestates are unreachable, a-guarding, a-allowing, skewer-allow, sucker-sacrificing, useless-sacrificing, spite-checking.
+
+available-fleestate-list is a list of fleestates variable.
+
+to decide whether invalid-state of (n1 - a number) and (n2 - a number):
+	if n1 > 8191 or n2 > 1023, yes;
+	if n1 is 8191 and n2 is 1023, yes; [ this is the edge case of having solved all puzzles]
+	if n1 bit-and 1024 is 0:
+		if n2 bit-and 255 > 0, yes;
+	no;
+
 volume unachievements
 
 [we could make state-list-delete a specific-state and then go through the table, looking to see if any of the other specific state was still there, but this feels like it might be too-cute code. Plus there's a chance that two game-states might allow an ending, and that would get tricky. I hope this is straightforward: we eliminate a game-state from available-fleestate-list if it no longer can allow a unique ending, because we don't want to waste the player's time if possible.]
 
 table of unachievements
 achievement	achieved	required-state	state-list-delete	details
-"threefold"	false	--	--	"repeating a position three times"
-"pinned pawn"	false	--	--	"letting the rook pin your pawn"
-"captured pawn"	false	--	--	"letting the rook take your pawn for free"
-"traded pawn"	false	--	--	"letting the rook sacrifice itself for your pawn"
-"alternate paths"	false	--	--	"realizing two moves from b4 are okay"
-"skewered to a draw"	false	--	--	"letting the rook check you on c1 to sacrifice itself for the pawn"
-"skewered to death (pawn)"	false	--	--	"letting the rook check you on a1 and take the pawn without being captured"
-"pointless bathos and loss"	false	--	--	"letting the black rook take the white Queen"
-"stalemate, mate"	false	--	--	"allowing stalemate when the white Queen takes the black rook"
-"forked to death"	false	--	--	"managing to get forked, along with your pawn, by the enemy rook"
-"plain old checkmate"	false	--	--	"finding the main line solution"
-"all for naught"	false	--	--	"managing to give your rook away"
-"staler than stalemate, mate"	false	--	--	"drawn ending with equal material"
-"castle carnage"	false	a-allowing	disable-a-allowing rule	"managing to trade off rooks"
-"a spite check before dying"	false	spite-checking	disable-spite-checking rule	"taking the enemy rook if it spite checks"
-"skewered to death (rook)"	false	skewer-allow	disable-skewer-allow rule	"letting the black rook go to b2 and skewer your b8-rook"
-"running up the score"	false	sucker-sacrificing	disable-sucker-sacrificing rule	"taking the opposing rook when mate was available"
-"spite check (winning)"	false	useless-sacrificing	disable-useless-sacrificing rule	"checking the enemy king with their rook prone"
-"spite check (drawing)"	false	a-allowing	disable-a-allowing rule	"checking the enemy king instead of checkmating"
-"rook on rook violence"	false	useless-sacrificing	disable-useless-sacrificing rule	"taking the opposing rook with the rook when they blocked immediate checkmate"
-"giving futile hope"	false	useless-sacrificing	disable-useless-sacrificing rule	"taking the opposing rook with the king when they blocked immediate checkmate"
-"dragging it out"	false	--	--	"taking extra turns to win, considering repetition"
-"dragging it out all the way"	false	--	--	"taking the maximum turns to win, considering repetition"
+"threefold"	false	--	--	"repeating a position three times" [save-1 1, row 1]
+"pinned pawn"	false	--	--	"letting the rook pin your pawn" [save-1 2, row 2]
+"captured pawn"	false	--	--	"letting the rook take your pawn for free" [save-1 4, row 3]
+"traded pawn"	false	--	--	"letting the rook sacrifice itself for your pawn" [save-1 8, row 4]
+"alternate paths"	false	--	--	"realizing two moves from b4 are okay" [save-1 16, row 5]
+"skewered to a draw"	false	--	--	"letting the rook check you on c1 to sacrifice itself for the pawn" [save-1 32, row 6]
+"skewered to death (pawn)"	false	--	--	"letting the rook check you on a1 and take the pawn without being captured" [save-1 64, row 7]
+"pointless bathos and loss"	false	--	--	"letting the black rook take the white Queen" [save-1 128, row 8]
+"stalemate, mate"	false	--	--	"allowing stalemate when the white Queen takes the black rook" [save-1 256, row 9]
+"forked to death"	false	--	--	"managing to get forked, along with your pawn, by the enemy rook" [save-1 512, row 10]
+"plain old checkmate"	false	--	--	"finding the main line solution" [save-1 1024, row 11]
+"all for naught"	false	--	--	"managing to give your rook away" [save-1 2048, row 12]
+"staler than stalemate, mate"	false	--	--	"drawn ending with equal material" [save-1 4096, row 13]
+"castle carnage"	false	a-allowing	disable-a-allowing rule	"managing to trade off rooks" [save-2 1, row 14]
+"a spite check before dying"	false	spite-checking	disable-spite-checking rule	"taking the enemy rook if it spite checks" [save-2 2, row 15]
+"skewered to death (rook)"	false	skewer-allow	disable-skewer-allow rule	"letting the black rook go to b2 and skewer your b8-rook" [save-2 4, row 16]
+"running up the score"	false	sucker-sacrificing	disable-sucker-sacrificing rule	"taking the opposing rook when mate was available" [save-2 8, row 17]
+"spite check (winning)"	false	useless-sacrificing	disable-useless-sacrificing rule	"checking the enemy king with their rook prone" [save-2 16, row 18]
+"spite check (drawing)"	false	a-allowing	disable-a-allowing rule	"checking the enemy king instead of checkmating" [save-2 32, row 19]
+"rook on rook violence"	false	useless-sacrificing	disable-useless-sacrificing rule	"taking the opposing rook with the rook when they blocked immediate checkmate" [save-2 64, row 20]
+"giving futile hope"	false	useless-sacrificing	disable-useless-sacrificing rule	"taking the opposing rook with the king when they blocked immediate checkmate" [save-1 128, row 21]
+"dragging it out"	false	--	--	"taking extra turns to win, considering repetition" [save-2 256, row 22]
+"dragging it out all the way"	false	--	--	"taking the maximum turns to win, considering repetition" [save-2 512, row 23]
 
 to squash-available (fs - a fleestate):
 	remove fs from available-fleestate-list;
