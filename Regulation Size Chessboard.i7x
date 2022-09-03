@@ -251,57 +251,124 @@ board-in-status is a truth state that varies.
 
 in-header is a truth state that varies.
 
+to say column-headers:
+	if double-size-board:
+		say "a b c d e f g h";
+	else:
+		say "abcdefgh";
+
+to say column-boundary:
+	if double-size-board:
+		if board-boundary:
+			say "+-+-+-+-+-+-+-+-+";
+		else:
+			say "-+-+-+-+-+-+-+-";
+	else:
+		say "--------"
+
+to decide whether double-size-board:
+	if (board-header-status - 1) bit-and 2 is 2, yes;
+	no;
+
+to decide whether board-boundary:
+	if (board-header-status - 1) bit-and 1 is 1, yes;
+	no;
+
+row-start-room is a room that varies.
+
 rule for constructing the status line when board-in-status is true:
-	deepen the status line to 10 rows;
+	deepen the status line to (head-lines-needed of board-header-status) rows;
 	now in-header is true;
-	center "abcdefgh" at row 1;
-	center "[occ-row of a8]" at row 2;
-	center "[occ-row of a7]" at row 3;
-	center "[occ-row of a6]" at row 4;
-	center "[occ-row of a5]" at row 5;
-	center "[occ-row of a4]" at row 6;
-	center "[occ-row of a3]" at row 7;
-	center "[occ-row of a2]" at row 8;
-	center "[occ-row of a1]" at row 9;
-	center "abcdefgh" at row 10;
+	let current-row be 1;
+	center "[column-headers]" at row current-row;
+	if board-boundary:
+		increment current-row;
+		center "[column-boundary]" at row current-row;
+	now row-start-room is a8;
+	while row-start-room is not nothing:
+		increment current-row;
+		center "[occ-row of row-start-room]" at row current-row;
+		if double-size-board and yval of row-start-room > 1:
+			increment current-row;
+			center "+-+-+-+-+-+-+-+-+" at row current-row;
+		now row-start-room is the room south of row-start-room;
+	increment current-row;
+	if board-boundary:
+		center "[column-boundary]" at row current-row;
+		increment current-row;
+	center "[column-headers]" at row current-row;
 	now in-header is false;
 
 to say occ-row of (westroom - a room):
 	say "[yval of westroom]";
+	if board-boundary, say "|";
 	let temproom be westroom;
 	while temproom is not nothing:
 		say "[rmocc of temproom]";
 		now temproom is the room east of temproom;
-	say "[9 - yval of westroom]";
+		if temproom is not nothing and double-size-board, say "|";
+	if board-boundary, say "|";
+	say "[yval of westroom]";
 
-chapter hdroning
+chapter setting the header
 
-hdroning is an action out of world.
+To decide what number is screenh:
+	(- VM_ScreenHeight() -);
 
-understand the command "hdron" as something new.
+hdrblanking is an action out of world.
 
-understand "hdron" as hdroning.
+hdring is an action out of world applying to one number.
 
-carry out hdroning:
-	say "Extended ASCII-graphic board view in header is [if board-in-status is true]already[else]now[end if] on.";
+understand the command "hdr" as something new.
+
+understand "hdr [number]" as hdring.
+
+board-header-status is a number that varies. board-header-status is 0.
+
+to say hdr-status-summary of (n - a number):
+	if n < 0 or n > 4:
+		say "undefined";
+		continue the action;
+	if n is 0:
+		say "off";
+		continue the action;
+	if n is 1 or n is 2:
+		say "no ";
+	say "external boundaries and ";
+	if n is 1 or n is 3:
+		say "no ";
+	say "internal boundaries"
+
+to decide which number is head-lines-needed of (x - a number):
+	let temp be 10;
+	if x is 2 or x is 4, increase temp by 2;
+	if x is 3 or x is 4, increase temp by 7;
+	decide on temp;
+
+carry out hdring:
+	if number understood < 0 or number understood > 4:
+		say "[b]HDR[r] commands must be between 0 and 3. 0 is off, 1 is a board without boundaries between squares, 2 is a board without outside boundaries, and 3 has all boundaries.";
+		the rule succeeds;
+	if number understood is board-header-status:
+		say "The header map is already set to [hdr-status-summary of board-header-status].";
+		the rule succeeds;
+	if screenh < 7 + head-lines-needed of number understood:
+		say "Unfortunately, for a header with [hdr-status-summary of number understood], I'm going to require [7 + head-lines-needed of number understood] total lines in your interpreter, so you have space for [head-lines-needed of number understood] lines in the header and sufficient room for game text. So you may want to resize your interpreter and try again[if number understood > 1] and/or choose a smaller header[end if].";
+		the rule succeeds;
+	now board-header-status is number understood;
+	say "Changing the header to [hdr-status-summary of number understood].";
+	if debug-state is true, say "[head-lines-needed of number understood] rows needed.";
 	if screenread is false:
 		say "Also, setting inline room descriptions to text, since text-graphics are now in the header.";
-	now board-in-status is true;
-	now screenread is true;
+		now board-in-status is true;
+		now screenread is true;
 	the rule succeeds;
 
-chapter hdroff
+understand "hdr" as hdrblanking.
 
-hdroffing is an action out of world.
-
-understand the command "hdroff" as something new.
-
-understand "hdroff" as hdroffing.
-
-carry out hdroffing:
-	say "Extended ASCII-graphic board view in header is [if board-in-status is false]already[else]now[end if] off.";
-	now board-in-status is false;
-	the rule succeeds;
+carry out hdrblanking:
+	say "USAGE here.";
+	reject the player's command;
 
 volume dramatis personae
 
