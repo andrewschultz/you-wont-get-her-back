@@ -257,14 +257,24 @@ to say column-headers:
 	else:
 		say "abcdefgh";
 
+to say plus: say "[if blank-boundaries] [else]+[end if]"
+
+to say minus: say "[if blank-boundaries] [else]-[end if]"
+
+to say pipe: say "[if blank-boundaries] [else]|[end if]"
+
 to say column-boundary:
 	if double-size-board:
 		if board-boundary:
-			say "+-+-+-+-+-+-+-+-+";
+			say "[plus][minus][plus][minus][plus][minus][plus][minus][plus][minus][plus][minus][plus][minus][plus][minus][plus]";
 		else:
-			say "-+-+-+-+-+-+-+-";
+			say "[minus][plus][minus][plus][minus][plus][minus][plus][minus][plus][minus][plus][minus][plus][minus]";
 	else:
-		say "--------"
+		say "[minus][minus][minus][minus][minus][minus][minus][minus]"
+
+to decide whether blank-boundaries:
+	if (board-header-status - 1) bit-and 4 is 4, yes;
+	no;
 
 to decide whether double-size-board:
 	if (board-header-status - 1) bit-and 2 is 2, yes;
@@ -290,7 +300,7 @@ rule for constructing the status line when board-in-status is true:
 		center "[occ-row of row-start-room]" at row current-row;
 		if double-size-board and yval of row-start-room > 1:
 			increment current-row;
-			center "+-+-+-+-+-+-+-+-+" at row current-row;
+			center "[column-boundary]" at row current-row;
 		now row-start-room is the room south of row-start-room;
 	increment current-row;
 	if board-boundary:
@@ -301,13 +311,13 @@ rule for constructing the status line when board-in-status is true:
 
 to say occ-row of (westroom - a room):
 	say "[yval of westroom]";
-	if board-boundary, say "|";
+	if board-boundary, say "[pipe]";
 	let temproom be westroom;
 	while temproom is not nothing:
 		say "[rmocc of temproom]";
 		now temproom is the room east of temproom;
-		if temproom is not nothing and double-size-board, say "|";
-	if board-boundary, say "|";
+		if temproom is not nothing and double-size-board, say "[pipe]";
+	if board-boundary, say "[pipe]";
 	say "[yval of westroom]";
 
 chapter setting the header
@@ -326,28 +336,34 @@ understand "hdr [number]" as hdring.
 board-header-status is a number that varies. board-header-status is 0.
 
 to say hdr-status-summary of (n - a number):
-	if n < 0 or n > 4:
+	if n < 0 or n > 8:
 		say "undefined";
 		continue the action;
 	if n is 0:
 		say "off";
 		continue the action;
-	if n is 1 or n is 2:
-		say "no ";
+	let x be n - 1;
+	if x bit-and 2 is 0, say "no ";
 	say "external boundaries and ";
-	if n is 1 or n is 3:
-		say "no ";
-	say "internal boundaries"
+	if x bit-and 1 is 0, say "no ";
+	say "internal boundaries and ";
+	if x bit-and 4 is 0, say "no ";
+	say "boundary whitespace"
 
 to decide which number is head-lines-needed of (x - a number):
 	let temp be 10;
-	if x is 2 or x is 4, increase temp by 2;
-	if x is 3 or x is 4, increase temp by 7;
+	if board-boundary, increase temp by 2;
+	if double-size-board, increase temp by 7;
 	decide on temp;
 
+to decide whether irrelevant-blank-boundaries:
+	unless board-header-status bit-and 4 is 4, no;
+	unless board-header-status bit-and 3 is 0, no;
+	yes;
+
 carry out hdring:
-	if number understood < 0 or number understood > 4:
-		say "[b]HDR[r] commands must be between 0 and 3. 0 is off, 1 is a board without boundaries between squares, 2 is a board without outside boundaries, and 3 has all boundaries.";
+	if number understood < 0 or number understood > 8:
+		say "[b]HDR[r] commands must be between 0 and 7. 0 is off, 1 is a board without boundaries between squares, 2 is a board without outside boundaries, and 3 has all boundaries. Add 4 to make boundaries blank.";
 		the rule succeeds;
 	if number understood is board-header-status:
 		say "The header map is already set to [hdr-status-summary of board-header-status].";
@@ -357,6 +373,7 @@ carry out hdring:
 		the rule succeeds;
 	now board-header-status is number understood;
 	say "Changing the header to [hdr-status-summary of number understood].";
+	if irrelevant-blank-boundaries, say "Trivial note: you set blank boundaries on a small board, which will cause no visual difference.";
 	if debug-state is true, say "[head-lines-needed of number understood] rows needed.";
 	if screenread is false:
 		say "Also, setting inline room descriptions to text, since text-graphics are now in the header.";
