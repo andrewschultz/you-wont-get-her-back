@@ -193,20 +193,24 @@ to say grid-printout:
 	say "[fixed letter spacing]";
 	print-column-numbers;
 	if show-coords is true, say "[line break]";
+	let base-room be a8;
 	repeat with Y running from 1 to 8:
 		say "[border][line break]";
 		if show-coords is true:
 			say " [9 - Y] ";
 		say "|";
+		let roam-room be base-room;
 		repeat with X running from 1 to 8:
 			if checkerboard is true and the remainder after dividing (X + Y) by 2 is 1:
 				invert-text;
 			say "[row-left of column-width]";
-			say "[occupant of X and (9 - Y)]";
+			say "[rmocc of roam-room]";
 			say "[row-right of column-width]";
 			say "[roman type]";
 			say "|";
+			now roam-room is the room east of roam-room;
 		say "[line break]";
+		now base-room is the room south of base-room;
 	say "[border]";
 	if show-coords is true, say "[line break]";
 	print-column-numbers;
@@ -221,6 +225,12 @@ to print-column-numbers:
 		say "[row-right of column-width]";
 		say " ";
 
+to say rmocc of (rm - a room):
+	if number of people in rm is 0:
+		say "[if in-header is true].[no line break][else] [end if]";
+		continue the action;
+	say "[shorthand of random person in rm]";
+
 to say occupant of (x - a number) and (y - a number):
 	repeat with rm running through rooms:
 		if xval of rm is x and yval of rm is y:
@@ -234,6 +244,64 @@ to say occupant of (x - a number) and (y - a number):
 definition: a person (called p) is active:
 	if p is off-stage, no;
 	yes;
+
+book header based stuff
+
+board-in-status is a truth state that varies.
+
+in-header is a truth state that varies.
+
+rule for constructing the status line when board-in-status is true:
+	deepen the status line to 10 rows;
+	now in-header is true;
+	center "abcdefgh" at row 1;
+	center "[occ-row of a8]" at row 2;
+	center "[occ-row of a7]" at row 3;
+	center "[occ-row of a6]" at row 4;
+	center "[occ-row of a5]" at row 5;
+	center "[occ-row of a4]" at row 6;
+	center "[occ-row of a3]" at row 7;
+	center "[occ-row of a2]" at row 8;
+	center "[occ-row of a1]" at row 9;
+	center "abcdefgh" at row 10;
+	now in-header is false;
+
+to say occ-row of (westroom - a room):
+	say "[9 - yval of westroom]";
+	let temproom be westroom;
+	while temproom is not nothing:
+		say "[rmocc of temproom]";
+		now temproom is the room east of temproom;
+	say "[9 - yval of westroom]";
+
+chapter hdroning
+
+hdroning is an action out of world.
+
+understand the command "hdron" as something new.
+
+understand "hdron" as hdroning.
+
+carry out hdroning:
+	say "Extended ASCII-graphic board view in header is [if board-in-status is true]already[else]now[end if] on.";
+	if screenread is false:
+		say "Also, setting inline room descriptions to text, since text-graphics are now in the header.";
+	now board-in-status is true;
+	now screenread is true;
+	the rule succeeds;
+
+chapter hdroff
+
+hdroffing is an action out of world.
+
+understand the command "hdroff" as something new.
+
+understand "hdroff" as hdroffing.
+
+carry out hdroffing:
+	say "Extended ASCII-graphic board view in header is [if board-in-status is false]already[else]now[end if] off.";
+	now board-in-status is false;
+	the rule succeeds;
 
 volume dramatis personae
 
