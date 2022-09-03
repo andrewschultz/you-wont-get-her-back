@@ -384,8 +384,10 @@ carry out hdring:
 understand "hdr" as hdrblanking.
 
 carry out hdrblanking:
-	say "USAGE here.";
-	reject the player's command;
+	say "If you'd prefer to see the board in a header, you have options for how it displays. There are three binary options for a total of eight different views.";
+	say "0 turns the board in the header off. You may need some binary arithmetic or trial-and-error to find which setting you prefer.";
+	say "1 is the base view, with no inner or outer borders. Add 1 to get outer borders. Add 2 to get inner borders. Add 4 to make all borders into whitespace.";
+	the rule succeeds;
 
 volume dramatis personae
 
