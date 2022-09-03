@@ -273,15 +273,15 @@ to say column-boundary:
 		say "[minus][minus][minus][minus][minus][minus][minus][minus]"
 
 to decide whether blank-boundaries:
-	if (board-header-status - 1) bit-and 4 is 4, yes;
+	if board-header-status bit-and 4 is 4, yes;
 	no;
 
 to decide whether double-size-board:
-	if (board-header-status - 1) bit-and 2 is 2, yes;
+	if board-header-status bit-and 2 is 2, yes;
 	no;
 
 to decide whether board-boundary:
-	if (board-header-status - 1) bit-and 1 is 1, yes;
+	if board-header-status bit-and 1 is 1, yes;
 	no;
 
 row-start-room is a room that varies.
@@ -333,7 +333,7 @@ understand the command "hdr" as something new.
 
 understand "hdr [number]" as hdring.
 
-board-header-status is a number that varies. board-header-status is 0.
+board-header-status is a number that varies. board-header-status is -1. [It's not zero because when it's on we want it to be an XOR of 3 flags, 1/2/4. ]
 
 to say hdr-status-summary of (n - a number):
 	if n < 0 or n > 8:
@@ -352,8 +352,8 @@ to say hdr-status-summary of (n - a number):
 
 to decide which number is head-lines-needed of (x - a number):
 	let temp be 10;
-	if board-boundary, increase temp by 2;
-	if double-size-board, increase temp by 7;
+	if x bit-and 2 is 2, increase temp by 7;
+	if x bit-and 1 is 1, increase temp by 2;
 	decide on temp;
 
 to decide whether irrelevant-blank-boundaries:
@@ -365,16 +365,17 @@ carry out hdring:
 	if number understood < 0 or number understood > 8:
 		say "[b]HDR[r] commands must be between 0 and 7. 0 is off, 1 is a board without boundaries between squares, 2 is a board without outside boundaries, and 3 has all boundaries. Add 4 to make boundaries blank.";
 		the rule succeeds;
-	if number understood is board-header-status:
+	let candidate be number understood - 1;
+	if candidate is board-header-status:
 		say "The header map is already set to [hdr-status-summary of board-header-status].";
 		the rule succeeds;
-	if screenh < 7 + head-lines-needed of number understood:
-		say "Unfortunately, for a header with [hdr-status-summary of number understood], I'm going to require [7 + head-lines-needed of number understood] total lines in your interpreter, so you have space for [head-lines-needed of number understood] lines in the header and sufficient room for game text. So you may want to resize your interpreter and try again[if number understood > 1] and/or choose a smaller header[end if].";
+	if screenh < 7 + head-lines-needed of candidate:
+		say "Unfortunately, for a header with [hdr-status-summary of candidate], I'm going to require [7 + head-lines-needed of candidate] total lines in your interpreter, so you have space for [head-lines-needed of candidate] lines in the header and sufficient room for game text. So you may want to resize your interpreter and try again[if candidate > 0] and/or choose a smaller header[end if].";
 		the rule succeeds;
-	now board-header-status is number understood;
-	say "Changing the header to [hdr-status-summary of number understood].";
+	now board-header-status is candidate;
+	say "Changing the header to [hdr-status-summary of candidate].";
 	if irrelevant-blank-boundaries, say "Trivial note: you set blank boundaries on a small board, which will cause no visual difference.";
-	if debug-state is true, say "[head-lines-needed of number understood] rows needed.";
+	if debug-state is true, say "DEBUG: [head-lines-needed of candidate] rows needed.";
 	if screenread is false:
 		say "Also, setting inline room descriptions to text, since text-graphics are now in the header.";
 		now board-in-status is true;
