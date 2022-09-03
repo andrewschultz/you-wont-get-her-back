@@ -1,0 +1,126 @@
+## reg-you-think-clues.txt
+
+## hinting testing for Saavedra problem game
+
+** game: /home/andrew/prt/debug-you-wont-get-her-back.z8
+** interpreter: /home/andrew/prt/dfrotz -m -w5000 -h25
+
+* main
+
+>ord
+
+>think
+You haven't found any achievements, but don't worry. You'll get one soon. You Won't Get Her Back tracks both wins and losses. You'll find creative losses as you go.
+
+>kb7
+Of course, that doesn't stop him taunting you.
+
+>think
+Here are the accomplishments so far from your various playthroughs. Note that they are listed roughly in the time it takes to find them, which will hopefully be a clue if you want to plow through everything.
+
+TRADED PAWN: letting the rook sacrifice itself for your pawn
+Instead of writing lots of lines with dashes, I'll mention there are nineteen achievements below the trickiest you've found.
+
+Once you've won the main game, you will unlock different final enemy moves, each of which allows an achievement or achievements unique to it. There are eight hidden, but the other fifteen are achievable. You've gotten one of them so far.
+
+>c7
+>ka5
+
+>think
+Once you've won the main game, you will unlock different final enemy moves, each of which allows an achievement or achievements unique to it. There are eight hidden, but the other fifteen are achievable. You've gotten two of them so far.
+
+>{include} _rookflee
+>rc1
+
+>try
+
+>think
+You are still missing twelve achievements that are possible regardless of black's critical move. You have found three.
+Though you've found nothing yet, you can find one achievement with the current configuration. You can win generically to try another black rook flee square if you're stuck here.
+
+Overall, you've found no achievements specific to a certain rook flee square or type of square.
+
+>{include} _rookflee
+>rb8
+SKEWER
+
+>think
+Though you've found nothing yet, you can find one achievement with the current configuration. You can win generically to try another black rook flee square if you're stuck here.
+
+>{include} _rookflee
+>ra8
+RUNNING UP THE SCORE
+
+>think
+Though you've found nothing yet, you can find three achievements with the current configuration. You can win generically to try another black rook flee square if you're stuck here.
+
+Overall, you've found two achievements achievements for a specific rook flee square type and still have six achievements to go.
+
+>{include} _rookflee
+>kc4
+GIVING FUTILE HOPE
+
+>think
+Though you've found nothing yet, you can find two achievements with the current configuration. You can win generically to try another black rook flee square if you're stuck here.
+
+Overall, you've found three achievements achievements for a specific rook flee square type and still have five achievements to go.
+
+>{include} _rookflee
+>ra8
+(DRAWING)
+
+>think
+You are still missing twelve achievements that are possible regardless of black's critical move.
+Though you've found nothing yet, you can find one achievement with the current configuration. You can win generically to try another black rook flee square if you're stuck here.
+
+Overall, you've found four achievements achievements for a specific rook flee square type and still have four achievements to go.
+
+>{include} _rookflee
+>kxr
+SPITE CHECK BEFORE
+
+>think
+You are still missing twelve achievements that are possible regardless of black's critical move.
+So far you've found one achievement and missed two achievements for the black rook fleeing in its current state.
+
+Overall, you've found five achievements achievements for a specific rook flee square type and still have three achievements to go.
+
+>{include} _rookflee
+>rc4
+ROOK ON ROOK VIOLENCE
+
+>think
+You are still missing twelve achievements that are possible regardless of black's critical move.
+So far you've found one achievement and missed one achievement for the black rook fleeing in its current state.
+
+Overall, you've found six achievements achievements for a specific rook flee square type and still have two achievements to go.
+
+>{include} _rookflee
+>rc4
+CASTLE CARNAGE
+
+>think
+You are still missing twelve achievements that are possible regardless of black's critical move.
+So far you've found two achievements and missed one achievement for the black rook fleeing in its current state.
+
+Overall, you've found seven achievements achievements for a specific rook flee square type and still have one achievement to go.
+
+>{include} _rookflee
+>ra8
+SPITE CHECK (WINNING)
+DEBUG: Set of states = a-guarding. Current index = 1.
+
+>think
+You are still missing twelve achievements that are possible regardless of black's critical move.
+
+You've found all achievements specific to a certain rook flee square or type of square.
+
+* _rookflee
+
+>c7
+>s
+>s
+>s
+>se
+>c8r
+>kb3

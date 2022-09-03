@@ -267,7 +267,7 @@ rule for constructing the status line when board-in-status is true:
 	now in-header is false;
 
 to say occ-row of (westroom - a room):
-	say "[9 - yval of westroom]";
+	say "[yval of westroom]";
 	let temproom be westroom;
 	while temproom is not nothing:
 		say "[rmocc of temproom]";

@@ -367,8 +367,9 @@ this is the achievements-before-winning rule:
 	if achieved-yet of "plain old checkmate", continue the action;
 	if achieve-score is (ruled-achievements of false) - 1:
 		say "You're doing well. You've gotten all the achievements you could have without finding the basic win, which is tricky in its own way.";
-		the rule succeeds;
-	say "You haven't unlocked some trickier formations depending on the enemy rook's final move. There are [ruled-achievements of true in words] hidden, but the other [ruled-achievements of false in words] are achievable.";
+	else:
+		say "Once you've won the main game, you will unlock different final enemy moves, each of which allows an achievement or achievements unique to it. There are [ruled-achievements of true in words] hidden, but the other [ruled-achievements of false in words] are achievable. You've gotten [achieve-score in words] of them so far.";
+	the rule succeeds;
 
 to decide which number is ruled-achievements of (ts - a truth state):
 	let temp be 0;
@@ -403,7 +404,7 @@ this is the achievement-detail rule:
 	if generic-achievement-missed is 0:
 		say "You've gotten all the achievements that are [pos-regard].";
 	else:
-		say "You are still missing [generic-achievement-missed in words] achievement[plur of generic-achievement-missed] that [if generic-achievement-missed is 1]is[else]are[end if] [pos-regard].";
+		say "You are still missing [generic-achievement-missed in words] achievement[plur of generic-achievement-missed] that [if generic-achievement-missed is 1]is[else]are[end if] [pos-regard]. You have found [generic-achievement-got in words].";
 	if current-fleestate is not a-guarding:
 		if this-achievement-missed is 0 and this-achievement-got is 0:
 			say "You have nothing more to do with achievements for where the rook flees now. Win regularly, then see about the next state.";
@@ -411,6 +412,7 @@ this is the achievement-detail rule:
 			say "Though you've found nothing yet, you can find [achs of this-achievement-missed] with the current configuration. [if number of entries in available-fleestate-list > 1]You can win generically to try another black rook flee square if you're stuck here[else]This is the only 'special' rook-flee status type left[end if].";
 		else:
 			say "So far you've found [achs of this-achievement-got] and missed [achs of this-achievement-missed] for the black rook fleeing in its current state.";
+	say "[line break]";
 	if special-achievement-got is 0:
 		say "Overall, you've found no [ach-spec].";
 	else if special-achievement-missed is 0:
@@ -422,10 +424,9 @@ to say ach-spec: say "achievements specific to a certain rook flee square or typ
 
 to say achs of (nu - a number): say "[nu in words] achievement[plur of nu]";
 
-this is the print-save-state rule: if achieve-score > 0, say "If you wish to keep your progress for later without using [b]SAVE[r], the number [current-state-restore] will work.";
+this is the print-save-state rule: if achieve-score > 0, say "If you wish to keep your current progress in a later session without using [b]SAVE[r], the number [current-state-restore] will work.";
 
 to say pos-regard: say "possible regardless of black's critical move"
-
 
 to decide which number is last-got:
 	let count be 0;
