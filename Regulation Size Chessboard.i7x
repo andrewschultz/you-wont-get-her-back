@@ -227,7 +227,7 @@ to print-column-numbers:
 
 to say rmocc of (rm - a room):
 	if number of people in rm is 0:
-		say "[if in-header is true].[no line break][else] [end if]";
+		say "[if in-header is false or hide-dots] [else].[no line break][end if]";
 		continue the action;
 	say "[shorthand of random person in rm]";
 
@@ -271,6 +271,10 @@ to say column-boundary:
 			say "[minus][plus][minus][plus][minus][plus][minus][plus][minus][plus][minus][plus][minus][plus][minus]";
 	else:
 		say "[minus][minus][minus][minus][minus][minus][minus][minus]"
+
+to decide whether hide-dots:
+	if board-header-status bit-and 8 is 8, yes;
+	no;
 
 to decide whether blank-boundaries:
 	if board-header-status bit-and 4 is 4, yes;
@@ -336,7 +340,7 @@ understand "hdr [number]" as hdring.
 board-header-status is a number that varies. board-header-status is -1. [It's not zero because when it's on we want it to be an XOR of 3 flags, 1/2/4. ]
 
 to say hdr-status-summary of (n - a number):
-	if n < 0 or n > 8:
+	if n < 0 or n > 16:
 		say "undefined";
 		continue the action;
 	if n is 0:
@@ -348,7 +352,9 @@ to say hdr-status-summary of (n - a number):
 	if x bit-and 1 is 0, say "no ";
 	say "internal boundaries and ";
 	if x bit-and 4 is 0, say "no ";
-	say "boundary whitespace"
+	say "boundary whitespace";
+	if x bit-and 8 is 0, say "no ";
+	say "dots on unoccupied squares";
 
 to decide which number is head-lines-needed of (x - a number):
 	let temp be 10;
@@ -362,8 +368,8 @@ to decide whether irrelevant-blank-boundaries:
 	yes;
 
 carry out hdring:
-	if number understood < 0 or number understood > 8:
-		say "[b]HDR[r] commands must be between 0 and 7. 0 is off, 1 is a board without boundaries between squares, 2 is a board without outside boundaries, and 3 has all boundaries. Add 4 to make boundaries blank.";
+	if number understood < 0 or number understood > 16:
+		say "[b]HDR[r] commands must be between 0 and 16. 0 is off, 1 is a board without boundaries between squares, 2 is a board without outside boundaries, and 3 has all boundaries. Add 4 to make boundaries blank. Add 8 to remove dots from unoccupied squares.";
 		the rule succeeds;
 	let candidate be number understood - 1;
 	if candidate is board-header-status:
@@ -386,8 +392,9 @@ understand "hdr" as hdrblanking.
 
 carry out hdrblanking:
 	say "If you'd prefer to see the board in a header, you have options for how it displays. There are three binary options for a total of eight different views.";
-	say "0 turns the board in the header off. You may need some binary arithmetic or trial-and-error to find which setting you prefer.";
-	say "1 is the base view, with no inner or outer borders. Add 1 to get outer borders. Add 2 to get inner borders. Add 4 to make all borders into whitespace.";
+	say "[line break]0 turns the board in the header off. You may need some binary arithmetic or trial-and-error to find which setting you prefer.";
+	say "[line break]1 is the base view, with no inner or outer borders and dots in unoccupied squares.";
+	say "[line break]Add 1 to get outer borders. Add 2 to get inner borders. Add 4 to make all borders into whitespace. Add 8 to eliminate dots from unoccupied squares.";
 	the rule succeeds;
 
 volume dramatis personae
