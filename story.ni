@@ -18,8 +18,6 @@ include Old School Verb Total Carnage by Andrew Schultz.
 
 include Trivial Niceties by Andrew Schultz.
 
-include Bitwise Operators by Bart Massey.
-
 include Conditional Undo by Jesse McGrew.
 
 include Undo Output Control by Erik Temple.
@@ -28,7 +26,7 @@ include Bold Final Question Rows by Andrew Schultz.
 
 include Intro Restore Skip by Andrew Schultz.
 
-include Regulation Size Chessboard by Andrew Schultz.
+include Chessboard Rendering Utilities by Andrew Schultz.
 
 section not for release
 

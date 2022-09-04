@@ -1,6 +1,6 @@
-Version 1/220705 of Regulation Size Chessboard by Andrew Schultz begins here.
+Version 1/220705 of Chessboard Rendering Utilities by Andrew Schultz begins here.
 
-"This is code for creating, well, a regulation Size chessboard. It is pulled from You Won't Get Her Back and will be used for (mystery doo-doo-doo-doo noises) a small future project."
+"These are chessboard rendering utilities that include creating a chessboard as well as setting options for how to display said chessboard in a header. The basics were pulled from You Won't Get Her Back, but enough else was ported from story.ni that it could be useful for other projects, including a short IFComp 2022 entry."
 
 volume properties
 
@@ -419,7 +419,7 @@ to decide which number is indiv-bits of (nu - a number):
 carry out hdxing:
 	if number understood < 0 or number understood > 15, say "You need to type a number between 1 and 15 to change header options." instead;
 	if the number understood is 0, say "[b]HDX 0[r] doesn't change any options." instead;
-	now board-header-status is board-header-status xor number understood;
+	now board-header-status is board-header-status bit-xor number understood;
 	let bits-shifted be indiv-bits of number understood;
 	if number understood bit-xor 1 > 0, say "Boundaries between squares toggled.";
 	if number understood bit-xor 2 > 0, say "External boundaries toggled.";
@@ -756,6 +756,6 @@ rule for printing a parser error when the latest parser error is the i beg your 
 
 check waiting: say "Hey, yeah. It's your turn to move, so why not use all the time you want? Keep the opponent nervous." instead;
 
-Regulation Size Chessboard ends here.
+Chessboard Rendering Utilities ends here.
 
 ---- DOCUMENTATION ----
