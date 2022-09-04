@@ -1256,6 +1256,7 @@ carry out opting:
 	say "[line break]You can toggle coordinates with [b]COO[r]/[b]COOR[r]/[b]COORD[r]/[b]COORDS[r] or set them specifically with [b]COO ON[r] or [b]COO OFF[r], etc.";
 	say "[line break]You can also change the board square width with, say, [b]W 3[r] or [b]WIDTH 4[r]. Valid values are 1-5.";
 	say "[line break]You can also toggle the inverse 'checkerboard' effect with [b]WB[r] or [b]WB ON[r] or [b]WB OFF[r].";
+	say "[line break]The [b]HDR[r] command, along with a number, will put the board in the header. [b]HDX[r] uses xor on the number given.";
 	the rule succeeds;
 
 chapter verbsing
@@ -1318,7 +1319,7 @@ to say current-state-restore:
 			now add-index is 1;
 			next;
 		now add-index is add-index * 2;
-	say "[four-zeros of save-1 bit-xor 1717] [four-zeros of save-2 bit-xor 1717]";
+	say "[four-zeros of save-1 bit-xor 1717] [four-zeros of save-2 bit-xor 1717]"; [note: Bart Massey's extension for this is included in Chessboard Rendering Utilities]
 
 table of rough chr
 chr (indexed text)	ord

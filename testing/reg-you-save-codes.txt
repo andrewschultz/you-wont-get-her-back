@@ -23,7 +23,7 @@ Valid save-state entered. Resetting the board.
 a-guarding
 
 >think
-22
+twenty-two
 
 >1717 1719
 You entered an invalid save state number pair. Check for typos.
