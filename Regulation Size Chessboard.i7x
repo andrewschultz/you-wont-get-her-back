@@ -398,10 +398,46 @@ carry out hdrblanking:
 
 report hdrblanking when board-header-status > -1:
 	say "[line break]Numbers that toggle just one feature from the current setting:[line break]";
-	say "    To toggle only boundaries between squares, [b]HDR [board-header-status bit-xor 1 + 1][r].";
-	say "    To toggle only external boundaries, [b]HDR [board-header-status bit-xor 2 + 1][r].";
-	say "    To toggle only whitespace in boundaries instead of -+|, [b]HDR [board-header-status bit-xor 4 + 1][r].";
-	say "    To toggle only dots in unoccupied squares, [b]HDR [board-header-status bit-xor 8 + 1][r].";
+	say "    To toggle only boundaries between squares, [b]HDR [board-header-status bit-xor 1 + 1][r] or [b]HDX 1[r].";
+	say "    To toggle only external boundaries, [b]HDR [board-header-status bit-xor 2 + 1][r] or [b]HDX 2[r].";
+	say "    To toggle only whitespace in boundaries instead of -+|, [b]HDR [board-header-status bit-xor 4 + 1][r] or [b]HDX 4[r].";
+	say "    To toggle only dots in unoccupied squares, [b]HDR [board-header-status bit-xor 8 + 1][r] or [b]HDX 8[r].";
+
+chapter hdxing
+
+hdxing is an action out of world applying to one number.
+
+understand "hdx [number]" as hdxing.
+
+to decide which number is indiv-bits of (nu - a number):
+	let temp be nu;
+	while temp > 0:
+		if temp bit-and 1 is 1, increment temp;
+		bit-shr temp by 1;
+	decide on temp;
+
+carry out hdxing:
+	if number understood < 0 or number understood > 15, say "You need to type a number between 1 and 15 to change header options." instead;
+	if the number understood is 0, say "[b]HDX 0[r] doesn't change any options." instead;
+	now board-header-status is board-header-status xor number understood;
+	let bits-shifted be indiv-bits of number understood;
+	if number understood bit-xor 1 > 0, say "Boundaries between squares toggled.";
+	if number understood bit-xor 2 > 0, say "External boundaries toggled.";
+	if number understood bit-xor 4 > 0, say "Whitespace boundaries toggled.";
+	if number understood bit-xor 8 > 0, say "Dots in squares toggled.";
+	say "You can just push up arrow and repeat this command to undo the change[plur of bits-shifted] you made, if you don't like them.";
+
+hdxoing is an action out of world.
+
+understand "hdx" as hdxoing.
+
+carry out hdxoing:
+	say "[b]HDX #[r] toggles header print options, as opposed to setting them with [b]HDR[r]. It's useful if you don't want to do arithmetic, or you want to fine-tune things.";
+	say "The simplest way to use it is [b]HDX (power of two)[r].";
+	say "1 = boundaries between squares.";
+	say "2 = external boundaries.";
+	say "4 = whitespace in boundaries.";
+	say "8 = dots in unoccupied squares.";
 
 volume dramatis personae
 
