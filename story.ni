@@ -921,6 +921,17 @@ abbrev	promo-piece	implied-move
 "k"	white knight	white king
 "p"	--	white pawn
 
+this is the valid-promotion-check rule:
+	let nc be the number of characters in the player's command;
+	repeat through table of promotion letters:
+		if there is no promo-piece entry, next;
+		if character number nc in the player's command is abbrev entry:
+			note-promote-change-q promo-piece entry;
+			continue the action;
+	say "You can only promote to Q for queen, B for bishop, R for rook, or K/N for knight[one of] (since N could be confused with north, I want to leave that option open)[or].[stopping]";
+	reject the player's command;
+	the rule fails;
+
 this is the whom-to-hint-moving rule:
 	repeat through table of promotion letters:
 		say "Trying [abbrev entry] at start of [the player's command].";
@@ -947,18 +958,7 @@ after reading a command:
 			let X be the player's command;
 			replace the text "=" in X with "";
 			change the text of the player's command to "[X]";
-		let nc be the number of characters in the player's command;
-		if character number nc in the player's command is "q":
-			note-promote-change-q white queen;
-		else if character number nc in the player's command is "r":
-			note-promote-change-q white rook;
-		else if character number nc in the player's command is "b":
-			note-promote-change-q white bishop;
-		else if character number nc in the player's command is "n" or character number nc in the player's command is "k":
-			note-promote-change-q white knight;
-		else:
-			say "You can only promote to Q, B, R, or N (K is used here since N can be confused with north).";
-			reject the player's command;
+		abide by the valid-promotion-check rule;
 		let X be the player's command;
 		replace the regular expression ".$" in X with "";
 		change the text of the player's command to "[X]";
