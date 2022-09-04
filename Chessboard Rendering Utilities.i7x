@@ -2,6 +2,14 @@ Version 1/220705 of Chessboard Rendering Utilities by Andrew Schultz begins here
 
 "These are chessboard rendering utilities that include creating a chessboard as well as setting options for how to display said chessboard in a header. The basics were pulled from You Won't Get Her Back, but enough else was ported from story.ni that it could be useful for other projects, including a short IFComp 2022 entry."
 
+volume includes
+
+include Bitwise Operators by Bart Massey.
+
+volume rule stuff
+
+procedural rule: ignore the print final score rule.
+
 volume properties
 
 a room has a number called xval. a room has a number called yval.

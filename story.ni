@@ -131,8 +131,6 @@ option-persist-warn is a truth state that varies.
 
 chapter rules
 
-procedural rule: ignore the print final score rule.
-
 chapter tester stuff that needs to be listed globally
 
 undo-allow is a truth state that varies.
@@ -1016,7 +1014,7 @@ this is the implicit king movement rule:
 		if the noun is adjacent to the location of the player:
 			go-to-square noun;
 		else:
-			say "You can't travel from [location of player] to [noun] in one move! It would take [king-dist of location of player and noun] moves.";
+			say "You can't travel from [location of player] to [noun] in one move! It would take [king-dist of location of player and noun in words] moves.";
 		the rule succeeds;
 
 this is the white-rook-coward rule:
@@ -1103,7 +1101,7 @@ carry out squaregoing:
 		abide by the bungled-it-late rule;
 	if location of player is noun, say "You're already on [noun]." instead;
 	d "Couldn't find any way to move [hinted-person] to [noun].";
-	say "You don't seem to be able to move anything to [noun].";
+	say "You don't seem to be able to move [if hinted-person is black king]anything [else if hinted-person is white king][else][the hinted-person] [end if]to [noun].";
 
 to check-initial-win:
 	if achieved-yet of "plain old checkmate":

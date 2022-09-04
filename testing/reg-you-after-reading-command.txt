@@ -1,0 +1,77 @@
+## reg-you-after-reading-command.txt
+
+## testing after-reading-command function cases for Saavedra problem game
+
+** game: /home/andrew/prt/debug-you-wont-get-her-back.z8
+** interpreter: /home/andrew/prt/dfrotz -m -w5000 -h25
+
+* main
+
+>ord
+
+>bf7
+You can't get the white bishop to move. They're not on the board.
+
+>nf7
+You can't get the white knight to move. They're not on the board.
+
+>kf7
+You can't travel from b6 to f7 in one move! It would take four moves.
+!They're not on the board.
+
+>f7
+You don't seem to be able to move anything to f7.
+!They're not on the board.
+
+>qf7
+You can't get the white queen to move. They're not on the board.
+
+>rf7
+You can't get the white rook to move. They're not on the board.
+
+>pf7
+You don't seem to be able to move the white pawn to f7.
+
+>think
+You haven't found any achievements, but don't worry. You'll get one soon. You Won't Get Her Back tracks both wins and losses. You'll find creative losses as you go.
+
+>c7
+
+>s
+>s
+>s
+
+>se
+
+>c8b
+Triumph! The pawn makes it to the eighth rank. The black king laughs as the white bishop, and not your wife the white queen, pops up.
+Congratulations! You just got the FORKED TO DEATH achievement!
+
+>undo
+
+>c8k
+Triumph! The pawn makes it to the eighth rank. The black king laughs as the white knight, and not your wife the white queen, pops up.
+Congratulations! You just got the FORKED TO DEATH achievement!
+
+>undo
+
+>c8n
+Triumph! The pawn makes it to the eighth rank. The black king laughs as the white knight, and not your wife the white queen, pops up.
+Congratulations! You just got the FORKED TO DEATH achievement!
+
+>undo
+
+>c8r
+Triumph! The pawn makes it to the eighth rank. The black king laughs as the white rook, and not your wife the white queen, pops up.
+The black rook scoffs as you call for a rook, not your queen. "Sheesh. If you wanted a draw, you could've repeated moves." He shuffles over to a4.
+
+>undo
+>c8p
+You can only promote to Q for queen, B for bishop, R for rook, or K/N for knight (since N could be confused with north, I want to leave that option open)
+!The pawn makes it to the eighth rank.
+
+>undo
+>c8q
+Triumph! The pawn makes it to the eighth rank. It's too good to be true! Your queen is back. Surely she will be able to outmaneuver a mere rook?
+
+The black rook seems unconcerned. It sneaks to c4! You and your queen are now both under attack, but she can just take it...right?
