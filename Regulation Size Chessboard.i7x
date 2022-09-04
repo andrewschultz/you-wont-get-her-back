@@ -379,7 +379,7 @@ carry out hdring:
 		say "Unfortunately, for a header with [hdr-status-summary of candidate], I'm going to require [7 + head-lines-needed of candidate] total lines in your interpreter, so you have space for [head-lines-needed of candidate] lines in the header and sufficient room for game text. So you may want to resize your interpreter and try again[if candidate > 0] and/or choose a smaller header[end if].";
 		the rule succeeds;
 	now board-header-status is candidate;
-	say "Changing the header to [hdr-status-summary of candidate].";
+	say "Changing the header to [hdr-status-summary of candidate]. If you want something different, [b]HDR[r] will tell you what numbers toggle which features.";
 	if irrelevant-blank-boundaries, say "Trivial note: you set blank boundaries on a small board, which will cause no visual difference.";
 	if debug-state is true, say "DEBUG: [head-lines-needed of candidate] rows needed.";
 	if screenread is false:
@@ -395,7 +395,13 @@ carry out hdrblanking:
 	say "[line break]0 turns the board in the header off. You may need some binary arithmetic or trial-and-error to find which setting you prefer.";
 	say "[line break]1 is the base view, with no inner or outer borders and dots in unoccupied squares.";
 	say "[line break]Add 1 to get outer borders. Add 2 to get inner borders. Add 4 to make all borders into whitespace. Add 8 to eliminate dots from unoccupied squares.";
-	the rule succeeds;
+
+report hdrblanking when board-header-status > -1:
+	say "[line break]Numbers that toggle just one feature from the current setting:[line break]";
+	say "    To toggle only boundaries between squares, [b]HDR [board-header-status bit-xor 1 + 1][r].";
+	say "    To toggle only external boundaries, [b]HDR [board-header-status bit-xor 2 + 1][r].";
+	say "    To toggle only whitespace in boundaries instead of -+|, [b]HDR [board-header-status bit-xor 4 + 1][r].";
+	say "    To toggle only dots in unoccupied squares, [b]HDR [board-header-status bit-xor 8 + 1][r].";
 
 volume dramatis personae
 
