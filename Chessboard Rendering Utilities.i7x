@@ -21,7 +21,9 @@ definition: a person (called pe) is allied:
 	if pe is the player, no;
 	yes;
 
-volume calculation stubs
+volume calculation and parsing stubs
+
+to strip-algebraic-front-letter: change the text of the player's command to "[character number 2 in the player's command][character number 3 in the player's command]";
 
 to decide which number is king-dist of (rm1 - a room) and (rm2 - a room):
 	let xdelta be xval of rm1 - xval of rm2;

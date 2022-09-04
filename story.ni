@@ -912,6 +912,29 @@ hinted-person is a person that varies.
 
 equals-warn is a truth state that varies.
 
+table of promotion letters
+abbrev	promo-piece	implied-move
+"q"	white queen	white queen
+"r"	white rook	white rook
+"b"	white bishop	white bishop
+"n"	white knight	white knight
+"k"	white knight	white king
+"p"	--	white pawn
+
+this is the whom-to-hint-moving rule:
+	repeat through table of promotion letters:
+		say "Trying [abbrev entry] at start of [the player's command].";
+		if character number 1 in the player's command is abbrev entry:
+			now hinted-person is implied-move entry;
+			strip-algebraic-front-letter;
+			break;
+	if hinted-person is black king:
+		say "Invalid piece specified.";
+		reject the player's command;
+	if hinted-person is off-stage:
+		say "You can't get [the hinted-person] to move. They're not on the board.";
+		reject the player's command;
+
 after reading a command:
 	now hinted-person is black king;
 	let X be the player's command in lower case;
@@ -940,30 +963,7 @@ after reading a command:
 		replace the regular expression ".$" in X with "";
 		change the text of the player's command to "[X]";
 	if the player's command matches the regular expression "^<a-z><a-z><1-8>$":
-		if character number 1 in the player's command is "k":
-			now hinted-person is the player;
-			change the text of the player's command to "[character number 2 in the player's command][character number 3 in the player's command]";
-		else if character number 1 in the player's command is "q":
-			now hinted-person is the white queen;
-			change the text of the player's command to "[character number 2 in the player's command][character number 3 in the player's command]";
-		else if character number 1 in the player's command is "p":
-			now hinted-person is the white pawn;
-			change the text of the player's command to "[character number 2 in the player's command][character number 3 in the player's command]";
-		else if character number 1 in the player's command is "n":
-			now hinted-person is the white knight;
-			change the text of the player's command to "[character number 2 in the player's command][character number 3 in the player's command]";
-		else if character number 1 in the player's command is "r":
-			now hinted-person is the white rook;
-			change the text of the player's command to "[character number 2 in the player's command][character number 3 in the player's command]";
-		else if character number 1 in the player's command is "b":
-			now hinted-person is the white bishop;
-			change the text of the player's command to "[character number 2 in the player's command][character number 3 in the player's command]";
-		else:
-			say "Invalid piece specified.";
-			reject the player's command;
-		if hinted-person is off-stage:
-			say "You can't get [the hinted-person] to move. They're not on the board.";
-			reject the player's command;
+		abide by the whom-to-hint-moving rule;
 
 squaregoing is an action applying to one visible thing.
 
